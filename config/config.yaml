@@ -112,6 +112,10 @@ player_vars:
   mission_boost_multiplier:
     value_type: float
     initial_value: 1
+  library_boost_multiplier:
+    value_type: int
+    initial_value: 1
+
 
   fordt_speed:
     value_type: int
@@ -307,9 +311,9 @@ player_vars:
   loop_count:
     value_type: int
     initial_value: 0
-  loops_champion:
-    value_type: int
-    initial_value: 0
+  # loops_champion:
+  #   value_type: int
+  #   initial_value: 0
 
   bonus_combo:
     value_type: int
@@ -317,49 +321,49 @@ player_vars:
   combo_count:
     value_type: int
     initial_value: 0
-  combos_champion:
-    value_type: int
-    initial_value: 0
+  # combos_champion:
+  #   value_type: int
+  #   initial_value: 0
 
-  radio_champion:
-    value_type: int
-    initial_value: 0
-  charleston_champion:
-    value_type: int
-    initial_value: 0
-  speakeasy_champion:
-    value_type: int
-    initial_value: 0
-  cult_champion:
-    value_type: int
-    initial_value: 0
-  graveyard_champion:
-    value_type: int
-    initial_value: 0
-  city_champion:
-    value_type: int
-    initial_value: 0
-  aza_champion:
-    value_type: int
-    initial_value: 0
-  king_champion:
-    value_type: int
-    initial_value: 0
-  nyarla_champion:
-    value_type: int
-    initial_value: 0
-  cthulhu_champion:
-    value_type: int
-    initial_value: 0
-  shub_champion:
-    value_type: int
-    initial_value: 0
-  videomonster_champion:
-    value_type: int
-    initial_value: 0
-  videofordt_champion:
-    value_type: int
-    initial_value: 0
+  # radio_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # charleston_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # speakeasy_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # cult_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # graveyard_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # city_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # aza_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # king_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # nyarla_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # cthulhu_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # shub_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # videomonster_champion:
+  #   value_type: int
+  #   initial_value: 0
+  # videofordt_champion:
+  #   value_type: int
+  #   initial_value: 0
 
   bywandine_bonus:
     value_type: int
@@ -1172,7 +1176,7 @@ sound_system:
     voice:
       type: standard
       simultaneous_sounds: 1
-      volume: 2
+      volume: 3
     sfx:
       type: standard
       simultaneous_sounds: 8
