@@ -1,1 +1,0 @@
-start cmd /K mpf both -P
