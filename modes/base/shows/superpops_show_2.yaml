@@ -1,0 +1,70 @@
+#show_version=6
+- time: 0
+  lights:
+    center_backglass_led: purple-f200ms
+    apron_led: purple-f200ms
+    side_led_left: purple-f200ms
+    side_led_right: purple-f200ms
+    
+- time: "+1"
+  lights:
+    center_backglass_led: 99004C-f200ms
+    apron_led: 99004C-f200ms
+    side_led_left: 99004C-f200ms
+    side_led_right: 99004C-f200ms
+
+- time: "+2"
+  lights:
+    center_backglass_led: 990000-f200ms
+    apron_led: 990000-f200ms
+    side_led_left: 990000-f200ms
+    side_led_right: 990000-f200ms
+
+- time: "+3"
+  lights:
+    center_backglass_led: FF8000-f200ms
+    apron_led: FF8000-f200ms
+    side_led_left: FF8000-f200ms
+    side_led_right: FF8000-f200ms
+
+- time: "+4"
+  lights:
+    center_backglass_led: FFFF00-f200ms
+    apron_led: FFFF00-f200ms
+    side_led_left: FFFF00-f200ms
+    side_led_right: FFFF00-f200ms
+
+- time: "+5"
+  lights:
+    center_backglass_led: 80FF00-f200ms
+    apron_led: 80FF00-f200ms
+    side_led_left: 80FF00-f200ms
+    side_led_right: 80FF00-f200ms
+
+- time: "+6"
+  lights:
+    center_backglass_led: 33FF33-f200ms
+    apron_led: 33FF33-f200ms
+    side_led_left: 33FF33-f200ms
+    side_led_right: 33FF33-f200ms
+
+- time: "+7"
+  lights:
+    center_backglass_led: 00FFFF-f200ms
+    apron_led: 00FFFF-f200ms
+    side_led_left: 00FFFF-f200ms
+    side_led_right: 00FFFF-f200ms
+
+- time: "+8"
+  lights:
+    center_backglass_led: 0080FF-f200ms
+    apron_led: 0080FF-f200ms
+    side_led_left: 0080FF-f200ms
+    side_led_right: 0080FF-f200ms
+
+- time: "+9"
+  lights:
+    center_backglass_led: 0000CC-f200ms
+    apron_led: 0000CC-f200ms
+    side_led_left: 0000CC-f200ms
+    side_led_right: 0000CC-f200ms

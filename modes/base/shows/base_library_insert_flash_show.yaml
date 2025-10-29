@@ -1,0 +1,39 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_38: purple-f200ms
+
+- time: '+1'
+  lights:
+    insert_37: purple-f200ms
+
+- time: '+2'
+  lights:
+    insert_36: purple-f200ms
+
+- time: '+3'
+  lights:
+    insert_35: purple-f200ms
+
+- time: '+4'
+  lights:
+    insert_38: off
+
+- time: '+5'
+  lights:
+    insert_37: off
+
+- time: '+6'
+  lights:
+    insert_36: off
+
+- time: '+7'
+  lights:
+    insert_35: off
+
+- time: '+20'
+  lights:
+    insert_38: off
+    insert_37: off
+    insert_36: off
+    insert_35: off

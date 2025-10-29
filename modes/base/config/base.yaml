@@ -1,0 +1,1895 @@
+#config_version=6
+mode:
+  start_events: ball_started, base_start
+  priority: 100
+  stop_events: base_stop
+
+###########################
+
+event_player:
+  save_lane_complete: kickback_activated
+  ball_save_ball_save_saving_ball: play_ball_save_sound
+  ball_save_scoop_save_saving_ball: play_ball_save_sound
+  ball_save_random_save_saving_ball: play_ball_save_sound
+  ball_save_greatoldones_save_saving_ball: play_ball_save_sound
+  ball_save_winmission_save_saving_ball: play_ball_save_sound
+  timer_shaker_stop_time_complete: shaker_stop
+  timer_postup_stop_time_complete: postup_down
+  timer_postup_long_stop_time_complete: postup_down
+  postup_down: shaker_shake
+  mode_carousel_started: twenties_stop
+  "{current_player.variable_superpops_value==0}": superpops_ready
+  "{current_player.score>=500000}": bigscore1
+  "{current_player.score>=1000000}": bigscore2
+  "{current_player.score>=1500000}": bigscore3
+  "{current_player.score>=2000000}": bigscore4
+  "{current_player.score>=2500000}": bigscore5
+  "{current_player.score>=3000000}": bigscore6
+  bigscore1: knocker_pulse
+  bigscore2: knocker_pulse
+  bigscore3: knocker_pulse
+  bigscore4: knocker_pulse
+  bigscore5: knocker_pulse
+  bigscore6: knocker_pulse
+
+  mode_library_stopped: library_video_stop
+  mode_library_aza_stopped: library_video_stop
+  mode_library_charleston_stopped: library_video_stop
+  mode_library_city_stopped: library_video_stop
+  mode_library_cthulhu_stopped: library_video_stop
+  mode_library_cult_stopped: library_video_stop
+  mode_library_graveyard_stopped: library_video_stop
+  mode_library_king_stopped: library_video_stop
+  mode_library_nyarla_stopped: library_video_stop
+  mode_library_radio_stopped: library_video_stop
+  mode_library_shub_stopped: library_video_stop
+  mode_library_speakeasy_stopped: library_video_stop
+
+###########################
+
+random_event_player:
+  mode_base_started:
+    events:
+      - prepare_game_over_video_1
+      - prepare_game_over_video_2
+      - prepare_game_over_video_3
+      - prepare_game_over_video_4
+      - prepare_game_over_video_5
+      - prepare_game_over_video_6
+      - prepare_game_over_video_7
+      - prepare_game_over_video_8
+      - prepare_game_over_video_9
+      - prepare_game_over_video_10
+      - prepare_game_over_video_11
+      - prepare_game_over_video_12
+      - prepare_game_over_video_13
+      - prepare_game_over_video_14
+      - prepare_game_over_video_15
+      - prepare_game_over_video_16
+      - prepare_game_over_video_17
+      - prepare_game_over_video_18
+
+  mode_random_bonus_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_lurking_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_stormy_night_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_buddy_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_pursuit_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_chthonian_attack_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_random_available_mission_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_bywandine_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_twenties_multiball_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_rlyeh_multiball_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_mmultiball_rlyeh_multiball_level_2_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_mmultiball_rlyeh_multiball_level_3_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+###########################
+
+coil_player:
+  shaker_shake:
+    c_shaker: enable
+  shaker_stop:
+    c_shaker: disable
+  postup_up:
+    c_postup:
+      action: enable
+  postup_up_long:
+    c_postup:
+      action: enable
+  postup_down:
+    c_postup:
+      action: disable
+  s_action_long_active:
+    c_popbumper_three:
+      action: pulse
+
+###########################
+
+slide_player:
+  single_player_ball_started:
+    base_slide:
+      action: play
+      priority: 100
+
+  multi_player_ball_started:
+    base_slide:
+      action: play
+      priority: 100
+
+  killplayer:
+    killed_by_gods_slide:
+      action: play
+      priority: 5000
+      expire: 5s
+
+###########################
+
+slides:
+  base_slide:
+    - widget: base_frame_widget
+
+  killed_by_gods_slide:
+    widgets:
+    - type: text
+      text: "KILLED BY ANCIENT GODS\nYou forgot the elder sign"
+      y: 50%
+      x: 50%
+      z: 100
+      style: mission_text
+    - type: image
+      image: frame_cthulhu
+      z: 10
+    - type: video
+      video: killed_by_gods_scratch_movie
+      auto_play: True
+      end_behavior: stop
+      z: 9
+
+###########################
+
+widget_player:
+  single_player_ball_started:
+    base_score_widget:
+      slide: base_slide
+    superpops_widget:
+      slide: base_slide
+
+  multi_player_ball_started:
+    base_score_widget:
+      slide: base_slide
+    multi_score_widget:
+      slide: base_slide
+    superpops_widget:
+      slide: base_slide
+
+  skillshot_lit_hit:
+    skillshot_widget:
+      slide: base_slide
+
+  superpops_ready:
+    superpops_widget:
+      action: remove 
+    superpops_ready_widget:
+      slide: base_slide
+
+  timer_superpops_reset_time_complete:
+    superpops_widget:
+      slide: base_slide 
+    superpops_ready_widget:
+      action: remove  
+
+###########################
+
+widgets:
+  base_score_widget:
+    - type: text
+      text: (score)
+      number_grouping: true
+      min_digits: 2
+      y: 45%
+      font_size: 150
+      z: 1000
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball) 
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (player|spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  base_without_score_widget:
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (player|spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  superpops_widget:
+    - type: text
+      text: (player|variable_superpops_value) bumpers
+      y: top-20
+      x: right-380
+      anchor_x: right
+      anchor_y: top
+      font_size: 45
+      z: 1000
+
+  superpops_ready_widget:
+    - type: text
+      text: SUPERPOPS !
+      y: top-20
+      x: right-380
+      anchor_x: right
+      anchor_y: top
+      font_size: 45
+      z: 1000
+
+  base_frame_widget:
+    - type: Image
+      image: frame_twenties
+      z: 10
+
+  cthulhu_frame_image:
+    type: Image
+    image: frame_cthulhu
+    z: 15
+
+  multi_score_widget:
+    - type: text
+      text: player 1 - (player1|score)
+      min_digits: 2
+      y: 65
+      x: left+800
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 25
+      z: 1000
+    - type: text
+      text: player 2 - (player2|score)
+      min_digits: 2
+      y: 65
+      x: left+1100
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 25
+      z: 1000
+    - type: text
+      text: player 3 - (player3|score)
+      min_digits: 2
+      y: 30
+      x: left+800
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 25
+      z: 1000
+    - type: text
+      text: player 4 - (player4|score)
+      min_digits: 2
+      y: 30
+      x: left+1100
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 25
+      z: 1000
+
+  skillshot_widget:
+    type: text
+    text: SKILLSHOT ! WELL DONE !
+    y: 28%
+    x: 50%
+    z: 100
+    expire: 5s
+
+  library_necronomicon_widget:
+    - type: Image
+      image: necronomicon
+      y: 42%
+      x: 17%
+      z: 100
+
+  video_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 1
+
+###########################
+
+timers:
+  superpops_reset_time:
+    start_value: 0
+    end_value: 30
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: superpops_ready
+      - action: stop
+        event: timer_superpops_reset_time_complete
+
+  shaker_stop_time:
+    start_value: 0
+    end_value: 1
+    direction: up
+    tick_interval: 500ms
+    control_events:
+      - action: start
+        event: shaker_shake
+      - event: timer_shaker_stop_time_complete
+        action: reset
+
+  postup_stop_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: postup_up
+      - event: timer_postup_stop_time_complete
+        action: reset
+
+  postup_long_stop_time:
+    start_value: 0
+    end_value: 6
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: postup_up_long
+      - event: timer_postup_long_stop_time_complete
+        action: reset
+
+###########################
+
+shots:
+  base_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    show_tokens:
+      light: insert_55
+  base_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    show_tokens:
+      light: insert_54
+  base_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    show_tokens:
+      light: insert_14
+  base_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    show_tokens:
+      light: insert_15
+  base_gate_secret_library_exit_shot:
+    switch: s_gate_secret_library
+  base_gate_exit_library_shot:
+    switch: s_gate_exit_library
+
+###########################
+
+shot_groups:
+  save_lane:
+    shots: base_roll_left_outlane_shot, base_roll_left_inlane_shot, base_roll_right_inlane_shot, base_roll_right_outlane_shot
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+    reset_events: save_lane_complete
+
+
+###########################
+
+show_player:
+  superpops_ready:
+    superpops_show:
+      speed: 50
+      loops: -1
+      priority: 2000
+    superpops_show_2:
+      speed: 50
+      loops: -1
+      priority: 2000
+  timer_superpops_reset_time_complete:
+    superpops_show:
+      action: stop
+    superpops_show_2:
+      action: stop
+
+  save_lane_lit_complete:
+    save_lane_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1
+
+  ball_save_ball_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_ball_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+  ball_save_scoop_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_scoop_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+
+  ball_save_random_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_random_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+  ball_save_greatoldones_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_greatoldones_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+  ball_save_winmission_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_winmission_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+  ball_save_earthquake_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 3000
+  ball_save_earthquake_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 3000
+
+  ball_save_bywandine_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 2000
+  ball_save_bywandine_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 2000
+
+  mode_fordt_ride_started:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 6000
+
+  ball_save_fordt_ride_end_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 6000
+
+  ball_save_ball_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_scoop_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_random_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_greatoldones_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_winmission_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_earthquake_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_bywandine_save_grace_period:
+    ball_save_blink_show: stop
+  multiball_multiball_fordt_ride_multiball_ended:
+    ball_save_blink_show: stop
+
+
+  ball_save_ball_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_scoop_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_random_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_greatoldones_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_winmission_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_earthquake_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_bywandine_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_fordt_ride_end_save_disabled:
+    ball_save_blink_show: stop
+
+  play_ball_save_sound:
+    ball_save_ball_saved_show:
+      speed: 50
+      loops: 1
+      events_when_played: shaker_shake
+
+  action_valid_spell_shot:
+    spell_show:
+      speed: 35
+      loops: 0
+      priority: 2000
+      events_when_completed: spellshowfast
+  spellshowfast:
+    spell_show:
+      speed: 55
+      loops: 0
+      priority: 2000
+      events_when_completed: spellshowfaster
+  spellshowfaster:
+    spell_show:
+      speed: 75
+      loops: 0
+      priority: 2000
+      events_when_completed: spellshowfastest
+  spellshowfastest:
+    spell_show:
+      speed: 95
+      loops: 0
+      priority: 2000
+      events_when_completed: spellshowfastestest
+  spellshowfastestest:
+    spell_show:
+      speed: 115
+      loops: 0
+      priority: 2000
+
+  killplayer:
+    kill_player_show:
+      speed: 5
+      loops: 10
+      priority: 2000
+
+  "{current_player.mission_cult=='completed'}":
+    portal_led_blink_show:
+      speed: 40
+      loops: -1
+      priority: 1000
+
+###########################
+
+light_player:
+  "{current_player.mission_speakeasy=='completed'}":
+    insert_73: 'FF9933'
+    speakeasy_box_led: 'FF9933'
+  "{current_player.mission_charleston=='completed'}":
+    insert_72: 'FF8000'
+    charleston_box_led: 'FF8000'
+  "{current_player.mission_radio=='completed'}":
+    insert_71: '994C00'
+    radio_box_led: '994C00'
+  "{current_player.mission_graveyard=='completed'}":
+    insert_63: '004C99'
+    graveyard_box_led: '004C99'
+  "{current_player.mission_cult=='completed'}":
+    insert_64: green
+    cult_box_led: green
+  "{current_player.mission_city=='completed'}":
+    insert_65: '006666'
+    city_box_led: '006666'
+  "{current_player.azathoth_mission_available=='completed'}":
+    insert_68: red
+  "{current_player.king_mission_available=='completed'}":
+    insert_67: yellow
+  "{current_player.nyarla_mission_available=='completed'}":
+    insert_69: blue
+  "{current_player.shub_mission_available=='completed'}":
+    insert_66: 'CC0066'
+  extraball_ready:
+    insert_57: green
+  mystery_award_11_event:
+    insert_57: green
+
+###########################
+
+variable_player:
+  mode_base_started:
+    bonus_ramps:
+      action: set
+      int: 0
+    bonus_targets:
+      action: set
+      int: 0
+
+  # game_ended:
+  #   start_sequence_variable:
+  #     action: set
+  #     string: 'off'
+
+  mode_lurking_stopped:
+    lurking_monster_life:
+      action: set
+      string: 'ok'  
+
+  save_lane_complete:
+    score: 5000
+  
+  s_scoop_bas_active:
+    variable_number_of_clue_value:
+      int: +1    
+
+  s_target_library_1_active:
+    variable_number_of_book_value:
+      int: +1 
+  s_target_library_2_active:
+    variable_number_of_book_value:
+      int: +1 
+  s_target_library_3_active:
+    variable_number_of_book_value:
+      int: +1 
+  s_target_library_4_active:
+    variable_number_of_book_value:
+      int: +1
+  s_target_library_5_active:
+    variable_number_of_book_value:
+      int: +1
+  s_target_library_6_active:
+    variable_number_of_book_value:
+      int: +1 
+
+  superpops_ready:
+    variable_superpops_active:
+      action: set
+      string: 'on'
+    variable_superpops_value:
+      int: 50
+      action: set
+
+  timer_superpops_reset_time_complete:
+    variable_superpops_active:
+      action: set
+      string: 'off'     
+  ball_drain:
+    variable_superpops_active:
+      action: set
+      string: 'off' 
+
+  s_popbumper_one_active{current_player.variable_superpops_active=='off'}:
+    variable_superpops_value:
+      int: -1
+  s_popbumper_two_active{current_player.variable_superpops_active=='off'}:
+    variable_superpops_value:
+      int: -1
+  s_popbumper_three_active{current_player.variable_superpops_active=='off'}:
+    variable_superpops_value:
+      int: -1
+
+  s_popbumper_one_active{current_player.variable_superpops_active=='on'}:
+    score: 2500 * current_player.multiplier
+  s_popbumper_two_active{current_player.variable_superpops_active=='on'}:
+    score: 2500 * current_player.multiplier
+  s_popbumper_three_active{current_player.variable_superpops_active=='on'}:
+    score: 2500 * current_player.multiplier
+
+  launch_random_mission:
+    random_value_mission:
+      int: 0
+      action: set
+
+  mode_buddy_twenties_started:
+    buddy_mode_running:
+      action: set
+      string: 'on'  
+  multiball_buddy_twenties_multiball_ended:
+    buddy_mode_running:
+      action: set
+      string: 'off'
+
+  mode_fordt_ride_started:
+    fordt_ride_mode_running:
+      action: set
+      string: 'on'  
+  mode_fordt_ride_stopped:
+    fordt_ride_mode_running:
+      action: set
+      string: 'off'
+
+  multiball_rlyeh_has_started:
+    multiball_rlyeh_running:
+      action: set
+      string: 'true'
+  multiball_rlyeh_has_stopped:
+    multiball_rlyeh_running:
+      action: set
+      string: 'off'
+
+  multiball_multiball_cellar_multiball_started:
+    cellar_multiball_running:
+      action: set
+      string: 'on'
+  multiball_multiball_cellar_multiball_ended:
+    cellar_multiball_running:
+      action: set
+      string: 'off'
+
+  launch_multiball_portal_3:
+    portal_multiball_running:
+      action: set
+      string: 'on'
+  multiball_multiball_portal_multiball_ended:
+    portal_multiball_running:
+      action: set
+      string: 'off'
+
+  reset_sanity_gauge:
+    sanity_gauge:
+      int: 0
+      action: set  
+
+  mode_pre_azathoth_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_king_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_nyarla_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_cthulhu_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_shub_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+
+
+  prepare_game_over_video_1:
+    game_over_number:
+      action: set
+      string: '1'    
+  prepare_game_over_video_2:
+    game_over_number:
+      action: set
+      string: '2' 
+  prepare_game_over_video_3:
+    game_over_number:
+      action: set
+      string: '3' 
+  prepare_game_over_video_4:
+    game_over_number:
+      action: set
+      string: '4' 
+  prepare_game_over_video_5:
+    game_over_number:
+      action: set
+      string: '5' 
+  prepare_game_over_video_6:
+    game_over_number:
+      action: set
+      string: '6' 
+  prepare_game_over_video_7:
+    game_over_number:
+      action: set
+      string: '7'    
+  prepare_game_over_video_8:
+    game_over_number:
+      action: set
+      string: '8' 
+  prepare_game_over_video_9:
+    game_over_number:
+      action: set
+      string: '9' 
+  prepare_game_over_video_10:
+    game_over_number:
+      action: set
+      string: '10' 
+  prepare_game_over_video_11:
+    game_over_number:
+      action: set
+      string: '11'
+  prepare_game_over_video_12:
+    game_over_number:
+      action: set
+      string: '12'
+  prepare_game_over_video_13:
+    game_over_number:
+      action: set
+      string: '13'
+  prepare_game_over_video_14:
+    game_over_number:
+      action: set
+      string: '14'
+  prepare_game_over_video_15:
+    game_over_number:
+      action: set
+      string: '15'
+  prepare_game_over_video_16:
+    game_over_number:
+      action: set
+      string: '16'
+  prepare_game_over_video_17:
+    game_over_number:
+      action: set
+      string: '17'
+  prepare_game_over_video_18:
+    game_over_number:
+      action: set
+      string: '18'
+
+  add_30:
+    random_value_mission:
+      int: 30
+      action: set
+  add_35:
+    random_value_mission:
+      int: 35
+      action: set
+  add_40:
+    random_value_mission:
+      int: 40
+      action: set
+  add_45:
+    random_value_mission:
+      int: 45
+      action: set
+  add_50:
+    random_value_mission:
+      int: 50
+      action: set
+  add_55:
+    random_value_mission:
+      int: 55
+      action: set
+  add_60:
+    random_value_mission:
+      int: 60
+      action: set
+
+  reset_bonus_screen_green_targets:
+    bonus_screen_green_targets:
+      action: set
+      int: 0
+  reset_bonus_screen_library_targets:
+    bonus_screen_library_targets:
+      action: set
+      int: 0
+  reset_bonus_screen_dt_targets:
+    bonus_screen_dt_targets:
+      action: set
+      int: 0
+
+###########################
+
+counters:
+  well_done_voice_counter:
+    count_events: s_sling_left_active, s_sling_right_active, s_sling_up_active, s_popbumper_one_active, s_popbumper_two_active, s_popbumper_three_active, s_target_square_white_1_active, s_target_square_white_2_active, s_target_square_white_3_active, s_target_square_white_4_active, s_target_square_white_5_active, s_target_library_1_active, s_target_library_2_active, s_target_library_3_active, s_target_library_4_active, s_target_library_5_active, s_target_library_6_active, s_target_green_1_active, s_target_green_2_active, s_target_green_3_active, s_drop_target_1_active, s_drop_target_2_active, s_drop_target_3_active, s_drop_target_4_active, s_roll_fordt_active, s_roll_asylum_active, s_roll_skill_shot_3_active, s_roll_skill_shot_2_active, s_roll_skill_shot_1_active, s_gate_library_active, s_gate_secret_library_active, s_gate_main_ramp_active, s_gate_green_ramp_active, s_gate_cthulhu_ramp_active, s_roll_library_active, s_roll_space_active, s_roll_right_inlane_active, s_roll_left_inlane_active
+    starting_count: 0
+    count_complete_value: 20
+    events_when_complete: launch_well_done_voice
+    reset_on_complete: true
+    disable_on_complete: false
+
+  rlyeh_lock_number:
+    count_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit
+    count_complete_value: 2
+    events_when_complete: rlyeh_multiball_ready
+    disable_events: launch_rlyeh_multiball
+    persist_state: true
+
+  rlyeh_lock_number_level_2:
+    count_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit
+    count_complete_value: 3
+    events_when_complete: rlyeh_multiball_level_2_ready
+    enable_events: multiball_multiball_rlyeh_multiball_ended
+    disable_events: launch_rlyeh_multiball_level_2
+    persist_state: true
+
+  rlyeh_lock_number_level_3:
+    count_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit
+    count_complete_value: 4
+    events_when_complete: rlyeh_multiball_level_3_ready
+    enable_events: multiball_multiball_rlyeh_multiball_level_2_ended
+    disable_events: launch_rlyeh_multiball_level_3
+    persist_state: true
+
+###########################
+
+extra_balls:
+  twenties_extraball:
+    enabled: true
+    max_per_game: 1
+    award_events: extraball_ready
+  mystery_extraball:
+    enabled: true
+    max_per_game: 1
+    award_events: mystery_award_11_event
+
+###########################
+
+ball_saves:
+  ball_save:
+    active_time: 15s
+    hurry_up_time: 7s
+    grace_period: 3s
+    enable_events: mode_base_started
+    timer_start_events: balldevice_bd_plunger_lane_ball_eject_success #balldevice_bd_plunger_ejecting_ball
+    auto_launch: true
+    balls_to_save: 1
+
+  scoop_save:
+    active_time: 5s
+    hurry_up_time: 2s
+    grace_period: 3s
+    enable_events: carousel_item_selected, mode_buddy_twenties_started, mode_bywandine_stopped
+    auto_launch: true
+    balls_to_save: 1
+
+  random_save:
+    active_time: 30s
+    hurry_up_time: 5s
+    grace_period: 3s
+    enable_events: ball_save_bonus
+    auto_launch: true
+    balls_to_save: -1
+
+  greatoldones_save: 
+    active_time: 10s
+    hurry_up_time: 2s
+    grace_period: 3s
+    enable_events: mode_aza_started, mode_king_started, mode_nyarla_started, mode_cthulhu_started, mode_shub_started
+    auto_launch: true
+    balls_to_save: 1
+
+  winmission_save:
+    active_time: 15s
+    hurry_up_time: 5s
+    grace_period: 3s
+    enable_events: mode_radio_win_started, mode_charleston_win_started, mode_speakeasy_win_started, mode_cult_win_started, mode_graveyard_win_started, mode_city_win_started, mode_aza_win_started, mode_nyarla_win_started, mode_king_win_started, mode_shub_win_started, mode_cthulhu_win_started, launch_cellar_multiball, end_of_sanity
+    auto_launch: true
+    balls_to_save: -1
+
+  earthquake_save:
+    active_time: 35s
+    hurry_up_time: 5s
+    grace_period: 3s
+    enable_events: mode_chthonian_attack_started
+    auto_launch: true
+    balls_to_save: -1
+
+  bywandine_save:
+    active_time: 35s
+    hurry_up_time: 4s
+    grace_period: 3s
+    enable_events: mode_bywandine_started
+    auto_launch: true
+    balls_to_save: -1
+
+  fordt_ride_end_save:
+    active_time: 8s
+    enable_events: multiball_multiball_fordt_ride_multiball_ended
+    auto_launch: false
+    balls_to_save: 1
+
+###########################
+
+sound_player:
+  launch_sanity_target_voice:
+    sanity_target_voice_1:
+      action: play
+      volume: 2
+
+  superpops_ready:
+    bumpers_voice_pool:
+      action: play
+      volume: 2
+
+  s_start_active:
+    button_start:
+      action: play
+      volume: 2
+
+  play_ball_save_sound:
+    ball_save_voice:
+      action: play
+      volume: 2
+
+  launch_well_done_voice:
+    score_voice_pool:
+      action: play
+      volume: 2 
+
+  save_lane_lit_complete:
+    save_lane_complete_sound:
+      action: play
+      volume: 2 
+
+  ball_will_end:
+    drain_sound_pool:
+      action: play
+      volume: 1
+
+  skillshot_lit_hit:
+    skillshot_sound_pool:
+      action: play
+      volume: 2
+
+  s_scoop_bas_active:
+    clue_voice_pool:
+      action: play
+      volume: 2
+
+  action_valid_spell_shot:
+    launch_spell_sfx_1:
+      action: play
+      volume: 2
+    spell_sfx_pool:
+      action: play
+      volume: 2
+
+  launch_one_gong_sound:
+    gong_pact:
+      action: play
+      volume: 5
+
+  multiball_rlyeh_has_started:
+    multiball_rlyeh_music_pool:
+      action: play
+      volume: 2
+      loops: -1
+      fade_out: 1s
+  multiball_rlyeh_has_stopped:
+    multiball_rlyeh_music_pool:
+      action: stop
+
+  mode_sanity_started:
+    sanity_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  mode_bywandine_started:
+    bywandine_music_pool:
+      action: play
+      loops: -1
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  mode_fordt_ride_started:
+    fordt_ride_music_pool:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  killplayer:
+    screaming_to_death_pool:
+      action: play
+      volume: 3
+
+###########################
+
+sound_pools:
+  roaring_20:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - roaring_20
+      - roaring_20_2
+      - roaring_20_3
+      - roaring_20_4
+      - roaring_20_5
+      - roaring_20_6
+      - roaring_20_7
+      - roaring_20_8
+      - roaring_20_9
+      - roaring_20_10
+      - roaring_20_11
+      - roaring_20_12
+      - roaring_20_13
+      - roaring_20_14
+      - roaring_20_15
+      - roaring_20_16
+      - roaring_20_17
+      - roaring_20_18
+      - roaring_20_19
+      - roaring_20_20
+      - roaring_20_21
+      - roaring_20_22
+      - roaring_20_23
+      - roaring_20_24
+      - roaring_20_25
+      - roaring_20_26
+      - roaring_20_27
+      - roaring_20_28
+      - roaring_20_29
+      - roaring_20_30
+      - roaring_20_31
+      - roaring_20_32
+      - roaring_20_33
+      - roaring_20_34
+      - roaring_20_35
+      - roaring_20_36
+      - roaring_20_37
+      - roaring_20_38
+      - roaring_20_39
+      - roaring_20_40
+
+  radio_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - radio_music_1
+
+  speakeasy_music:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - speakeasy_music_1
+      - speakeasy_music_2
+      - speakeasy_music_3
+      - speakeasy_music_4
+      - speakeasy_music_5
+
+  graveyard_music:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - graveyard_music_1
+      - graveyard_music_2
+
+  cult_music:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - cult_music_1
+      - cult_music_2
+
+  city_music:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - city_music_1
+      - city_music_2
+      - city_music_3
+
+  stormy_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - rain
+
+  pursuit_music:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - pursuit_music_1
+      - pursuit_music_2
+
+  chthonian_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - chthonian_music_1
+
+  bywandine_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - bywandine_music_1
+
+  videomonster_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - videomonster_music_1
+
+  videofordt_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - videofordt_music_1
+
+  multiball_twenties_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - multiball_music_1
+
+  multiball_rlyeh_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - multiball_rlyeh_music_1
+
+  multiball_portal_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - multiball_portal_music_1
+
+  sanity_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - sanity_music_1
+      - sanity_music_2
+
+  cthulhu_music:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - cthulhu_music_1
+      - cthulhu_music_2
+      - cthulhu_music_3
+      - cthulhu_music_4
+      - cthulhu_music_5
+      - cthulhu_music_6
+      - cthulhu_music_7
+      - cthulhu_music_8
+      - cthulhu_music_9
+      - cthulhu_music_10
+      - cthulhu_music_11
+      - cthulhu_music_12
+      - cthulhu_music_13
+      - cthulhu_music_14
+      - cthulhu_music_15
+      - cthulhu_music_16
+      - cthulhu_music_17
+      - cthulhu_music_18
+      - cthulhu_music_19
+      - cthulhu_music_20
+      - cthulhu_music_21
+      - cthulhu_music_22
+      - cthulhu_music_23
+  cthulhu_music_0:
+    load: preload
+    track: music
+    sounds:
+      - cthulhu_music_0
+
+  cthulhu_music_calme:
+    load: preload
+    type: random_force_all
+    track: music
+    sounds:
+      - cthulhu_music_calme_1
+      - cthulhu_music_calme_2
+      - cthulhu_music_calme_3
+      - cthulhu_music_calme_4
+      - cthulhu_music_calme_5
+
+  suspens_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - suspens_music_1
+
+  dramatic_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - dramatic_music_1
+
+  fordt_ride_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - fordt_ride_music_1
+
+# SFX
+
+  save_lane_complete_sound:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - save_lane_complete_1
+      - save_lane_complete_2
+      - save_lane_complete_3
+      - save_lane_complete_4
+      - save_lane_complete_5
+      - save_lane_complete_6
+      - save_lane_complete_7
+
+  drain_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - guns_1
+      - guns_2
+      - guns_3
+      - guns_4
+      - blood_1
+      - blood_2
+      - blood_3
+      - blood_4
+      - blood_5
+      - blood_6
+
+  skillshot_sound_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - skillshot_1
+      - skillshot_2
+      - skillshot_3
+      - skillshot_4
+      - skillshot_5
+
+  score_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - score_voice_1
+      - score_voice_2
+      - score_voice_3
+      - score_voice_4
+      - score_voice_5
+      - score_voice_6
+      - score_voice_7
+      - score_voice_8
+      - score_voice_9
+      - score_voice_10
+      - score_voice_11
+      - score_voice_12
+      - score_voice_13
+      - score_voice_14
+      - score_voice_15
+      - score_voice_16
+      - score_voice_17
+      - score_voice_18
+      - score_voice_19
+      - score_voice_20
+      - score_voice_21
+      - score_voice_22
+
+  ball_save_voice:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - ball_save_1
+      - ball_save_2
+
+  jackpot_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - jackpot_1
+      - jackpot_2
+      - jackpot_3
+      - jackpot_4
+      - jackpot_5
+      - jackpot_6
+      - jackpot_7
+      - jackpot_8
+      - jackpot_9
+      - jackpot_10
+
+  super_jackpot_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - superjackpot_1
+      - superjackpot_2
+      - superjackpot_3
+
+  bumpers_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - go_bumpers_voice_1
+      - go_bumpers_voice_2
+      - go_bumpers_voice_3
+      - go_bumpers_voice_4
+
+  white_targets_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - white_targets_voice_1
+
+  green_ramp_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - green_ramp_voice_1
+      - green_ramp_voice_2
+      - green_ramp_voice_3
+      - green_ramp_voice_4
+      - green_ramp_voice_5
+
+  smash_action_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - smash_action_voice_1
+      - smash_action_voice_2
+      - smash_action_voice_3
+      - smash_action_voice_4
+      - smash_action_voice_5
+
+  clue_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - clue_voice_1
+      - clue_voice_2
+      - clue_voice_3
+      - clue_voice_4
+      - clue_voice_5
+      - clue_voice_6
+      - clue_voice_7
+      - clue_voice_8
+      - clue_voice_9
+      - clue_voice_10
+      - clue_voice_11
+      - clue_voice_12
+
+  book_sounds:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - livre_1
+      - livre_2
+      - livre_3
+      - livre_4
+      - livre_5
+      - livre_6
+      - livre_7
+      - livre_8
+      - livre_9
+
+  guns_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - guns_1
+      - guns_2
+      - guns_3
+      - guns_4
+
+  heart_breath_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - heart_and_breath_1
+      - heart_and_breath_2
+      - heart_and_breath_3
+      - heart_and_breath_4
+      - heart_and_breath_5
+      - heart_and_breath_6
+      - heart_and_breath_7
+      - heart_and_breath_8
+      - heart_and_breath_9
+      - heart_and_breath_10
+      - heart_and_breath_11
+      - heart_and_breath_12
+      - heart_and_breath_13
+      - heart_and_breath_14
+      - heart_and_breath_15
+
+  spell_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - launch_spell_sfx_2
+      - launch_spell_sfx_3
+      - launch_spell_sfx_4
+      - launch_spell_sfx_5
+      - launch_spell_sfx_6
+      - launch_spell_sfx_7
+
+  dark_win_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - dark_win_1
+
+  violin_sound_victory_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - violin_win_1
+      - violin_win_2
+      - violin_win_3
+
+  applause_win_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - victory_1
+
+### voices
+  screaming_to_death_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - screaming_to_death_1
+      - screaming_to_death_2
+      - screaming_to_death_3
+
+  extraball_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - extraball_voice_1
+      - extraball_voice_2
+      - extraball_voice_3
+      - extraball_voice_4
+      - extraball_voice_5
+      - extraball_voice_6
+      - extraball_voice_7
+      - extraball_voice_8
+      - extraball_voice_9
+
+  random_bonus_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - random_bonus_1
+      - random_bonus_2
+
+  multiball_lock_lit_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - multiball_lock_lit_voice_1
+      - multiball_lock_lit_voice_2
+      - multiball_lock_lit_voice_3
+      - multiball_lock_lit_voice_4
+      - multiball_lock_lit_voice_5
+
+
+  dt_complete_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - dt_complete_sound
+      - dt_complete_sound_2
+
+  drop_target_sounds:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - drop_target_sound_1
+      - drop_target_sound_2
+      - drop_target_sound_3
+      - drop_target_sound_4
+      - drop_target_sound_5
+
+  win_1_book_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - win_one_book_voice_1
+      - win_one_book_voice_2
+      - win_one_book_voice_3
+
+  win_1_clue_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - win_one_clue_voice_1
+      - win_one_clue_voice_2
+      - win_one_clue_voice_3
+
+  win_1_item_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - win_one_item_voice_1
+      - win_one_item_voice_2
+      - win_one_item_voice_3
+
+  win_1_weapon_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - win_one_weapon_voice_1
+      - win_one_weapon_voice_2
+      - win_one_weapon_voice_3
+
+  evil_laugh_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - evil_laugh_1
+      - evil_laugh_2
+      - evil_laugh_3
+      - evil_laugh_4
+      - evil_laugh_5
+      - evil_laugh_6
+      - evil_laugh_7
+      - evil_laugh_8
+      - evil_laugh_9
+
+###########################
+
+videos:
+  scratch_movie:
+    width: 1440
+    height: 900
+    file: scratch_movie.mp4
+
+  library_scratch_movie:
+    width: 1440
+    height: 900
+    file: library_scratch_movie.mp4
+
+  killed_by_gods_scratch_movie:
+    width: 1440
+    height: 900
+    file: killed_by_gods_video_1.mp4

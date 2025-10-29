@@ -1,0 +1,114 @@
+#config_version=6
+
+show_player:
+  mode_attract_started:
+    attract_light_show:
+      speed: 30
+      action: play
+      loops: 0
+      events_when_completed: launch_attract_light_show_2
+    attract_display_loop:
+      speed: 1
+
+  launch_attract_light_show_2:
+    backglass_show:
+      action: play
+      speed: 5
+      loops: 1
+      events_when_completed: launch_attract_light_show_1
+
+  launch_attract_light_show_1:
+    attract_light_show:
+      speed: 30
+      action: play
+      loops: 0
+      events_when_completed: launch_attract_light_show_2
+
+  mode_attract_stopped:
+    attract_display_loop: stop
+
+  s_left_flipper_active:
+    attract_display_loop:
+      action: step_back
+  s_right_flipper_active:
+    attract_display_loop:
+      action: advance
+
+###########################
+
+coil_player:
+  s_action_long_active:
+    c_popbumper_three:
+      action: pulse
+
+###########################
+
+light_player:
+  mode_attract_started:
+    side_led_right:
+      color: purple
+    side_led_left:
+      color: purple
+
+###########################
+  
+sound_player:
+  mode_attract_started:
+    intro:
+      action: play
+      track: music
+      loops: -1
+      mode_end_action: stop
+      fade_out: 2s
+
+  mode_attract_will_stop:
+    intro:
+      action: stop
+
+  timer_attract_sound_timer_complete:
+    attract_voice:
+      action: play
+      loops: 0
+      volume: 1
+  s_start_active:
+    attract_voice:
+      action: stop
+
+  s_action_active:
+    attract_voice:
+      action: play
+      loops: 0
+      volume: 1
+
+###########################
+
+timers:
+  attract_sound_timer:
+    start_value: 0
+    end_value: 45  
+    tick_interval: 1s
+    direction: up
+    start_running: true
+    restart_on_complete: true
+
+###########################
+
+sound_pools:
+  attract_voice:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - attract_voice_1
+      - attract_voice_2
+      - attract_voice_3
+      - attract_voice_4
+      - attract_voice_5
+      - attract_voice_6
+      - attract_voice_7
+      - attract_voice_8
+      - attract_voice_9
+      - attract_voice_10
+      - attract_voice_11
+      - attract_voice_12
+      - attract_voice_13

@@ -1,0 +1,98 @@
+#show_version=6
+- time: 0
+  lights:
+    boss_backglass_led: white-f200ms
+
+- time: "+1"
+  lights:
+    boss_backglass_led: off
+    tindalos_backglass_led: white-f200ms
+
+- time: "+2"
+  lights:
+    tindalos_backglass_led: off
+    chthonian_backglass_led: white-f200ms
+
+- time: "+3"
+  lights:
+    chthonian_backglass_led: off
+    cult_backglass_led: white-f200ms
+
+- time: "+4"
+  lights:
+    cult_backglass_led: off
+    profond_backglass_led: white-f200ms
+
+- time: "+5"
+  lights:
+    profond_backglass_led: off
+    nyarla_backglass_led: white-f200ms
+
+- time: "+6"
+  lights:
+    nyarla_backglass_led: off
+    moon_backglass_led: white-f200ms
+
+- time: "+7"
+  lights:
+    moon_backglass_led: off
+    horror_backglass_led: white-f200ms
+
+- time: "+8"
+  lights:
+    horror_backglass_led: off
+    lorenzo_backglass_led: white-f200ms
+
+- time: "+9"
+  lights:
+    lorenzo_backglass_led: off
+    emilie_backglass_led: white-f200ms
+
+- time: "+10"
+  lights:
+    emilie_backglass_led: off
+    vince_backglass_led: white-f200ms
+
+- time: "+11"
+  lights:
+    vince_backglass_led: off
+    lee_backglass_led: white-f200ms
+
+- time: "+12"
+  lights:
+    lee_backglass_led: off
+    car_backglass_led: white-f200ms
+
+- time: "+13"
+  lights:
+    car_backglass_led: off
+    city_box_led: white-f200ms
+
+- time: "+14"
+  lights:
+    city_box_led: off
+    cult_box_led: white-f200ms
+
+- time: "+15"
+  lights:
+    cult_box_led: off
+    graveyard_box_led: white-f200ms
+
+- time: "+16"
+  lights:
+    graveyard_box_led: off
+    speakeasy_box_led: white-f200ms
+
+- time: "+17"
+  lights:
+    speakeasy_box_led: off
+    charleston_box_led: white-f200ms
+
+- time: "+18"
+  lights:
+    charleston_box_led: off
+    radio_box_led: white-f200ms
+
+- time: "+19"
+  lights:
+    radio_box_led: off

@@ -1,0 +1,13 @@
+#show_version=6
+- duration: 1
+  lights:
+    insert_55: purple-f200ms
+    insert_54: purple-f200ms
+    insert_14: purple-f200ms
+    insert_15: purple-f200ms
+- duration: 1
+  lights:
+    insert_55: white-f200ms
+    insert_54: white-f200ms
+    insert_14: white-f200ms
+    insert_15: white-f200ms

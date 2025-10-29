@@ -1,0 +1,1439 @@
+#config_version=6
+mode:
+  start_events: aza_start
+  stop_events: aza_stop, azathoth_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_aza_started: twenties_stop, hold_stop
+  mode_aza_started{current_player.multiball_portal_available=='true'}: multiball_portal_start
+
+  mode_aza_started{current_player.aza_mission_level=='step_two'}: launchdeepspace
+  mode_aza_started{current_player.aza_mission_level=='step_three'}: launchcourt
+  mode_aza_started{current_player.aza_mission_level=='step_four'}: launchazaend
+
+  aza_gate_library_shot_hit: library_aza_start
+  launchazaend{current_player.insert_eldersign!='five'}: killplayer
+  "{device.shots.aza_target_square_flute_1_shot.state_name=='fluteoff' and device.shots.aza_target_square_flute_2_shot.state_name=='fluteoff' and device.shots.aza_space_orbit_flute_shot.state_name=='fluteoff'}": launchdeepspace
+  aza_target_square_flute_1_shot_fluteflashing_hit: shaker_shake
+  aza_target_square_flute_2_shot_fluteflashing_hit: shaker_shake
+  aza_space_orbit_flute_shot_fluteflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_1_shot_deepspaceflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_2_shot_deepspaceflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_3_shot_deepspaceflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_4_shot_deepspaceflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_5_shot_deepspaceflashing_hit: shaker_shake
+  azalibrary_target_library_deepspace_6_shot_deepspaceflashing_hit: shaker_shake
+  aza_main_ramp_court_shot_courtflashing1_hit: shaker_shake
+  aza_main_ramp_court_shot_courtflashing2_hit: shaker_shake
+  aza_main_ramp_court_shot_courtflashing3_hit: shaker_shake
+  "{device.shots.aza_main_ramp_court_shot.state_name=='courtoff'}": launchazaend
+  
+  aza_space_orbit_azaend_shot_azaendflashing_hit: shaker_shake
+  aza_library_roll_azaend_shot_azaendflashing_hit: shaker_shake
+  aza_main_ramp_azaend_shot_azaendflashing_hit: shaker_shake
+  aza_green_ramp_azaend_shot_azaendflashing_hit: shaker_shake
+  aza_cthulhu_ramp_azaend_shot_azaendflashing_hit: shaker_shake
+  aza_asylum_orbit_azaend_shot_azaendflashing_hit: shaker_shake
+  "{device.shots.aza_space_orbit_azaend_shot.state_name=='azaendoff' and device.shots.aza_library_roll_azaend_shot.state_name=='azaendoff' and device.shots.aza_main_ramp_azaend_shot.state_name=='azaendoff' and device.shots.aza_green_ramp_azaend_shot.state_name=='azaendoff' and device.shots.aza_cthulhu_ramp_azaend_shot.state_name=='azaendoff' and device.shots.aza_asylum_orbit_azaend_shot.state_name=='azaendoff'}": launchazakill
+
+  s_action_active{current_player.variable_aza_life=='almostdead'}: aza_stop, aza_win_start
+  s_action_book_active{current_player.variable_number_of_book_value >= 5}: action_valid_spell_shot, shaker_shake
+  multiball_multiball_twenties_multiball_ended: relaunch_cthulhu_music
+  multiball_portal_stop: relaunch_cthulhu_music
+
+  mode_aza_started{current_player.lock_rlyeh_aza_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_cthulhu_music
+
+###########################
+
+slides:
+  aza_slide: []
+
+###########################
+
+slide_player:
+  mode_aza_started: aza_slide
+
+###########################
+
+widgets:
+  aza_name_banner:
+    type: text
+    text: AZATHOTH
+    y: top-10
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+    style: mission_text
+
+  aza_flute_indication_banner:
+    type: text
+    text: Hear the flutes
+    color: red
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  aza_flute_indication_banner_2:
+    type: text
+    text: Need (player|aza_flute_gauge) shots to understand
+    color: red
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  aza_deepspace_indication_banner:
+    type: text
+    text: Search deep space
+    color: red
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  aza_deepspace_indication_banner_2:
+    type: text
+    text: Need to find (player|aza_deepspace_gauge) books
+    color: red
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  aza_court_indication_banner:
+    type: text
+    text: The court
+    color: red
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  aza_court_indication_banner_2:
+    type: text
+    text: Elevate (player|aza_court_gauge) times
+    color: red
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  aza_end_indication_banner:
+    type: text
+    text: AZATHOTH
+    color: red
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  aza_end_indication_banner_2:
+    type: text
+    text: final madness
+    color: red
+    y: 62%
+    x: 65%
+    z: 10
+    style: mission_text
+  aza_end_indication_banner_3:
+    type: text
+    text: Find (player|aza_end_gauge) ways out of there !
+    color: red
+    y: 32%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  aza_kill_indication_banner:
+    type: text
+    text: Escape from ends of eternity !
+    color: red
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  aza_kill_indication_banner_2:
+    type: text
+    text: Press action button !
+    color: red
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+  aza_banner_image:
+    type: Image
+    image: mini_aza
+    y: 50%
+    x: 20%
+    z: 100
+
+  cthulhu_frame_image:
+    type: Image
+    image: frame_cthulhu
+    z: 15
+
+  aza_video_scratch_widget:
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+
+###########################
+
+widget_player:
+  mode_aza_started:
+    aza_name_banner, aza_banner_image, cthulhu_frame_image, aza_video_scratch_widget, base_score_widget, superpops_widget, aza_flute_indication_banner, aza_flute_indication_banner_2:
+      action: add
+      slide: aza_slide
+  mode_aza_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: aza_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launchdeepspace:
+    aza_flute_indication_banner, aza_flute_indication_banner_2:
+      action: remove
+    aza_deepspace_indication_banner, aza_deepspace_indication_banner_2:
+      action: add
+      slide: aza_slide
+
+  launchcourt:
+    aza_deepspace_indication_banner, aza_deepspace_indication_banner_2:
+      action: remove
+    aza_court_indication_banner, aza_court_indication_banner_2:
+      action: add
+      slide: aza_slide
+
+  launchazaend:
+    aza_court_indication_banner, aza_court_indication_banner_2:
+      action: remove
+    aza_end_indication_banner, aza_end_indication_banner_2, aza_end_indication_banner_3:
+      action: add
+      slide: aza_slide
+
+  launchazakill:
+    aza_end_indication_banner, aza_end_indication_banner_2, aza_end_indication_banner_3:
+      action: remove
+    aza_kill_indication_banner, aza_kill_indication_banner_2:
+      action: add
+      slide: aza_slide
+
+###########################
+
+shot_profiles:
+  aza_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: azahitflashing
+        show: aza_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+  flute_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: fluteflashing
+        show: aza_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+      - name: fluteoff
+        show: off
+  flute_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: fluteflashing
+        show: aza_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: fluteoff
+        show: off
+
+  deepspace_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: deepspaceflashing
+        show: aza_blink_show
+        speed: 10
+        loops: -1
+        priority: 600
+      - name: deepspaceoff
+        show: off
+
+  court_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: courtflashing1
+        show: aza_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: courtflashing2
+        show: aza_king_insert_flash_show
+        speed: 85
+        loops: -1
+        priority: 600
+      - name: courtflashing3
+        show: aza_king_insert_flash_show
+        speed: 105
+        loops: -1
+        priority: 600
+      - name: courtoff
+        show: off
+
+
+  azaend_space_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+  azaend_library_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+  azaend_main_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+  azaend_green_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+  azaend_cthulhu_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+  azaend_shub_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: azaendflashing
+        show: aza_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: azaendoff
+        show: off
+
+
+
+###########################
+
+shots:
+  aza_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_86
+  aza_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_85
+  aza_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_84
+  aza_sling_left_shot:
+    switch: s_sling_left
+    profile: aza_target_flash
+    show_tokens:
+      led: led_30, led_31
+  aza_sling_right_shot:
+    switch: s_sling_right
+    profile: aza_target_flash
+    show_tokens:
+      led: led_36, led_37
+  aza_sling_up_shot:
+    switch: s_sling_up
+    profile: aza_target_flash
+    show_tokens:
+      led: led_5, led_6
+  aza_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: aza_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  aza_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: aza_target_flash
+    show_tokens:
+      led: led_19, led_20, led_1
+
+  aza_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_41
+  aza_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_32
+  aza_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_30
+  aza_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_20
+  aza_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_10
+
+  aza_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  aza_gate_library_shot:
+    switch: s_gate_library
+    profile: aza_target_flash
+    show_tokens:
+      led: led_12, led_1
+  aza_roll_library_shot:
+    switch: s_roll_library
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  aza_roll_space_shot:
+    switch: s_roll_space
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  aza_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  aza_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  aza_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  aza_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  aza_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  aza_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  aza_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  aza_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  aza_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  aza_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  aza_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  aza_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: aza_target_flash
+    show_tokens:
+      led: led_1, led_2
+  aza_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: aza_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  aza_spinner_shot:
+    switch: s_spinner
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  aza_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: aza_target_flash
+    show_tokens:
+      light: insert_24
+  aza_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: aza_target_flash
+    show_tokens:
+      light: insert_23
+  aza_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: aza_target_flash
+    show_tokens:
+      light: insert_22
+  aza_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: aza_target_flash
+    show_tokens:
+      light: insert_21
+
+  aza_green_target_1_shot:
+    switch: s_target_green_1
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_47
+  aza_green_target_2_shot:
+    switch: s_target_green_2
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_45
+  aza_green_target_3_shot:
+    switch: s_target_green_3
+    profile: aza_target_flash
+    show_tokens:
+      led: insert_46
+
+  aza_space_orbit_shot:
+    hit_events: aza_space_orbit_sequence_hit
+  aza_asylum_orbit_shot:
+    hit_events: aza_asylum_orbit_sequence_hit
+  aza_library_roll_shot:
+    hit_events: aza_library_roll_sequence_hit
+
+###########################
+
+
+  aza_target_square_flute_1_shot:
+    switch: s_target_square_white_1
+    profile: flute_profile
+    disable_events: launchdeepspace
+    show_tokens:
+      led: insert_41
+  aza_target_square_flute_2_shot:
+    switch: s_target_square_white_2
+    profile: flute_profile
+    disable_events: launchdeepspace
+    show_tokens:
+      led: insert_32
+  aza_space_orbit_flute_shot:
+    hit_events: aza_space_orbit_sequence_hit
+    profile: flute_ramp_profile
+    disable_events: launchdeepspace
+
+
+  azalibrary_target_library_deepspace_1_shot:
+    switch: s_target_library_1
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_80
+  azalibrary_target_library_deepspace_2_shot:
+    switch: s_target_library_2
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_79
+  azalibrary_target_library_deepspace_3_shot:
+    switch: s_target_library_3
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_78
+  azalibrary_target_library_deepspace_4_shot:
+    switch: s_target_library_4
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_77
+  azalibrary_target_library_deepspace_5_shot:
+    switch: s_target_library_5
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_76
+  azalibrary_target_library_deepspace_6_shot:
+    switch: s_target_library_6
+    profile: deepspace_profile
+    enable_events: launchdeepspace
+    disable_events: launchcourt
+    show_tokens:
+      led: insert_75
+
+  aza_main_ramp_court_shot:
+    switch: s_gate_main_ramp
+    profile: court_profile
+    enable_events: launchcourt
+    disable_events: launchazaend
+
+  aza_space_orbit_azaend_shot:
+    hit_events: aza_space_orbit_sequence_hit
+    profile: azaend_space_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+  aza_library_roll_azaend_shot:
+    hit_events: aza_library_roll_sequence_hit
+    profile: azaend_library_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+  aza_main_ramp_azaend_shot:
+    switch: s_gate_main_ramp
+    profile: azaend_main_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+  aza_green_ramp_azaend_shot:
+    switch: s_gate_green_ramp
+    profile: azaend_green_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+  aza_cthulhu_ramp_azaend_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: azaend_cthulhu_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+  aza_asylum_orbit_azaend_shot:
+    hit_events: aza_asylum_orbit_sequence_hit
+    profile: azaend_shub_ramp_profile
+    enable_events: launchazaend
+    disable_events: launchazakill
+
+
+
+###########################
+
+sequence_shots:
+  aza_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  aza_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  aza_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+show_player:
+  mode_aza_started:
+    mission_aza_blink_show:
+      speed: 5
+    aza_side_blink_show:
+      speed: 5
+    aza_backglass_blink_show:
+      speed: 15
+
+  launchdeepspace:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 1
+    library_side_flash_show:
+      speed: 300
+      loops: -1
+    aza_library_insert_flash_show:
+      speed: 65
+      loops: -1
+
+  launchcourt:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 2
+    library_side_flash_show, aza_library_insert_flash_show:
+      action: stop
+  launchazaend{current_player.insert_eldersign=='five'}:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 3
+  launchazakill:
+    nyarla_new_step_show:
+      speed: 35
+      loops: -1
+
+  aza_target_square_flute_1_shot_fluteflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_target_square_flute_2_shot_fluteflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_space_orbit_flute_shot_fluteflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  azalibrary_target_library_deepspace_1_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  azalibrary_target_library_deepspace_2_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  azalibrary_target_library_deepspace_3_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  azalibrary_target_library_deepspace_4_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  azalibrary_target_library_deepspace_5_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  azalibrary_target_library_deepspace_6_shot_deepspaceflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  aza_main_ramp_court_shot_courtflashing1_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_main_ramp_court_shot_courtflashing2_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_main_ramp_court_shot_courtflashing3_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  aza_space_orbit_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_library_roll_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_main_ramp_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_green_ramp_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_cthulhu_ramp_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  aza_asylum_orbit_azaend_shot_azaendflashing_hit:
+    aza_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  aza_sling_left_shot_hit:
+    sanity_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  aza_sling_right_shot_hit:
+    sanity_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_aza_available:
+      action: set
+      string: 'no'
+
+
+  launchdeepspace: 
+    aza_mission_level:
+      action: set
+      string: 'step_two'
+  launchcourt: 
+    aza_mission_level:
+      action: set
+      string: 'step_three'
+  launchazaend: 
+    aza_mission_level:
+      action: set
+      string: 'step_four'
+  launchazakill:
+    variable_aza_life:
+      action: set
+      string: 'almostdead'
+
+
+  aza_sling_left_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_sling_right_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_bumper_one_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_bumper_two_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_bumper_three_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_scoop_bas_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_scoop_haut_shot_hit:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_target_square_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_square_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_square_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_square_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_square_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_drop_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_drop_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_drop_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_drop_target_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_green_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_green_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_green_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_target_library_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_library_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_library_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_library_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_library_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_target_library_6_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  aza_team_1_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_team_2_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_team_3_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_spinner_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_roll_left_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_left_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_right_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_right_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_fordt_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_space_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_roll_asylum_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_main_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_green_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_cthulhu_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_gate_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  aza_gate_exit_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  aza_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+  aza_target_square_flute_1_shot_fluteflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_flute_gauge:
+      action: add
+      int: -1
+  aza_target_square_flute_2_shot_fluteflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_flute_gauge:
+      action: add
+      int: -1
+  aza_space_orbit_flute_shot_fluteflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_flute_gauge:
+      action: add
+      int: -1
+
+  azalibrary_target_library_deepspace_1_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+  azalibrary_target_library_deepspace_2_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+  azalibrary_target_library_deepspace_3_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+  azalibrary_target_library_deepspace_4_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+  azalibrary_target_library_deepspace_5_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+  azalibrary_target_library_deepspace_6_shot_deepspaceflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_deepspace_gauge:
+      action: add
+      int: -1
+
+  aza_main_ramp_court_shot_courtflashing1_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_court_gauge:
+      action: add
+      int: -1
+  aza_main_ramp_court_shot_courtflashing2_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_court_gauge:
+      action: add
+      int: -1
+  aza_main_ramp_court_shot_courtflashing3_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_court_gauge:
+      action: add
+      int: -1
+
+  aza_space_orbit_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+  aza_library_roll_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+  aza_main_ramp_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+  aza_green_ramp_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+  aza_cthulhu_ramp_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+  aza_asylum_orbit_azaend_shot_azaendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_end_gauge:
+      action: add
+      int: -1
+
+###########################
+
+light_player:
+  mode_aza_started:
+    gi:
+      color: red
+    side_led_left:
+      color: red
+ 
+    side_led_right:
+      color: red
+
+  launchdeepspace:
+    insert_43:
+      color: red  
+  launchcourt:
+    insert_42:
+      color: red
+  launchazaend:
+    insert_40:
+      color: red
+  launchazakill:
+    insert_39:
+      color: red
+
+###########################
+
+counters:
+  aza_book_counter:
+    count_events: azalibrary_target_library_deepspace_1_shot_deepspaceflashing_hit, azalibrary_target_library_deepspace_2_shot_deepspaceflashing_hit, azalibrary_target_library_deepspace_3_shot_deepspaceflashing_hit, azalibrary_target_library_deepspace_4_shot_deepspaceflashing_hit, azalibrary_target_library_deepspace_5_shot_deepspaceflashing_hit, azalibrary_target_library_deepspace_6_shot_deepspaceflashing_hit
+    starting_count: 0
+    count_complete_value: 3
+    direction: up
+    events_when_complete: launchcourt
+    reset_on_complete: true
+    disable_on_complete: true
+    persist_state: true
+
+###########################
+
+timers:
+  aza_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_aza_started
+
+###########################
+
+sound_player:
+  mode_aza_started:
+    cthulhu_music_calme:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+  multiball_rlyeh_has_started:
+    cthulhu_music_calme:
+      action: stop
+    cthulhu_music:
+      action: stop
+
+  relaunch_cthulhu_music:
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+
+
+  launchdeepspace:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+    cthulhu_music_calme:
+      action: stop    
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+
+  launchcourt:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchazaend{current_player.insert_eldersign=='five'}:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchazakill:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+
+  timer_aza_voice_time_complete:
+    aza_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  aza_sling_left_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_sling_right_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_bumper_one_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_bumper_two_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_bumper_three_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_scoop_bas_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_scoop_haut_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_target_square_1_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_square_2_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_square_3_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_square_4_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_square_5_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_drop_target_1_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_drop_target_2_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_drop_target_3_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_drop_target_4_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_green_target_1_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_green_target_2_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_green_target_3_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_target_library_1_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_library_2_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_library_3_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_library_4_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_library_5_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_target_library_6_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+
+  aza_team_1_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_team_2_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_team_3_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_spinner_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_roll_left_outlane_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_left_inlane_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_right_inlane_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_right_outlane_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_library_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_fordt_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_space_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_roll_asylum_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_main_ramp_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_green_ramp_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_cthulhu_ramp_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_gate_library_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+  aza_gate_exit_library_shot_hit:
+    aza_sfx_pool:
+      action: play
+  aza_gate_secret_library_shot_hit:
+    aza_sfx_pool:
+      action: play
+
+
+
+
+###########################
+
+sound_pools:
+  aza_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - aza_voice_1
+      - aza_voice_2
+      - aza_voice_3
+      - aza_voice_4
+      - aza_voice_5
+      - aza_voice_6
+      - aza_voice_7
+      - aza_voice_8
+      - aza_voice_9
+      - aza_voice_10
+
+  aza_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - aza_sfx_1
+      - aza_sfx_2
+      - aza_sfx_3
+      - aza_sfx_4
+      - aza_sfx_5
+      - aza_sfx_6
+      - aza_sfx_7
+      - aza_sfx_8
+      - aza_sfx_9
+      - aza_sfx_10
+      - aza_sfx_11
+      - aza_sfx_12
+      - aza_sfx_13
+      - aza_sfx_14
+      - aza_sfx_15
+      - aza_sfx_16
+      - aza_sfx_17
+      - aza_sfx_18
+      - aza_sfx_19
+      - aza_sfx_20
+      - aza_sfx_21
+      - aza_sfx_22
+      - aza_sfx_23

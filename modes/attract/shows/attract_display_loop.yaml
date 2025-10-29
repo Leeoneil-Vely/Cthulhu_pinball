@@ -1,0 +1,2151 @@
+#show_version=6
+
+- duration: 5
+  slides:
+    last_game_score_slide:
+      widgets:
+      - type: text
+        text: LAST GAME
+        y: 80%
+        z: 250
+        style: mission_text
+      - type: text
+        text: Player 1 - (machine|player1_score)
+        number_grouping: true
+        min_digits: 2
+        y: 62%
+        z: 250
+        style: mission_text
+      - type: text
+        text: Player 2 - (machine|player2_score)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        text: Player 3 - (machine|player3_score)
+        number_grouping: true
+        min_digits: 2
+        y: 38%
+        z: 250
+        style: mission_text
+      - type: text
+        text: Player 4 - (machine|player4_score)
+        number_grouping: true
+        min_digits: 2
+        y: 26%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 3
+  slides:
+    champion_slide:
+      widgets:
+      - type: text
+        text: HIGH SCORE
+        y: 80%
+        z: 250
+        style: mission_text
+      - type: text
+        text: (machine|score1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        z: 250
+        style: mission_text
+      - type: text
+        text: (machine|score1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 30%
+        z: 250
+        style: mission_text
+      - type: text
+        text: (machine|score1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 20%
+        z: 250
+        style: mission_text
+      - type: Image
+        image: HPL_photo
+        y: 60%
+        z: 10
+      - type: Image
+        image: half_frame_twenties
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 6
+  slides:
+    high_score_slide:
+      widgets:
+      - type: text
+        text: LEADERBOARD
+        y: 90%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 80%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF33FF
+        text: (machine|score2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 80%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 80%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 70%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF00FF
+        text: (machine|score3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 70%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 70%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score4_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: CC00CC
+        text: (machine|score4_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score4_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score5_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: '990099'
+        text: (machine|score5_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score5_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 75%
+        z: 250
+        style: mission_text
+
+
+      - type: text
+        font_size: 60
+        text: (machine|score6_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 9933FF
+        text: (machine|score6_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score6_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score7_label)
+        number_grouping: true
+        min_digits: 2
+        y: 30%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 7F00FF
+        text: (machine|score7_name)
+        number_grouping: true
+        min_digits: 2
+        y: 30%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score7_value)
+        number_grouping: true
+        min_digits: 2
+        y: 30%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score8_label)
+        number_grouping: true
+        min_digits: 2
+        y: 20%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 6600CC
+        text: (machine|score8_name)
+        number_grouping: true
+        min_digits: 2
+        y: 20%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score8_value)
+        number_grouping: true
+        min_digits: 2
+        y: 20%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|score9_label)
+        number_grouping: true
+        min_digits: 2
+        y: 10%
+        x: 20%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 4C0099
+        text: (machine|score9_name)
+        number_grouping: true
+        min_digits: 2
+        y: 10%
+        x: 50%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|score9_value)
+        number_grouping: true
+        min_digits: 2
+        y: 10%
+        x: 75%
+        z: 250
+        style: mission_text
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 5
+  slides:
+    loop_champ_slide:
+      widgets:
+      - type: text
+        text: LOOPS CHAMPIONS
+        y: 80%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        z: 250
+        anchor_x: left
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF33FF
+        text: (machine|loops_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        z: 250
+        anchor_x: left
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: CC00CC
+        text: (machine|loops_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        z: 250
+        anchor_x: left
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 4C0099
+        text: (machine|loops_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|loops_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    combo_champ_slide:
+      widgets:
+      - type: text
+        text: COMBOS RAMPS CHAMP'S
+        y: 80%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF33FF
+        text: (machine|combos_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: CC00CC
+        text: (machine|combos_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 4C0099
+        text: (machine|combos_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|combos_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 3s
+  slides:
+    awesome_slide:
+      widgets:
+      - type: text
+        text: FREEPLAY
+        z: 250
+        style: mission_text
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 5
+  slides:
+    radio_champ_slide:
+      widgets:
+      - type: text
+        text: RADIO LISTENING CHAMP'S
+        y: 80%
+        z: 250
+        color: 994C00
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 994C00
+        text: (machine|radio_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 994C00
+        text: (machine|radio_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 994C00
+        text: (machine|radio_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|radio_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties_radio
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    charleston_champ_slide:
+      widgets:
+      - type: text
+        text: CHARLESTON CHAMP'S
+        y: 80%
+        z: 250
+        color: FF8000
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF8000
+        text: (machine|charleston_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF8000
+        text: (machine|charleston_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF8000
+        text: (machine|charleston_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|charleston_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties_charleston
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    speakeasy_champ_slide:
+      widgets:
+      - type: text
+        text: SPEAKEASY CHAMP'S
+        y: 80%
+        z: 250
+        color: FF9933
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF9933
+        text: (machine|speakeasy_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF9933
+        text: (machine|speakeasy_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: FF9933
+        text: (machine|speakeasy_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|speakeasy_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties_speakeasy
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    cult_champ_slide:
+      widgets:
+      - type: text
+        text: CULT TEMPLE CHAMP'S
+        y: 80%
+        z: 250
+        color: green
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: green
+        text: (machine|cult_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: green
+        text: (machine|cult_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: green
+        text: (machine|cult_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cult_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_cult
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    graveyard_champ_slide:
+      widgets:
+      - type: text
+        text: GRAVEYARD CHAMP'S
+        y: 80%
+        z: 250
+        color: 004C99
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 004C99
+        text: (machine|graveyard_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 004C99
+        text: (machine|graveyard_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 004C99
+        text: (machine|graveyard_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|graveyard_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_graveyard
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    city_champ_slide:
+      widgets:
+      - type: text
+        text: SUNKEN CITY CHAMP'S
+        y: 80%
+        z: 250
+        color: '006666'
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|city_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: '006666'
+        text: (machine|city_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|city_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|city_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: '006666'
+        text: (machine|city_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|city_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|city_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: '006666'
+        text: (machine|city_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|city_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_city
+        z: 50
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 3s
+  slides:
+    press_start:
+      widgets:
+      - type: Text
+        text: PRESS START
+        z: 250
+        style: mission_text
+        animations:
+          pre_show_slide:
+          - property: opacity
+            value: 0
+            duration: .5s
+          - property: opacity
+            value: 1
+            duration: .5s
+            repeat: false
+      - type: Text
+        text: FREE PLAY
+        z: 250
+        color: purple
+        y: 20
+        anchor_y: bottom
+        style: mission_text
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 5
+  slides:
+    aza_champ_slide:
+      widgets:
+      - type: text
+        text: AZATHOTH DESTROYER
+        y: 80%
+        z: 250
+        color: red
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: red
+        text: (machine|aza_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: red
+        text: (machine|aza_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: red
+        text: (machine|aza_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|aza_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_aza
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    king_champ_slide:
+      widgets:
+      - type: text
+        text: KING IN YELLOW ACTORS
+        y: 80%
+        z: 250
+        color: yellow
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|king_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: yellow
+        text: (machine|king_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|king_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|king_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: yellow
+        text: (machine|king_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|king_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|king_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: yellow
+        text: (machine|king_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|king_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_king
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    nyarla_champ_slide:
+      widgets:
+      - type: text
+        text: NYARLATHOTEP REVEALERS
+        y: 80%
+        z: 250
+        color: blue
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: blue
+        text: (machine|nyarla_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: blue
+        text: (machine|nyarla_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: blue
+        text: (machine|nyarla_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|nyarla_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_nyarla
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+###########################
+
+- duration: 5
+  slides:
+    cthulhu_champ_slide:
+      widgets:
+      - type: text
+        text: RLYEH RAIDERS
+        y: 80%
+        z: 250
+        color: 00994C
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 00994C
+        text: (machine|cthulhu_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 00994C
+        text: (machine|cthulhu_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: 00994C
+        text: (machine|cthulhu_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|cthulhu_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_cthulhu
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 5
+  slides:
+    shub_champ_slide:
+      widgets:
+      - type: text
+        text: SHUB NIGGURATH
+        y: 80%
+        z: 250
+        color: purple
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|shub_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|shub_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|shub_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|shub_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_shub
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 3
+  slides:
+    mission_pinball:
+      widgets:
+      - type: Text
+        text: THE BALL OF CTHULHU
+        font_size: 120
+        color: purple
+        z: 250
+        style: mission_text
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+- duration: 5
+  slides:
+    videomonster_champ_slide:
+      widgets:
+      - type: text
+        text: VIDEO MONSTERS CHAMP'S
+        y: 80%
+        z: 250
+        color: purple
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videomonster_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videomonster_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videomonster_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videomonster_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_cthulhu_monster
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+###########################
+
+
+- duration: 5
+  slides:
+    videofordt_champ_slide:
+      widgets:
+      - type: text
+        text: VIDEO FORDT CHAMP'S
+        y: 80%
+        z: 250
+        color: purple
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videofordt_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videofordt_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|videofordt_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|videofordt_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
+
+      - type: Image
+        image: half_frame_twenties_fordt
+        z: 10
+
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s
+
+
+
+
+
+
+##! mode: attract

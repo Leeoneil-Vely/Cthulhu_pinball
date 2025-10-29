@@ -1,0 +1,133 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_84: '0051B4'
+    insert_85: 'C8401F'
+    insert_86: '7A2AB9'
+    
+- time: '+1'
+  lights:
+    insert_84: '1B593C'
+    
+- time: '+1'
+  lights:
+    insert_85: 'C70101'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: '1C593B'
+    insert_86: '0000C8'
+    
+- time: '+1'
+  lights:
+    insert_84: 'C87900'
+    
+- time: '+1'
+  lights:
+    insert_85: 'BF06A0'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_86: '0051B6'
+    
+- time: '+1'
+  lights:
+    insert_84: 'C8401F'
+    
+- time: '+1'
+  lights:
+    insert_85: '7A2AB9'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: 'C83A1C'
+    insert_86: '1B593C'
+    
+- time: '+1'
+  lights:
+    insert_84: 'C70101'
+    
+- time: '+1'
+  lights:
+    insert_85: '0000C8'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: 'C20471'
+    insert_86: 'C87900'
+    
+- time: '+1'
+  lights:
+    insert_84: 'BF06A0'
+    
+- time: '+1'
+  lights:
+    insert_85: '0051B6'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: '7A2AB9'
+    insert_86: 'C8401F'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_85: '1B593C'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: '0000C8'
+    insert_86: 'C70101'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_85: 'C87900'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_84: '0051B6'
+    insert_86: 'BF06A0'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_85: 'C8401F'
+    
