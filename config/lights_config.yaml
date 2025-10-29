@@ -1,0 +1,1289 @@
+#config_version=6
+
+lights:
+  led_0:
+    start_channel: 0-0-0    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi
+  led_1:
+    previous: led_0    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi
+  led_2:
+    previous: led_1
+    subtype: led
+    type: rgb   # will use red: 0-3, green: 0-4, blue: 0-5
+    tags: gi
+  led_3:
+    previous: led_2
+    subtype: led
+    type: rgb   # will use red: 0-7, green: 0-8, blue: 0-9
+    tags: gi
+  led_4:
+    previous: led_3
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_5:
+    previous: led_4
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_6:
+    previous: led_5
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_7:
+    previous: led_6
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_8:
+    previous: led_7
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_9:
+    previous: led_8
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_10:
+    previous: led_9
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_11:
+    previous: led_10
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_12:
+    previous: led_11
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_13:
+    previous: led_12
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_14:
+    previous: led_13
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_15:
+    previous: led_14
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_16:
+    previous: led_15
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_17:
+    previous: led_16
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_18:
+    previous: led_17
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_19:
+    previous: led_18
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_20:
+    previous: led_19
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_21:
+    previous: led_20
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_22:
+    previous: led_21
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_23:
+    previous: led_22
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_24:
+    previous: led_23
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_25:
+    previous: led_24
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_26:
+    previous: led_25
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_27:
+    previous: led_26
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_28:
+    previous: led_27
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_29:
+    previous: led_28
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_30:
+    previous: led_29
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_31:
+    previous: led_30
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_32:
+    previous: led_31
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_33:
+    previous: led_32
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_34:
+    previous: led_33
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_35:
+    previous: led_34
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_36:
+    previous: led_35
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_37:
+    previous: led_36
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_38:
+    previous: led_37
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_39:
+    previous: led_38
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_40:
+    previous: led_39
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_41:
+    previous: led_40
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_42:
+    previous: led_41
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_43:
+    previous: led_42
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_44:
+    previous: led_43
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_45:
+    previous: led_44
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_46:
+    previous: led_45
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_47:
+    previous: led_46
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+  led_48:
+    previous: led_47
+    subtype: led
+    type: rgb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: gi
+
+  led_49:
+    previous: led_48
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_50:
+    previous: led_49
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_51:
+    previous: led_50
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_52:
+    previous: led_51
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_53:
+    previous: led_52
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_54:
+    previous: led_53
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_55:
+    previous: led_54
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_56:
+    previous: led_55
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_57:
+    previous: led_56
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_58:
+    previous: led_57
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_59:
+    previous: led_58
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_60:
+    previous: led_59
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_61:
+    previous: led_60
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_62:
+    previous: led_61
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_63:
+    previous: led_62
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_64:
+    previous: led_63
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_65:
+    previous: led_64
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_66:
+    previous: led_65
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_67:
+    previous: led_66
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_68:
+    previous: led_67
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_69:
+    previous: led_68
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_70:
+    previous: led_69
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_71:
+    previous: led_70
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_72:
+    previous: led_71
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_73:
+    previous: led_72
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_74:
+    previous: led_73
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_75:
+    previous: led_74
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_76:
+    previous: led_75
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_77:
+    previous: led_76
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_78:
+    previous: led_77
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_79:
+    previous: led_78
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_80:
+    previous: led_79
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_81:
+    previous: led_80
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_82:
+    previous: led_81
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+  led_83:
+    previous: led_82
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_right
+
+  led_84:
+    previous: led_83
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_85:
+    previous: led_84
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_86:
+    previous: led_85
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_87:
+    previous: led_86
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_88:
+    previous: led_87
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_89:
+    previous: led_88
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_90:
+    previous: led_89
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_91:
+    previous: led_90
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_92:
+    previous: led_91
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_93:
+    previous: led_92
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_94:
+    previous: led_93
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_95:
+    previous: led_94
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_96:
+    previous: led_95
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_97:
+    previous: led_96
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_98:
+    previous: led_97
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_99:
+    previous: led_98
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_100:
+    previous: led_99
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_101:
+    previous: led_100
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_102:
+    previous: led_101
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_103:
+    previous: led_102
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_104:
+    previous: led_103
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_105:
+    previous: led_104
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_106:
+    previous: led_105
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_107:
+    previous: led_106
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_108:
+    previous: led_107
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_109:
+    previous: led_108
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_110:
+    previous: led_109
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_111:
+    previous: led_110
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_112:
+    previous: led_111
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_113:
+    previous: led_112
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_114:
+    previous: led_113
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_115:
+    previous: led_114
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_116:
+    previous: led_115
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_117:
+    previous: led_116
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+  led_118:
+    previous: led_117
+    subtype: led
+    type: grb   # will use red: 0-10, green: 0-11, blue: 0-12
+    tags: side_led_left
+
+  insert_0:
+    start_channel: 1-0-0    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_1:
+    previous: insert_0    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_2:
+    previous: insert_1    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_3:
+    previous: insert_2    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_4:
+    previous: insert_3    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_5:
+    previous: insert_4    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_6:
+    previous: insert_5    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_7:
+    previous: insert_6    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_8:
+    previous: insert_7    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_9:
+    previous: insert_8    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_10:
+    previous: insert_9    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_11:
+    previous: insert_10    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_12:
+    previous: insert_11    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_13:
+    previous: insert_12    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_14:
+    previous: insert_13    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_15:
+    previous: insert_14    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_16:
+    previous: insert_15    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_17:
+    previous: insert_16    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_18:
+    previous: insert_17    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_19:
+    previous: insert_18    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_20:
+    previous: insert_19    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_21:
+    previous: insert_20    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_22:
+    previous: insert_21    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_23:
+    previous: insert_22    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_24:
+    previous: insert_23    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_25:
+    previous: insert_24    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_26:
+    previous: insert_25    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_27:
+    previous: insert_26    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_28:
+    previous: insert_27    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_29:
+    previous: insert_28    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_30:
+    previous: insert_29    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_31:
+    previous: insert_30    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_32:
+    previous: insert_31    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_33:
+    previous: insert_32    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_34:
+    previous: insert_33    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_35:
+    previous: insert_34    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_36:
+    previous: insert_35    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_37:
+    previous: insert_36    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_38:
+    previous: insert_37    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_39:
+    previous: insert_38    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_40:
+    previous: insert_39    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_41:
+    previous: insert_40    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_42:
+    previous: insert_41    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_43:
+    previous: insert_42    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_44:
+    previous: insert_43    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_45:
+    previous: insert_44    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_46:
+    previous: insert_45    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_47:
+    previous: insert_46    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_48:
+    previous: insert_47    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_49:
+    previous: insert_48    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_50:
+    previous: insert_49    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_51:
+    previous: insert_50    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_52:
+    previous: insert_51    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_53:
+    previous: insert_52    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_54:
+    previous: insert_53    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_55:
+    previous: insert_54    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_56:
+    previous: insert_55    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_57:
+    previous: insert_56    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_58:
+    previous: insert_57    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_59:
+    previous: insert_58    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_60:
+    previous: insert_59    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_61:
+    previous: insert_60    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_62:
+    previous: insert_61    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_63:
+    previous: insert_62    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_64:
+    previous: insert_63    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_65:
+    previous: insert_64    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_66:
+    previous: insert_65    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_67:
+    previous: insert_66    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_68:
+    previous: insert_67    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_69:
+    previous: insert_68    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_70:
+    previous: insert_69    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_71:
+    previous: insert_70    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_72:
+    previous: insert_71    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_73:
+    previous: insert_72    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_74:
+    previous: insert_73    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_75:
+    previous: insert_74    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_76:
+    previous: insert_75    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_77:
+    previous: insert_76    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_78:
+    previous: insert_77    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_79:
+    previous: insert_78    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_80:
+    previous: insert_79    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_81:
+    previous: insert_80    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_82:
+    previous: insert_81    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+  insert_83:
+    previous: insert_82    # the exact number format depends on your platform
+    subtype: led
+    type: rgb    # will use red: 0-0, green: 0-1, blue: 0-2
+    tags: gi_insert
+
+  insert_84:
+    previous: insert_83
+    subtype: led
+    type: rgb  
+    tags: gi, bumper_led
+  insert_85:
+    previous: insert_84
+    subtype: led
+    type: rgb  
+    tags: gi, bumper_led
+  insert_86:
+    previous: insert_85
+    subtype: led
+    type: rgb   
+    tags: gi, bumper_led
+
+  insert_87:
+    previous: insert_86
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_88:
+    previous: insert_87
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_89:
+    previous: insert_88
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_90:
+    previous: insert_89
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_91:
+    previous: insert_90
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_92:
+    previous: insert_91
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_93:
+    previous: insert_92
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+  insert_94:
+    previous: insert_93
+    subtype: led
+    type: rgb  
+    tags: gi, apron_led
+
+  insert_95:
+    previous: insert_94
+    subtype: led
+    type: rgb  
+    tags: backglass_led, city_box_led
+  insert_96:
+    previous: insert_95
+    subtype: led
+    type: rgb  
+    tags: backglass_led, city_box_led
+  insert_97:
+    previous: insert_96
+    subtype: led
+    type: rgb  
+    tags: backglass_led, city_box_led
+  insert_98:
+    previous: insert_97
+    subtype: led
+    type: rgb  
+    tags: backglass_led, cult_box_led, cult_portal_led
+  insert_99:
+    previous: insert_98
+    subtype: led
+    type: rgb  
+    tags: backglass_led, cult_box_led
+  insert_100:
+    previous: insert_99
+    subtype: led
+    type: rgb  
+    tags: backglass_led, cult_box_led
+  insert_101:
+    previous: insert_100
+    subtype: led
+    type: rgb  
+    tags: backglass_led, cult_box_led
+  insert_102:
+    previous: insert_101
+    subtype: led
+    type: rgb  
+    tags: backglass_led, graveyard_box_led
+  insert_103:
+    previous: insert_102
+    subtype: led
+    type: rgb  
+    tags: backglass_led, graveyard_box_led
+  insert_104:
+    previous: insert_103
+    subtype: led
+    type: rgb  
+    tags: backglass_led, graveyard_box_led
+  insert_105:
+    previous: insert_104
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, boss_backglass_led, center_backglass_led
+  insert_106:
+    previous: insert_105
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, tindalos_backglass_led, center_backglass_led
+  insert_107:
+    previous: insert_106
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, chthonian_backglass_led, center_backglass_led
+  insert_108:
+    previous: insert_107
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, cult_backglass_led, center_backglass_led
+  insert_109:
+    previous: insert_108
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, cult_backglass_led, center_backglass_led
+  insert_110:
+    previous: insert_109
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, cult_backglass_led, center_backglass_led
+  insert_111:
+    previous: insert_110
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, profond_backglass_led, center_backglass_led
+  insert_112:
+    previous: insert_111
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, nyarla_backglass_led, center_backglass_led
+  insert_113:
+    previous: insert_112
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, moon_backglass_led, center_backglass_led
+  insert_114:
+    previous: insert_113
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, moon_backglass_led, center_backglass_led
+  insert_115:
+    previous: insert_114
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, moon_backglass_led, center_backglass_led
+  insert_116:
+    previous: insert_115
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, moon_backglass_led, center_backglass_led
+  insert_117:
+    previous: insert_116
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, horror_backglass_led, center_backglass_led
+  insert_118:
+    previous: insert_117
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, lorenzo_backglass_led, center_backglass_led
+  insert_119:
+    previous: insert_118
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, emilie_backglass_led, center_backglass_led
+  insert_120:
+    previous: insert_119
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, vince_backglass_led, center_backglass_led
+  insert_121:
+    previous: insert_120
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, lee_backglass_led, center_backglass_led
+  insert_122:
+    previous: insert_121
+    subtype: led
+    type: rgb  
+    tags: gi, backglass_led, car_backglass_led, center_backglass_led
+  insert_123:
+    previous: insert_122
+    subtype: led
+    type: rgb  
+    tags: backglass_led, speakeasy_box_led
+  insert_124:
+    previous: insert_123
+    subtype: led
+    type: rgb  
+    tags: backglass_led, speakeasy_box_led
+  insert_125:
+    previous: insert_124
+    subtype: led
+    type: rgb  
+    tags: backglass_led, speakeasy_box_led
+  insert_126:
+    previous: insert_125
+    subtype: led
+    type: rgb  
+    tags: backglass_led, charleston_box_led
+  insert_127:
+    previous: insert_126
+    subtype: led
+    type: rgb  
+    tags: backglass_led, charleston_box_led
+  insert_128:
+    previous: insert_127
+    subtype: led
+    type: rgb  
+    tags: backglass_led, charleston_box_led
+  insert_129:
+    previous: insert_128
+    subtype: led
+    type: rgb  
+    tags: backglass_led, radio_box_led
+  insert_130:
+    previous: insert_129
+    subtype: led
+    type: rgb  
+    tags: backglass_led, radio_box_led
+  insert_131:
+    previous: insert_130
+    subtype: led
+    type: rgb  
+    tags: backglass_led, radio_box_led
+  insert_132:
+    previous: insert_131
+    subtype: led
+    type: rgb  
+    tags: backglass_led
+  insert_133:
+    previous: insert_132
+    subtype: led
+    type: rgb  
+    tags: backglass_led
+  insert_134:
+    previous: insert_133
+    subtype: led
+    type: rgb  
+    tags: backglass_led
+  insert_135:
+    previous: insert_134
+    subtype: led
+    type: rgb  
+    tags: backglass_led
+  insert_136:
+    previous: insert_135
+    subtype: led
+    type: rgb  
+    tags: backglass_led

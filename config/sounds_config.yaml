@@ -1,0 +1,2826 @@
+#config_version=6
+
+sounds:
+  intro:
+    file: intro.ogg
+
+#### twenties music
+
+  roaring_20:
+    file: roaring_20.ogg
+  roaring_20_2:
+    file: newbaby.ogg
+  roaring_20_3:
+    file: onlygirl.ogg
+  roaring_20_4:
+    file: pretgirl_64kb.ogg
+  roaring_20_5:
+    file: roaring_20_5.ogg
+  roaring_20_6:
+    file: roaring_20_6.ogg
+  roaring_20_7:
+    file: roaring_20_7.ogg
+  roaring_20_8:
+    file: hotmama.ogg
+  roaring_20_9:
+    file: roaring_20_9.ogg
+  roaring_20_10:
+    file: kckitty.ogg
+  roaring_20_11:
+    file: Henpecked_Blues.ogg
+  roaring_20_12:
+    file: iaintgot.ogg
+  roaring_20_13:
+    file: paleste2.ogg
+  roaring_20_14:
+    file: Parham-Washboard_Wiggles.ogg
+  roaring_20_15:
+    file: pastime.ogg
+  roaring_20_16:
+    file: vododeo_64kb.ogg
+  roaring_20_17:
+    file: urbones_64kb.ogg
+  roaring_20_18:
+    file: surshimy_64kb.ogg
+  roaring_20_19:
+    file: stolmgal_64kb.ogg
+  roaring_20_20:
+    file: south_64kb.ogg
+
+  roaring_20_21:
+    file: Raderman_Jazz_Orch-Dardanella_64kb.ogg
+  roaring_20_22:
+    file: Raderman-Japanese_Sandman_8KHz_64kb.ogg
+  roaring_20_23:
+    file: singusin_64k.ogg
+  roaring_20_24:
+    file: sentgent_64kb.ogg
+  roaring_20_25:
+    file: Ragtimers-Sister_Kate_11KHz_64kb.ogg
+  roaring_20_26:
+    file: sugarft_64kb.ogg
+  roaring_20_27:
+    file: yestrday_64kb.ogg
+  roaring_20_28:
+    file: acehole_64kb.ogg
+  roaring_20_29:
+    file: admirat_64kb.ogg
+  roaring_20_30:
+    file: afghanis_64kb.ogg
+  roaring_20_31:
+    file: Bennie_Moten_Kater_St_Rag_64kb.ogg
+  roaring_20_32:
+    file: blackrag_64kb.ogg
+  roaring_20_33:
+    file: bluerose_64kb.ogg
+  roaring_20_34:
+    file: Broadway_Nitelites_I_Wanna_Be_Loved_64kb.ogg
+  roaring_20_35:
+    file: Bucktown_5_Hot_Mittens_64kb.ogg
+  roaring_20_36:
+    file: budhabit_64kb.ogg
+  roaring_20_37:
+    file: bugle_call_64kb.ogg
+  roaring_20_38:
+    file: CA_Ramblers_Animal_Crackers_64kb.ogg
+  roaring_20_39:
+    file: changes_64kb.ogg
+  roaring_20_40:
+    file: clement2_64kb.ogg
+
+######## Sanity music #########
+
+  sanity_music_1:
+    file: sanity_music_1.ogg
+  sanity_music_2:
+    file: sanity_music_2.ogg
+  punch1:
+    file: punch1.wav
+  punch2:
+    file: punch2.wav
+  punch3:
+    file: punch3.wav
+  punch4:
+    file: punch4.wav
+  punch5:
+    file: punch5.wav
+  punch6:
+    file: punch6.wav
+  punch7:
+    file: punch7.wav
+  punch8:
+    file: punch8.ogg
+  punch9:
+    file: punch9.ogg
+  punch10:
+    file: punch10.ogg
+  woohoo:
+    file: woohoo.wav
+
+###########################
+
+  target_1:
+    file: target_1.ogg
+  target_2:
+    file: target_2.ogg
+  target_3:
+    file: target_3.ogg
+  target_4:
+    file: target_4.ogg
+  target_5:
+    file: target_5.ogg
+  target_6:
+    file: target_6.ogg
+  target_7:
+    file: target_7.ogg
+  target_8:
+    file: target_8.ogg
+  target_9:
+    file: target_9.ogg
+  door_open:
+    file: door_open.ogg
+  exit_library_door:
+    file: exit_library_door.ogg
+  exit_secret_door:
+    file: secret_library_door.ogg
+  sanity_1:
+    file: sanity_1.wav
+  sanity_2:
+    file: sanity_2.wav
+  sanity_3:
+    file: sanity_3.wav
+  sanity_4:
+    file: sanity_4.wav
+  sanity_5:
+    file: sanity_5.wav
+  sanity_6:
+    file: sanity_6.wav
+  sanity_7:
+    file: sanity_7.wav
+  sanity_8:
+    file: sanity_8.wav
+  roll_down_1:
+    file: roll_down_1.ogg
+  roll_down_2:
+    file: roll_down_2.ogg
+  roll_down_3:
+    file: roll_down_3.ogg
+  whisper_1:
+    file: whisper_1.ogg
+  whisper_2:
+    file: whisper_2.ogg
+  whisper_3:
+    file: whisper_3.ogg
+  spinner_1:
+    file: spinner_1.ogg
+  spinner_2:
+    file: spinner_2.ogg
+  spinner_3:
+    file: spinner_3.ogg
+  cave_1:
+    file: cave_1.ogg
+  cave_2:
+    file: cave_2.ogg
+  cave_3:
+    file: cave_3.ogg
+  space_switch_1:
+    file: space_switch_1.ogg
+  space_switch_2:
+    file: space_switch_2.ogg
+  space_switch_3:
+    file: space_switch_3.ogg
+  asylum_sound_1:
+    file: asylum_sound_1.ogg
+  asylum_sound_2:
+    file: asylum_sound_2.ogg
+  asylum_sound_3:
+    file: asylum_sound_3.ogg
+  asylum_sound_4:
+    file: asylum_sound_4.ogg
+  asylum_sound_5:
+    file: asylum_sound_5.ogg
+  asylum_sound_6:
+    file: asylum_sound_6.ogg
+  fordt_1:
+    file: fordt_1.ogg
+  fordt_2:
+    file: fordt_2.ogg
+  fordt_3:
+    file: fordt_3.ogg
+  fordt_4:
+    file: fordt_4.ogg
+  fordt_5:
+    file: fordt_5.ogg
+  fordt_6:
+    file: fordt_6.ogg
+  drowning_1:
+    file: drowning_1.ogg
+  drowning_2:
+    file: drowning_2.ogg
+  drowning_3:
+    file: drowning_3.ogg
+  drowning_4:
+    file: drowning_4.ogg
+  run_1:
+    file: run_1.ogg
+  run_2:
+    file: run_2.ogg
+  run_3:
+    file: run_3.ogg
+  sanity_launch:
+    file: sanity_launch.wav
+
+##### cthulhu music #####
+
+  cthulhu_music_0:
+    file: cthulhu_music_0.ogg
+  cthulhu_music_1:
+    file: cthulhu_music_1.ogg
+  cthulhu_music_2:
+    file: cthulhu_music_2.ogg
+  cthulhu_music_3:
+    file: cthulhu_music_3.ogg
+  cthulhu_music_4:
+    file: cthulhu_music_4.ogg
+  cthulhu_music_5:
+    file: cthulhu_music_5.ogg
+  cthulhu_music_6:
+    file: cthulhu_music_6.ogg
+  cthulhu_music_7:
+    file: cthulhu_music_7.ogg
+  cthulhu_music_8:
+    file: cthulhu_music_8.ogg
+  cthulhu_music_9:
+    file: cthulhu_music_9.ogg
+  cthulhu_music_10:
+    file: cthulhu_music_10.ogg
+  cthulhu_music_11:
+    file: cthulhu_music_11.ogg
+  cthulhu_music_12:
+    file: cthulhu_music_12.ogg
+  cthulhu_music_13:
+    file: cthulhu_music_13.ogg
+  cthulhu_music_14:
+    file: cthulhu_music_14.ogg
+  cthulhu_music_15:
+    file: cthulhu_music_15.ogg
+  cthulhu_music_16:
+    file: cthulhu_music_16.ogg
+  cthulhu_music_17:
+    file: cthulhu_music_17.ogg
+  cthulhu_music_18:
+    file: cthulhu_music_18.ogg
+  cthulhu_music_19:
+    file: cthulhu_music_19.ogg
+  cthulhu_music_20:
+    file: cthulhu_music_20.ogg
+  cthulhu_music_21:
+    file: cthulhu_music_21.ogg
+  cthulhu_music_22:
+    file: cthulhu_music_22.ogg
+  cthulhu_music_23:
+    file: cthulhu_music_23.ogg
+
+  cthulhu_music_calme_1:
+    file: cthulhu_music_calme_1.ogg
+  cthulhu_music_calme_2:
+    file: cthulhu_music_calme_2.ogg
+  cthulhu_music_calme_3:
+    file: cthulhu_music_calme_3.ogg
+  cthulhu_music_calme_4:
+    file: cthulhu_music_calme_4.ogg
+  cthulhu_music_calme_5:
+    file: cthulhu_music_calme_5.ogg
+
+  livre_1:
+    file: livre_1.ogg
+  livre_2:
+    file: livre_2.ogg
+  livre_3:
+    file: livre_3.ogg
+  livre_4:
+    file: livre_4.ogg
+  livre_5:
+    file: livre_5.ogg
+  livre_6:
+    file: livre_6.ogg
+  livre_7:
+    file: livre_7.ogg
+  livre_8:
+    file: livre_8.ogg
+  livre_9:
+    file: livre_9.ogg
+  drop_target_sound_1:
+    file: drop_target_sound_1.ogg
+  drop_target_sound_2:
+    file: drop_target_sound_2.ogg
+  drop_target_sound_3:
+    file: drop_target_sound_3.ogg
+  drop_target_sound_4:
+    file: drop_target_sound_4.ogg
+  drop_target_sound_5:
+    file: drop_target_sound_5.ogg
+  dt_complete_sound:
+    file: dt_complete_sound.ogg
+  dt_complete_sound_2:
+    file: dt_complete_sound_2.ogg
+  complete_library_sound:
+    file: complete_library_sound.ogg
+  green_target_sound_1:
+    file: green_target_sound_1.ogg
+  green_target_sound_2:
+    file: green_target_sound_2.ogg
+  green_target_sound_3:
+    file: green_target_sound_3.ogg
+  complete_green_target:
+    file: magic_1.wav
+  complete_green_target_2:
+    file: magic_2.wav
+  clock_tick_10s:
+    file: clock_tick_10s.ogg
+  clock_gong:
+    file: clock_gong.ogg
+  one_clock_gong:
+    file: one_clock_gong.wav
+  gong_pact:
+    file: gong_pact.wav
+
+###########################
+
+  cthulhu_ramp_sound_1:
+    file: cthulhu_ramp_sound1.wav
+  cthulhu_ramp_sound_2:
+    file: cthulhu_ramp_sound2.wav
+  cthulhu_ramp_sound_3:
+    file: cthulhu_ramp_sound3.wav
+  cthulhu_ramp_sound_4:
+    file: cthulhu_ramp_sound4.wav
+  cthulhu_ramp_sound_5:
+    file: cthulhu_ramp_sound5.wav
+  cthulhu_ramp_sound_6:
+    file: cthulhu_ramp_sound6.wav
+  cthulhu_ramp_sound_7:
+    file: cthulhu_ramp_sound7.wav
+  cthulhu_ramp_sound_8:
+    file: cthulhu_ramp_sound8.wav
+
+
+###########################
+
+  save_lane_complete_1:
+    file: call-me-1.ogg
+  save_lane_complete_2:
+    file: call-me-2.ogg
+  save_lane_complete_3:
+    file: call-me-3.ogg
+  save_lane_complete_4:
+    file: help-you-now-1.ogg
+  save_lane_complete_5:
+    file: help-you-now-2.ogg
+  save_lane_complete_6:
+    file: help-you-now-3.ogg
+  save_lane_complete_7:
+    file: help-you-now-4.ogg
+
+###########################
+
+  team_lane_complete_1:
+    file: Together.wav
+  team_lane_complete_2:
+    file: friends.wav
+
+  2xmultiplier_1:
+    file: double_multiplier.wav
+  2xmultiplier_2:
+    file: double_multiplier2.wav
+
+  3xmultiplier_1:
+    file: triple_multiplier.wav
+  3xmultiplier_2:
+    file: triple_multiplier2.wav
+
+  4xmultiplier_1:
+    file: four_time_multiplier.wav
+  4xmultiplier_2:
+    file: four_time_multiplier2.wav
+
+###########################
+
+  eldersign_voice_1:
+    file: Working.wav
+
+###########################
+
+  kicback_activated_1:
+    file: grab-hand-2.ogg
+  kicback_activated_2:
+    file: grab-hand-4.ogg
+  kicback_activated_3:
+    file: grab-hand-5.ogg
+  kicback_activated_4:
+    file: grab-hand-6.ogg
+  kicback_activated_5:
+    file: thanks-me-1.ogg
+  kicback_activated_6:
+    file: thanks-me-3.ogg
+  kicback_activated_7:
+    file: thanks-me-4.ogg
+  kicback_activated_8:
+    file: thanks-me-9.ogg
+
+###########################
+# Library
+
+  library_voice_1:
+    file: books_1.ogg
+  library_voice_2:
+    file: books_2.ogg
+  library_voice_3:
+    file: language1.wav
+  library_voice_4:
+    file: language2.wav
+  library_voice_5:
+    file: language3.wav
+  library_voice_6:
+    file: language4.wav
+  library_voice_7:
+    file: lAnGuAGEuh6.wav
+  library_voice_8:
+    file: silence1.wav
+  library_voice_9:
+    file: silence2.wav
+  library_voice_10:
+    file: silence3.wav
+  library_voice_11:
+    file: silence4.wav
+  library_voice_12:
+    file: silence5.wav
+  library_voice_13:
+    file: decipher.wav
+  library_voice_14:
+    file: decipher2.wav
+  library_voice_15:
+    file: decipher3.wav
+  library_voice_16:
+    file: decipher4.wav
+  library_voice_17:
+    file: decipher5.wav
+  library_voice_18:
+    file: decipher6.wav
+  library_voice_19:
+    file: dust1.wav
+  library_voice_20:
+    file: dust2.wav
+  library_voice_21:
+    file: dust3.wav
+  library_voice_22:
+    file: dust4.wav
+
+  library_cult_voice_1:
+    file: dark1.wav
+  library_cult_voice_2:
+    file: dark2.wav
+  library_cult_voice_3:
+    file: dark3.wav
+  library_cult_voice_4:
+    file: dark4.wav
+  library_cult_voice_5:
+    file: sshhh_1.wav
+  library_cult_voice_6:
+    file: sshhh_2.wav
+  library_cult_voice_7:
+    file: sshhh_3.wav
+  library_cult_voice_8:
+    file: sshhh_4.wav
+  library_cult_voice_9:
+    file: sshhh_5.wav
+  library_cult_voice_10:
+    file: bookback_1.wav
+  library_cult_voice_11:
+    file: bookback_2.wav
+  library_cult_voice_12:
+    file: bookback_3.wav
+  library_cult_voice_13:
+    file: bookback_4.wav
+  library_cult_voice_14:
+    file: bookback_5.wav
+
+###########################
+# Mystery twenties
+
+  mystery_twenties_voice_1:
+    file: Big-Weapon.wav
+  mystery_twenties_voice_2:
+    file: elephant.wav
+  mystery_twenties_voice_3:
+    file: useful.wav
+  mystery_twenties_voice_4:
+    file: elephant2.wav
+  mystery_twenties_voice_5:
+    file: elephant3.wav
+  mystery_twenties_voice_6:
+    file: elephant4.wav
+
+  mystery_twenties_not_elefant_voice_1:
+    file: not_elefant_lorenzo.wav
+
+  mystery_twenties_compass_voice_1:
+    file: compass_lorenzo_1.wav  
+  mystery_twenties_compass_voice_2:
+    file: compass_lorenzo_2.wav 
+  mystery_twenties_flashlight_voice_1:
+    file: flashlight_lorenzo_1.wav 
+  mystery_twenties_flashlight_voice_2:
+    file: flashlight_lorenzo_2.wav 
+  mystery_twenties_hat_voice_1:
+    file: hat_lorenzo_1.wav
+  mystery_twenties_hat_voice_2:
+    file: hat_lorenzo_2.wav 
+  mystery_twenties_loupe_voice_1:
+    file: loupe_lorenzo_1.wav 
+  mystery_twenties_loupe_voice_2:
+    file: loupe_lorenzo_2.wav
+  mystery_twenties_loupe_voice_3:
+    file: loupe_lorenzo_3.wav
+  mystery_twenties_shoes_voice_1:
+    file: shoes_lorenzo_1.wav
+  mystery_twenties_shoes_voice_2:
+    file: shoes_lorenzo_2.wav
+
+  mystery_twenties_hatch_1:
+    file: secret_hatch_open_1.wav
+  mystery_twenties_hatch_2:
+    file: secret_hatch_open_2.wav
+  mystery_twenties_hatch_3:
+    file: secret_hatch_open_3.wav
+  mystery_twenties_hatch_4:
+    file: secret_hatch_open_4.wav
+  mystery_twenties_hatch_5:
+    file: secret_hatch_open_5.wav
+
+
+###########################
+# Attract mode
+
+  attract_voice_1:
+    file: doomed.wav
+  attract_voice_2:
+    file: doomed2.wav
+  attract_voice_3:
+    file: doomed3.wav
+  attract_voice_4:
+    file: doomed4.wav
+  attract_voice_5:
+    file: playnow.wav
+  attract_voice_6:
+    file: playnow2.wav
+  attract_voice_7:
+    file: playnow3.wav
+  attract_voice_8:
+    file: fightmyth.wav
+  attract_voice_9:
+    file: fightmyth2.wav
+  attract_voice_10:
+    file: fightmyth3.wav
+  attract_voice_11:
+    file: launch_1.wav
+  attract_voice_12:
+    file: launch_2.wav
+  attract_voice_13:
+    file: launch_3.wav
+  attract_voice_14:
+    file: strongenough.wav
+  attract_voice_15:
+    file: strongenough2.wav
+  attract_voice_16:
+    file: strongenough3.wav
+  attract_voice_17:
+    file: strongenough4.wav
+  attract_voice_18:
+    file: strongenough5.wav
+  attract_voice_19:
+    file: strongenough6.wav
+  attract_voice_20:
+    file: strongenough7.wav
+
+###########################
+# Sanity mode
+
+  sanity_voice_1:
+    file: mad_1.wav
+  sanity_voice_2:
+    file: mad_2.wav
+  sanity_voice_3:
+    file: mad_3.wav
+  sanity_voice_4:
+    file: mad_4.wav
+  sanity_voice_5:
+    file: mad_5.wav
+  sanity_voice_6:
+    file: release_me_1.wav
+  sanity_voice_7:
+    file: release_me_2.wav
+  sanity_voice_8:
+    file: release_me_3.wav
+  sanity_voice_9:
+    file: Madness_1.wav
+  sanity_voice_10:
+    file: Madness_2.wav
+  sanity_voice_11:
+    file: Madness_3.wav
+  sanity_voice_12:
+    file: Sneak_out_1.wav
+  sanity_voice_13:
+    file: Sneak_out_2.wav
+  sanity_voice_14:
+    file: Sneak_out_3.wav
+  sanity_voice_15:
+    file: Sneak_out_4.wav
+  sanity_voice_16:
+    file: britney.wav
+  sanity_voice_17:
+    file: Gni-divers_1.wav
+  sanity_voice_18:
+    file: Gni-divers_2.wav
+  sanity_voice_19:
+    file: Gni-divers_3.wav
+  sanity_voice_20:
+    file: Gni-divers_4.wav
+  sanity_voice_21:
+    file: ha-ha-hi.wav
+  sanity_voice_22:
+    file: no_no_no.wav
+  sanity_voice_23:
+    file: not-mad_1.wav
+  sanity_voice_24:
+    file: not-mad_2.wav
+  sanity_voice_25:
+    file: not-mad_3.wav
+  sanity_voice_26:
+    file: not-mad_4.wav
+  sanity_voice_27:
+    file: pills_1.wav
+  sanity_voice_28:
+    file: pills_2.wav
+  sanity_voice_29:
+    file: pills_3.wav
+  sanity_voice_30:
+    file: release-me_1.wav
+  sanity_voice_31:
+    file: release-me_2.wav
+  sanity_voice_32:
+    file: release-me_3.wav
+  sanity_voice_33:
+    file: sorpresa-dos.wav
+  sanity_voice_34:
+    file: sorpresa-uno.wav
+  sanity_voice_35:
+    file: too-tight_1.wav
+  sanity_voice_36:
+    file: too-tight_2.wav
+  sanity_voice_37:
+    file: too-tight_3.wav
+
+###########################
+# Carousel
+
+  victory_1:
+    file: applause_1.wav
+
+  trumpet_1:
+    file: trumpet_1.wav
+
+  clouc_select:
+    file: clouc_select.wav
+  
+  button_select:
+    file: button_select.wav
+  button_start:
+    file: spring-click.wav
+
+  impact_score:
+    file: impact_score.wav
+  new_highscore_sound:
+    file: dark-epic-hybrid-logo.wav
+
+
+  mission_select_1:
+    file: mission_select_1.wav
+  mission_select_2:
+    file: mission_select_2.wav
+  mission_select_3:
+    file: mission_select_3.wav
+  mission_select_4:
+    file: mission_select_4.wav
+  mission_select_5:
+    file: mission_select_5.wav
+  mission_select_6:
+    file: mission_select_6.wav 
+
+  carousel_voice_radio_1:
+    file: radio_emilie_1.wav
+  carousel_voice_radio_2:
+    file: radio_emilie_2.wav 
+  carousel_voice_radio_3:
+    file: radio_emilie_3.wav 
+
+  carousel_voice_charleston:
+    file: charleston_emilie.wav
+  carousel_voice_speakeasy:
+    file: speakeasy_emilie.wav
+
+###########################
+# Tilt
+
+  tilt_1:
+    file: violindanger.wav
+
+  tilt_end:
+    file: tilt_end.wav
+
+  tilt_voice_1:
+    file: emilie_tilt_1.wav
+  tilt_voice_2:
+    file: emilie_tilt_2.wav
+  tilt_voice_3:
+    file: emilie_tilt_3.wav
+  tilt_voice_4:
+    file: emilie_tilt_4.wav
+  tilt_voice_5:
+    file: emilie_tilt_5.wav
+  tilt_voice_6:
+    file: emilie_tilt_6.wav
+  tilt_voice_7:
+    file: emilie_tilt_7.wav
+  tilt_voice_8:
+    file: emilie_tilt_8.wav
+  tilt_voice_9:
+    file: emilie_tilt_9.wav
+  tilt_voice_10:
+    file: emilie_tilt_10.wav
+  tilt_voice_11:
+    file: emilie_tilt_11.wav
+  tilt_voice_12:
+    file: emilie_tilt_12.wav
+  tilt_voice_13:
+    file: emilie_tilt_13.wav
+
+###########################
+# Charleston
+
+  charleston_voice_1:
+    file: lets_dance_1.wav
+  charleston_voice_2:
+    file: lets_dance_2.wav
+  charleston_voice_3:
+    file: lets_dance_3.wav
+  charleston_voice_4:
+    file: lets_dance_4.wav
+  charleston_voice_5:
+    file: lets_dance_5.wav
+  charleston_voice_6:
+    file: danceallnight_1.wav
+  charleston_voice_7:
+    file: danceallnight_2.wav
+  charleston_voice_8:
+    file: danceallnight_3.wav
+  charleston_voice_9:
+    file: danceallnight_4.wav
+  charleston_voice_10:
+    file: dance_hours_1.wav
+  charleston_voice_11:
+    file: dance_hours_2.wav 
+
+  charleston_music_1:
+    file: Charleston_you_said_it.ogg
+  charleston_music_2:
+    file: Charleston_now_time_fall_in_love.ogg
+  charleston_music_3:
+    file: Charleston_unanimous_now.ogg
+  charleston_music_4:
+    file: Charleston_crazy_rhythm.ogg
+  charleston_music_5:
+    file: Charleston_all_sudden.ogg
+  charleston_music_6:
+    file: Charleston_lonesome_lover.ogg
+  charleston_music_7:
+    file: Charleston_what_i_like_about_you.ogg
+  charleston_music_8:
+    file: Charleston_wa_wa_wa.ogg
+  charleston_music_9:
+    file: Charleston_when_you_over_sixty.ogg
+  charleston_music_10:
+    file: Charleston_skirts.ogg
+
+  charleston_sfx_1:
+    file: charleston_sfx_1.wav
+  charleston_sfx_2:
+    file: charleston_sfx_2.wav
+  charleston_sfx_3:
+    file: charleston_sfx_3.wav
+  charleston_sfx_4:
+    file: charleston_sfx_4.wav
+  charleston_sfx_5:
+    file: charleston_sfx_5.wav
+  charleston_sfx_8:
+    file: charleston_sfx_8.wav
+  charleston_sfx_9:
+    file: charleston_sfx_9.wav
+  charleston_sfx_10:
+    file: charleston_sfx_10.wav
+  charleston_sfx_11:
+    file: charleston_sfx_11.wav
+  charleston_sfx_12:
+    file: charleston_sfx_12.wav
+  charleston_sfx_13:
+    file: charleston_sfx_13.wav
+  charleston_sfx_14:
+    file: charleston_sfx_14.wav
+
+  tap_dance_1:
+    file: tap_dance_1.wav
+  tap_dance_2:
+    file: tap_dance_2.wav
+  tap_dance_3:
+    file: tap_dance_3.wav
+  tap_dance_4:
+    file: tap_dance_4.wav
+  tap_dance_5:
+    file: tap_dance_5.wav
+
+  pop-horns_1:
+    file: pop-horns_1.wav
+  pop-horns_2:
+    file: pop-horns_2.wav
+
+  charleston_entrance:
+    file: charleston-entrance.wav
+
+  charleston_multiball_voice_1:
+    file: charleston_multiball_voice_1.wav
+  charleston_multiball_voice_2:
+    file: charleston_multiball_voice_2.wav
+  charleston_multiball_voice_3:
+    file: charleston_multiball_voice_3.wav
+  charleston_multiball_voice_4:
+    file: charleston_multiball_voice_4.wav
+
+
+  jazz_intro:
+    file: jazz_intro.wav
+
+###########################
+# Mafia voices
+
+  private_entrance_1:
+    file: private_entrance-01.wav
+  private_entrance_2:
+    file: private_entrance-02.wav
+  private_entrance_3:
+    file: private_entrance-03.wav
+  private_entrance_4:
+    file: private_entrance-04.wav
+  private_entrance_5:
+    file: private_entrance-05.wav
+  private_entrance_6:
+    file: donotenterhere-01.wav
+  private_entrance_7:
+    file: donotenterhere-02.wav
+  private_entrance_8:
+    file: donotenterhere-03.wav
+  private_entrance_9:
+    file: donotenterhere-04.wav
+  private_entrance_10:
+    file: notsupposedtobehere-01.wav
+  private_entrance_11:
+    file: notsupposedtobehere-02.wav
+  private_entrance_12:
+    file: notsupposedtobehere-03.wav
+  private_entrance_13:
+    file: notsupposedtobehere-04.wav
+  private_entrance_14:
+    file: youllregretit-01.wav
+  private_entrance_15:
+    file: youllregretit-02.wav
+  private_entrance_16:
+    file: youllregretit-03.wav
+  private_entrance_17:
+    file: youllregretit-04.wav
+  private_entrance_18:
+    file: youllregretit-05.wav
+  private_entrance_19:
+    file: whatareyoudoinghere-01.wav
+  private_entrance_20:
+    file: whatareyoudoinghere-02.wav
+  private_entrance_21:
+    file: whatareyoudoinghere-03.wav
+  private_entrance_22:
+    file: whatareyoudoinghere-04.wav
+  private_entrance_23:
+    file: whatareyoudoinghere-05.wav
+  private_entrance_24:
+    file: whatareyoudoinghere-06.wav
+  private_entrance_25:
+    file: whatareyoudoinghere-07.wav
+
+###########################
+# Dead voices
+
+  dead_voice_1:
+    file: dead1.wav
+  dead_voice_2:
+    file: dead2.wav
+  dead_voice_3:
+    file: dead3.wav
+  dead_voice_4:
+    file: dead4.wav
+  dead_voice_5:
+    file: dead5.wav
+  dead_voice_6:
+    file: dead6.wav
+  dead_voice_7:
+    file: dead7.wav
+  dead_voice_8:
+    file: dead8.wav
+  dead_voice_9:
+    file: dead9.wav
+  dead_voice_10:
+    file: dead10.wav
+  dead_voice_11:
+    file: dead11.wav
+  dead_voice_12:
+    file: dead12.wav
+  dead_voice_13:
+    file: dead13.wav
+  dead_voice_14:
+    file: dead14.wav
+  dead_voice_15:
+    file: dead15.wav
+  dead_voice_16:
+    file: dead16.wav
+  dead_voice_17:
+    file: emilie_dead_1.wav
+  dead_voice_18:
+    file: emilie_dead_2.wav
+  dead_voice_19:
+    file: emilie_dead_3.wav
+  dead_voice_20:
+    file: emilie_dead_4.wav
+  dead_voice_21:
+    file: emilie_dead_5.wav
+  dead_voice_22:
+    file: emilie_dead_6.wav
+  dead_voice_23:
+    file: emilie_dead_7.wav
+  dead_voice_24:
+    file: emilie_dead_8.wav
+  dead_voice_25:
+    file: emilie_dead_9.wav
+  dead_voice_26:
+    file: emilie_dead_10.wav
+  dead_voice_27:
+    file: emilie_dead_11.wav
+  dead_voice_28:
+    file: emilie_cut_it_out_1.wav
+
+###########################
+# Dimensional portal
+
+  dimensional_portal_1:
+    file: safe_1.wav
+  dimensional_portal_2:
+    file: Strange_light_1.wav
+  dimensional_portal_3:
+    file: Strange_light_2.wav
+  dimensional_portal_4:
+    file: Strange_light_3.wav
+  dimensional_portal_5:
+    file: Strange_light_4.wav
+  dimensional_portal_6:
+    file: Strange_light_5.wav
+  dimensional_portal_7:
+    file: Reality_1.wav
+  dimensional_portal_8:
+    file: Reality_2.wav
+  dimensional_portal_9:
+    file: Reality_3.wav
+
+  multiball_portal_music_1:
+    file: the_final_combat.ogg
+
+###########################
+
+  ball_save_1:
+    file: Close_call.wav
+  ball_save_2:
+    file: Last_minute.wav
+
+###########################
+
+  wind_1:
+    file: wind1.wav
+  wind_2:
+    file: wind2.wav
+  wind_3:
+    file: wind3.wav
+  wind_4:
+    file: wind4.wav
+  wind_5:
+    file: wind5.wav
+  wind_6:
+    file: wind6.wav
+
+###########################
+
+  woom_1:
+    file: woom.wav
+
+###########################
+# win and death
+
+  violin_win_1:
+    file: violin-win-1.wav
+  violin_win_2:
+    file: violin-win-2.wav
+  violin_win_3:
+    file: violin-win-3.wav
+
+  evil_laugh_1:
+    file: evil_laugh_1.wav
+  evil_laugh_2:
+    file: evil_laugh_2.wav
+  evil_laugh_3:
+    file: evil_laugh_3.wav
+  evil_laugh_4:
+    file: evil_laugh_4.wav
+  evil_laugh_5:
+    file: evil_laugh_5.wav
+  evil_laugh_6:
+    file: evil_laugh_6.wav
+  evil_laugh_7:
+    file: evil_laugh_7.wav
+  evil_laugh_8:
+    file: evil_laugh_8.wav
+  evil_laugh_9:
+    file: evil_laugh_9.wav
+
+  dark_win_1:
+    file: departure.ogg
+
+  screaming_to_death_1:
+    file: screaming_to_death_1.wav
+  screaming_to_death_2:
+    file: screaming_to_death_2.wav
+  screaming_to_death_3:
+    file: screaming_to_death_3.wav
+
+###########################
+# Death sfx
+
+  guns_1:
+    file: pistol_shoot.wav
+  guns_2:
+    file: pistol_2.wav
+  guns_3:
+    file: pistol_3.wav
+  guns_4:
+    file: pistol_4.wav
+
+  blood_1:
+    file: blood1.wav
+  blood_2:
+    file: blood2.wav
+  blood_3:
+    file: blood3.wav
+  blood_4:
+    file: blood4.wav
+  blood_5:
+    file: blood5.wav
+  blood_6:
+    file: breeze-of-blood.wav
+
+###########################
+# Indication voices
+
+  skillshot_1:
+    file: skillshot.wav
+  skillshot_2:
+    file: skillshot2.wav
+  skillshot_3:
+    file: skillshot3.wav
+  skillshot_4:
+    file: skillshot4.wav
+  skillshot_5:
+    file: skillshot5.wav
+
+  superskillshot_1:
+    file: super_skillshot.wav
+  superskillshot_2:
+    file: super_skillshot2.wav
+  superskillshot_3:
+    file: super_skillshot3.wav
+
+  jackpot_1:
+    file: jackpot1.wav
+  jackpot_2:
+    file: jackpot2.wav
+  jackpot_3:
+    file: jackpot3.wav
+  jackpot_4:
+    file: jackpot_4.wav
+  jackpot_5:
+    file: jackpot_5.wav
+  jackpot_6:
+    file: jackpot_6.wav
+  jackpot_7:
+    file: jackpot_7.wav
+  jackpot_8:
+    file: jackpot_8.wav
+  jackpot_9:
+    file: jackpot_9.wav
+  jackpot_10:
+    file: jackpot_10.wav
+
+  superjackpot_1:
+    file: super_jackpot1.wav
+  superjackpot_2:
+    file: super_jackpot2.wav
+  superjackpot_3:
+    file: super_jackpot3.wav
+
+  epic_violin_1:
+    file: epic-violin.wav
+
+###########################
+# Radio shows
+
+  radio_music_1:
+    file: rain-and-thunder.ogg
+
+  radio_static_1:
+    file: radio-static.wav
+
+  space_radio_1:
+    file: space_radio_1.wav
+  space_radio_2:
+    file: space_radio_2.wav
+  space_radio_3:
+    file: space_radio_3.wav
+  space_radio_4:
+    file: space_radio_4.wav
+  space_radio_5:
+    file: space_radio_5.wav
+  space_radio_6:
+    file: space_radio_6.wav
+  space_radio_7:
+    file: space_radio_7.wav
+  space_radio_8:
+    file: space_radio_8.wav
+  space_radio_9:
+    file: space_radio_9.wav
+  space_radio_10:
+    file: space_radio_10.wav
+  space_radio_11:
+    file: space_radio_11.wav
+  space_radio_12:
+    file: space_radio_12.wav
+  space_radio_13:
+    file: space_radio_13.wav
+  space_radio_14:
+    file: space_radio_14.wav
+  space_radio_15:
+    file: space_radio_15.wav
+  space_radio_16:
+    file: space_radio_16.wav
+
+  radio_hit_1:
+    file: radio_ninon_1.wav
+  radio_hit_2:
+    file: radio_ninon_2.wav
+  radio_hit_3:
+    file: radio_ninon_3.wav
+  radio_hit_4:
+    file: radio_ninon_4.wav
+  radio_hit_5:
+    file: florent_radio_1.wav
+  radio_hit_6:
+    file: florent_radio_2.wav
+  radio_hit_7:
+    file: florent_radio_3.wav
+  radio_hit_8:
+    file: florent_radio_4.wav
+  radio_hit_9:
+    file: florent_radio_5.wav
+  radio_hit_10:
+    file: florent_radio_6.wav
+  radio_hit_11:
+    file: florent_radio_7.wav
+  radio_hit_12:
+    file: florent_radio_8.wav
+  radio_hit_13:
+    file: florent_radio_9.wav
+  radio_hit_14:
+    file: margaux_radio_1.wav
+  radio_hit_15:
+    file: margaux_radio_2.wav
+
+  boring_show_1:
+    file: boring_show_1.wav
+  boring_show_2:
+    file: boring_show_2.wav
+  boring_show_3:
+    file: boring_show_3.wav
+  boring_show_4:
+    file: boring_show_4.wav
+  boring_show_5:
+    file: boring_show_5.wav
+  boring_show_6:
+    file: boring_show_6.wav
+  boring_show_7:
+    file: boring_show_7.wav
+  boring_show_8:
+    file: anti_boring_1.wav
+  boring_show_9:
+    file: anti_boring_2.wav
+  boring_show_10:
+    file: anti_boring_3.wav
+  boring_show_11:
+    file: anti_boring_4.wav
+
+  other_show_1:
+    file: other_show_1.wav
+  other_show_2:
+    file: other_show_2.wav
+  other_show_3:
+    file: other_show_3.wav
+  other_show_4:
+    file: other_show_4.wav
+  other_show_5:
+    file: other_show_5.wav
+  other_show_6:
+    file: other_show_6.wav
+  other_show_7:
+    file: other_show_7.wav
+  other_show_8:
+    file: other_show_8.wav
+  other_show_9:
+    file: other_show_9.wav
+  other_show_10:
+    file: other_show_annie_1.wav
+  other_show_11:
+    file: other_show_annie_2.wav
+
+
+###########################
+# Weapons
+
+  pan_hit_1:
+    file: pan_hit_1.wav
+  pan_hit_2:
+    file: pan_hit_2.wav
+  pan_hit_3:
+    file: pan_hit_3.wav
+  reload_1:
+    file: reload_1.wav
+  reload_2:
+    file: reload_2.wav
+  reload_3:
+    file: reload_3.wav
+
+###########################
+# Score voices
+
+  score_voice_1:
+    file: score_1.wav
+  score_voice_2:
+    file: score_2.wav
+  score_voice_3:
+    file: score_3.wav
+  score_voice_4:
+    file: amazing.wav
+  score_voice_5:
+    file: amazing_2.wav
+  score_voice_6:
+    file: blackboard.wav
+  score_voice_7:
+    file: fantastic_1.wav
+  score_voice_8:
+    file: fantastic_2.wav
+  score_voice_9:
+    file: fantastic_3.wav
+  score_voice_10:
+    file: incredible.wav
+  score_voice_11:
+    file: incredible_2.wav
+  score_voice_12:
+    file: wonderful.wav
+  score_voice_13:
+    file: wonderful_2.wav
+  score_voice_14:
+    file: wonderful_3.wav
+  score_voice_15:
+    file: Stupendous_progress_1.wav
+  score_voice_16:
+    file: Stupendous_progress_2.wav
+  score_voice_17:
+    file: big_step_1.wav
+  score_voice_18:
+    file: big_step_2.wav
+  score_voice_19:
+    file: big_step_3.wav
+  score_voice_20:
+    file: big_step_4.wav
+  score_voice_21:
+    file: Moving_forward_1.wav
+  score_voice_22:
+    file: Moving_forward_2.wav
+
+###########################
+# Indication voices
+
+  purple_ready_voice_1:
+    file: main_ramp_1.wav
+  purple_ready_voice_2:
+    file: main_ramp_2.wav
+  purple_ready_voice_3:
+    file: purple_ramp_1.wav
+  purple_ready_voice_4:
+    file: purple_ramp_2.wav
+  purple_ready_voice_5:
+    file: purple_ramp_3.wav
+  purple_ready_voice_6:
+    file: purple_ramp_4.wav
+  purple_ready_voice_7:
+    file: take_purple_ramp_1.wav
+  purple_ready_voice_8:
+    file: take_purple_ramp_2.wav
+  purple_ready_voice_9:
+    file: take_purple_ramp_3.wav
+  go_bumpers_voice_1:
+    file: bumpers_mike_1.wav
+  go_bumpers_voice_2:
+    file: bumpers_mike_2.wav
+  go_bumpers_voice_3:
+    file: bumpers_mike_3.wav
+  go_bumpers_voice_4:
+    file: bumpers_mike_4.wav
+  white_targets_voice_1:
+    file: white_targets_mike.wav
+  green_ramp_voice_1:
+    file: mike_green_ramp_1.wav
+  green_ramp_voice_2:
+    file: mike_green_ramp_2.wav
+  green_ramp_voice_3:
+    file: mike_green_ramp_3.wav
+  green_ramp_voice_4:
+    file: mike_green_ramp_4.wav
+  green_ramp_voice_5:
+    file: mike_green_ramp_5.wav
+
+###########################
+# Speakeasy
+
+  pub_ambiance_1:
+    file: pub-ambiance.ogg
+
+  clink_glasses_1:
+    file: clink_glasses_1.wav
+  clink_glasses_2:
+    file: clink_glasses_2.wav
+  clink_glasses_3:
+    file: clink_glasses_3.wav
+  clink_glasses_4:
+    file: clink_glasses_4.wav
+  clink_glasses_5:
+    file: clink_glasses_5.wav
+  clink_glasses_6:
+    file: clink_glasses_6.wav
+  clink_glasses_7:
+    file: clink_glasses_7.wav
+
+  chair:
+    file: chair.wav
+  chair_2:
+    file: chair_2.wav
+
+  bottle_1:
+    file: opening-a-bottle.wav
+
+  drink_1:
+    file: drink_1.wav
+  drink_2:
+    file: drink_2.wav
+  drink_3:
+    file: drink_3.wav
+  drink_4:
+    file: drink_4.wav
+  drink_5:
+    file: drink_5.wav
+  drink_6:
+    file: drink_6.wav
+  drink_7:
+    file: drink_7.wav
+  drink_8:
+    file: spoon_in_a_cup.wav
+  drink_9:
+    file: shaking_drink_1.wav
+  drink_10:
+    file: shaking_drink_2.wav
+
+  beer_tasting_1:
+    file: beer_tasting.wav
+
+  cutlery_1:
+    file: cutlery_1.wav
+
+  speakeasy_voice_1:
+    file: arthur_drink_1.wav
+  speakeasy_voice_2:
+    file: arthur_drink_2.wav
+  speakeasy_voice_3:
+    file: prohibition.wav
+  speakeasy_voice_4:
+    file: wonderful_night_1.wav
+  speakeasy_voice_5:
+    file: wonderful_night_2.wav
+
+  speakeasy_music_1:
+    file: zulublue_64kb.ogg
+  speakeasy_music_2:
+    file: wotlido_64kb.ogg
+  speakeasy_music_3:
+    file: wimwithu_64kb.ogg
+  speakeasy_music_4:
+    file: Washingtonians-Tishomingo_Blues_11KHz_64kb.ogg
+  speakeasy_music_5:
+    file: wangwang_64kb.ogg
+
+###########################
+# graveyard
+
+  graveyard_music_1:
+    file: graveyard_music_1.ogg
+  graveyard_music_2:
+    file: graveyard_music_2.ogg
+
+  ghoul_1:
+    file: ghoul_1.wav
+  ghoul_2:
+    file: ghoul_2.wav
+  ghoul_3:
+    file: ghoul_3.wav
+  ghoul_4:
+    file: ghoul_4.wav
+  ghoul_5:
+    file: ghoul_5.wav
+
+  ghoul_attack:
+    file: ghoul_attack.wav
+
+  man_hurt_1:
+    file: man_hurt_1.wav
+  man_hurt_2:
+    file: man_hurt_2.wav
+  man_hurt_3:
+    file: man_hurt_3.wav
+  man_hurt_4:
+    file: man_hurt_4.wav
+  man_hurt_5:
+    file: man_hurt_5.wav
+
+  night_sfx_1:
+    file: night_sfx_1.wav
+  night_sfx_2:
+    file: night_sfx_2.wav
+  night_sfx_3:
+    file: night_sfx_3.wav
+  night_sfx_4:
+    file: night_sfx_4.wav
+  night_sfx_5:
+    file: night_sfx_5.wav
+  night_sfx_6:
+    file: night_sfx_6.wav
+  night_sfx_7:
+    file: night_sfx_7.wav
+  night_sfx_8:
+    file: night_sfx_8.wav
+  night_sfx_9:
+    file: night_sfx_9.wav
+  night_sfx_10:
+    file: night_sfx_10.wav
+  night_sfx_11:
+    file: night_sfx_11.wav
+  night_sfx_12:
+    file: night_sfx_12.wav
+  night_sfx_13:
+    file: night_sfx_13.wav
+  night_sfx_14:
+    file: night_sfx_14.wav
+  night_sfx_15:
+    file: night_sfx_15.wav
+  night_sfx_16:
+    file: night_sfx_16.wav
+
+  graveyard_voice_1:
+    file: shovel_1.wav
+  graveyard_voice_2:
+    file: shovel_2.wav
+  graveyard_voice_3:
+    file: full_moon_1.wav
+  graveyard_voice_4:
+    file: full_moon_2.wav
+  graveyard_voice_5:
+    file: human_bone_1.wav
+  graveyard_voice_6:
+    file: human_bone_2.wav
+  graveyard_voice_7:
+    file: gross.wav
+
+  graveyard_voice_8:
+    file: disgusting_01.wav
+  graveyard_voice_9:
+    file: disgusting_02.wav
+  graveyard_voice_10:
+    file: disgusting_03.wav
+  graveyard_voice_11:
+    file: disgusting_04.wav
+  graveyard_voice_12:
+    file: disgusting_05.wav
+  graveyard_voice_13:
+    file: grave_01.wav
+  graveyard_voice_14:
+    file: grave_02.wav
+  graveyard_voice_15:
+    file: grave_03.wav
+  graveyard_voice_16:
+    file: grave_04.wav
+  graveyard_voice_17:
+    file: grave_05.wav
+  graveyard_voice_18:
+    file: grave_06.wav
+  graveyard_voice_19:
+    file: grave_07.wav
+
+
+
+  shovel_dig_1:
+    file: shovel_dig_1.wav
+  shovel_dig_2:
+    file: shovel_dig_2.wav
+  shovel_dig_3:
+    file: shovel_dig_3.wav
+  shovel_dig_4:
+    file: shovel_dig_4.wav
+
+###########################
+# Pre greta old ones mode
+
+  azathoth_ready_1:
+    file: fight_azathot_1.wav
+  azathoth_ready_2:
+    file: fight_azathot_2.wav
+  cthulhu_ready_1:
+    file: fight_cthulhu_1.wav
+  cthulhu_ready_2:
+    file: fight_cthulhu_2.wav
+  king_ready_1:
+    file: fight_king_1.wav
+  king_ready_2:
+    file: fight_king_2.wav
+  nyarla_ready_1:
+    file: fight_nyarla_1.wav
+  nyarla_ready_2:
+    file: fight_nyarla_2.wav
+  shub_ready_1:
+    file: fight_shub_1.wav
+  shub_ready_2:
+    file: fight_shub_2.wav
+
+###########################
+# Cult temple
+
+  cult_music_1:
+    file: cult_action_music.ogg
+  cult_music_2:
+    file: cult_action_music_2.ogg
+
+  cult_voice_1:
+    file: cult_voice_1.wav
+  cult_voice_2:
+    file: cult_voice_2.wav
+  cult_voice_3:
+    file: cult_voice_3.wav
+  cult_voice_4:
+    file: cult_voice_4.wav
+  cult_voice_5:
+    file: run.wav
+  cult_voice_6:
+    file: something.wav
+  cult_voice_7:
+    file: mask.wav
+
+  cult_sfx_1:
+    file: running_1.wav
+  cult_sfx_2:
+    file: running_2.wav
+  cult_sfx_3:
+    file: running_3.wav
+  cult_sfx_4:
+    file: breath_1.wav
+  cult_sfx_5:
+    file: breath_2.wav
+  cult_sfx_6:
+    file: breath_3.wav
+  cult_sfx_7:
+    file: knife_1.wav
+  cult_sfx_8:
+    file: knife_2.wav
+  cult_sfx_9:
+    file: knife_3.wav
+  cult_sfx_10:
+    file: knife_4.wav
+
+###########################
+# Sunken city
+
+  city_music_1:
+    file: city_music_1.ogg
+  city_music_2:
+    file: city_music_2.ogg
+  city_music_3:
+    file: city_music_3.ogg
+
+  city_sfx_1:
+    file: city_sfx_1.wav
+  city_sfx_2:
+    file: city_sfx_2.wav
+  city_sfx_3:
+    file: city_sfx_3.wav
+  city_sfx_4:
+    file: city_sfx_4.wav
+  city_sfx_5:
+    file: city_sfx_5.wav
+  city_sfx_6:
+    file: city_sfx_6.wav
+  city_sfx_7:
+    file: city_sfx_7.wav
+  city_sfx_8:
+    file: city_sfx_8.wav
+  city_sfx_9:
+    file: city_sfx_9.wav
+  city_sfx_10:
+    file: city_sfx_10.wav
+  city_sfx_11:
+    file: city_sfx_11.wav
+  city_sfx_12:
+    file: city_sfx_12.wav
+  city_sfx_13:
+    file: city_sfx_13.wav
+  city_sfx_14:
+    file: city_sfx_14.wav
+  city_sfx_15:
+    file: city_sfx_15.wav
+  city_sfx_16:
+    file: city_sfx_16.wav
+  city_sfx_17:
+    file: city_sfx_17.wav
+
+  city_dt_complete_sfx:
+    file: city_dt_complete.wav
+
+  city_voice_1:
+    file: strange_mural_1.wav
+  city_voice_2:
+    file: strange_mural_2.wav
+  city_voice_3:
+    file: strange_mural_3.wav
+  city_voice_4:
+    file: strange_mural_4.wav
+  city_voice_5:
+    file: strange_mural_5.wav
+  city_voice_6:
+    file: writing_wall_1.wav
+  city_voice_7:
+    file: writing_wall_2.wav
+  city_voice_8:
+    file: writing_wall_3.wav
+  city_voice_9:
+    file: writing_wall_4.wav
+  city_voice_10:
+    file: writing_wall_5.wav
+  city_voice_11:
+    file: ruins_1.wav
+  city_voice_12:
+    file: ruins_2.wav
+  city_voice_13:
+    file: ruins_3.wav
+
+  city_voice_14:
+    file: old_gate_01.wav
+  city_voice_15:
+    file: old_gate_02.wav
+  city_voice_16:
+    file: old_gate_03.wav
+  city_voice_17:
+    file: old_gate_04.wav
+  city_voice_18:
+    file: stone_carved_1.wav
+  city_voice_19:
+    file: stone_carved_2.wav
+  city_voice_20:
+    file: stone_carved_3.wav
+  city_voice_21:
+    file: stone_carved_4.wav
+  city_voice_22:
+    file: stone_carved_5.wav
+
+###########################
+# Stormy night
+
+  rain:
+    file: rain.wav
+
+  thunder_start_sound:
+    file: thunder_start.wav
+  thunder_1:
+    file: thunder_1.wav
+  thunder_2:
+    file: thunder_2.wav
+  thunder_3:
+    file: thunder_3.wav
+  thunder_4:
+    file: thunder_4.wav
+  thunder_5:
+    file: thunder_5.wav
+  thunder_6:
+    file: thunder_6.wav
+  thunder_7:
+    file: thunder_7.wav
+  thunder_8:
+    file: thunder_8.wav
+  thunder_9:
+    file: thunder_9.wav
+  thunder_10:
+    file: thunder_10.wav
+
+  storm_voice_1:
+    file: storm_1.wav
+  storm_voice_2:
+    file: storm_2.wav
+  storm_voice_3:
+    file: storm_3.wav
+
+###########################
+# Random bonus
+
+  random_bonus_1:
+    file: random_bonus_1.wav
+  random_bonus_2:
+    file: random_bonus_2.wav
+
+  buddy_twenties_multi_1:
+    file: twenties_multi_1.wav
+  buddy_twenties_multi_2:
+    file: twenties_multi_2.wav
+  buddy_twenties_multi_3:
+    file: twenties_multi_3.wav
+  buddy_twenties_multi_4:
+    file: twenties_multi_4.wav
+
+  random_mission_sound:
+    file: time_unfreeze.wav
+
+###########################
+# Pursuit twenties
+
+  pursuit_music_1:
+    file: pursuit_music_1.ogg
+  pursuit_music_2:
+    file: pursuit_music_2.ogg
+
+
+  pursuit_voice_1:
+    file: intoourtrap-01.wav
+  pursuit_voice_2:
+    file: intoourtrap-02.wav
+  pursuit_voice_3:
+    file: intoourtrap-03.wav
+  pursuit_voice_4:
+    file: intoourtrap-04.wav
+  pursuit_voice_5:
+    file: intoourtrap-05.wav
+  pursuit_voice_6:
+    file: itwasatrap-01.wav
+  pursuit_voice_7:
+    file: itwasatrap-02.wav
+  pursuit_voice_8:
+    file: itwasatrap-03.wav
+  pursuit_voice_9:
+    file: itwasatrap-04.wav
+  pursuit_voice_10:
+    file: itwasatrap-05.wav
+  pursuit_voice_11:
+    file: fight_now-01.wav
+  pursuit_voice_12:
+    file: fight_now-02.wav
+  pursuit_voice_13:
+    file: fight_now-03.wav
+  pursuit_voice_14:
+    file: fight_now-04.wav
+  pursuit_voice_15:
+    file: fight_now-05.wav
+  pursuit_voice_16:
+    file: fight_now-06.wav
+
+###########################
+# Action button
+
+
+  smash_action_voice_1:
+    file: smash_button_now_1.wav
+  smash_action_voice_2:
+    file: smash_button_now_2.wav
+  smash_action_voice_3:
+    file: smash_button_now_3.wav
+  smash_action_voice_4:
+    file: smash_button_now_4.wav
+  smash_action_voice_5:
+    file: smash_button_now_5.wav
+
+###########################
+# Clues
+
+
+  clue_voice_1:
+    file: clue_nick_voice_1.wav
+  clue_voice_2:
+    file: clue_nick_voice_2.wav
+  clue_voice_3:
+    file: clue_nick_voice_3.wav
+  clue_voice_4:
+    file: HmmInterestingInformation1.wav
+  clue_voice_5:
+    file: HmmInterestingInformation2.wav
+  clue_voice_6:
+    file: HmmInterestingInformation3.wav
+  clue_voice_7:
+    file: HmmInterestingInformation4.wav
+  clue_voice_8:
+    file: SpotHiddenRoll1.wav
+  clue_voice_9:
+    file: SpotHiddenRoll2.wav
+  clue_voice_10:
+    file: WeNeddToFocus1.wav
+  clue_voice_11:
+    file: WeNeddToFocus2.wav
+  clue_voice_12:
+    file: WeNeddToFocus3.wav
+
+###########################
+
+  player_two_voice_1:
+    file: player_02_01.wav
+  player_two_voice_2:
+    file: player_02_02.wav
+  player_three_voice_1:
+    file: player_03_01.wav
+  player_three_voice_2:
+    file: player_03_02.wav
+  player_four_voice_1:
+    file: player_04_01.wav
+  player_four_voice_2:
+    file: player_04_02.wav
+
+###########################
+# multiball twenties and rlyeh
+
+
+
+  multiball_crescendo_1:
+    file: roll_crescendo_sound.wav
+  multiball_music_1:
+    file: Drummer_Viola_Smith.ogg
+
+  multiball_extended_voice_1:
+    file: multiball_extended_01.wav
+  multiball_extended_voice_2:
+    file: multiball_extended_02.wav
+  multiball_extended_voice_3:
+    file: multiball_extended_03.wav
+
+  multiball_lock_lit_voice_1:
+    file: lionel_lock_lit_1.wav
+  multiball_lock_lit_voice_2:
+    file: lionel_lock_lit_2.wav
+  multiball_lock_lit_voice_3:
+    file: lionel_lock_lit_3.wav
+  multiball_lock_lit_voice_4:
+    file: lionel_lock_lit_4.wav
+  multiball_lock_lit_voice_5:
+    file: lionel_lock_lit_5.wav
+
+  multiball_rlyeh_music_1:
+    file: Darkest_Dungeon_Return_Warrens.ogg
+
+  multiball_rlyeh_ready_sound_1:
+    file: brain_damage_01.wav
+
+  multiball_rlyeh_launch_sound:
+    file: dark_trailer_rlyeh.wav
+
+
+  main_multiball_first_lock_voice_1:
+    file: first_investigator_lock_1.wav
+  main_multiball_first_lock_voice_2:
+    file: first_investigator_lock_2.wav
+  main_multiball_second_lock_voice_1:
+    file: second_investigator_lock_1.wav
+  main_multiball_second_lock_voice_2:
+    file: second_investigator_lock_2.wav
+  main_multiball_third_lock_voice_1:
+    file: third_investigator_lock_1.wav
+  main_multiball_third_lock_voice_2:
+    file: third_investigator_lock_2.wav
+
+  rlyeh_multiball_lock_voice_1:
+    file: rlyeh_multiball_lock_1.wav
+  rlyeh_multiball_lock_voice_2:
+    file: rlyeh_multiball_lock_2.wav
+  rlyeh_multiball_lock_voice_3:
+    file: rlyeh_multiball_lock_3.wav
+  rlyeh_multiball_lock_voice_4:
+    file: rlyeh_multiball_lock_4.wav
+  rlyeh_multiball_ready_voice_1:
+    file: rlyeh_multiball_ready_1.wav
+  rlyeh_multiball_ready_voice_2:
+    file: rlyeh_multiball_ready_2.wav
+  rlyeh_multiball_ready_voice_3:
+    file: rlyeh_multiball_ready_3.wav
+
+
+###########################
+
+  sanity_target_voice_1:
+    file: do_not_hit_sanity_mike.wav
+
+###########################
+# Nyarlatothep
+
+  nyarla_voice_1:
+    file: house_1.wav
+  nyarla_voice_2:
+    file: house_2.wav
+  nyarla_voice_3:
+    file: suit_1.wav
+  nyarla_voice_4:
+    file: suit_2.wav
+  nyarla_voice_5:
+    file: suit_3.wav
+  nyarla_voice_6:
+    file: suit_4.wav
+  nyarla_voice_7:
+    file: suit_5.wav
+  nyarla_voice_8:
+    file: suit_6.wav
+  nyarla_voice_9:
+    file: cliff_1.wav
+  nyarla_voice_10:
+    file: cliff_2.wav
+  nyarla_voice_11:
+    file: cliff_3.wav
+  nyarla_voice_12:
+    file: cliff_4.wav
+  nyarla_voice_13:
+    file: cliff_5.wav
+  nyarla_voice_14:
+    file: cliff_6.wav
+  nyarla_voice_15:
+    file: cliff_7.wav
+  nyarla_voice_16:
+    file: good_idea_to_get_1.wav
+  nyarla_voice_17:
+    file: good_idea_to_get_2.wav
+  nyarla_voice_18:
+    file: good_idea_to_get_3.wav
+
+  nyarla_sfx_new_step:
+    file: epic-hit-aggressive-logo-142801.wav
+
+  nyarla_sfx_1:
+    file: nyarla_sfx_1.wav
+  nyarla_sfx_2:
+    file: nyarla_sfx_2.wav
+  nyarla_sfx_3:
+    file: nyarla_sfx_3.wav
+  nyarla_sfx_4:
+    file: nyarla_sfx_4.wav
+  nyarla_sfx_5:
+    file: evil-man-laughing-107079.wav
+  nyarla_sfx_6:
+    file: creepy_voice_1.wav
+  nyarla_sfx_7:
+    file: creepy_voice_2.wav
+  nyarla_sfx_8:
+    file: creepy_voice_3.wav
+  nyarla_sfx_9:
+    file: piano_horror_1.wav
+  nyarla_sfx_10:
+    file: piano_horror_2.wav
+  nyarla_sfx_11:
+    file: piano_horror_3.wav
+  nyarla_sfx_12:
+    file: piano_horror_4.wav
+  nyarla_sfx_13:
+    file: piano_horror_5.wav
+
+  nyarla_hit_sfx_1:
+    file: footsteps_1.wav
+  nyarla_hit_sfx_2:
+    file: footsteps_2.wav
+  nyarla_hit_sfx_3:
+    file: footsteps_3.wav
+  nyarla_hit_sfx_4:
+    file: footsteps_4.wav
+  nyarla_hit_sfx_5:
+    file: footsteps_5.wav
+  nyarla_hit_sfx_6:
+    file: footsteps_6.wav
+  nyarla_hit_sfx_7:
+    file: footsteps_7.wav
+  nyarla_hit_sfx_8:
+    file: footsteps_8.wav
+  nyarla_hit_sfx_9:
+    file: footsteps_9.wav
+  nyarla_hit_sfx_10:
+    file: footsteps_10.wav
+
+###########################
+# Lurking in the dark
+
+  lurking_music:
+    file: lurking_music.ogg
+
+  lurking_laugh:
+    file: demonic-laughter.wav
+
+  monster_sfx_end:
+    file: lurking-horror-monster-143278.wav
+  monster-bite:
+    file: monster-bite.wav
+
+  monster_sfx_1:
+    file: monster_sfx_1.wav
+  monster_sfx_2:
+    file: monster_sfx_2.wav
+  monster_sfx_3:
+    file: monster_sfx_3.wav
+  monster_sfx_4:
+    file: monster_sfx_4.wav
+  monster_sfx_5:
+    file: monster_sfx_5.wav
+  monster_sfx_6:
+    file: monster_sfx_6.wav
+  monster_sfx_7:
+    file: monster_sfx_7.wav
+
+  heart_and_breath_1:
+    file: heart_and_breath_1.wav
+  heart_and_breath_2:
+    file: heart_and_breath_2.wav
+  heart_and_breath_3:
+    file: heart_and_breath_3.wav
+  heart_and_breath_4:
+    file: heart_and_breath_4.wav
+  heart_and_breath_5:
+    file: heart_and_breath_5.wav
+  heart_and_breath_6:
+    file: heart_and_breath_6.wav
+  heart_and_breath_7:
+    file: heart_and_breath_7.wav
+  heart_and_breath_8:
+    file: heart_and_breath_8.wav
+  heart_and_breath_9:
+    file: heart_and_breath_9.wav
+  heart_and_breath_10:
+    file: heart_and_breath_10.wav
+  heart_and_breath_11:
+    file: heart_and_breath_11.wav
+  heart_and_breath_12:
+    file: heart_and_breath_12.wav
+  heart_and_breath_13:
+    file: heart_and_breath_13.wav
+  heart_and_breath_14:
+    file: heart_and_breath_14.wav
+  heart_and_breath_15:
+    file: heart_and_breath_15.wav
+
+###########################
+# Spell
+
+  launch_spell_sfx_1:
+    file: launch_spell_sfx_1.wav
+  launch_spell_sfx_2:
+    file: launch_spell_sfx_2.wav
+  launch_spell_sfx_3:
+    file: launch_spell_sfx_3.wav
+  launch_spell_sfx_4:
+    file: launch_spell_sfx_4.wav
+  launch_spell_sfx_5:
+    file: launch_spell_sfx_5.wav
+  launch_spell_sfx_6:
+    file: launch_spell_sfx_6.wav
+  launch_spell_sfx_7:
+    file: launch_spell_sfx_7.wav
+
+###########################
+#King in yellow
+
+  king_voice_1:
+    file: dreaming1.wav
+  king_voice_2:
+    file: dreaming2.wav
+  king_voice_3:
+    file: dreaming3.wav
+  king_voice_4:
+    file: dreaming4.wav
+  king_voice_5:
+    file: dreaming5.wav
+  king_voice_6:
+    file: strange1.wav
+  king_voice_7:
+    file: strange2.wav
+  king_voice_8:
+    file: strange3.wav
+  king_voice_9:
+    file: strange4.wav
+
+  king_sfx_1:
+    file: audience_laugh_1.wav
+  king_sfx_2:
+    file: audience_laugh_2.wav
+  king_sfx_3:
+    file: audience_laugh_3.wav
+  king_sfx_4:
+    file: buzz_sfx.wav
+  king_sfx_5:
+    file: child_laugh_1.wav
+  king_sfx_6:
+    file: inchant_sfx_1.wav
+  king_sfx_7:
+    file: inchant_sfx_2.wav
+  king_sfx_8:
+    file: murmur_sfx_1.wav
+  king_sfx_9:
+    file: murmur_sfx_2.wav
+  king_sfx_10:
+    file: murmur_sfx_3.wav
+  king_sfx_11:
+    file: murmur_sfx_4.wav
+  king_sfx_12:
+    file: murmur_sfx_5.wav
+  king_sfx_13:
+    file: revolving_stage_sfx_1.wav
+  king_sfx_14:
+    file: revolving_stage_sfx_2.wav
+  king_sfx_15:
+    file: revolving_stage_sfx_3.wav
+  king_sfx_16:
+    file: tuba_sfx_1.wav
+  king_sfx_17:
+    file: tuba_sfx_2.wav
+
+  king_hit_sfx_1:
+    file: footstep_wood_1.wav
+  king_hit_sfx_2:
+    file: footstep_wood_2.wav
+  king_hit_sfx_3:
+    file: footstep_wood_3.wav
+  king_hit_sfx_4:
+    file: footstep_wood_4.wav
+  king_hit_sfx_5:
+    file: footstep_wood_5.wav
+  king_hit_sfx_6:
+    file: footstep_wood_6.wav
+  king_hit_sfx_7:
+    file: footstep_wood_7.wav
+  king_hit_sfx_8:
+    file: footstep_wood_8.wav
+  king_hit_sfx_9:
+    file: footstep_wood_9.wav
+
+###########################
+# Video monster mode
+
+  monster_attack_1:
+    file: monster_attack_1.wav
+  monster_attack_2:
+    file: monster_attack_2.wav
+  monster_attack_3:
+    file: monster_attack_3.wav
+
+  blood_splat_1:
+    file: blood_splat.wav
+
+  videomonster_music_1:
+    file: battle_action_dark.ogg
+
+###########################
+# Video ford-t mode
+
+  videofordt_music_1:
+    file: music_and_engine_fordt.ogg
+
+  fordt_skid_1:
+    file: fordt_skid_1.wav
+  fordt_skid_2:
+    file: fordt_skid_2.wav
+  fordt_skid_3:
+    file: fordt_skid_3.wav
+  fordt_skid_4:
+    file: fordt_skid_4.wav
+  fordt_skid_5:
+    file: fordt_skid_5.wav
+
+  fordt_horn_1:
+    file: fordt_horn_1.wav
+
+  fordt_motor_1:
+    file: fordt_motor_1.wav
+  fordt_motor_2:
+    file: fordt_motor_2.wav
+  fordt_motor_3:
+    file: fordt_motor_3.wav
+  fordt_motor_4:
+    file: fordt_motor_4.wav
+  fordt_motor_5:
+    file: fordt_motor_5.wav
+  fordt_motor_6:
+    file: fordt_motor_6.wav
+
+  fordt_sfx_crash_1:
+    file: sfx_fordt_crash_1.wav
+  fordt_sfx_crash_2:
+    file: sfx_fordt_crash_2.wav
+  fordt_sfx_crash_3:
+    file: sfx_fordt_crash_3.wav
+
+###########################
+# Ford-t ride
+
+  fordt_ride_music_1:
+    file: Harry_Archer_Sunny_1925.ogg
+
+  fordt_ride_motor_1:
+    file: fordt_ride_motor_1.wav
+  fordt_ride_motor_2:
+    file: fordt_ride_motor_2.wav
+  fordt_ride_motor_3:
+    file: fordt_ride_motor_3.wav
+  fordt_ride_motor_4:
+    file: fordt_ride_motor_4.wav
+  fordt_ride_motor_5:
+    file: fordt_ride_motor_5.wav
+
+###########################
+# Combo and loop
+
+  combo_loop_voice_1:
+    file: choose_loop_combo_emilie_1.wav
+  combo_loop_voice_2:
+    file: choose_loop_combo_emilie_2.wav
+  combo_loop_voice_3:
+    file: choose_loop_combo_emilie_3.wav
+  combo_loop_voice_4:
+    file: choose_loop_combo_emilie_4.wav
+  combo_loop_voice_5:
+    file: choose_loop_combo_emilie_5.wav
+  combo_loop_voice_6:
+    file: choose_loop_combo_emilie_6.wav
+  combo_loop_voice_7:
+    file: choose_loop_combo_emilie_7.wav
+  combo_loop_voice_8:
+    file: choose_loop_combo_emilie_8.wav
+
+  space_loop_voice_emilie_1:
+    file: space_loop_emilie_1.wav
+  space_loop_voice_emilie_2:
+    file: space_loop_emilie_2.wav
+  space_loop_voice_emilie_3:
+    file: space_loop_emilie_3.wav
+  space_loop_voice_emilie_4:
+    file: space_loop_emilie_4.wav
+
+  combo_dramp_voice_1:
+    file: d_ramp_combo_emilie_1.wav
+  combo_dramp_voice_2:
+    file: d_ramp_combo_emilie_2.wav
+  combo_dramp_voice_3:
+    file: d_ramp_combo_emilie_3.wav
+  combo_dramp_voice_4:
+    file: d_ramp_combo_emilie_4.wav
+  combo_dramp_voice_5:
+    file: d_ramp_combo_emilie_5.wav
+  combo_dramp_voice_6:
+    file: d_ramp_combo_emilie_6.wav
+  combo_dramp_voice_7:
+    file: d_ramp_combo_emilie_7.wav
+  combo_dramp_voice_8:
+    file: d_ramp_combo_emilie_8.wav
+
+  combo_greenramp_voice_1:
+    file: green_ramp_combo_emilie_1.wav
+  combo_greenramp_voice_2:
+    file: green_ramp_combo_emilie_2.wav
+  combo_greenramp_voice_3:
+    file: green_ramp_combo_emilie_3.wav
+  combo_greenramp_voice_4:
+    file: green_ramp_combo_emilie_4.wav
+  combo_greenramp_voice_5:
+    file: green_ramp_combo_emilie_5.wav
+  combo_greenramp_voice_6:
+    file: green_ramp_combo_emilie_6.wav
+  combo_greenramp_voice_7:
+    file: green_ramp_combo_emilie_7.wav
+  combo_greenramp_voice_8:
+    file: green_ramp_combo_emilie_8.wav
+
+  win_one_clue_voice_1:
+    file: 1_clue_1.wav
+  win_one_clue_voice_2:
+    file: 1_clue_2.wav
+  win_one_clue_voice_3:
+    file: 1_clue_3.wav
+
+  win_one_weapon_voice_1:
+    file: 1_weapon_1.wav
+  win_one_weapon_voice_2:
+    file: 1_weapon_2.wav
+  win_one_weapon_voice_3:
+    file: 1_weapon_3.wav
+
+  win_one_item_voice_1:
+    file: 1_item_1.wav
+  win_one_item_voice_2:
+    file: 1_item_2.wav
+  win_one_item_voice_3:
+    file: 1_item_3.wav
+
+  win_one_book_voice_1:
+    file: 1_book_1.wav
+  win_one_book_voice_2:
+    file: 1_book_2.wav
+  win_one_book_voice_3:
+    file: 1_book_3.wav
+
+###########################
+# Extraball
+
+  extraball_voice_1:
+    file: extraball_01.wav
+  extraball_voice_2:
+    file: extraball_02.wav
+  extraball_voice_3:
+    file: extraball_03.wav
+  extraball_voice_4:
+    file: extraball_emilie_1.wav
+  extraball_voice_5:
+    file: extraball_emilie_2.wav
+  extraball_voice_6:
+    file: extraball_emilie_3.wav
+  extraball_voice_7:
+    file: extraball_emilie_4.wav
+  extraball_voice_8:
+    file: extraball_emilie_5.wav
+  extraball_voice_9:
+    file: extraball_emilie_6.wav
+
+  shootagain_voice_1:
+    file: shootagain_emilie_1.wav
+  shootagain_voice_2:
+    file: shootagain_emilie_2.wav
+  shootagain_voice_3:
+    file: shootagain_emilie_3.wav
+  shootagain_voice_4:
+    file: shootagain_emilie_4.wav
+  shootagain_voice_5:
+    file: shootagain_emilie_5.wav
+  shootagain_voice_6:
+    file: shootagain_emilie_6.wav
+  shootagain_voice_7:
+    file: shootagain_emilie_7.wav
+  shootagain_voice_8:
+    file: shootagain_emilie_8.wav
+
+###########################
+# Shub-Niggurath
+
+  reload_pump:
+    file: reload_pump.wav
+
+  shub_sfx_1:
+    file: leaves_crunching_1.wav
+  shub_sfx_2:
+    file: leaves_crunching_2.wav
+  shub_sfx_3:
+    file: leaves_crunching_3.wav
+  shub_sfx_4:
+    file: leaves_crunching_4.wav
+  shub_sfx_5:
+    file: leaves_crunching_5.wav
+  shub_sfx_6:
+    file: running_woods_1.wav
+  shub_sfx_7:
+    file: running_woods_2.wav
+  shub_sfx_8:
+    file: running_woods_3.wav
+  shub_sfx_9:
+    file: running_woods_4.wav
+  shub_sfx_10:
+    file: forest_meditation_1.wav
+  shub_sfx_11:
+    file: forest_meditation_2.wav
+  shub_sfx_12:
+    file: forest_meditation_3.wav
+  shub_sfx_13:
+    file: forest_meditation_4.wav
+  shub_sfx_14:
+    file: scary_wood_1.wav
+  shub_sfx_15:
+    file: scary_wood_2.wav
+  shub_sfx_16:
+    file: scary_wood_3.wav
+  shub_sfx_17:
+    file: scary_wood_4.wav
+  shub_sfx_18:
+    file: scary_wood_5.wav
+
+  shub_hit_sfx_1:
+    file: chopping_tree_1.wav
+  shub_hit_sfx_2:
+    file: chopping_tree_2.wav
+  shub_hit_sfx_3:
+    file: chopping_tree_3.wav
+  shub_hit_sfx_4:
+    file: chopping_tree_4.wav
+  shub_hit_sfx_5:
+    file: chopping_tree_5.wav
+  shub_hit_sfx_6:
+    file: stomp_1.wav
+  shub_hit_sfx_7:
+    file: stomp_2.wav
+  shub_hit_sfx_8:
+    file: stomp_3.wav
+  shub_hit_sfx_9:
+    file: stomp_4.wav
+  shub_hit_sfx_10:
+    file: stomp_5.wav
+  shub_hit_sfx_11:
+    file: stomp_6.wav
+  shub_hit_sfx_12:
+    file: stomp_7.wav
+  shub_hit_sfx_13:
+    file: stomp_8.wav
+  shub_hit_sfx_14:
+    file: stomp_9.wav
+  shub_hit_sfx_15:
+    file: stomp_10.wav
+
+  shub_voice_1:
+    file: did_this_tree1.wav
+  shub_voice_2:
+    file: did_this_tree2.wav
+  shub_voice_3:
+    file: this_forest1.wav
+  shub_voice_4:
+    file: this_forest2.wav
+  shub_voice_5:
+    file: tree_moving1.wav
+  shub_voice_6:
+    file: tree_moving2.wav
+  shub_voice_7:
+    file: creature.wav
+  shub_voice_8:
+    file: branch_blocking_me_1.wav
+  shub_voice_9:
+    file: branch_blocking_me_2.wav
+  shub_voice_10:
+    file: branch_blocking_me_3.wav
+  shub_voice_11:
+    file: dont_be stumped_1.wav
+  shub_voice_12:
+    file: dont_be stumped_2.wav
+  shub_voice_13:
+    file: dont_be stumped_3.wav
+
+
+###########################
+# Cellar
+
+  heartbeat_1:
+    file: heartbeat.wav
+
+  impact_dark_1:
+    file: impact_dark.wav
+
+  suspens_music_1:
+    file: high_tension.ogg
+  dramatic_music_1:
+    file: horror_chase_music.ogg
+
+  cellar_voice_1:
+    file: crush_your_bones_1.wav
+  cellar_voice_2:
+    file: crush_your_bones_2.wav
+  cellar_voice_3:
+    file: crush_your_bones_3.wav
+  cellar_voice_4:
+    file: cut_your_tongue_1.wav
+  cellar_voice_5:
+    file: cut_your_tongue_2.wav
+  cellar_voice_6:
+    file: cut_your_tongue_3.wav
+  cellar_voice_7:
+    file: cut_your_tongue_4.wav
+  cellar_voice_8:
+    file: regret_coming_in_1.wav
+  cellar_voice_9:
+    file: regret_coming_in_2.wav
+  cellar_voice_10:
+    file: so_much_fun.wav
+  cellar_voice_11:
+    file: you_pig_1.wav
+  cellar_voice_12:
+    file: you_pig_2.wav
+  cellar_voice_13:
+    file: you_pig_3.wav
+  cellar_voice_14:
+    file: die_here_1.wav
+  cellar_voice_15:
+    file: die_here_2.wav
+
+
+  cellar_voice_escape_1:
+    file: no_way_you_escaped_1.wav
+  cellar_voice_escape_2:
+    file: no_way_you_escaped_2.wav
+  cellar_voice_escape_3:
+    file: no_way_you_escaped_3.wav
+  cellar_voice_escape_4:
+    file: you_regret_it_1.wav
+
+  cellar_voice_no_escape_1:
+    file: no_help_from_outside_1.wav
+  cellar_voice_no_escape_2:
+    file: no_help_from_outside_2.wav
+  cellar_voice_no_escape_3:
+    file: nobody_came_to_save_you.wav
+  cellar_voice_no_escape_4:
+    file: nobody_saved_you_1.wav
+  cellar_voice_no_escape_5:
+    file: nobody_saved_you_2.wav
+  cellar_voice_no_escape_6:
+    file: rires_maniaque_1.wav
+  cellar_voice_no_escape_7:
+    file: rires_maniaque_2.wav
+
+
+###########################
+# Game_over
+
+  game_over_sfx_1:
+    file: apocalyptic_horn.wav
+
+###########################
+# Azathoth
+
+  aza_voice_1:
+    file: the_stars_1.wav
+  aza_voice_2:
+    file: the_stars_2.wav
+  aza_voice_3:
+    file: the_stars_3.wav
+  aza_voice_4:
+    file: the_stars_4.wav
+  aza_voice_5:
+    file: what_is_happening_1.wav
+  aza_voice_6:
+    file: what_is_happening_2.wav
+  aza_voice_7:
+    file: madness.wav
+  aza_voice_8:
+    file: make_it.wav
+  aza_voice_9:
+    file: something.wav
+  aza_voice_10:
+    file: star_just_moved.wav
+
+
+
+  aza_sfx_1:
+    file: loop_flute_1.wav
+  aza_sfx_2:
+    file: loop_flute_2.wav
+  aza_sfx_3:
+    file: loop_flute_3.wav
+  aza_sfx_4:
+    file: loop_flute_4.wav
+  aza_sfx_5:
+    file: flute_1.wav
+  aza_sfx_6:
+    file: flute_2.wav
+  aza_sfx_7:
+    file: flute_3.wav
+  aza_sfx_8:
+    file: flute_4.wav
+  aza_sfx_9:
+    file: flute_5.wav
+  aza_sfx_10:
+    file: flute_6.wav
+  aza_sfx_11:
+    file: flute_7.wav
+  aza_sfx_12:
+    file: strange_space_1.wav
+  aza_sfx_13:
+    file: strange_space_2.wav
+  aza_sfx_14:
+    file: strange_space_3.wav
+  aza_sfx_15:
+    file: strange_space_4.wav
+  aza_sfx_16:
+    file: strange_space_5.wav
+  aza_sfx_17:
+    file: strange_space_6.wav
+  aza_sfx_18:
+    file: strange_space_7.wav
+  aza_sfx_19:
+    file: strange_space_8.wav
+  aza_sfx_20:
+    file: strange_space_9.wav
+  aza_sfx_21:
+    file: strange_space_10.wav
+  aza_sfx_22:
+    file: strange_space_11.wav
+  aza_sfx_23:
+    file: strange_space_12.wav
+
+
+###########################
+# Cthulhu
+
+  cthulhu_sfx_1:
+    file: wave_1.wav
+  cthulhu_sfx_2:
+    file: wave_2.wav
+  cthulhu_sfx_3:
+    file: wave_3.wav
+  cthulhu_sfx_4:
+    file: wave_4.wav
+  cthulhu_sfx_5:
+    file: wave_5.wav
+  cthulhu_sfx_6:
+    file: wave_6.wav
+  cthulhu_sfx_7:
+    file: wave_7.wav
+  cthulhu_sfx_8:
+    file: underwater_1.wav
+  cthulhu_sfx_9:
+    file: underwater_2.wav
+
+
+  cthulhu_hit_sfx_1:
+    file: bong_1.wav
+  cthulhu_hit_sfx_2:
+    file: bong_2.wav
+  cthulhu_hit_sfx_3:
+    file: bong_3.wav
+  cthulhu_hit_sfx_4:
+    file: bong_4.wav
+  cthulhu_hit_sfx_5:
+    file: bong_5.wav
+  cthulhu_hit_sfx_6:
+    file: bong_6.wav
+
+
+
+  cthulhu_voice_1:
+    file: emilie_rlyeh1.wav
+  cthulhu_voice_2:
+    file: city1.wav
+  cthulhu_voice_3:
+    file: city2.wav
+  cthulhu_voice_4:
+    file: city3.wav
+  cthulhu_voice_5:
+    file: city4.wav
+  cthulhu_voice_6:
+    file: city5.wav
+  cthulhu_voice_7:
+    file: city6.wav
+  cthulhu_voice_8:
+    file: gigantic1.wav
+  cthulhu_voice_9:
+    file: gigantic2.wav
+  cthulhu_voice_10:
+    file: gigantic3.wav
+  cthulhu_voice_11:
+    file: gigantic4.wav
+  cthulhu_voice_12:
+    file: lolo_boat_1.wav
+  cthulhu_voice_13:
+    file: lolo_boat_2.wav
+  cthulhu_voice_14:
+    file: lolo_boat_3.wav
+  cthulhu_voice_15:
+    file: lolo_boat_4.wav
+  cthulhu_voice_16:
+    file: lolo_boat_5.wav
+  cthulhu_voice_17:
+    file: lolo_boat_6.wav
+  cthulhu_voice_18:
+    file: lolo_storm_1.wav
+  cthulhu_voice_19:
+    file: lolo_storm_2.wav
+  cthulhu_voice_20:
+    file: map_kape_1.wav
+  cthulhu_voice_21:
+    file: map_kape_2.wav
+  cthulhu_voice_22:
+    file: map_kape_3.wav
+  cthulhu_voice_23:
+    file: titou_storm_1.wav
+  cthulhu_voice_24:
+    file: titou_storm_2.wav
+  cthulhu_voice_25:
+    file: titou_storm_3.wav
+  cthulhu_voice_26:
+    file: titou_storm_4.wav
+
+###########################
+# Chthonian
+
+  chthonian_music_1:
+    file: Earth_Shaker_Drums_01.ogg
+
+  chthonian_sfx_air_raid_1:
+    file: air-raid-siren-1.wav
+
+  chthonian_sfx_2:
+    file: chthonian_sfx_2.wav
+  chthonian_sfx_3:
+    file: chthonian_sfx_3.wav
+  chthonian_sfx_4:
+    file: chthonian_sfx_4.wav
+  chthonian_sfx_5:
+    file: chthonian_sfx_5.wav
+  chthonian_sfx_6:
+    file: chthonian_sfx_6.wav
+  chthonian_sfx_7:
+    file: chthonian_sfx_7.wav
+  chthonian_sfx_8:
+    file: chthonian_sfx_8.wav
+  chthonian_sfx_9:
+    file: chthonian_sfx_9.wav
+  chthonian_sfx_10:
+    file: crowd_panic_1.wav
+  chthonian_sfx_11:
+    file: crowd_panic_2.wav
+  chthonian_sfx_12:
+    file: crowd_panic_3.wav
+
+  earthquake_sfx_1:
+    file: earthquake_sfx_1.wav
+  earthquake_sfx_2:
+    file: earthquake_sfx_2.wav
+  earthquake_sfx_3:
+    file: earthquake_sfx_3.wav
+  earthquake_sfx_4:
+    file: earthquake_sfx_4.wav
+
+###########################
+# Bywandine
+
+  bywandine_music_1:
+    file: dream_bywandine.ogg
+
+  bywandine_sfx_1:
+    file: wow.wav
+  bywandine_sfx_2:
+    file: strange_alarm_01.wav
+  bywandine_sfx_3:
+    file: strange_alarm_02.wav
+  bywandine_sfx_4:
+    file: strange_alarm_03.wav
+  bywandine_sfx_5:
+    file: strange_alarm_04.wav
+
+  bywandine_dt_sfx_1:
+    file: spooky_keys_01.wav
+  bywandine_dt_sfx_2:
+    file: spooky_keys_02.wav
+  bywandine_dt_sfx_3:
+    file: spooky_keys_03.wav
+  bywandine_dt_sfx_4:
+    file: spooky_keys_04.wav
+
+  bywandine_bonus_sfx_1:
+    file: weird_laughter_01.wav

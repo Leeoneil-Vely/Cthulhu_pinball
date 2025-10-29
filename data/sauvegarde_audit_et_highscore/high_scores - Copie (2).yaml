@@ -1,0 +1,117 @@
+aza_champion:
+- - HPL
+  - 1000
+- - HPL
+  - 500
+- - HPL
+  - 100
+charleston_champion:
+- - LEE
+  - 549600
+- - LEE
+  - 260400
+- - LEE
+  - 230400
+city_champion:
+- - LEE
+  - 1086400
+- - LEE
+  - 858900
+- - LEE
+  - 340900
+combos_champion:
+- - HPL
+  - 5
+- - EMI
+  - 5
+- - LEE
+  - 5
+cthulhu_champion:
+- - HPL
+  - 1000
+- - HPL
+  - 500
+- - HPL
+  - 100
+cult_champion:
+- - LEE
+  - 775200
+- - LEE
+  - 616800
+- - LEE
+  - 411800
+graveyard_champion:
+- - LEE
+  - 526800
+- - EMI
+  - 407300
+- - LEE
+  - 253000
+king_champion:
+- - LEE
+  - 1468400
+- - LEE
+  - 1204400
+- - LEE
+  - 563400
+loops_champion:
+- - LEE
+  - 24
+- - LEE
+  - 21
+- - LEE
+  - 19
+nyarla_champion:
+- - LEE
+  - 2072600
+- - LEE
+  - 1213700
+- - LEE
+  - 1007300
+radio_champion:
+- - LEE
+  - 552800
+- - LEE
+  - 388400
+- - LEE
+  - 322000
+score:
+- - HPL
+  - 100000000
+- - LEE
+  - 8229900
+- - LEE
+  - 6534300
+- - LEE
+  - 5285300
+- - LEE
+  - 4875700
+- - LEE
+  - 4777900
+- - LEE
+  - 4737900
+- - LEE
+  - 4722700
+- - LEE
+  - 4373700
+shub_champion:
+- - EMI
+  - 286800
+- - LEE
+  - 240800
+- - LEE
+  - 213400
+speakeasy_champion:
+- - LEE
+  - 1216500
+- - LEE
+  - 710700
+- - LEE
+  - 403300
+videomonster_champion:
+- - LEE
+  - 810000
+- - LEE
+  - 441000
+- - LEE
+  - 441000

@@ -1,0 +1,5 @@
+tir validé mission : 5000
+tirs validés missionn grancien premier niveau : 5000
+tirs validés missionn grancien 2ème niveau : 10000
+tirs validés missionn grancien 3ème niveau : 15000
+tirs validés missionn grancien 4ème niveau : 20000
