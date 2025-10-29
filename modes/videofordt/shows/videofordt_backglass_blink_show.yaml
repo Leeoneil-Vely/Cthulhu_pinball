@@ -1,0 +1,8 @@
+#show_version=6
+- time: 0
+  lights:
+    car_backglass_led: off-f200ms
+    
+- time: "+1"
+  lights:
+    car_backglass_led: white-f200ms

@@ -1,0 +1,13 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_57: off-f200ms
+    insert_91: off-f200ms
+    insert_90: off-f200ms
+    
+- time: "+1"
+  lights:
+    insert_57: white-f200ms
+    insert_91: white-f200ms
+    insert_90: white-f200ms
+    

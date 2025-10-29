@@ -1,0 +1,2382 @@
+#config_version=6
+mode:
+  start_events:  mode_base_started{current_player.insert_multiball_twenties!='complete'}, multiball_twenties_start{current_player.insert_multiball_twenties!='complete'}, mode_sanity_stopped{current_player.insert_multiball_twenties!='complete'}, multiball_rlyeh_has_stopped{current_player.insert_multiball_twenties!='complete'}
+  stop_events: multiball_twenties_stop, multiball_rlyeh_has_started
+  priority: 1500
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  multiball_twenties_main_ramp_shot_litlock_hit{current_player.insert_multiball_twenties=='zero'}: shaker_shake, postup_up, launch_random_multiball_prepare_video_1, ball_one_locked
+  multiball_twenties_main_ramp_shot_litlock_hit{current_player.insert_multiball_twenties=='one'}: shaker_shake, postup_up, launch_random_multiball_prepare_video_2, ball_two_locked
+  multiball_twenties_main_ramp_shot_litlock_hit{current_player.insert_multiball_twenties=='two'}: shaker_shake, postup_up_long, ball_three_locked
+  multiball_twenties_main_ramp_shot_litlock_hit{current_player.insert_multiball_twenties=='three'}: shaker_shake, launch_extended_video, launch_extended_voice, ball_four_locked
+  ball_three_locked: launch_multiball_twenties, play_multiball_twenties_sfx
+  play_multiball_twenties_sfx: play_multiball_twenties_music|3s
+  "{device.shots.multiball_twenties_target_square_2_shot.state_name=='litmultiball' and device.shots.multiball_twenties_target_square_3_shot.state_name=='litmultiball'}": display_lock_lit
+  multiball_multiball_twenties_multiball_ended: multiball_twenties_stop|1s
+
+  # multiball_multiball_rlyeh_multiball_started: block_twenties_lock
+  # multiball_multiball_rlyeh_multiball_ended: relaunch_twenties_lock
+
+###########################
+
+slide_player:
+  launch_multiball_prepare_video_1: multiball_twenties_lock_one_1_slide
+  launch_multiball_prepare_video_2: multiball_twenties_lock_one_2_slide
+  launch_multiball_prepare_video_3: multiball_twenties_lock_one_3_slide
+  launch_multiball_prepare_video_7: multiball_twenties_lock_one_7_slide
+  launch_multiball_prepare_video_8: multiball_twenties_lock_one_8_slide
+  launch_multiball_prepare_video_9: multiball_twenties_lock_one_9_slide
+  launch_multiball_prepare_video_10: multiball_twenties_lock_one_10_slide
+
+  launch_multiball_prepare_video_4: multiball_twenties_lock_two_1_slide
+  launch_multiball_prepare_video_5: multiball_twenties_lock_two_2_slide
+  launch_multiball_prepare_video_6: multiball_twenties_lock_two_3_slide
+  launch_multiball_prepare_video_11: multiball_twenties_lock_two_11_slide
+  launch_multiball_prepare_video_12: multiball_twenties_lock_two_12_slide
+  launch_multiball_prepare_video_13: multiball_twenties_lock_two_13_slide
+
+  launch_multiball_long_video_1: multiball_twenties_lock_three_slide_1
+  launch_multiball_long_video_2: multiball_twenties_lock_three_slide_2
+
+  display_lock_lit: multiball_twenties_lock_ready_slide
+
+  launch_multiballextended_video_1:
+    multiball_extended_slide_1:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_2:
+    multiball_extended_slide_2:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_3:
+    multiball_extended_slide_3:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_4:
+    multiball_extended_slide_4:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_5:
+    multiball_extended_slide_5:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_6:
+    multiball_extended_slide_6:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_7:
+    multiball_extended_slide_7:
+      action: play
+      expire: 9s
+  launch_multiballextended_video_8:
+    multiball_extended_slide_8:
+      action: play
+      expire: 9s
+
+###########################
+
+slides:
+  multiball_twenties_lock_one_1_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_1
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+
+  multiball_twenties_lock_one_2_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_2
+        auto_play: True
+        end_behavior: loop
+        z: 800
+    expire: 5s
+
+
+
+  multiball_twenties_lock_one_3_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_3
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_one_7_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_7
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_one_8_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_8
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_one_9_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_9
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_one_10_slide:
+    widgets:
+      - type: text
+        text: First investigor on board !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball one locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_10
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+
+  multiball_twenties_lock_two_1_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_4
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+
+
+  multiball_twenties_lock_two_2_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_5
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+
+
+  multiball_twenties_lock_two_3_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_6
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_two_11_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_11
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_two_12_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_12
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+  multiball_twenties_lock_two_13_slide:
+    widgets:
+      - type: text
+        text: Second investigator on board ! !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Ball two locked
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_13
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 5s
+
+
+
+  multiball_twenties_lock_three_slide_1:
+    widgets:
+      - type: text
+        text: Roaring time !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Prepare for twenties multiball ! ! !
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_long_1
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 8s
+
+  multiball_twenties_lock_three_slide_2:
+    widgets:
+      - type: text
+        text: Roaring time !
+        y: 60%
+        x: 50%
+        z: 1000
+      - type: text
+        text: Prepare for twenties multiball ! ! !
+        y: 40%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: video_multiball_prepare_long_2
+        auto_play: True
+        end_behavior: loop
+        z: 2
+    expire: 8s
+
+
+
+
+
+  multiball_twenties_lock_ready_slide:
+    widgets:
+      - type: text
+        text: Lock is lit !
+        y: 50%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 800
+    expire: 3s
+
+  multiball_extended_slide_1:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_1
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_2:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_2
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_3:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_3
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_4:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_4
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_5:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_5
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_6:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_6
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_7:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_7
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+  multiball_extended_slide_8:
+    - type: text
+      text: Multiball extended !
+      y: 50%
+      x: 50%
+      z: 100
+    - type: text
+      text: +1 ball / +10 seconds ball save !
+      y: 40%
+      x: 50%
+      z: 100
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_8
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+###########################
+
+random_event_player:
+  launch_random_multiball_prepare_video_1:
+    events:
+      - launch_multiball_prepare_video_1
+      - launch_multiball_prepare_video_2
+      - launch_multiball_prepare_video_3
+      - launch_multiball_prepare_video_7
+      - launch_multiball_prepare_video_8
+      - launch_multiball_prepare_video_9
+      - launch_multiball_prepare_video_10
+  launch_random_multiball_prepare_video_2:
+    events:
+      - launch_multiball_prepare_video_4
+      - launch_multiball_prepare_video_5
+      - launch_multiball_prepare_video_6
+      - launch_multiball_prepare_video_11
+      - launch_multiball_prepare_video_12
+      - launch_multiball_prepare_video_13
+  multiball_twenties_main_ramp_shot_litlock_hit{current_player.insert_multiball_twenties=='two'}:
+    events:
+      - launch_multiball_long_video_1
+      - launch_multiball_long_video_2
+
+
+  launch_extended_video:
+    events:
+      - launch_multiballextended_video_1
+      - launch_multiballextended_video_2
+      - launch_multiballextended_video_3
+      - launch_multiballextended_video_4
+      - launch_multiballextended_video_5
+      - launch_multiballextended_video_6
+      - launch_multiballextended_video_7
+      - launch_multiballextended_video_8
+
+###########################
+
+multiballs:
+  multiball_twenties_multiball:
+    ball_count: 2
+    ball_count_type: add
+    shoot_again: 30s
+    grace_period: 3s
+    start_events: timer_timer_multiball_twenties_delay_time_complete
+    add_a_ball_events: ball_four_locked
+    add_a_ball_shoot_again: 10s
+
+###########################
+
+timers:
+  timer_multiball_twenties_delay_time:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_multiball_twenties
+
+###########################
+
+light_player:
+  ball_one_locked:
+    insert_83:
+      color: green
+
+  ball_two_locked:
+    insert_82:
+      color: green
+
+  ball_three_locked:
+    insert_81:
+      color: green
+
+  multiball_multiball_twenties_multiball_ended:
+    insert_81, insert_82, insert_83: off
+
+  mode_multiball_twenties_started{current_player.insert_multiball_twenties=='one'}:
+    insert_83:
+      color: green  
+  mode_multiball_twenties_started{current_player.insert_multiball_twenties=='two'}:
+    insert_83:
+      color: green
+    insert_82:
+      color: green
+  mode_multiball_twenties_started{current_player.insert_multiball_twenties=='three'}:
+    insert_83:
+      color: green
+    insert_82:
+      color: green
+    insert_81:
+      color: green
+
+###########################
+
+shot_profiles:
+  multiball_twenties_profile:
+    advance_on_hit: true
+    states:
+      - name: off
+        show: multiball_blink_show
+        speed: 7
+        loops: -1
+        priority: 600
+      - name: litmultiball
+        priority: 10
+        show: led_color
+        show_tokens:
+          color: green
+
+  multiball_twenties_lock_ready_profile:
+    advance_on_hit: false
+    loop: false
+    states:
+      - name: off
+      - name: litlock
+        priority: 1200
+        show: multiball_twenties_lock_ready_show
+        speed: 5
+        loops: -1 
+
+  multiball_twenties_target_flash:
+    loop: true
+    block: true
+    states:
+      - name: multiballthitflashing
+        show: multiball_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+
+
+  multiball_twenties_aza_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_twenties_king_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_twenties_nyarla_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_twenties_cthulhu_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_twenties_shub_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_twenties_library_ramp_profile:
+    block: false
+    states:
+      - name: active
+        show: base_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+
+###########################
+
+shots:
+  multiball_twenties_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: multiball_twenties_profile
+    reset_events: multiball_twenties_main_ramp_shot_litlock_hit
+    enable_events: mode_multiball_twenties_started, relaunch_twenties_lock
+    disable_events: ball_four_locked, multiball_multiball_twenties_multiball_ended, block_twenties_lock
+    show_tokens:
+      led: insert_32
+  multiball_twenties_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: multiball_twenties_profile
+    reset_events: multiball_twenties_main_ramp_shot_litlock_hit
+    enable_events: mode_multiball_twenties_started, relaunch_twenties_lock
+    disable_events: ball_four_locked, multiball_multiball_twenties_multiball_ended, block_twenties_lock
+    show_tokens:
+      led: insert_30
+
+  multiball_twenties_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: multiball_twenties_lock_ready_profile
+    advance_events: display_lock_lit
+    reset_events: multiball_twenties_main_ramp_shot_litlock_hit
+    enable_events: mode_multiball_twenties_started, relaunch_twenties_lock
+    disable_events: ball_four_locked, multiball_multiball_twenties_multiball_ended, block_twenties_lock
+    
+
+  multiball_twenties_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: multiball_twenties_target_flash
+    enable_events: launch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_50
+  multiball_twenties_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: multiball_twenties_target_flash
+    enable_events: launch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_49
+  multiball_twenties_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: multiball_twenties_target_flash
+    enable_events: launch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_48
+  multiball_twenties_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: multiball_twenties_target_flash
+    enable_events: launch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_11
+  multiball_twenties_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: multiball_twenties_target_flash
+    enable_events: mlaunch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_12
+  multiball_twenties_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: multiball_twenties_target_flash
+    enable_events: launch_multiball_twenties
+    disable_events: multiball_multiball_twenties_multiball_ended
+    show_tokens:
+      led: insert_13
+
+
+  multiball_twenties_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: multiball_twenties_cthulhu_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+
+  multiball_twenties_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: multiball_twenties_nyarla_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+  
+  multiball_twenties_king_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: multiball_twenties_king_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+
+  multiball_twenties_space_orbit_shot:
+    hit_events: multiball_twenties_space_orbit_sequence_hit
+    profile: multiball_twenties_aza_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+
+  multiball_twenties_asylum_orbit_shot:
+    hit_events: multiball_twenties_asylum_orbit_sequence_hit
+    profile: multiball_twenties_shub_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+
+  multiball_twenties_library_roll_shot:
+    hit_events: multiball_twenties_library_roll_sequence_hit
+    profile: multiball_twenties_library_ramp_profile
+    enable_events: multiball_multiball_twenties_multiball_started
+    disable_events: multiball_multiball_twenties_multiball_ended
+
+
+###########################
+
+
+sequence_shots:
+  multiball_twenties_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  multiball_twenties_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  multiball_twenties_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+variable_player:
+  launch_multiball_twenties:
+    multiball_twenties_running:
+      action: set
+      string: 'true'
+
+  multiball_multiball_twenties_multiball_ended:
+    insert_multiball_twenties:
+      action: set
+      string: 'complete'
+    multiball_twenties_running:
+      action: set
+      string: 'off'
+
+  ball_one_locked:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    insert_multiball_twenties:
+      action: set
+      string: 'one'
+  ball_two_locked:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    insert_multiball_twenties:
+      action: set
+      string: 'two'
+  ball_three_locked:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    insert_multiball_twenties:
+      action: set
+      string: 'three'
+
+
+  multiball_twenties_cthulhu_ramp_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_twenties_green_ramp_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier  
+  multiball_twenties_king_ramp_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_twenties_space_orbit_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_twenties_asylum_orbit_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_twenties_library_roll_shot_active_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+###########################
+
+show_player:
+  display_lock_lit:
+    multi_twenties_king_insert_flash_show:
+      speed: 65
+      loops: -1
+      priority: 1000
+
+  multiball_twenties_main_ramp_shot_litlock_hit:
+    multi_twenties_king_insert_flash_show:
+      action: stop
+
+  multiball_multiball_twenties_multiball_started:
+    multiball_ball_save_blink_show, multiball_twenties_blink_show:
+      speed: 15
+      loops: -1
+      priority: 500
+
+  multiball_multiball_twenties_multiball_ended:
+    multiball_twenties_blink_show, multiball_twenties_lock_ready_show:
+      action: stop
+
+  multiball_multiball_twenties_multiball_shoot_again_ended:
+    multiball_ball_save_blink_show, multiball_twenties_lock_ready_show:
+      action: stop
+
+  multiball_twenties_target_square_2_shot_off_hit:
+    multiball_twenties_left_ready:
+      speed: 35
+      loops: 0
+      priority: 1000
+  multiball_twenties_target_square_3_shot_off_hit:
+    multiball_twenties_right_ready:
+      speed: 35
+      loops: 0
+      priority: 1000
+
+
+###########################
+
+sound_player:
+  play_multiball_twenties_sfx:
+    multiball_crescendo_1:
+      action: play
+      volume: 2
+      mode_end_action: stop
+
+  play_multiball_twenties_music:
+    multiball_twenties_music_pool:
+      action: play
+      volume: 2
+      loops: -1
+      mode_end_action: stop
+      fade_out: 1s
+
+  display_lock_lit:
+    multiball_lock_lit_sound_pool:
+      action: play
+      volume: 2
+      events_when_stopped: launch_purple_voice
+
+  launch_purple_voice:
+    purple_ramp_voice_pool:
+      action: play
+      volume: 2
+
+  multiball_twenties_cthulhu_ramp_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_twenties_green_ramp_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1 
+  multiball_twenties_king_ramp_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_twenties_space_orbit_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_twenties_asylum_orbit_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_twenties_library_roll_shot_active_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+
+  launch_extended_voice:
+    multiball_extended_voice_pool:
+      action: play
+      volume: 2
+
+  ball_one_locked:
+    multiball_first_lock_voice_pool:
+      action: play
+      volume: 2
+  ball_two_locked:
+    multiball_second_lock_voice_pool:
+      action: play
+      volume: 2
+  ball_three_locked:
+    multiball_third_lock_voice_pool:
+      action: play
+      volume: 2
+
+
+###########################
+
+sound_pools:
+  purple_ramp_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - purple_ready_voice_1
+      - purple_ready_voice_2
+      - purple_ready_voice_3
+      - purple_ready_voice_4
+      - purple_ready_voice_5
+      - purple_ready_voice_6
+      - purple_ready_voice_7
+      - purple_ready_voice_8
+      - purple_ready_voice_9
+
+  multiball_extended_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - multiball_extended_voice_1
+      - multiball_extended_voice_2
+      - multiball_extended_voice_3
+
+  multiball_first_lock_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - main_multiball_first_lock_voice_1
+      - main_multiball_first_lock_voice_2
+  multiball_second_lock_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - main_multiball_second_lock_voice_1
+      - main_multiball_second_lock_voice_2
+  multiball_third_lock_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - main_multiball_third_lock_voice_1
+      - main_multiball_third_lock_voice_2
+
+
+###########################
+
+videos:
+  video_multiball_prepare_1:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_1.mp4
+  video_multiball_prepare_2:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_2.mp4
+  video_multiball_prepare_3:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_3.mp4
+  video_multiball_prepare_4:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_4.mp4
+  video_multiball_prepare_5:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_5.mp4
+  video_multiball_prepare_6:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_6.mp4
+  video_multiball_prepare_7:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_7.mp4
+  video_multiball_prepare_8:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_8.mp4
+  video_multiball_prepare_9:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_9.mp4
+  video_multiball_prepare_10:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_10.mp4
+  video_multiball_prepare_11:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_11.mp4
+  video_multiball_prepare_12:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_12.mp4
+  video_multiball_prepare_13:
+    width: 1440
+    height: 900
+    file: multiball_prepare_video_13.mp4
+
+
+  video_multiball_prepare_long_1:
+    width: 1440
+    height: 900
+    file: multiball_prepare_long_video_1.mp4
+  video_multiball_prepare_long_2:
+    width: 1440
+    height: 900
+    file: multiball_prepare_long_video_2.mp4

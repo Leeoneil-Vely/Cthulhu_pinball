@@ -1,0 +1,132 @@
+#config_version=6
+mode:
+  start_events: city_win_start
+  stop_events: timer_quit_city_win_time_complete
+  restart_on_next_ball: false
+  priority: 300
+
+###########################
+
+event_player:
+  timer_quit_city_win_time_complete: twenties_start
+
+###########################
+
+show_player:
+  mode_city_win_started:
+    city_win_show:
+      speed: 18
+      loops: -1
+      priority: 100
+
+###########################
+
+slide_player:
+  mode_city_win_started: city_win_slide
+
+###########################
+
+slides:
+  city_win_slide: []
+
+###########################
+
+widgets:
+  city_win_banner:
+    type: text
+    text: YOU FOUND ALL THE SECRETS !
+    color: '006666'
+    style: mission_text
+    y: 28%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true
+
+  city_win_banner_2:
+    type: text
+    text: 175,000 points !
+    color: '006666'
+    style: mission_text
+    y: 65%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true  
+
+  video_city_win_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_city_win_started:
+    city_win_banner, city_win_banner_2, video_city_win_scratch_widget, base_without_score_widget, superpops_widget, cthulhu_frame_image:
+      action: add
+      slide: city_win_slide
+
+###########################
+
+variable_player:
+  mode_city_win_started:
+    mission_city:
+      action: set
+      string: 'completed'
+
+    score: 175000
+    city_champion: 175000
+
+    mission_boost_multiplier:
+      action: add
+      float: 0.1
+
+###########################
+
+timers:
+  quit_city_win_time:
+    start_value: 5
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_city_win_started
+
+###########################
+
+sound_player:
+  mode_city_win_started:
+    evil_laugh_pool:
+      action: play
+      loops: 0
+      volume: 2
+
+    super_jackpot_voice_pool:
+      action: play
+      loops: 0
+      volume: 2
+
+    dark_win_sound_pool:
+      action: play
+      loops: 0
+      volume: 1

@@ -1,0 +1,197 @@
+#config_version=6
+
+mode:
+  start_events: library_speakeasy_start
+  stop_events: library_speakeasy_stop, timer_exit_library_speakeasy_time_complete
+  priority: 700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_speakeasy_started: library_video_start
+  base_gate_secret_library_exit_shot_hit: library_speakeasy_stop
+  base_gate_exit_library_shot_hit: library_speakeasy_stop
+  timer_exit_library_speakeasy_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_speakeasy_slide: []      
+
+###########################
+
+slide_player:
+  mode_library_speakeasy_started: library_speakeasy_slide
+
+###########################
+
+widgets:
+  library_speakeasy_start_banner:
+    type: text
+    text: Do not vomit on the books !
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+
+  show_exit_library_speakeasy_time:
+    type: text
+    text: (player|exit_library_speakeasy_time_variable_times) seconds left
+    y: 25%
+    x: 50%
+    z: 100
+
+###########################
+
+widget_player:
+  mode_library_speakeasy_started:
+    library_speakeasy_start_banner, show_exit_library_speakeasy_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: library_speakeasy_slide
+
+###########################
+
+variable_player:
+  timer_exit_library_speakeasy_time_tick:
+    exit_library_speakeasy_time_variable_times:
+      int: device.timers.exit_library_speakeasy_time.ticks
+      action: set
+ 
+  speakeasy_target_library_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  speakeasy_target_library_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  speakeasy_target_library_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  speakeasy_target_library_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  speakeasy_target_library_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  speakeasy_target_library_6_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+show_player:
+  mode_library_speakeasy_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+###########################
+
+timers:
+  exit_library_speakeasy_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_speakeasy_started
+  
+  voice_library_speakeasy_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_speakeasy_started
+
+###########################
+
+shots:
+  speakeasy_target_library_1_shot:
+    switch: s_target_library_1
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_80
+  speakeasy_target_library_2_shot:
+    switch: s_target_library_2
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_79
+  speakeasy_target_library_3_shot:
+    switch: s_target_library_3
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_78
+  speakeasy_target_library_4_shot:
+    switch: s_target_library_4
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_77
+  speakeasy_target_library_5_shot:
+    switch: s_target_library_5
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_76
+  speakeasy_target_library_6_shot:
+    switch: s_target_library_6
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_75
+
+###########################
+
+sound_pools:
+  library_speakeasy_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - private_entrance_10
+      - private_entrance_11
+      - private_entrance_12
+      - private_entrance_13
+
+
+###########################
+
+sound_player:
+  mode_library_speakeasy_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+    clock_gong:
+      action: play
+      volume: 5
+      delay: 10  
+
+  library_speakeasy_stop:
+    clock_tick_10s:
+      action: stop
+    clock_gong:
+      action: stop
+  
+  timer_voice_library_speakeasy_time_complete:
+    library_speakeasy_voice_sounds:
+      action: play
+      volume: 2
+
+  speakeasy_target_library_1_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  speakeasy_target_library_2_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  speakeasy_target_library_3_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  speakeasy_target_library_4_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  speakeasy_target_library_5_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  speakeasy_target_library_6_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1

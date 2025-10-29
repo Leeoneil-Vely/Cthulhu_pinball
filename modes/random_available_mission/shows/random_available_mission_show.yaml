@@ -1,0 +1,80 @@
+#show_version=6
+- time: 0
+  lights:
+    gi:  FF8000-f200ms
+    side_led_left:  FF8000-f200ms
+    side_led_right:  FF8000-f200ms
+    gi_insert:  FF8000-f200ms
+    backglass_led:  FF8000-f200ms
+
+- time: "+1"
+  lights:
+    gi: 994C00-f200ms
+    side_led_left: 994C00-f200ms
+    side_led_right: 994C00-f200ms
+    gi_insert: 994C00-f200ms
+    backglass_led: 994C00-f200ms
+
+- time: "+2"
+  lights:
+    gi: FF9933-f200ms
+    side_led_left: FF9933-f200ms
+    side_led_right: FF9933-f200ms
+    gi_insert: FF9933-f200ms
+    backglass_led: FF9933-f200ms
+
+- time: "+3"
+  lights:
+    gi: 006666-f200ms
+    side_led_left: 006666-f200ms
+    side_led_right: 006666-f200ms
+    gi_insert: 006666-f200ms
+    backglass_led: 006666-f200ms 
+
+- time: "+4"
+  lights:
+    gi: green-f200ms
+    side_led_left: green-f200ms
+    side_led_right: green-f200ms
+    gi_insert: green-f200ms
+    backglass_led: green-f200ms 
+
+- time: "+5"
+  lights:
+    gi: 004C99-f200ms
+    side_led_left: 004C99-f200ms
+    side_led_right: 004C99-f200ms
+    gi_insert: 004C99-f200ms
+    backglass_led: 004C99-f200ms
+
+- time: "+6"
+  lights:
+    gi: 00994C-f200ms
+    side_led_left: 00994C-f200ms
+    side_led_right: 00994C-f200ms
+    gi_insert: 00994C-f200ms
+    backglass_led: 00994C-f200ms
+
+- time: "+7"
+  lights:
+    gi: orange-f200ms
+    side_led_left: orange-f200ms
+    side_led_right: orange-f200ms
+    gi_insert: orange-f200ms
+    backglass_led: orange-f200ms
+
+- time: "+8"
+  lights:
+    gi: blue-f200ms
+    side_led_left: blue-f200ms
+    side_led_right: blue-f200ms
+    gi_insert: blue-f200ms
+    backglass_led: blue-f200ms
+
+- time: "+9"
+  lights:
+    gi: CC0066-f200ms
+    side_led_left: CC0066-f200ms
+    side_led_right: CC0066-f200ms
+    gi_insert: CC0066-f200ms
+    backglass_led: CC0066-f200ms

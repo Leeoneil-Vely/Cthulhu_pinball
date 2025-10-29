@@ -1,0 +1,1022 @@
+#config_version=6
+mode:
+  start_events: chthonian_attack_start
+  stop_events: chthonian_attack_stop, ball_ended
+  priority: 1600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_chthonian_attack_started: twenties_stop, hold_stop, launch_earthquake_random_video, launch_chthonian_timer
+  timer_exit_chthonian_time_complete: chthonian_attack_stop, twenties_start
+  launch_earthquake: shaker_shake
+  recover_balance: stop_earthquake
+
+  timer_chthonian_timer_1_complete: launch_earthquake
+  timer_chthonian_timer_2_complete: launch_earthquake
+  timer_chthonian_timer_3_complete: launch_earthquake
+  timer_random_chthonian_rotate_1_complete: launch_earthquake
+  timer_random_chthonian_rotate_2_complete: launch_earthquake
+
+###########################
+
+counters:
+  smash_action_chthonian:
+    count_events: s_action_active
+    count_complete_value: 3
+    enable_events: launch_earthquake
+    events_when_complete: recover_balance
+
+###########################
+
+coil_player:
+  launch_coil_move_1:
+    c_flipper_upleft_main:
+      action: pulse
+  launch_coil_move_2:
+    c_flipper_left_main:
+      action: pulse
+  launch_coil_move_3:
+    c_flipper_right_main:
+      action: pulse
+  launch_coil_move_4:
+    c_flipper_petitgauche_main:
+      action: pulse
+  launch_coil_move_5:
+    c_flipper_petitdroit_main:
+      action: pulse
+
+###########################
+
+random_event_player:
+  launch_chthonian_timer:
+    - launch_chthonian_timer_1
+    - launch_chthonian_timer_2
+    - launch_chthonian_timer_3
+
+  launch_earthquake:
+    events:
+      - launch_coil_show_1
+      - launch_coil_show_2
+      - launch_coil_show_3
+      - launch_coil_show_4
+
+  stop_earthquake:
+    events:
+      - launch_random_chthonian_rotate_1
+      - launch_random_chthonian_rotate_2
+
+  launch_earthquake_random_video:
+    events:
+      - launch_random_earthquake_video_1
+      - launch_random_earthquake_video_2
+      - launch_random_earthquake_video_3
+
+  timer_earthquake_rotate_tick:
+    events:
+      - advance_earthquake_light_1
+      - advance_earthquake_light_2
+      - advance_earthquake_light_3
+      - advance_earthquake_light_4
+      - advance_earthquake_light_5
+      - advance_earthquake_light_6
+
+
+###########################
+
+slides:
+  chthonian_slide: []
+
+###########################
+
+slide_player:
+  mode_chthonian_attack_started: chthonian_slide
+
+###########################
+
+widgets:
+  chthonian_indication_banner:
+    type: text
+    text: Chthonian attack !
+    style: mission_text
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+
+  chthonian_indication_banner_2:
+    type: text
+    text: Survive (player|exit_chthonian_time_variable_times) seconds !
+    style: mission_text
+    color: white
+    y: 62%
+    x: 50%
+    z: 100
+
+  chthonian_indication_banner_3:
+    type: text
+    text: 3 action buttons
+    style: mission_text
+    color: red
+    y: 40%
+    x: 50%
+    z: 100
+
+  chthonian_indication_banner_4:
+    type: text
+    text: to recover controls
+    style: mission_text
+    color: red
+    y: 30%
+    x: 50%
+    z: 100
+
+  chthonian_banner_image:
+    type: Image
+    image: chthonian
+    y: 45%
+    x: 20%
+    z: 90
+
+  video_earthquake_1_scratch_widget:
+    type: video
+    video: earthquake_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_earthquake_2_scratch_widget:
+    type: video
+    video: earthquake_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_earthquake_3_scratch_widget:
+    type: video
+    video: earthquake_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+
+###########################
+
+widget_player:
+  mode_chthonian_attack_started:
+    chthonian_indication_banner, chthonian_indication_banner_2, chthonian_banner_image, cthulhu_frame_image, base_score_widget, superpops_widget:
+      action: add
+      slide: chthonian_slide
+  mode_chthonian_attack_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: chthonian_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_earthquake:
+    base_score_widget:
+      action: remove
+    chthonian_indication_banner_3, chthonian_indication_banner_4:
+      action: add
+      slide: chthonian_slide
+  stop_earthquake:
+    chthonian_indication_banner_3, chthonian_indication_banner_4:
+      action: remove
+    base_score_widget:
+      action: add
+      slide: chthonian_slide
+
+
+  launch_random_earthquake_video_1:
+    video_earthquake_1_scratch_widget:
+      action: add
+      slide: chthonian_slide
+  launch_random_earthquake_video_2:
+    video_earthquake_2_scratch_widget:
+      action: add
+      slide: chthonian_slide
+  launch_random_earthquake_video_3:
+    video_earthquake_3_scratch_widget:
+      action: add
+      slide: chthonian_slide
+
+###########################
+
+timers:
+  exit_chthonian_time:
+    start_value: 35
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_chthonian_attack_started
+
+
+  chthonian_timer_1:
+    start_value: 6
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_chthonian_timer_1
+  chthonian_timer_2:
+    start_value: 9
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_chthonian_timer_2
+  chthonian_timer_3:
+    start_value: 12
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_chthonian_timer_3
+
+
+  random_chthonian_rotate_1:
+    start_value: 5
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_random_chthonian_rotate_1
+      - action: stop
+        event: stop_earthquake
+      - action: reset
+        event: stop_earthquake
+
+  random_chthonian_rotate_2:
+    start_value: 7
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_random_chthonian_rotate_2
+      - action: stop
+        event: stop_earthquake
+      - action: reset
+        event: stop_earthquake
+
+  earthquake_rotate:
+    start_running: true
+    tick_interval: 3s
+    control_events:
+      - action: start
+        event: mode_chthonian_attack_started
+
+
+###########################
+
+shot_profiles:
+  chthonian_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: chthonianhitflashing
+        show: chthonian_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 1200
+
+###########################
+
+shots:
+  chthonian_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_86
+  chthonian_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_85
+  chthonian_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_84
+  chthonian_sling_left_shot:
+    switch: s_sling_left
+    profile: chthonian_target_flash
+    show_tokens:
+      led: led_30, led_31
+  chthonian_sling_right_shot:
+    switch: s_sling_right
+    profile: chthonian_target_flash
+    show_tokens:
+      led: led_36, led_37
+  chthonian_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  chthonian_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: chthonian_target_flash
+    show_tokens:
+      led: led_11, led_19
+
+  chthonian_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_41
+  chthonian_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_32
+  chthonian_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_30
+  chthonian_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_20
+  chthonian_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_10
+
+  chthonian_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_50
+  chthonian_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_49  
+  chthonian_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_48
+  chthonian_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_11
+  chthonian_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_12
+  chthonian_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_13
+    
+  chthonian_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  chthonian_gate_library_shot:
+    switch: s_gate_library
+    profile: chthonian_target_flash
+    show_tokens:
+      led: led_1
+  chthonian_roll_library_shot:
+    switch: s_roll_library
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  chthonian_roll_space_shot:
+    switch: s_roll_space
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43
+  chthonian_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_34
+
+  chthonian_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  chthonian_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  chthonian_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  chthonian_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  chthonian_team_1_shot:
+    switch: s_roll_skill_shot_1
+  chthonian_team_2_shot:
+    switch: s_roll_skill_shot_2
+  chthonian_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  chthonian_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  chthonian_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_74, insert_25, insert_26, insert_29
+  chthonian_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  chthonian_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: chthonian_target_flash
+    show_tokens:
+      led: led_2
+  chthonian_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  chthonian_spinner_shot:
+    switch: s_spinner
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  chthonian_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_24
+  chthonian_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_23
+  chthonian_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_22
+  chthonian_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: chthonian_target_flash
+    show_tokens:
+      led: insert_21
+
+  chthonian_green_target_1_shot:
+    switch: s_target_green_1
+  chthonian_green_target_2_shot:
+    switch: s_target_green_2
+  chthonian_green_target_3_shot:
+    switch: s_target_green_3
+
+  chthonian_space_orbit_shot:
+    hit_events: chthonian_space_orbit_sequence_hit
+  chthonian_asylum_orbit_shot:
+    hit_events: chthonian_asylum_orbit_sequence_hit
+  chthonian_library_roll_shot:
+    hit_events: chthonian_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  chthonian_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  chthonian_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  chthonian_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+light_player:
+  mode_chthonian_attack_started:
+    gi:
+      color: off
+    side_led_right:
+      color: off
+    side_led_left:
+      color: off
+    apron_led:
+      color: white
+
+###########################
+
+show_player:
+  launch_coil_show_1:
+    chthonian_coil_show_1:
+      action: play
+      speed: 20
+      priority: 1000
+      loops: -1
+  launch_coil_show_2:
+    chthonian_coil_show_2:
+      action: play
+      speed: 15
+      priority: 1000
+      loops: -1
+  launch_coil_show_3:
+    chthonian_coil_show_3:
+      action: play
+      speed: 20
+      priority: 1000
+      loops: -1
+  launch_coil_show_4:
+    chthonian_coil_show_4:
+      action: play
+      speed: 15
+      priority: 1000
+      loops: -1
+
+
+  stop_earthquake:
+    chthonian_coil_show_1:
+      action: stop
+    chthonian_coil_show_2:
+      action: stop
+    chthonian_coil_show_3:
+      action: stop
+    chthonian_coil_show_4:
+      action: stop
+
+
+  mode_chthonian_attack_started:
+    all_insert_pursuit_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  advance_earthquake_light_1:
+    chthonian_apron_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+  advance_earthquake_light_2:
+    chthonian_side_right_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+  advance_earthquake_light_3:
+    chthonian_side_left_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+  advance_earthquake_light_4:
+    chthonian_sanity_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+  advance_earthquake_light_5:
+    chthonian_upright_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+  advance_earthquake_light_6:
+    chthonian_upleft_show:
+      action: play
+      speed: 8
+      priority: 200
+      loops: -1
+
+###########################
+
+variable_player:
+  timer_exit_chthonian_time_tick:
+    exit_chthonian_time_variable_times:
+      int: device.timers.exit_chthonian_time.ticks
+      action: set
+
+
+  chthonian_sling_left_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_sling_right_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  chthonian_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  chthonian_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  chthonian_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  chthonian_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  chthonian_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  chthonian_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  chthonian_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  chthonian_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  chthonian_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  chthonian_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  chthonian_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  chthonian_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  chthonian_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  chthonian_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  chthonian_gate_secret_library_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+###########################
+
+sound_player:
+  mode_chthonian_attack_started:
+    chthonian_music_pool:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+    chthonian_sfx_air_raid_1:
+      action: play
+      volume: 3
+
+  launch_earthquake:
+    earthquake_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_sling_left_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_sling_right_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_bumper_one_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_bumper_two_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_bumper_three_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_scoop_bas_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_scoop_haut_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_target_square_1_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_square_2_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_square_3_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_square_4_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_square_5_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_target_sanity_shot_1_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_sanity_shot_2_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_sanity_shot_3_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_sanity_shot_4_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_sanity_shot_5_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_sanity_shot_6_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_drop_target_1_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_drop_target_2_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_drop_target_3_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_drop_target_4_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+
+  chthonian_green_target_1_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_green_target_2_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_green_target_3_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_target_library_1_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_library_2_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_library_3_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_library_4_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_library_5_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_target_library_6_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_team_1_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_team_2_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_team_3_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_spinner_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_roll_left_outlane_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_left_inlane_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_right_inlane_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_right_outlane_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_library_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_fordt_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_space_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_roll_asylum_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+  chthonian_cthulhu_ramp_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_main_ramp_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_green_ramp_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_gate_library_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_gate_exit_library_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+  chthonian_gate_secret_library_shot_hit:
+    chthonian_sfx_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  chthonian_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - chthonian_sfx_2
+      - chthonian_sfx_3
+      - chthonian_sfx_4
+      - chthonian_sfx_5
+      - chthonian_sfx_6
+      - chthonian_sfx_7
+      - chthonian_sfx_8
+      - chthonian_sfx_9
+      - chthonian_sfx_10
+      - chthonian_sfx_11
+      - chthonian_sfx_12
+
+  earthquake_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - earthquake_sfx_1
+      - earthquake_sfx_2
+      - earthquake_sfx_3
+      - earthquake_sfx_4
+
+###########################
+
+videos:
+  earthquake_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: earthquake_video_1.mp4
+
+  earthquake_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: earthquake_video_2.mp4
+
+  earthquake_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: earthquake_video_3.mp4

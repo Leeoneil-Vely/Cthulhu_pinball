@@ -1,0 +1,16 @@
+#show_version=6
+- time: 0
+  lights:
+    bumper_led: FF9933-f200ms
+    
+- time: "+1"
+  lights:
+    bumper_led: white-f200ms
+
+- time: "+2"
+  lights:
+    bumper_led: off
+    
+- time: "+3"
+  lights:
+    bumper_led: white-f200ms

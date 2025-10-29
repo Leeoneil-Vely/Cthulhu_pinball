@@ -1,0 +1,12 @@
+#show_version=6
+- time: 0
+  lights:
+    led_0: off-f200ms
+    led_18: off-f200ms
+    led_23: off-f200ms
+    
+- time: "+1"
+  lights:
+    led_0: green-f200ms
+    led_18: green-f200ms
+    led_23: green-f200ms

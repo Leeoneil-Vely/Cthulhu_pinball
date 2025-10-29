@@ -1,0 +1,1705 @@
+#config_version=6
+mode:
+  start_events: shub_start
+  stop_events: shub_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+event_player:
+  mode_shub_started: twenties_stop, hold_stop
+  mode_shub_started{current_player.multiball_portal_available=='true'}: multiball_portal_start
+  mode_shub_started{current_player.shub_mission_level=='step_two'}: launch_gathering
+  mode_shub_started{current_player.shub_mission_level=='step_three'}: launch_young
+  mode_shub_started{current_player.shub_mission_level=='step_four'}: launch_shubend
+
+  shub_gate_library_shot_hit: library_shub_start
+  s_action_book_active{current_player.variable_number_of_book_value >= 5}: action_valid_spell_shot, shaker_shake
+  launch_shubend{current_player.insert_eldersign!='five'}: killplayer
+  "{device.shots.shub_asylum_orbit_lost_shot.state_name=='lostoff'}": launch_gathering
+  "{device.shots.shub_gathering_main_ramp_shot.state_name=='gathering_off' and device.shots.shub_gathering_green_ramp_shot.state_name=='gathering_off' and device.shots.shub_gathering_cthulhu_ramp_shot.state_name=='gathering_off'}": launch_young
+  "{current_player.variable_targetshubyoung=='hit' and device.shots.shub_asylum_orbit_young_shot.state_name=='youngoff'}": launch_shubend
+  shub_asylum_orbit_lost_shot_lostflashing_hit: shaker_shake
+  shub_asylum_orbit_lost_shot_lostflashing2_hit: shaker_shake
+  shub_asylum_orbit_lost_shot_lostflashing3_hit: shaker_shake
+  shub_gathering_main_ramp_shot_gatheringrampflashing_hit: shaker_shake
+  shub_gathering_green_ramp_shot_gatheringrampflashing_hit: shaker_shake
+  shub_gathering_cthulhu_ramp_shot_gatheringrampflashing_hit: shaker_shake
+  shub_young_target_square_1_shot_youngflashing_hit: shaker_shake, stop_young_target
+  shub_young_target_square_2_shot_youngflashing_hit: shaker_shake, stop_young_target
+  shub_young_target_square_3_shot_youngflashing_hit: shaker_shake, stop_young_target
+  shub_young_target_square_4_shot_youngflashing_hit: shaker_shake, stop_young_target
+  shub_young_target_square_5_shot_youngflashing_hit: shaker_shake, stop_young_target
+  shub_shubend_bumper_one_shot_shubendflashing_hit: shaker_shake
+  shub_shubend_bumper_two_shot_shubendflashing_hit: shaker_shake
+  shub_shubend_bumper_three_shot_shubendflashing_hit: shaker_shake
+  shub_shubend2_bumper_one_shot_shubendflashing_hit: shaker_shake
+  shub_shubend2_bumper_two_shot_shubendflashing_hit: shaker_shake
+  shub_shubend2_bumper_three_shot_shubendflashing_hit: shaker_shake
+
+  "{device.shots.shub_asylum_orbit_shubend_shot.state_name=='shubendoff'}": shub_reloaded, shaker_shake
+  s_action_active{current_player.variable_shub_life=='almostdead'}: shub_stop, shub_win_start
+
+  multiball_multiball_twenties_multiball_ended: relaunch_cthulhu_music
+  multiball_portal_stop: relaunch_cthulhu_music
+
+  mode_shub_started{current_player.lock_rlyeh_shub_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_cthulhu_music
+
+###########################
+
+random_event_player:
+  timer_gathering_rotate_tick:
+    events:
+      - gathering_target_1
+      - gathering_target_2
+      - gathering_target_3
+      - gathering_target_4
+      - gathering_target_5
+      - nothing
+
+  timer_young_rotate_tick:
+    events:
+      - young_target_1
+      - young_target_2
+      - young_target_3
+      - young_target_4
+      - young_target_5
+
+###########################
+
+timers:
+  gathering_rotate:
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: launch_gathering
+      - action: stop
+        event: launch_young
+
+  gathering_two_rotate:
+    tick_interval: 3s
+    control_events:
+      - action: start
+        event: launch_gathering
+      - action: stop
+        event: launch_young
+
+  young_rotate:
+    tick_interval: 3s
+    control_events:
+      - action: start
+        event: launch_young
+      - action: stop
+        event: launch_shubend
+      - action: stop
+        event: stop_young_target
+
+  shub_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_shub_started
+
+###########################
+
+counters:
+  hit_shub_bumper_counter:
+    count_events: shub_shubend_bumper_one_shot_shubendflashing_hit, shub_shubend_bumper_two_shot_shubendflashing_hit, shub_shubend_bumper_three_shot_shubendflashing_hit
+    starting_count: 0
+    count_complete_value: 10
+    events_when_complete: shub_need_reload
+    reset_on_complete: false
+    disable_on_complete: true
+
+  hit_shub2_bumper_counter:
+    count_events: shub_shubend2_bumper_one_shot_shubendflashing_hit, shub_shubend2_bumper_two_shot_shubendflashing_hit, shub_shubend2_bumper_three_shot_shubendflashing_hit
+    starting_count: 0
+    count_complete_value: 10
+    events_when_complete: launch_shubkill
+    reset_on_complete: false
+    disable_on_complete: true
+
+
+###########################
+
+slides:
+  shub_slide: []
+
+###########################
+
+slide_player:
+  mode_shub_started: shub_slide
+
+###########################
+
+widgets:
+  shub_name_banner:
+    type: text
+    text: SHUB-NIGGURATH
+    y: top-10
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: 'CC0066'
+    style: mission_text
+
+  shub_lost_indication_banner:
+    type: text
+    text: Lost in the woods
+    color: 'CC0066'
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_lost_indication_banner_2:
+    type: text
+    text: (player|shub_lost_gauge) right orbits 
+    color: 'CC0066'
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  shub_gathering_indication_banner:
+    type: text
+    text: A strange gathering
+    color: 'CC0066'
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_gathering_indication_banner_2:
+    type: text
+    text: Do NOT hit the red target
+    color: 'CC0066'
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_gathering_indication_banner_3:
+    type: text
+    text: Need (shub_gathering_gauge) ramps 
+    color: 'CC0066'
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+  shub_young_indication_banner:
+    type: text
+    text: Her thousand young
+    color: 'CC0066'
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_young_indication_banner_2:
+    type: text
+    text: Need (shub_young_gauge) orbits and (shub_youngtarget_gauge) moving target
+    color: 'CC0066'
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  shub_end_indication_banner:
+    type: text
+    text: SHUB-NIGGURATH
+    color: 'CC0066'
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_end_indication_banner_2:
+    type: text
+    text: final battle
+    color: 'CC0066'
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_end_indication_banner_3:
+    type: text
+    text: Fight with (shub_end_gauge) bumpers
+    color: 'CC0066'
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_end_indication_banner_4:
+    type: text
+    text: RELOAD ! Right orbit !
+    color: 'CC0066'
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+  shub_kill_indication_banner:
+    type: text
+    text: Destroy this monstruosity !
+    color: 'CC0066'
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  shub_kill_indication_banner_2:
+    type: text
+    text: Press action button !
+    color: 'CC0066'
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  shub_banner_image:
+    type: Image
+    image: mini_shub
+    y: 50%
+    x: 20%
+    z: 100
+
+  shub_video_scratch_widget:
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+###########################
+
+widget_player:
+  mode_shub_started:
+    shub_name_banner, shub_banner_image, cthulhu_frame_image, shub_lost_indication_banner, shub_lost_indication_banner_2, shub_video_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: shub_slide
+
+  mode_shub_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: shub_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_gathering:
+    shub_lost_indication_banner, shub_lost_indication_banner_2:
+      action: remove
+    shub_gathering_indication_banner, shub_gathering_indication_banner_2, shub_gathering_indication_banner_3:
+      action: add
+      slide: shub_slide
+  launch_young:
+    shub_lost_indication_banner, shub_lost_indication_banner_2, shub_gathering_indication_banner, shub_gathering_indication_banner_2, shub_gathering_indication_banner_3:
+      action: remove
+    shub_young_indication_banner, shub_young_indication_banner_2:
+      action: add
+      slide: shub_slide
+  launch_shubend:
+    shub_lost_indication_banner, shub_lost_indication_banner_2, shub_young_indication_banner, shub_young_indication_banner_2:
+      action: remove
+    shub_end_indication_banner, shub_end_indication_banner_2, shub_end_indication_banner_3:
+      action: add
+      slide: shub_slide
+
+  shub_need_reload:
+    shub_end_indication_banner_3:
+      action: remove
+    shub_end_indication_banner_4:
+      action: add
+      slide: shub_slide
+
+  shub_reloaded:
+    shub_end_indication_banner_4:
+      action: remove
+    shub_end_indication_banner_3:
+      action: add
+      slide: shub_slide
+
+  launch_shubkill:
+    shub_lost_indication_banner, shub_lost_indication_banner_2, shub_end_indication_banner, shub_lost_indication_banner_2, shub_end_indication_banner_2, shub_end_indication_banner_3:
+      action: remove
+    shub_kill_indication_banner, shub_kill_indication_banner_2:
+      action: add
+      slide: shub_slide
+
+###########################
+
+shot_profiles:
+  lost_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: lostflashing
+        show: shub_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: lostflashing2
+        show: shub_shub_insert_flash_show
+        speed: 125
+        loops: -1
+        priority: 600
+      - name: lostflashing3
+        show: shub_shub_insert_flash_show
+        speed: 185
+        loops: -1
+        priority: 600
+      - name: lostoff
+        show: off
+
+  gathering_target_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: gatheringflashing
+        show: shub_gathering_target_blink_show
+        speed: 15
+        loops: -1
+        priority: 600
+
+  shub_gathering_main_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: gatheringrampflashing
+        show: shub_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: gathering_off
+        show: off
+  shub_gathering_green_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: gatheringrampflashing
+        show: shub_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: gathering_off
+        show: off
+  shub_gathering_cthulhu_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: gatheringrampflashing
+        show: shub_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: gathering_off
+        show: off
+
+  young_target_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: youngflashing
+        show: shub_young_target_blink_show
+        speed: 15
+        loops: -1
+        priority: 600
+
+  young_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: youngflashing
+        show: shub_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: youngflashing2
+        show: shub_shub_insert_flash_show
+        speed: 125
+        loops: -1
+        priority: 600
+      - name: youngoff
+        show: off
+
+  shub_shubend_bumper_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: shubendflashing
+        show: shub_young_target_blink_show
+        speed: 10
+        loops: -1
+        priority: 600
+  shub_shubend2_bumper_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: shubendflashing
+        show: shub_young_target_blink_show
+        speed: 20
+        loops: -1
+        priority: 600
+
+  shub_shubend_orbit_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: shubendflashing
+        show: shub_shub_insert_flash_show
+        speed: 125
+        loops: -1
+        priority: 600
+      - name: shubendoff
+        show: off
+
+  shub_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: shubthitflashing
+        show: shub_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+
+###########################
+
+shots:
+  shub_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_86 
+  shub_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_85
+  shub_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_84
+  shub_sling_left_shot:
+    switch: s_sling_left
+    profile: shub_target_flash
+    show_tokens:
+      led: led_30, led_31
+  shub_sling_right_shot:
+    switch: s_sling_right
+    profile: shub_target_flash
+    show_tokens:
+      led: led_36, led_37
+  shub_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: shub_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  shub_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: shub_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+  shub_shubend_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: shub_shubend_bumper_profile
+    enable_events: launch_shubend
+    disable_events: shub_need_reload
+    show_tokens:
+      led: insert_86
+  shub_shubend_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: shub_shubend_bumper_profile
+    enable_events: launch_shubend
+    disable_events: shub_need_reload
+    show_tokens:
+      led: insert_85
+  shub_shubend_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: shub_shubend_bumper_profile
+    enable_events: launch_shubend
+    disable_events: shub_need_reload
+    show_tokens:
+      led: insert_84
+
+  shub_shubend2_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: shub_shubend_bumper_profile
+    enable_events: shub_reloaded
+    disable_events: launch_shubkill
+    show_tokens:
+      led: insert_86
+  shub_shubend2_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: shub_shubend_bumper_profile
+    enable_events: shub_reloaded
+    disable_events: launch_shubkill
+    show_tokens:
+      led: insert_85
+  shub_shubend2_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: shub_shubend_bumper_profile
+    enable_events: shub_reloaded
+    disable_events: launch_shubkill
+    show_tokens:
+      led: insert_84
+
+  shub_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_41
+  shub_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_32
+  shub_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_30
+  shub_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_20
+  shub_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_10
+
+  shub_gathering_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: gathering_target_profile
+    enable_events: gathering_target_1, gathering_target_2_1
+    disable_events: launch_young, gathering_target_2, gathering_target_3, gathering_target_4, gathering_target_5
+    show_tokens:
+      led: insert_41
+  shub_gathering_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: gathering_target_profile
+    enable_events: gathering_target_2, gathering_target_2_2
+    disable_events: launch_young, gathering_target_1, gathering_target_3, gathering_target_4, gathering_target_5
+    show_tokens:
+      led: insert_32
+  shub_gathering_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: gathering_target_profile
+    enable_events: gathering_target_3, gathering_target_2_3
+    disable_events: launch_young, gathering_target_1, gathering_target_2, gathering_target_4, gathering_target_5
+    show_tokens:
+      led: insert_30
+  shub_gathering_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: gathering_target_profile
+    enable_events: gathering_target_4, gathering_target_2_4
+    disable_events: launch_young, gathering_target_1, gathering_target_2, gathering_target_3, gathering_target_5
+    show_tokens:
+      led: insert_20
+  shub_gathering_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: gathering_target_profile
+    enable_events: gathering_target_5, gathering_target_2_5
+    disable_events: launch_young, gathering_target_1, gathering_target_2, gathering_target_3, gathering_target_4
+    show_tokens:
+      led: insert_10
+
+  shub_young_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: young_target_profile
+    enable_events: young_target_1
+    disable_events: launch_shubend, stop_young_target, young_target_2, young_target_3, young_target_4, young_target_5
+    show_tokens:
+      led: insert_41
+  shub_young_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: young_target_profile
+    enable_events: young_target_2
+    disable_events: launch_shubend, stop_young_target, young_target_1, young_target_3, young_target_4, young_target_5
+    show_tokens:
+      led: insert_32
+  shub_young_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: young_target_profile
+    enable_events: young_target_3
+    disable_events: launch_shubend, stop_young_target, young_target_1, young_target_2, young_target_4, young_target_5
+    show_tokens:
+      led: insert_30
+  shub_young_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: young_target_profile
+    enable_events: young_target_4
+    disable_events: launch_shubend, stop_young_target, young_target_1, young_target_2, young_target_3, young_target_5
+    show_tokens:
+      led: insert_20
+  shub_young_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: young_target_profile
+    enable_events: young_target_5
+    disable_events: launch_shubend, stop_young_target, young_target_1, young_target_2, young_target_3, young_target_4
+    show_tokens:
+      led: insert_10
+    
+  shub_target_library_1_shot:
+    switch: s_target_library_1
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_80
+  shub_target_library_2_shot:
+    switch: s_target_library_2
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_79
+  shub_target_library_3_shot:
+    switch: s_target_library_3
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_78
+  shub_target_library_4_shot:
+    switch: s_target_library_4
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_77
+  shub_target_library_5_shot:
+    switch: s_target_library_5
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_76
+  shub_target_library_6_shot:
+    switch: s_target_library_6
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_75
+
+  shub_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  shub_gate_library_shot:
+    switch: s_gate_library
+    profile: shub_target_flash
+    show_tokens:
+      led: led_12, led_1
+  shub_roll_library_shot:
+    switch: s_roll_library
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  shub_roll_space_shot:
+    switch: s_roll_space
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  shub_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  shub_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  shub_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  shub_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  shub_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  shub_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  shub_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  shub_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  shub_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  shub_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  shub_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  shub_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: shub_target_flash
+    show_tokens:
+      led: led_1, led_2
+  shub_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: shub_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  shub_spinner_shot:
+    switch: s_spinner
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  shub_gathering_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: shub_gathering_main_ramp_profile
+    enable_events: launch_gathering
+    restart_events: shub_gathering_target_square_1_shot_gatheringflashing_hit, shub_gathering_target_square_2_shot_gatheringflashing_hit, shub_gathering_target_square_3_shot_gatheringflashing_hit, shub_gathering_target_square_4_shot_gatheringflashing_hit, shub_gathering_target_square_5_shot_gatheringflashing_hit
+    disable_events: launch_young
+  shub_gathering_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: shub_gathering_green_ramp_profile
+    enable_events: launch_gathering
+    restart_events: shub_gathering_target_square_1_shot_gatheringflashing_hit, shub_gathering_target_square_2_shot_gatheringflashing_hit, shub_gathering_target_square_3_shot_gatheringflashing_hit, shub_gathering_target_square_4_shot_gatheringflashing_hit, shub_gathering_target_square_5_shot_gatheringflashing_hit
+    disable_events: launch_young
+  shub_gathering_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: shub_gathering_cthulhu_ramp_profile
+    enable_events: launch_gathering
+    restart_events: shub_gathering_target_square_1_shot_gatheringflashing_hit, shub_gathering_target_square_2_shot_gatheringflashing_hit, shub_gathering_target_square_3_shot_gatheringflashing_hit, shub_gathering_target_square_4_shot_gatheringflashing_hit, shub_gathering_target_square_5_shot_gatheringflashing_hit
+    disable_events: launch_young
+
+  shub_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_24
+  shub_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_23
+  shub_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_22
+  shub_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: shub_target_flash
+    show_tokens:
+      light: insert_21
+
+  shub_green_target_1_shot:
+    switch: s_target_green_1
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_47
+  shub_green_target_2_shot:
+    switch: s_target_green_2
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_45
+  shub_green_target_3_shot:
+    switch: s_target_green_3
+    profile: shub_target_flash
+    show_tokens:
+      led: insert_46
+
+  shub_space_orbit_shot:
+    hit_events: shub_space_orbit_sequence_hit
+  shub_asylum_orbit_shot:
+    hit_events: shub_asylum_orbit_sequence_hit
+  shub_asylum_orbit_lost_shot:
+    hit_events: shub_asylum_orbit_sequence_hit
+    profile: lost_profile
+    disable_events: launch_gathering
+  shub_asylum_orbit_young_shot:
+    hit_events: shub_asylum_orbit_sequence_hit
+    profile: young_profile
+    enable_events: launch_young
+    disable_events: launch_shubend
+  shub_asylum_orbit_shubend_shot:
+    hit_events: shub_asylum_orbit_sequence_hit
+    profile: shub_shubend_orbit_profile
+    enable_events: shub_need_reload
+    disable_events: launch_shubkill
+
+
+  shub_library_roll_shot:
+    hit_events: shub_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  shub_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  shub_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  shub_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_shub_available:
+      action: set
+      string: 'no'
+
+  launch_gathering: 
+    shub_mission_level:
+      action: set
+      string: 'step_two'
+  launch_young: 
+    shub_mission_level:
+      action: set
+      string: 'step_three'
+  launch_shubend: 
+    shub_mission_level:
+      action: set
+      string: 'step_four'
+
+  launch_shubkill:
+    variable_shub_life:
+      action: set
+      string: 'almostdead'
+  s_action_active{current_player.variable_shub_life=='almostdead'}:
+    shub_mission_available:
+      action: set
+      string: 'completed'
+
+  stop_young_target:
+    variable_targetshubyoung:
+      action: set
+      string: 'hit'    
+
+
+  shub_gathering_target_square_1_shot_gatheringflashing_hit:
+    shub_gathering_gauge:
+      action: set
+      int: 3
+  shub_gathering_target_square_2_shot_gatheringflashing_hit:
+    shub_gathering_gauge:
+      action: set
+      int: 3
+  shub_gathering_target_square_3_shot_gatheringflashing_hit:
+    shub_gathering_gauge:
+      action: set
+      int: 3
+  shub_gathering_target_square_4_shot_gatheringflashing_hit:
+    shub_gathering_gauge:
+      action: set
+      int: 3
+  shub_gathering_target_square_5_shot_gatheringflashing_hit:
+    shub_gathering_gauge:
+      action: set
+      int: 3
+
+
+  shub_sling_left_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_sling_right_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_bumper_one_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_bumper_two_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_bumper_three_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_scoop_bas_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_scoop_haut_shot_hit:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  shub_shubend_bumper_one_shot_shubendflashing_hit:
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+  shub_shubend_bumper_two_shot_shubendflashing_hit:
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+  shub_shubend_bumper_three_shot_shubendflashing_hit:
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+  shub_shubend2_bumper_one_shot_shubendflashing_hit:
+    score: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+  shub_shubend2_bumper_two_shot_shubendflashing_hit:
+    score: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+  shub_shubend2_bumper_three_shot_shubendflashing_hit:
+    score: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1800 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_end_gauge:
+      action: add
+      int: -1
+
+  shub_target_square_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_square_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_square_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_square_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_square_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  shub_young_target_square_1_shot_youngflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_youngtarget_gauge:
+      action: add
+      int: -1
+  shub_young_target_square_2_shot_youngflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_youngtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  shub_young_target_square_3_shot_youngflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_youngtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  shub_young_target_square_4_shot_youngflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_youngtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  shub_young_target_square_5_shot_youngflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_youngtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+
+  shub_drop_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_drop_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_drop_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_drop_target_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  shub_green_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_green_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_green_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  shub_target_library_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_library_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_library_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_library_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_library_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  shub_target_library_6_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  shub_team_1_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_team_2_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_team_3_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  shub_spinner_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  shub_roll_left_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_left_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_right_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_right_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_fordt_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_space_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_roll_asylum_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  shub_asylum_orbit_lost_shot_lostflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_lost_gauge:
+      action: add
+      int: -1
+  shub_asylum_orbit_lost_shot_lostflashing2_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_lost_gauge:
+      action: add
+      int: -1
+  shub_asylum_orbit_lost_shot_lostflashing3_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_lost_gauge:
+      action: add
+      int: -1
+  shub_asylum_orbit_young_youngflashing_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_young_gauge:
+      action: add
+      int: -1
+  shub_asylum_orbit_young_youngflashing2_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_young_gauge:
+      action: add
+      int: -1
+  shub_asylum_orbit_shubend_shot_shubendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  shub_main_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  shub_green_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  shub_cthulhu_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  shub_gate_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  shub_gathering_main_ramp_shot_gatheringrampflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_gathering_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  shub_gathering_green_ramp_shot_gatheringrampflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_gathering_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  shub_gathering_cthulhu_ramp_shot_gatheringrampflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_gathering_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+
+  shub_gate_exit_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  shub_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    shub_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+light_player:
+  mode_shub_started:
+    gi:
+      color: purple
+
+  launch_gathering:
+    insert_9:
+      color: CC0066
+  launch_young:
+    insert_8:
+      color: CC0066
+  launch_shubend:
+    insert_7:
+      color: CC0066
+  launch_shubkill:
+    insert_8:
+      color: CC0066
+
+###########################
+
+show_player:
+  mode_shub_started:
+    mission_shub_blink_show:
+      speed: 5
+    shub_side_blink_show:
+      speed: 5
+    shub_backglass_blink_show:
+      speed: 15
+
+  launch_gathering:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 1
+  launch_young:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 2
+  launch_shubend{current_player.insert_eldersign=='five'}:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 3
+  launch_shubkill:
+    nyarla_new_step_show:
+      speed: 35
+      loops: -1
+
+  shub_cthulhu_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  shub_green_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  shub_main_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  shub_asylum_orbit_shot_hit:
+    shub_asylum_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  shub_space_orbit_shot_hit:
+    shub_space_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  shub_library_roll_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  shub_asylum_orbit_lost_shot_lostflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_asylum_orbit_lost_shot_lostflashing2_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_asylum_orbit_lost_shot_lostflashing3_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_gathering_main_ramp_shot_gatheringrampflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_gathering_green_ramp_shot_gatheringrampflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_gathering_cthulhu_ramp_shot_gatheringrampflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_young_target_square_1_shot_youngflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_young_target_square_2_shot_youngflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_young_target_square_3_shot_youngflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_young_target_square_4_shot_youngflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_young_target_square_5_shot_youngflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend_bumper_one_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend_bumper_two_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend_bumper_three_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend2_bumper_one_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend2_bumper_two_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  shub_shubend2_bumper_three_shot_shubendflashing_hit:
+    shub_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  shub_sling_left_shot_hit:
+    sanity_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  shub_sling_right_shot_hit:
+    sanity_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+
+###########################
+
+sound_player:
+  mode_shub_started:
+    cthulhu_music_calme:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    cthulhu_music_calme:
+      action: stop
+    cthulhu_music:
+      action: stop
+
+  relaunch_cthulhu_music:
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_shub_voice_time_complete:
+    shub_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  launch_gathering:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+    cthulhu_music_calme:
+      action: stop    
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  launch_young:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launch_shubend:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launch_shubkill:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+
+  shub_sling_left_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_sling_right_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_bumper_one_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_bumper_two_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_bumper_three_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_scoop_bas_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_scoop_haut_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+
+
+  shub_target_square_1_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_target_square_2_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_target_square_3_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_target_square_4_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_target_square_5_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+
+  shub_drop_target_1_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_drop_target_2_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_drop_target_3_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_drop_target_4_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+
+
+  shub_green_target_1_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_green_target_2_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+  shub_green_target_3_shot_hit:
+    shub_sfx_pool:
+      action: play
+    shub_hit_sfx_pool:
+      action: play
+
+
+  shub_team_1_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_team_2_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_team_3_shot_hit:
+    shub_sfx_pool:
+      action: play
+
+  shub_spinner_shot_hit:
+    shub_hit_sfx_pool:
+      action: play
+
+  shub_roll_left_outlane_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_left_inlane_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_right_inlane_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_right_outlane_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_library_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_fordt_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_space_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_roll_asylum_shot_hit:
+    shub_sfx_pool:
+      action: play
+
+  shub_main_ramp_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_green_ramp_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_cthulhu_ramp_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_gate_library_shot_hit:
+    shub_sfx_pool:
+      action: play
+
+  shub_gate_exit_library_shot_hit:
+    shub_sfx_pool:
+      action: play
+  shub_gate_secret_library_shot_hit:
+    shub_sfx_pool:
+      action: play
+
+  shub_reloaded:
+    reload_pump:
+      action: play  
+
+###########################
+
+sound_pools:
+  shub_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - shub_sfx_1
+      - shub_sfx_2
+      - shub_sfx_3
+      - shub_sfx_4
+      - shub_sfx_5
+      - shub_sfx_6
+      - shub_sfx_7
+      - shub_sfx_8
+      - shub_sfx_9
+      - shub_sfx_10
+      - shub_sfx_11
+      - shub_sfx_12
+      - shub_sfx_13
+      - shub_sfx_14
+      - shub_sfx_15
+      - shub_sfx_16
+      - shub_sfx_17
+      - shub_sfx_18
+
+  shub_hit_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - shub_hit_sfx_1
+      - shub_hit_sfx_2
+      - shub_hit_sfx_3
+      - shub_hit_sfx_4
+      - shub_hit_sfx_5
+      - shub_hit_sfx_6
+      - shub_hit_sfx_7
+      - shub_hit_sfx_8
+      - shub_hit_sfx_9
+      - shub_hit_sfx_10
+      - shub_hit_sfx_11
+      - shub_hit_sfx_12
+      - shub_hit_sfx_13
+      - shub_hit_sfx_14
+      - shub_hit_sfx_15
+
+  shub_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - shub_voice_1
+      - shub_voice_2
+      - shub_voice_3
+      - shub_voice_4
+      - shub_voice_5
+      - shub_voice_6
+      - shub_voice_7
+      - shub_voice_8
+      - shub_voice_9
+      - shub_voice_10
+      - shub_voice_11
+      - shub_voice_12
+      - shub_voice_13

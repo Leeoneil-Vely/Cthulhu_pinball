@@ -1,0 +1,11 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_56: purple-f200ms
+    insert_87: purple-f200ms
+    
+- time: "+1"
+  lights:
+    insert_56: white-f200ms
+    insert_87: white-f200ms
+    

@@ -1,0 +1,40 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_39: white
+    insert_40: white
+    insert_42: white
+    insert_43: white
+
+    insert_35: white
+    insert_36: white
+    insert_37: white
+    insert_38: white
+
+    insert_27: white
+    insert_28: white
+    insert_31: white
+    insert_33: white
+
+    insert_74: white
+    insert_25: white
+    insert_26: white
+    insert_29: white
+
+    insert_16: white
+    insert_17: white
+    insert_18: white
+    insert_19: white
+
+    insert_6: white
+    insert_7: white
+    insert_8: white
+    insert_9: white
+
+    insert_55: off
+    insert_54: off
+    insert_14: off
+    insert_15: off
+    insert_0: off
+    insert_1: off
+    insert_2: off

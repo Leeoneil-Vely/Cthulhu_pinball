@@ -1,0 +1,1126 @@
+#config_version=6
+mode:
+  start_events: cult_start
+  stop_events: cult_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_cult_started: twenties_stop, hold_stop, launch_random_cult_video
+  relaunch_cult_video: launch_random_cult_video|5s
+  cult_gate_library_shot_hit: library_cult_start
+  cult_cthulhu_ramp_shot_cultactive_hit: shaker_shake
+  cult_green_ramp_shot_cultactive_hit: shaker_shake
+  cult_main_ramp_shot_cultactive_hit: shaker_shake
+  cult_library_roll_shot_cultactive_hit: shaker_shake
+  cult_space_orbit_shot_cultactive_hit: shaker_shake
+  cult_asylum_orbit_shot_cultactive_hit: shaker_shake
+  "{device.shots.cult_asylum_orbit_shot.state_name=='off' and device.shots.cult_library_roll_shot.state_name=='off' and device.shots.cult_space_orbit_shot.state_name=='off' and device.shots.cult_cthulhu_ramp_shot.state_name=='off' and device.shots.cult_green_ramp_shot.state_name=='off' and device.shots.cult_main_ramp_shot.state_name=='off'}": cult_stop, cult_win_start
+  s_action_active{current_player.variable_number_of_bullet_value > 0}: action_valid_cult_shot, shaker_shake
+  cult_scoop_haut_shot_hit{current_player.cellar_investigator_state=='free'}: cellar_start
+  multiball_multiball_cellar_multiball_ended: relaunch_cult_music
+  multiball_multiball_twenties_multiball_ended: relaunch_cult_music
+
+  mode_cult_started{current_player.lock_rlyeh_cult_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_cult_music
+
+###########################
+
+random_event_player:
+  action_valid_cult_shot:
+    events:
+      - action_valid_cult_shot_1{device.shots.cult_space_orbit_shot.state_name=='cultactive'}
+      - action_valid_cult_shot_2{device.shots.cult_library_roll_shot.state_name=='cultactive'}
+      - action_valid_cult_shot_3{device.shots.cult_main_ramp_shot.state_name=='cultactive'}
+      - action_valid_cult_shot_4{device.shots.cult_green_ramp_shot.state_name=='cultactive'}
+      - action_valid_cult_shot_5{device.shots.cult_cthulhu_ramp_shot.state_name=='cultactive'}
+      - action_valid_cult_shot_6{device.shots.cult_asylum_orbit_shot.state_name=='cultactive'}
+    force_all: true
+
+  launch_random_cult_video:
+    events:
+      - launch_cult_video_1
+      - launch_cult_video_2
+      - launch_cult_video_3
+      - launch_cult_video_4
+      - launch_cult_video_5
+      - launch_cult_video_6
+      - launch_cult_video_7
+      - launch_cult_video_8
+
+
+###########################
+
+slides:
+  cult_slide: []
+
+###########################
+
+slide_player:
+  mode_cult_started: cult_slide
+
+###########################
+
+widgets:
+  cult_indication_banner:
+    type: text
+    text: Escape the cultists
+    color: green
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cult_indication_banner_2:
+    type: text
+    text: Run to the (player|cult_escape_gauge) lights !
+    color: green
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cult_name_banner:
+    type: text
+    text: Cult temple
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: green
+    style: mission_text
+
+  cult_banner_image:
+    type: Image
+    image: mini_cult
+    y: 50%
+    x: 25%
+    z: 100
+
+
+  video_cult_1_scratch_widget:
+    type: video
+    video: cult_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_2_scratch_widget:
+    type: video
+    video: cult_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_3_scratch_widget:
+    type: video
+    video: cult_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_4_scratch_widget:
+    type: video
+    video: cult_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_5_scratch_widget:
+    type: video
+    video: cult_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_6_scratch_widget:
+    type: video
+    video: cult_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 2
+    events_when_removed: relaunch_cult_video
+  video_cult_7_scratch_widget:
+    type: video
+    video: cult_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+  video_cult_8_scratch_widget:
+    type: video
+    video: cult_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_cult_video
+
+  video_cult_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+
+###########################
+
+widget_player:
+  mode_cult_started:
+    cult_name_banner, cult_banner_image, cult_indication_banner, cult_indication_banner_2, cthulhu_frame_image, video_cult_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: cult_slide
+  mode_cult_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: cult_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_cult_video_1:
+    video_cult_1_scratch_widget:
+      action: add
+      slide: cult_slide   
+  launch_cult_video_2:
+    video_cult_2_scratch_widget:
+      action: add
+      slide: cult_slide   
+  launch_cult_video_3:
+    video_cult_3_scratch_widget:
+      action: add
+      slide: cult_slide
+  launch_cult_video_4:
+    video_cult_4_scratch_widget:
+      action: add
+      slide: cult_slide
+  launch_cult_video_5:
+    video_cult_5_scratch_widget:
+      action: add
+      slide: cult_slide   
+  launch_cult_video_6:
+    video_cult_6_scratch_widget:
+      action: add
+      slide: cult_slide
+  launch_cult_video_7:
+    video_cult_7_scratch_widget:
+      action: add
+      slide: cult_slide
+  launch_cult_video_8:
+    video_cult_8_scratch_widget:
+      action: add
+      slide: cult_slide 
+
+  remove_random_cult_video_1:
+    video_cult_1_scratch_widget:
+      action: remove
+  remove_random_cult_video_2:
+    video_cult_2_scratch_widget:
+      action: remove
+  remove_random_cult_video_3:
+    video_cult_3_scratch_widget:
+      action: remove
+  remove_random_cult_video_4:
+    video_cult_4_scratch_widget:
+      action: remove
+  remove_random_cult_video_5:
+    video_cult_5_scratch_widget:
+      action: remove
+  remove_random_cult_video_6:
+    video_cult_6_scratch_widget:
+      action: remove
+  remove_random_cult_video_7:
+    video_cult_7_scratch_widget:
+      action: remove
+  remove_random_cult_video_8:
+    video_cult_8_scratch_widget:
+      action: remove
+
+###########################
+
+shot_profiles:
+  cult_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: cultactive
+        show: cult_ramp_blink_show
+        speed: 10
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_aza:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: cultactive
+        show: cult_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_library:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: cultactive
+        show: cult_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_king:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: cultactive
+        show: cult_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_nyarla:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: cultactive
+        show: cult_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_cthulhu:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: cultactive
+        show: cult_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+  cult_profile_shub:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: cultactive
+        show: cult_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+
+  cult_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: culthitflashing
+        show: cult_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+###########################
+
+shots:
+  cult_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_86
+  cult_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_85
+  cult_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_84
+  cult_sling_left_shot:
+    switch: s_sling_left
+    profile: cult_target_flash
+    show_tokens:
+      led: led_30, led_31
+  cult_sling_right_shot:
+    switch: s_sling_right
+    profile: cult_target_flash
+    show_tokens:
+      led: led_36, led_37
+  cult_sling_up_shot:
+    switch: s_sling_up
+    profile: cult_target_flash
+    show_tokens:
+      led: led_5, led_6
+  cult_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: cult_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  cult_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: cult_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+  cult_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_41
+  cult_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_32
+  cult_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_30
+  cult_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_20
+  cult_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_10
+
+  cult_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  cult_gate_library_shot:
+    switch: s_gate_library
+    profile: cult_target_flash
+    show_tokens:
+      led: led_12, led_1
+  cult_roll_library_shot:
+    switch: s_roll_library
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  cult_roll_space_shot:
+    switch: s_roll_space
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  cult_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+
+  cult_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  cult_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  cult_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  cult_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  cult_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  cult_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  cult_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+
+  cult_cthulhu_ramp_base_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  cult_green_ramp_base_shot:
+    switch: s_gate_green_ramp
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  cult_main_ramp_base_shot:
+    switch: s_gate_main_ramp
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+
+  cult_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cult_profile_cthulhu
+    hit_events: action_valid_cult_shot_5
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  cult_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: cult_profile_nyarla
+    hit_events: action_valid_cult_shot_4
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74
+  cult_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: cult_profile_king
+    hit_events: action_valid_cult_shot_3
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+
+
+  cult_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: cult_target_flash
+    show_tokens:
+      led: led_1, led_2
+  cult_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: cult_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  cult_spinner_shot:
+    switch: s_spinner
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  cult_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_24
+  cult_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_23
+  cult_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_22
+  cult_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: cult_target_flash
+    show_tokens:
+      led: insert_21
+
+  cult_green_target_1_shot:
+    switch: s_target_green_1
+    profile: cult_target_flash
+    show_tokens:
+      led: led_47
+  cult_green_target_2_shot:
+    switch: s_target_green_2
+    profile: cult_target_flash
+    show_tokens:
+      led: led_45
+  cult_green_target_3_shot:
+    switch: s_target_green_3
+    profile: cult_target_flash
+    show_tokens:
+      led: led_46
+
+  cult_space_orbit_shot:
+    hit_events: cult_space_orbit_sequence_hit, action_valid_cult_shot_1
+    profile: cult_profile_aza
+    show_tokens:
+      led: insert_43, insert_42, insert_40, insert_39
+  cult_asylum_orbit_shot:
+    hit_events: cult_asylum_orbit_sequence_hit, action_valid_cult_shot_6
+    profile: cult_profile_shub
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  cult_library_roll_shot:
+    hit_events: cult_library_roll_sequence_hit, action_valid_cult_shot_2
+    profile: cult_profile_library
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+
+###########################
+
+sequence_shots:
+  cult_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  cult_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  cult_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  mode_cult_started:
+    mission_cult_blink_show:
+      speed: 5
+    cult_backglass_blink_show:
+      speed: 15    
+    portal_led_blink_show:
+      speed: 40
+      loops: -1
+      priority: 1000
+
+
+  cult_sling_left_shot_hit:
+    cult_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  cult_sling_right_shot_hit:
+    cult_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  cult_cthulhu_ramp_shot_off_hit:
+    all_insert_cult_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  cult_green_ramp_shot_off_hit:
+    all_insert_cult_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  cult_main_ramp_shot_off_hit:
+    all_insert_cult_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  cult_asylum_orbit_shot_off_hit:
+    cult_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  cult_space_orbit_shot_off_hit:
+    cult_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  cult_library_roll_shot_off_hit:
+    all_insert_cult_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  cult_cthulhu_ramp_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  cult_green_ramp_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  cult_main_ramp_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  cult_asylum_orbit_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  cult_space_orbit_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  cult_library_roll_shot_cultactive_hit:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  s_action_active{current_player.variable_number_of_bullet_value > 0}:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_cult_available:
+      action: set
+      string: 'no'
+
+  action_valid_cult_shot:
+    variable_number_of_bullet_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  cult_sling_left_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_sling_right_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  cult_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+
+  cult_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  cult_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  cult_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  cult_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  cult_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  cult_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_space_orbit_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+  cult_asylum_orbit_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_space_orbit_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_asylum_orbit_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+  cult_cthulhu_ramp_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  cult_green_ramp_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  cult_main_ramp_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  cult_cthulhu_ramp_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  cult_green_ramp_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  cult_main_ramp_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  cult_library_roll_shot_cultactive_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  cult_library_roll_shot_off_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  cult_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+###########################
+
+light_player:
+  mode_cult_started:
+    gi:
+      color: green
+    side_led_right:
+      color: green
+    side_led_left:
+      color: green
+    cult_box_led: white
+
+###########################
+
+timers:
+  cult_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_cult_started
+
+###########################
+
+sound_player:
+  mode_cult_started:
+    cult_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    cult_music:
+      action: stop
+
+  relaunch_cult_music:
+    dramatic_music_pool, suspens_music_pool:
+      action: stop
+    cult_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_cult_voice_time_complete:
+    cult_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  cult_bumper_one_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_bumper_two_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_bumper_three_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_sling_left_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_sling_right_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_scoop_bas_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_scoop_haut_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_target_square_1_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_target_square_2_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_target_square_3_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_target_square_4_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_target_square_5_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_green_target_1_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_green_target_2_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_green_target_3_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_team_1_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_team_2_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_team_3_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_spinner_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_roll_left_outlane_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_left_inlane_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_right_inlane_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_right_outlane_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_library_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_fordt_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_space_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_roll_asylum_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+  cult_cthulhu_ramp_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_main_ramp_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_green_ramp_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_gate_library_shot_hit:
+    cult_sfx_pool:
+      action: play
+  cult_gate_exit_library_shot_hit:
+    cult_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  cult_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - cult_voice_1
+      - cult_voice_2
+      - cult_voice_3
+      - cult_voice_4
+      - cult_voice_5
+      - cult_voice_6
+      - cult_voice_7
+
+  cult_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - guns_1
+      - guns_2
+      - guns_3
+      - guns_4
+      - cult_sfx_1
+      - cult_sfx_2
+      - cult_sfx_3
+      - cult_sfx_4
+      - cult_sfx_5
+      - cult_sfx_6
+      - cult_sfx_7
+      - cult_sfx_8
+      - cult_sfx_9
+      - cult_sfx_10
+
+###########################
+
+videos:
+  cult_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: cult_video_1.mp4
+    events_when_stopped: remove_random_cult_video_1
+  cult_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: cult_video_2.mp4
+    events_when_stopped: remove_random_cult_video_2
+  cult_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: cult_video_3.mp4
+    events_when_stopped: remove_random_cult_video_3
+  cult_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: cult_video_4.mp4
+    events_when_stopped: remove_random_cult_video_4
+  cult_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: cult_video_5.mp4
+    events_when_stopped: remove_random_cult_video_5
+  cult_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: cult_video_6.mp4
+    events_when_stopped: remove_random_cult_video_6
+  cult_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: cult_video_7.mp4
+    events_when_stopped: remove_random_cult_video_7
+  cult_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: cult_video_8.mp4
+    events_when_stopped: remove_random_cult_video_8

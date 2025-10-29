@@ -1,0 +1,8 @@
+#show_version=6
+- duration: 1
+  lights:
+    backglass_led: red-f200ms
+
+- duration: 1
+  lights:
+    backglass_led: off-f200ms

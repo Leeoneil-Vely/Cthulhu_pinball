@@ -1,0 +1,11 @@
+#show_version=6
+- time: 0
+  lights:
+    side_led_right: 994C00-f200ms
+    side_led_left: 994C00-f200ms
+    
+- time: "+1"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+    

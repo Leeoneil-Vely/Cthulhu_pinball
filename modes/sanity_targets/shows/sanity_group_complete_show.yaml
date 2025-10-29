@@ -1,0 +1,17 @@
+#show_version=6
+- duration: 1
+  lights:
+    insert_50: red-f200ms
+    insert_49: red-f200ms
+    insert_48: red-f200ms
+    insert_11: red-f200ms
+    insert_12: red-f200ms
+    insert_13: red-f200ms
+- duration: 1
+  lights:
+    insert_50: white-f200ms
+    insert_49: white-f200ms
+    insert_48: white-f200ms
+    insert_11: white-f200ms
+    insert_12: white-f200ms
+    insert_13: white-f200ms

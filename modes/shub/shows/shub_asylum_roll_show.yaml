@@ -1,0 +1,327 @@
+#show_version=6
+- time: 0
+  lights:
+    led_18: 'C221C0'
+    
+- time: '+1'
+  lights:
+    insert_35: 'C322C2'
+    led_18: '000000'
+    
+- time: '+1'
+  lights:
+    insert_35: '000000'
+    insert_36: '681267'
+    led_12: '490D48'
+    led_19: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_36: '000000'
+    insert_39: 'C422C2'
+    led_12: '000000'
+    led_19: '000000'
+    led_22: '0E020E'
+    
+- time: '+1'
+  lights:
+    insert_39: '000000'
+    insert_40: 'C021BF'
+    led_20: 'C422C2'
+    led_22: '000000'
+    
+- time: '+1'
+  lights:
+    insert_32: 'C422C2'
+    insert_33: 'C422C2'
+    insert_40: '000000'
+    insert_41: 'C422C2'
+    led_20: '000000'
+    
+- time: '+1'
+  lights:
+    insert_30: 'C422C2'
+    insert_31: 'C422C2'
+    insert_32: '000000'
+    insert_33: '000000'
+    insert_41: '000000'
+    insert_42: 'C422C2'
+    led_21: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_30: '000000'
+    insert_31: '000000'
+    insert_34: 'C422C2'
+    insert_42: '000000'
+    insert_43: 'C422C2'
+    led_21: '000000'
+    led_24: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_27: 'C422C2'
+    insert_29: 'C422C2'
+    insert_34: '000000'
+    insert_43: '000000'
+    led_24: '000000'
+    
+- time: '+1'
+  lights:
+    insert_26: 'C422C2'
+    insert_27: '000000'
+    insert_29: '000000'
+    led_47: 'C422C2'
+    led_48: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_24: 'C422C2'
+    insert_25: 'C422C2'
+    insert_26: '000000'
+    insert_84: 'C422C2'
+    led_25: 'C422C2'
+    led_46: '9D1B9C'
+    led_47: 'B21FB0'
+    led_48: '000000'
+    
+- time: '+1'
+  lights:
+    insert_23: 'C422C2'
+    insert_24: '000000'
+    insert_25: '000000'
+    insert_74: 'C422C2'
+    led_25: '000000'
+    led_46: 'C422C2'
+    led_47: '000000'
+    
+- time: '+1'
+  lights:
+    insert_22: 'C422C2'
+    insert_23: '000000'
+    insert_46: 'C422C2'
+    insert_47: 'C422C2'
+    insert_73: 'C422C2'
+    insert_74: '000000'
+    insert_84: '000000'
+    led_45: 'C422C2'
+    led_46: '000000'
+    
+- time: '+1'
+  lights:
+    insert_21: 'C422C2'
+    insert_22: '000000'
+    insert_45: 'C422C2'
+    insert_46: '000000'
+    insert_47: '000000'
+    insert_48: '6D136D'
+    insert_71: 'A51CA4'
+    insert_72: '6A1269'
+    insert_73: '000000'
+    led_26: 'C422C2'
+    led_45: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: 'C422C2'
+    insert_21: '000000'
+    insert_44: 'C422C2'
+    insert_45: '000000'
+    insert_48: 'B31FB2'
+    insert_49: 'C422C2'
+    insert_68: 'C422C2'
+    insert_69: 'C422C2'
+    insert_70: 'C422C2'
+    insert_71: '000000'
+    insert_72: '000000'
+    led_26: '000000'
+    led_27: 'C422C2'
+    led_44: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_18: '8F198E'
+    insert_19: 'C422C2'
+    insert_20: '5E105D'
+    insert_44: '000000'
+    insert_48: '000000'
+    insert_49: '5E105D'
+    insert_50: 'C422C2'
+    insert_66: 'C422C2'
+    insert_67: 'C422C2'
+    insert_68: '000000'
+    insert_69: '000000'
+    insert_70: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: 'C422C2'
+    insert_17: 'C422C2'
+    insert_18: 'C422C2'
+    insert_20: '000000'
+    insert_49: '000000'
+    insert_50: '000000'
+    insert_51: 'C422C2'
+    insert_52: 'C422C2'
+    insert_64: 'C422C2'
+    insert_65: 'C422C2'
+    insert_66: '000000'
+    insert_67: '000000'
+    led_27: '000000'
+    led_43: 'C422C2'
+    led_44: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: 'C422C2'
+    insert_16: '000000'
+    insert_17: '000000'
+    insert_18: '000000'
+    insert_19: '000000'
+    insert_51: '000000'
+    insert_53: 'C422C2'
+    insert_63: 'C422C2'
+    insert_64: '000000'
+    insert_65: '000000'
+    led_43: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: '000000'
+    insert_11: 'C422C2'
+    insert_12: 'C422C2'
+    insert_52: '000000'
+    insert_53: '681267'
+    insert_54: 'C422C2'
+    insert_55: 'C422C2'
+    insert_63: '000000'
+    insert_7: 'C422C2'
+    insert_8: 'C422C2'
+    insert_9: 'C422C2'
+    led_28: 'C422C2'
+    led_30: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_11: '000000'
+    insert_13: 'C422C2'
+    insert_53: '000000'
+    insert_54: '000000'
+    insert_6: 'C422C2'
+    insert_61: 'C422C2'
+    insert_62: 'C422C2'
+    insert_8: '000000'
+    insert_9: '000000'
+    led_30: '000000'
+    
+- time: '+1'
+  lights:
+    insert_12: '000000'
+    insert_13: '000000'
+    insert_14: 'C422C2'
+    insert_55: '000000'
+    insert_58: 'C422C2'
+    insert_59: 'C422C2'
+    insert_60: 'C422C2'
+    insert_61: '000000'
+    insert_62: '000000'
+    insert_7: '000000'
+    led_28: '000000'
+    led_29: 'C422C2'
+    led_31: 'C422C2'
+    led_37: 'C422C2'
+    led_41: 'C422C2'
+    led_42: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_15: '5A0F59'
+    insert_56: '961A95'
+    insert_58: '751474'
+    insert_59: '5E105D'
+    insert_6: '000000'
+    insert_60: '000000'
+    led_31: '000000'
+    led_36: 'C422C2'
+    led_37: '6A126A'
+    led_40: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_14: '000000'
+    insert_15: 'C422C2'
+    insert_56: 'C422C2'
+    insert_58: '000000'
+    insert_59: '000000'
+    led_29: '000000'
+    led_32: '70136F'
+    led_36: 'A31CA2'
+    led_37: '000000'
+    led_39: 'C422C2'
+    led_40: 'BC20BB'
+    led_41: '000000'
+    led_42: '000000'
+    
+- time: '+1'
+  lights:
+    insert_15: '000000'
+    insert_56: '000000'
+    led_32: 'C422C2'
+    led_33: 'C422C2'
+    led_36: '000000'
+    led_38: 'C422C2'
+    led_39: '000000'
+    led_40: '000000'
+    
+- time: '+1'
+  lights:
+    led_32: '000000'
+    led_34: 'C422C2'
+    led_35: 'C422C2'
+    led_38: '000000'
+    
+- time: '+1'
+  lights:
+    insert_57: 'C422C2'
+    insert_87: '4A0D4A'
+    insert_88: '0E020E'
+    insert_89: 'C422C2'
+    insert_90: 'C422C2'
+    insert_91: 'C422C2'
+    led_33: '000000'
+    led_34: '000000'
+    led_35: '000000'
+    
+- time: '+1'
+  lights:
+    insert_57: '000000'
+    insert_87: 'C422C2'
+    insert_88: 'C422C2'
+    insert_90: '000000'
+    insert_91: '000000'
+    insert_92: 'C422C2'
+    insert_93: 'C422C2'
+    insert_94: 'C422C2'
+    
+- time: '+1'
+  lights:
+    insert_88: '480C47'
+    insert_89: '000000'
+    insert_92: '000000'
+    insert_93: '000000'
+    insert_94: '781577'
+    
+- time: '+1'
+  lights:
+    insert_87: '000000'
+    insert_88: '000000'
+    insert_94: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    

@@ -1,0 +1,8 @@
+#show_version=6
+- time: 0
+  lights:
+    boss_backglass_led: green-f200ms
+    
+- time: "+1"
+  lights:
+    boss_backglass_led: white-f200ms

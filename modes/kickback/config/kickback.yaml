@@ -1,0 +1,84 @@
+#config_version=6
+
+mode:
+  start_events: kickback_activated
+  stop_events: kickback_stop
+  priority: 1100
+  restart_on_next_ball: false
+
+
+widgets:
+#  kickback_start_banner:
+#    type: text
+#    text: Kickback activated !
+#    color: white
+#    y: 30%
+#    x: 50%
+#    z: 100
+#    expire: 5s
+
+  # kickback_banner:
+  #   type: text
+  #   text: HELP activated
+  #   y: top-170
+  #   x: right-150
+  #   z: 1000
+  #   font_size: 50
+  #   anchor_x: right
+  #   anchor_y: top
+  #   animations:
+  #       add_to_slide:                   
+  #       - property: opacity         
+  #         value: 1                  
+  #         duration: .5s             
+  #       - property: opacity         
+  #         value: 0
+  #         duration: .5s
+  #         repeat: true  
+
+#widget_player:
+#  mode_kickback_started:
+#    kickback_start_banner:
+#      slide: base_slide
+#    kickback_banner:
+#      slide: base_slide
+
+
+
+###########################
+
+show_player:
+  mode_kickback_started:
+    kickback_save_blink_show:
+      speed: 5
+      loops: -1
+  mode_kickback_stopped:
+    kickback_save_blink_show: stop
+
+###########################
+
+event_player:
+  kickback_ac_left_kickback_fired: kickback_stop|3s
+
+###########################
+
+sound_pools:
+  kickback_activated_sound:
+    load: preload
+    type: random
+    track: voice
+    sounds:
+      - kicback_activated_1
+      - kicback_activated_2
+      - kicback_activated_3
+      - kicback_activated_4
+      - kicback_activated_5
+      - kicback_activated_6
+      - kicback_activated_7
+      - kicback_activated_8
+
+sound_player:
+  kickback_ac_left_kickback_fired:
+    kickback_activated_sound:
+      action: play
+      volume: 2

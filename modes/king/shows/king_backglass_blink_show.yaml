@@ -1,0 +1,8 @@
+#show_version=6
+- time: 0
+  lights:
+    moon_backglass_led: yellow-f200ms
+
+- time: "+1"
+  lights:
+    moon_backglass_led: white-f200ms

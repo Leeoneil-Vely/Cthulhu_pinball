@@ -1,0 +1,9 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_57: off-f200ms
+    
+- time: "+1"
+  lights:
+    insert_57: FF8000-f200ms
+    

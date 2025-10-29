@@ -1,0 +1,167 @@
+#show_version=6
+
+
+
+- time: 0
+
+  lights:
+    led_84: off
+
+- time: '+1'
+  lights:
+    led_85: off
+    led_84: white-f200ms
+
+- time: '+2'
+  lights:
+    led_86: off
+    led_85: white-f200ms
+
+- time: '+3'
+  lights:
+    led_87: off
+    led_86: white-f200ms
+
+- time: '+4'
+  lights:
+    led_88: off
+    led_87: white-f200ms
+
+- time: '+5'
+  lights:
+    led_89: off
+    led_88: white-f200ms
+
+- time: '+6'
+  lights:
+    led_90: off
+    led_89: white-f200ms
+
+- time: '+7'
+  lights:
+    led_91: off
+    led_90: white-f200ms
+
+- time: '+8'
+  lights:
+    led_92: off
+    led_91: white-f200ms
+
+- time: '+9'
+  lights:
+    led_93: off
+    led_92: white-f200ms
+
+- time: '+10'
+  lights:
+    led_94: off
+    led_93: white-f200ms
+
+- time: '+11'
+  lights:
+    led_95: off
+    led_94: white-f200ms
+
+- time: '+12'
+  lights:
+    led_96: off
+    led_95: white-f200ms
+
+- time: '+13'
+  lights:
+    led_97: off
+    led_96: white-f200ms
+
+- time: '+14'
+  lights:
+    led_98: off
+    led_97: white-f200ms
+
+- time: '+15'
+  lights:
+    led_99: off
+    led_98: white-f200ms
+
+- time: '+16'
+  lights:
+    led_100: off
+    led_99: white-f200ms
+
+- time: '+17'
+  lights:
+    led_101: off
+    led_100: white-f200ms
+
+- time: '+18'
+  lights:
+    led_102: off
+    led_101: white-f200ms
+
+- time: '+19'
+  lights:
+    led_103: off
+    led_102: white-f200ms
+
+- time: '+20'
+  lights:
+    led_104: off
+    led_103: white-f200ms
+
+- time: '+21'
+  lights:
+    led_105: off
+    led_104: white-f200ms
+
+- time: '+22'
+  lights:
+    led_106: off
+    led_105: white-f200ms
+
+- time: '+23'
+  lights:
+    led_107: off
+    led_106: white-f200ms
+
+- time: '+24'
+  lights:
+    led_108: off
+    led_107: white-f200ms
+
+- time: '+25'
+  lights:
+    led_109: off
+    led_108: white-f200ms
+
+- time: '+26'
+  lights:
+    led_110: off
+    led_109: white-f200ms
+
+- time: '+27'
+  lights:
+    led_111: off
+    led_110: white-f200ms
+
+- time: '+28'
+  lights:
+    led_112: off
+    led_111: white-f200ms
+
+- time: '+29'
+  lights:
+    led_113: off
+    led_112: white-f200ms
+
+- time: '+30'
+  lights:
+    led_114: off
+    led_113: white-f200ms
+
+- time: '+31'
+  lights:
+    led_115: off
+    led_114: white-f200ms
+
+- time: '+32'
+  lights:
+    led_115: white-f200ms

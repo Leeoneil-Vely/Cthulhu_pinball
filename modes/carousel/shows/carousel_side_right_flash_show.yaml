@@ -1,0 +1,163 @@
+#show_version=6
+- time: 0
+  lights:
+    led_83: off
+
+- time: '+1'
+  lights:
+    led_79: off
+    led_80: white-f200ms
+
+- time: '+2'
+  lights:
+    led_78: off
+    led_79: white-f200ms
+
+- time: '+3'
+  lights:
+    led_77: off
+    led_78: white-f200ms
+
+- time: '+4'
+  lights:
+    led_76: off
+    led_77: white-f200ms
+
+- time: '+5'
+  lights:
+    led_75: off
+    led_76: white-f200ms
+
+- time: '+6'
+  lights:
+    led_74: off
+    led_75: white-f200ms
+
+- time: '+7'
+  lights:
+    led_73: off
+    led_74: white-f200ms
+
+- time: '+8'
+  lights:
+    led_72: off
+    led_73: white-f200ms
+
+- time: '+9'
+  lights:
+    led_71: off
+    led_72: white-f200ms
+
+- time: '+10'
+  lights:
+    led_70: off
+    led_71: white-f200ms
+
+- time: '+11'
+  lights:
+    led_69: off
+    led_70: white-f200ms
+
+- time: '+12'
+  lights:
+    led_68: off
+    led_69: white-f200ms
+
+- time: '+13'
+  lights:
+    led_67: off
+    led_68: white-f200ms
+
+- time: '+14'
+  lights:
+    led_66: off
+    led_67: white-f200ms
+
+- time: '+15'
+  lights:
+    led_65: off
+    led_66: white-f200ms
+
+- time: '+16'
+  lights:
+    led_64: off
+    led_65: white-f200ms
+
+- time: '+17'
+  lights:
+    led_63: off
+    led_64: white-f200ms
+
+- time: '+18'
+  lights:
+    led_62: off
+    led_63: white-f200ms
+
+- time: '+19'
+  lights:
+    led_61: off
+    led_62: white-f200ms
+
+- time: '+20'
+  lights:
+    led_60: off
+    led_61: white-f200ms
+
+- time: '+21'
+  lights:
+    led_59: off
+    led_60: white-f200ms
+
+- time: '+22'
+  lights:
+    led_58: off
+    led_59: white-f200ms
+
+- time: '+23'
+  lights:
+    led_57: off
+    led_58: white-f200ms
+
+- time: '+24'
+  lights:
+    led_56: off
+    led_57: white-f200ms
+
+- time: '+25'
+  lights:
+    led_55: off
+    led_56: white-f200ms
+
+- time: '+26'
+  lights:
+    led_54: off
+    led_55: white-f200ms
+
+- time: '+27'
+  lights:
+    led_53: off
+    led_54: white-f200ms
+
+- time: '+28'
+  lights:
+    led_52: off
+    led_53: white-f200ms
+
+- time: '+29'
+  lights:
+    led_51: off
+    led_52: white-f200ms
+
+- time: '+30'
+  lights:
+    led_50: off
+    led_51: white-f200ms
+
+- time: '+31'
+  lights:
+    led_49: off
+    led_50: white-f200ms
+
+- time: '+32'
+  lights:
+    led_49: white-f200ms

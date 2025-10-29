@@ -1,0 +1,13 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_67: yellow-f200ms
+    side_led_right: yellow-f200ms
+    side_led_left: yellow-f200ms
+    
+- time: "+1"
+  lights:
+    insert_67: white-f200ms
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+    

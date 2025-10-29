@@ -1,0 +1,190 @@
+#config_version=6
+
+mode:
+  start_events: library_shub_start
+  stop_events: library_shub_stop, timer_exit_library_shub_time_complete
+  priority: 700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_shub_started: library_video_start
+  base_gate_secret_library_exit_shot_hit: library_shub_stop
+  base_gate_exit_library_shot_hit: library_shub_stop
+  timer_exit_library_shub_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_shub_slide: []      
+
+###########################
+
+slide_player:
+  mode_library_shub_started: library_shub_slide
+
+###########################
+
+widgets:
+  library_shub_start_banner:
+    type: text
+    text: Strange books with dirt !
+    style: mission_text
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+
+  show_exit_library_shub_time:
+    type: text
+    text: (player|exit_library_shub_time_variable_times) seconds left
+    style: mission_text
+    y: 25%
+    x: 50%
+    z: 100
+
+###########################
+
+widget_player:
+  mode_library_shub_started:
+    library_shub_start_banner, show_exit_library_shub_time, base_score_widget, library_necronomicon_widget, superpops_widget, cthulhu_frame_image:
+      action: add
+      slide: library_shub_slide
+
+###########################
+
+variable_player:
+  timer_exit_library_shub_time_tick:
+    exit_library_shub_time_variable_times:
+      int: device.timers.exit_library_shub_time.ticks
+      action: set
+
+  shublibrary_target_library_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  shublibrary_target_library_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  shublibrary_target_library_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  shublibrary_target_library_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  shublibrary_target_library_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  shublibrary_target_library_6_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+show_player:
+  mode_library_shub_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+###########################
+
+timers:
+  exit_library_shub_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_shub_started
+  
+  voice_library_shub_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_shub_started
+
+###########################
+
+shots:
+  shublibrary_target_library_1_shot:
+    switch: s_target_library_1
+  shublibrary_target_library_2_shot:
+    switch: s_target_library_2
+  shublibrary_target_library_3_shot:
+    switch: s_target_library_3
+  shublibrary_target_library_4_shot:
+    switch: s_target_library_4
+  shublibrary_target_library_5_shot:
+    switch: s_target_library_5
+  shublibrary_target_library_6_shot:
+    switch: s_target_library_6
+
+###########################
+
+sound_pools:
+  library_shub_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - library_cult_voice_1
+      - library_cult_voice_2
+      - library_cult_voice_3
+      - library_cult_voice_4
+      - library_cult_voice_5
+      - library_cult_voice_6
+      - library_cult_voice_7
+      - library_cult_voice_8
+      - library_cult_voice_9
+      - library_cult_voice_10
+      - library_cult_voice_11
+      - library_cult_voice_12
+      - library_cult_voice_13
+      - library_cult_voice_14
+
+###########################
+
+sound_player:
+  mode_library_shub_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+    clock_gong:
+      action: play
+      volume: 5
+      delay: 10  
+
+  library_shub_stop:
+    clock_tick_10s:
+      action: stop
+    clock_gong:
+      action: stop
+  
+  timer_voice_library_shub_time_complete:
+    library_shub_voice_sounds:
+      action: play
+      volume: 2
+
+  shublibrary_target_library_1_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  shublibrary_target_library_2_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  shublibrary_target_library_3_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  shublibrary_target_library_4_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  shublibrary_target_library_5_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  shublibrary_target_library_6_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1

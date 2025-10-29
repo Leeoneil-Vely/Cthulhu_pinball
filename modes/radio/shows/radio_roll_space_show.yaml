@@ -1,0 +1,321 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_1: 'A82A00'
+    insert_79: 'A62900'
+    insert_80: '5B1700'
+    led_2: 'A82A00'
+    led_6: 'A82A00'
+    led_7: 'A72900'
+    
+- time: '+1'
+  lights:
+    insert_1: '000000'
+    insert_79: '000000'
+    insert_80: 'A82A00'
+    led_5: 'A82A00'
+    led_6: '000000'
+    led_7: '000000'
+    led_8: 'A82A00'
+    
+- time: '+1'
+  lights:
+    insert_0: 'A82A00'
+    insert_80: '000000'
+    led_2: '000000'
+    led_5: '000000'
+    led_8: '000000'
+    
+- time: '+1'
+  lights:
+    led_9: 'A82A00'
+    
+- time: '+1'
+  lights:
+    insert_0: '000000'
+    insert_86: 'A82A00'
+    
+- time: '+1'
+  lights:
+    insert_84: 'A82A00'
+    insert_86: '000000'
+    led_9: '000000'
+    
+- time: '+1'
+  lights:
+    insert_84: '000000'
+    led_48: 'A82A00'
+    
+- time: '+1'
+  lights:
+    led_21: 'A82900'
+    led_45: 'A82900'
+    led_46: 'A82900'
+    led_47: 'A82900'
+    led_48: '000000'
+    
+- time: '+1'
+  lights:
+    insert_34: 'A82900'
+    led_20: 'A82900'
+    led_21: '000000'
+    led_44: '2D0B00'
+    led_45: '000000'
+    led_46: '000000'
+    led_47: '000000'
+    
+- time: '+1'
+  lights:
+    insert_34: '000000'
+    insert_6: 'A82900'
+    led_20: '982500'
+    led_43: '5B1600'
+    led_44: '000000'
+    
+- time: '+1'
+  lights:
+    insert_19: 'A72900'
+    insert_21: 'A72900'
+    insert_22: 'A72900'
+    insert_23: 'A72900'
+    insert_24: 'A72900'
+    insert_29: 'A72900'
+    insert_30: 'A72900'
+    insert_6: '000000'
+    insert_7: 'A72900'
+    led_20: '000000'
+    led_22: '3F0F00'
+    led_43: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: 'A72900'
+    insert_18: 'A72900'
+    insert_19: '000000'
+    insert_21: '000000'
+    insert_22: '000000'
+    insert_23: '000000'
+    insert_24: '000000'
+    insert_25: 'A72900'
+    insert_29: '000000'
+    insert_30: '000000'
+    insert_31: 'A52800'
+    insert_33: 'A72900'
+    insert_7: '000000'
+    insert_8: 'A72900'
+    insert_9: '070200'
+    led_22: 'A72900'
+    
+- time: '+1'
+  lights:
+    insert_10: '000000'
+    insert_17: 'A72900'
+    insert_18: '000000'
+    insert_25: '000000'
+    insert_27: 'A72900'
+    insert_28: 'A72900'
+    insert_31: 'A72900'
+    insert_68: 'A72900'
+    insert_74: '6D1A00'
+    insert_8: '000000'
+    insert_9: '6B1A00'
+    led_42: 'A72900'
+    
+- time: '+1'
+  lights:
+    insert_11: '7A1E00'
+    insert_12: 'A72900'
+    insert_17: '000000'
+    insert_27: '000000'
+    insert_28: '000000'
+    insert_31: '000000'
+    insert_32: 'A72900'
+    insert_33: '000000'
+    insert_67: 'A72900'
+    insert_68: '000000'
+    insert_69: 'A72900'
+    insert_71: 'A72900'
+    insert_72: '5E1700'
+    insert_73: 'A72900'
+    insert_74: '000000'
+    insert_9: '000000'
+    led_22: '000000'
+    led_41: 'A72900'
+    led_42: '000000'
+    
+- time: '+1'
+  lights:
+    insert_11: '000000'
+    insert_12: '000000'
+    insert_13: 'A72900'
+    insert_32: '892100'
+    insert_64: 'A72900'
+    insert_66: 'A72900'
+    insert_67: '000000'
+    insert_69: '000000'
+    insert_70: '220800'
+    insert_71: '000000'
+    insert_72: '000000'
+    insert_73: '000000'
+    led_40: '9C2600'
+    
+- time: '+1'
+  lights:
+    insert_13: '000000'
+    insert_32: '000000'
+    insert_63: 'A72800'
+    insert_64: '000000'
+    insert_65: 'A72800'
+    insert_66: '000000'
+    insert_70: '000000'
+    led_40: 'A72800'
+    led_41: '000000'
+    
+- time: '+1'
+  lights:
+    insert_14: 'A72800'
+    insert_47: 'A72800'
+    insert_48: 'A72800'
+    insert_49: 'A72800'
+    insert_51: 'A72800'
+    insert_63: '000000'
+    insert_65: '000000'
+    led_39: 'A72800'
+    led_40: '000000'
+    
+- time: '+1'
+  lights:
+    insert_14: '000000'
+    insert_15: 'A72800'
+    insert_46: 'A72800'
+    insert_47: '000000'
+    insert_48: '000000'
+    insert_49: '000000'
+    insert_50: 'A72800'
+    insert_51: '000000'
+    insert_52: '571500'
+    insert_53: 'A72800'
+    insert_60: 'A72800'
+    insert_62: 'A72800'
+    led_26: 'A72800'
+    led_37: 'A72800'
+    led_39: '9A2500'
+    
+- time: '+1'
+  lights:
+    insert_15: '000000'
+    insert_43: 'A72800'
+    insert_44: 'A72800'
+    insert_45: 'A72800'
+    insert_46: '942300'
+    insert_50: '000000'
+    insert_52: '000000'
+    insert_53: '000000'
+    insert_54: 'A72800'
+    insert_59: 'A72800'
+    insert_60: '000000'
+    insert_61: '852000'
+    insert_62: '000000'
+    led_25: 'A72800'
+    led_26: '000000'
+    led_27: 'A72800'
+    led_30: 'A72800'
+    led_36: 'A72800'
+    led_37: '000000'
+    led_38: 'A72800'
+    led_39: '000000'
+    
+- time: '+1'
+  lights:
+    insert_43: '000000'
+    insert_44: '681900'
+    insert_45: '000000'
+    insert_46: '000000'
+    insert_54: '000000'
+    insert_55: 'A72800'
+    insert_58: '0E0300'
+    insert_59: '000000'
+    insert_61: '000000'
+    led_27: '000000'
+    led_30: '000000'
+    led_31: 'A72800'
+    led_36: '000000'
+    led_38: '380D00'
+    
+- time: '+1'
+  lights:
+    insert_44: '000000'
+    insert_55: '000000'
+    insert_58: '000000'
+    led_25: '000000'
+    led_28: 'A62800'
+    led_31: '000000'
+    led_34: '842000'
+    led_35: 'A62800'
+    led_38: '000000'
+    
+- time: '+1'
+  lights:
+    insert_56: 'A62800'
+    led_28: '000000'
+    led_29: 'A62800'
+    led_32: 'A62800'
+    led_33: 'A62800'
+    led_34: 'A62800'
+    
+- time: '+1'
+  lights:
+    insert_56: '000000'
+    insert_57: 'A62800'
+    insert_90: 'A62800'
+    insert_91: 'A62800'
+    led_29: '000000'
+    led_32: '000000'
+    led_33: '000000'
+    led_34: '000000'
+    led_35: '000000'
+    
+- time: '+1'
+  lights:
+    insert_57: '000000'
+    insert_87: 'A62700'
+    insert_88: 'A62700'
+    insert_89: 'A62700'
+    insert_90: '000000'
+    insert_91: '000000'
+    insert_92: 'A62700'
+    
+- time: '+1'
+  lights:
+    insert_87: '000000'
+    insert_88: '000000'
+    insert_89: '000000'
+    insert_92: '010000'
+    insert_93: 'A62700'
+    insert_94: 'A62700'
+    
+- time: '+1'
+  lights:
+    insert_92: '000000'
+    
+- time: '+1'
+  lights:
+    insert_93: '000000'
+    insert_94: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    

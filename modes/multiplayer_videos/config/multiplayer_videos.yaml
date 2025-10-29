@@ -1,0 +1,317 @@
+#config_version=6
+mode:
+  start_events: ball_started
+  stop_events: ball_ended
+  priority: 1200
+  restart_on_next_ball: false
+
+###########################
+
+slides:
+  player_2_slide:
+    - type: text
+      text: Player 2 !!
+      y: 50%
+      x: 50%
+      z: 20
+
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: stop
+      z: 9
+
+
+
+
+
+  player_3_slide:
+    - type: text
+      text: Player 3 !!! 
+      y: 50%
+      x: 50%
+      z: 20
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: stop
+      z: 9
+
+
+  player_4_slide:
+    - type: text
+      text: Player 4 !!!!
+      y: 50%
+      x: 50%
+      z: 20
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: stop
+      z: 9
+
+
+
+###########################
+
+slide_player:
+  player_added{num==2}: 
+    player_2_slide:
+      action: play
+      expire: 2s
+      transition_out: fade
+  player_added{num==3}:
+    player_3_slide:
+      action: play
+      expire: 2s
+      transition_out: fade
+  player_added{num==4}:
+    player_4_slide:
+      action: play
+      expire: 2s
+      transition_out: fade
+
+###########################
+
+widgets:
+  player_2_widget:
+    type: text
+    text: Player 2 !!
+    y: 50%
+    x: 50%
+    z: 20
+
+  player_3_widget:
+    type: text
+    text: Player 2 !!
+    y: 50%
+    x: 50%
+    z: 20
+
+  player_4_widget:
+    type: text
+    text: Player 2 !!
+    y: 50%
+    x: 50%
+    z: 20
+
+  multiplayer_video_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 15
+
+###########################
+
+sound_player:
+  player_added{num==2}:
+    player2_voice_pool:
+      action: play
+      volume: 2
+      loops: 0  
+  player_added{num==3}:
+    player3_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  player_added{num==4}:
+    player4_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+
+###########################
+
+sound_pools:
+  player2_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - player_two_voice_1
+      - player_two_voice_2
+  player3_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - player_three_voice_1
+      - player_three_voice_2
+  player4_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - player_four_voice_1
+      - player_four_voice_2
+
+###########################
+
+videos:
+  scratch_movie_multi:
+    width: 1440
+    height: 900
+    file: scratch_movie.mp4

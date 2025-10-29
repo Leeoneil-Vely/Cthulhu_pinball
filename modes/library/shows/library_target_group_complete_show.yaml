@@ -1,0 +1,17 @@
+#show_version=6
+- duration: 1
+  lights:
+    insert_80: purple-f200ms
+    insert_79: purple-f200ms
+    insert_78: purple-f200ms
+    insert_77: purple-f200ms
+    insert_76: purple-f200ms
+    insert_75: purple-f200ms    
+- duration: 1
+  lights:
+    insert_80: white-f200ms
+    insert_79: white-f200ms
+    insert_78: white-f200ms
+    insert_77: white-f200ms
+    insert_76: white-f200ms
+    insert_75: white-f200ms 

@@ -1,0 +1,10 @@
+#show_version=6
+- time: 0
+  lights:
+    nyarla_backglass_led: blue-f200ms
+    moon_backglass_led: blue-f200ms
+
+- time: "+1"
+  lights:
+    nyarla_backglass_led: white-f200ms
+    moon_backglass_led: white-f200ms

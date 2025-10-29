@@ -1,0 +1,9 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_26: blue-f200ms
+    
+- time: "+1"
+  lights:
+    insert_26: white-f200ms
+    

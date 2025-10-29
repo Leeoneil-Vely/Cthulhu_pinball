@@ -1,0 +1,104 @@
+#config_version=6
+mode:
+  start_events: pre_shub_start
+  stop_events: pre_shub_stop, timer_launch_shub_time_complete
+  priority: 200
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  s_action_active{current_player.great_ones_availability=='ok'}: shub_start, pre_shub_stop, twenties_stop
+
+###########################
+
+variable_player:
+  mode_pre_shub_started:
+    shub_mission_available:
+      action: set
+      string: 'available'
+    random_event_available:
+      action: set
+      string: 'no'
+
+###########################
+
+slides:
+  pre_shub_slide:
+    - type: text
+      text: THE BLACK GOAT OF THE WOODS
+      color: purple
+      y: 28%
+      x: 50%
+      z: 100
+      style: mission_text
+    - type: text
+      text: If you want to fight Shub-Niggurath
+      color: purple
+      y: 72%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: text
+      text: hit action button now !
+      color: purple
+      y: 62%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: image
+      image: mini_shub_NB    
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 3
+
+###########################
+
+slide_player:
+  mode_pre_shub_started:
+    pre_shub_slide:
+      action: play
+
+###########################
+
+show_player:
+  mode_pre_shub_started:
+    pre_shub_blink_show:
+      speed: 10
+
+###########################
+
+timers:
+  launch_shub_time:
+    start_value: 7
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_pre_shub_started
+
+###########################
+
+sound_player:
+  mode_pre_shub_started:
+    shub_ready_voice_pool:
+      action: play
+      volume: 2
+
+sound_pools:
+  shub_ready_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - shub_ready_1
+      - shub_ready_2

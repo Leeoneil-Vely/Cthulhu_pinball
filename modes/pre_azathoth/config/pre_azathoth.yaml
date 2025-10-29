@@ -1,0 +1,105 @@
+#config_version=6
+mode:
+  start_events: pre_azathoth_start
+  stop_events: pre_azathoth_stop, timer_launch_azathoth_time_complete
+  priority: 200
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  s_action_active{current_player.great_ones_availability=='ok'}: aza_start, pre_azathoth_stop, twenties_stop
+
+###########################
+
+variable_player:
+  mode_pre_azathoth_started:
+    azathoth_mission_available:
+      action: set
+      string: 'available'
+    random_event_available:
+      action: set
+      string: 'no'
+
+###########################
+
+slides:
+  pre_azathoth_slide:
+    - type: text
+      text: AZATHOTH CALL YOU !
+      color: red
+      y: 28%
+      x: 50%
+      z: 100
+      style: mission_text
+    - type: text
+      text: If you want to fight Azathoth
+      color: red
+      y: 72%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: text
+      text: action button or mission select !
+      color: red
+      y: 62%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: image
+      image: mini_aza_NB     
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 3
+
+###########################
+
+slide_player:
+  mode_pre_azathoth_started:
+    pre_azathoth_slide:
+      action: play
+
+###########################
+
+show_player:
+  mode_pre_azathoth_started:
+    pre_azathoth_blink_show:
+      speed: 10
+
+###########################
+
+timers:
+  launch_azathoth_time:
+    start_value: 7
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_pre_azathoth_started
+
+###########################
+
+sound_player:
+  mode_pre_azathoth_started:
+    azatoth_ready_voice_pool:
+      action: play
+      volume: 2
+
+sound_pools:
+  azatoth_ready_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - azathoth_ready_1
+      - azathoth_ready_2
+

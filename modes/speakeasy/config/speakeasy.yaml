@@ -1,0 +1,1118 @@
+#config_version=6
+mode:
+  start_events: speakeasy_start
+  stop_events: speakeasy_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_speakeasy_started: twenties_stop, hold_stop, launch_random_speakeasy_video
+  speakeasy_gate_library_shot_hit: library_speakeasy_start
+  speakeasy_count_complete: speakeasy_stop, speakeasy_win_start
+  speakeasy_scoop_haut_shot_hit: start_mystery_twenties_mode
+  relaunch_speakeasy_video: launch_random_speakeasy_video|5s
+  speakeasy_bumper_one_shot_hit: shaker_shake
+  speakeasy_bumper_two_shot_hit: shaker_shake
+  speakeasy_bumper_three_shot_hit: shaker_shake
+  s_action_active{current_player.variable_number_of_object_value > 0}: action_valid_speakeasy_shot, shaker_shake
+  action_valid_speakeasy_shot_1: s_popbumper_one_active
+  action_valid_speakeasy_shot_2: s_popbumper_two_active
+  action_valid_speakeasy_shot_3: s_popbumper_three_active
+  multiball_multiball_twenties_multiball_ended: relaunch_speakeasy_music
+
+  mode_speakeasy_started{current_player.lock_rlyeh_speakeasy_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_speakeasy_music
+
+
+
+###########################
+
+random_event_player:
+  launch_random_speakeasy_video:
+    events:
+      - launch_speakeasy_video_1
+      - launch_speakeasy_video_2
+      - launch_speakeasy_video_3
+      - launch_speakeasy_video_4
+      - launch_speakeasy_video_5
+      - launch_speakeasy_video_6
+      - launch_speakeasy_video_7
+      - launch_speakeasy_video_8
+      - launch_speakeasy_video_9
+      - launch_speakeasy_video_10
+      - launch_speakeasy_video_11
+
+  action_valid_speakeasy_shot:
+    events:
+      - action_valid_speakeasy_shot_1
+      - action_valid_speakeasy_shot_2
+      - action_valid_speakeasy_shot_3
+    force_all: true
+
+###########################
+
+slides:
+  speakeasy_slide: []
+
+###########################
+
+slide_player:
+  mode_speakeasy_started: speakeasy_slide
+
+###########################
+
+widgets:
+  speakeasy_name_banner:
+    type: text
+    text: Speakeasy
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: FF9933
+
+  speakeasy_indication_banner:
+    type: text
+    text: Hit (player|speakeasy_bumper_count) bumpers !
+    color: FF9933
+    y: 67%
+    x: 65%
+    z: 100
+
+  speakeasy_banner_image:
+    type: Image
+    image: mini_speakeasy
+    y: 50%
+    x: 20%
+    z: 100
+
+  video_speakeasy_1_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_2_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_3_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_4_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_5_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_6_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_7_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_8_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_9_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_10_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+  video_speakeasy_11_scratch_widget:
+    type: video
+    video: speakeasy_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_speakeasy_video
+
+  video_speakeasy_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_speakeasy_started:
+    speakeasy_name_banner, speakeasy_indication_banner, speakeasy_banner_image, video_speakeasy_scratch_widget, base_score_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: speakeasy_slide
+
+  mode_speakeasy_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: speakeasy_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_speakeasy_video_1:
+    video_speakeasy_1_scratch_widget:
+      slide: speakeasy_slide    
+  launch_speakeasy_video_2:
+    video_speakeasy_2_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_3:
+    video_speakeasy_3_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_4:
+    video_speakeasy_4_scratch_widget:
+      slide: speakeasy_slide     
+  launch_speakeasy_video_5:
+    video_speakeasy_5_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_6:
+    video_speakeasy_6_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_7:
+    video_speakeasy_7_scratch_widget:
+      slide: speakeasy_slide     
+  launch_speakeasy_video_8:
+    video_speakeasy_8_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_9:
+    video_speakeasy_9_scratch_widget:
+      slide: speakeasy_slide
+  launch_speakeasy_video_10:
+    video_speakeasy_10_scratch_widget:
+      slide: speakeasy_slide     
+  launch_speakeasy_video_11:
+    video_speakeasy_11_scratch_widget:
+      slide: speakeasy_slide
+
+  remove_random_speakeasy_video_1:
+    video_speakeasy_1_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_2:
+    video_speakeasy_2_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_3:
+    video_speakeasy_3_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_4:
+    video_speakeasy_4_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_5:
+    video_speakeasy_5_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_6:
+    video_speakeasy_6_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_7:
+    video_speakeasy_7_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_8:
+    video_speakeasy_8_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_9:
+    video_speakeasy_9_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_10:
+    video_speakeasy_10_scratch_widget:
+      action: remove
+  remove_random_speakeasy_video_11:
+    video_speakeasy_11_scratch_widget:
+      action: remove
+
+###########################
+
+shot_profiles:
+  speakeasy_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: speakeasyhitflashing
+        show: speakeasy_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+  speakeasy_sanity_flash:
+    loop: true
+    block: true
+    states:
+      - name: speakeasyhitflashing
+        show: speakeasy_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+
+###########################
+
+shots:
+  speakeasy_bumper_one_shot:
+    switch: s_popbumper_one
+    show_tokens:
+      light: insert_86
+  speakeasy_bumper_two_shot:
+    switch: s_popbumper_two
+    show_tokens:
+      light: insert_85
+  speakeasy_bumper_three_shot:
+    switch: s_popbumper_three
+    show_tokens:
+      light: insert_84
+  speakeasy_sling_left_shot:
+    switch: s_sling_left
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_30, led_31
+  speakeasy_sling_right_shot:
+    switch: s_sling_right
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_36, led_37
+  speakeasy_sling_up_shot:
+    switch: s_sling_up
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_5, led_6
+  speakeasy_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  speakeasy_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+  speakeasy_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_41
+  speakeasy_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_32
+  speakeasy_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_30
+  speakeasy_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_20
+  speakeasy_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_10
+
+  speakeasy_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_50
+  speakeasy_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_49  
+  speakeasy_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_48
+  speakeasy_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_11
+  speakeasy_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_12
+  speakeasy_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: speakeasy_sanity_flash
+    show_tokens:
+      led: insert_13
+    
+
+  speakeasy_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  speakeasy_gate_library_shot:
+    switch: s_gate_library
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_12, led_1
+  speakeasy_roll_library_shot:
+    switch: s_roll_library
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  speakeasy_roll_space_shot:
+    switch: s_roll_space
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  speakeasy_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  speakeasy_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  speakeasy_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  speakeasy_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  speakeasy_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  speakeasy_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  speakeasy_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  speakeasy_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  speakeasy_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  speakeasy_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  speakeasy_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  speakeasy_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_1, led_2
+  speakeasy_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  speakeasy_spinner_shot:
+    switch: s_spinner
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  speakeasy_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: speakeasy_target_flash
+    show_tokens:
+      light: insert_24
+  speakeasy_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: speakeasy_target_flash
+    show_tokens:
+      light: insert_23
+  speakeasy_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: speakeasy_target_flash
+    show_tokens:
+      light: insert_22
+  speakeasy_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: speakeasy_target_flash
+    show_tokens:
+      light: insert_21
+
+  speakeasy_green_target_1_shot:
+    switch: s_target_green_1
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_47
+  speakeasy_green_target_2_shot:
+    switch: s_target_green_2
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_45
+  speakeasy_green_target_3_shot:
+    switch: s_target_green_3
+    profile: speakeasy_target_flash
+    show_tokens:
+      led: insert_46
+
+  speakeasy_space_orbit_shot:
+    hit_events: speakeasy_space_orbit_sequence_hit
+  speakeasy_asylum_orbit_shot:
+    hit_events: speakeasy_asylum_orbit_sequence_hit
+  speakeasy_library_roll_shot:
+    hit_events: speakeasy_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  speakeasy_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  speakeasy_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  speakeasy_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+show_player:
+  mode_speakeasy_started:
+    mission_speakeasy_blink_show:
+      speed: 5
+    speakeasy_blink_show:  
+      speed: 15
+      priority: 600
+
+  speakeasy_sling_left_shot_hit:
+    speakeasy_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  speakeasy_sling_right_shot_hit:
+    speakeasy_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  speakeasy_cthulhu_ramp_shot_hit:
+    all_insert_speakeasy_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  speakeasy_green_ramp_shot_hit:
+    all_insert_speakeasy_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  speakeasy_main_ramp_shot_hit:
+    all_insert_speakeasy_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  speakeasy_asylum_orbit_shot_hit:
+    speakeasy_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  speakeasy_space_orbit_shot_hit:
+    speakeasy_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  speakeasy_library_roll_shot_hit:
+    all_insert_speakeasy_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  speakeasy_bumper_one_shot_hit:
+    speakeasy_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  speakeasy_bumper_two_shot_hit:
+    speakeasy_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  speakeasy_bumper_three_shot_hit:
+    speakeasy_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  s_action_active{current_player.variable_number_of_object_value > 0}:
+    speakeasy_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+
+###########################
+
+timers:
+  speakeasy_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_speakeasy_started  
+
+
+counters:
+  speakeasy_mission_counter:
+    count_events: speakeasy_bumper_one_shot_hit, speakeasy_bumper_two_shot_hit, speakeasy_bumper_three_shot_hit
+    starting_count: 0
+    count_complete_value: 20
+    persist_state: true
+    events_when_complete: speakeasy_count_complete
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_speakeasy_available:
+      action: set
+      string: 'no'
+
+
+  action_valid_speakeasy_shot:
+    variable_number_of_object_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  speakeasy_sling_left_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_sling_right_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_bumper_one_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_bumper_count:
+      int: -1
+  speakeasy_bumper_two_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_bumper_count:
+      int: -1
+  speakeasy_bumper_three_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_bumper_count:
+      int: -1
+  speakeasy_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  speakeasy_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  speakeasy_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  speakeasy_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  speakeasy_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  speakeasy_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  speakeasy_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  speakeasy_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  speakeasy_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  speakeasy_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  speakeasy_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  speakeasy_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  speakeasy_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  speakeasy_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  speakeasy_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  sanity_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  drop_target_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  green_target_group_complete:
+    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    speakeasy_champion: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+###########################
+
+light_player:
+  mode_speakeasy_started:
+    gi:
+      color: FF9933
+    side_led_right:
+      color: FF9933
+    side_led_left:
+      color: FF9933
+    speakeasy_box_led: white
+
+###########################
+
+sound_player:
+  mode_speakeasy_started:
+    bumpers_voice_pool:
+      action: play
+      volume: 2  
+    speakeasy_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    speakeasy_music:
+      action: stop
+
+
+  relaunch_speakeasy_music:
+    speakeasy_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+
+  timer_speakeasy_voice_time_complete:
+    speakeasy_voice_pool:
+      action: play
+      volume: 2   
+      mode_end_action: stop
+      fade_out: 1s
+
+  speakeasy_bumper_one_shot_hit:
+    speakeasy_people_drink_sfx:
+      action: play
+  speakeasy_bumper_two_shot_hit:
+    speakeasy_people_drink_sfx:
+      action: play
+  speakeasy_bumper_three_shot_hit:
+    speakeasy_people_drink_sfx:
+      action: play
+
+  speakeasy_sling_left_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_sling_right_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_scoop_bas_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_scoop_haut_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_target_square_1_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_square_2_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_square_3_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_square_4_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_square_5_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_target_sanity_shot_1_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_sanity_shot_2_hit:
+    speakeasy_sfx:
+      action: play 
+  speakeasy_target_sanity_shot_3_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_sanity_shot_4_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_sanity_shot_5_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_target_sanity_shot_6_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_green_target_1_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_green_target_2_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_green_target_3_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+
+  speakeasy_team_1_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_team_2_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_team_3_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_spinner_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_roll_left_outlane_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_left_inlane_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_right_inlane_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_right_outlane_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_library_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_fordt_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_space_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_roll_asylum_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+  speakeasy_cthulhu_ramp_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_main_ramp_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_green_ramp_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_gate_library_shot_hit:
+    speakeasy_sfx:
+      action: play
+  speakeasy_gate_exit_library_shot_hit:
+    speakeasy_sfx:
+      action: play
+
+###########################
+
+sound_pools:
+  speakeasy_sfx:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - clink_glasses_1
+      - clink_glasses_2
+      - clink_glasses_3
+      - clink_glasses_4
+      - clink_glasses_5
+      - clink_glasses_6
+      - clink_glasses_7
+      - chair
+      - chair_2
+      - drink_1
+      - drink_2
+      - drink_3
+      - drink_4
+      - drink_5
+      - drink_6
+      - drink_7
+      - drink_8
+      - drink_9
+      - drink_10
+      - bottle_1
+      - drink_1
+      - beer_tasting_1
+      - cutlery_1
+
+  speakeasy_people_drink_sfx:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - people_drink_1
+      - people_drink_2
+      - people_drink_3
+      - people_drink_4
+      - people_drink_5
+      - people_drink_6
+
+
+  speakeasy_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - speakeasy_voice_1
+      - speakeasy_voice_2
+      - speakeasy_voice_3
+      - speakeasy_voice_4
+      - speakeasy_voice_5
+
+###########################
+
+videos:
+  speakeasy_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: speakeasy_video_1.mp4
+    events_when_stopped: remove_random_speakeasy_video_1
+  speakeasy_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: speakeasy_video_2.mp4
+    events_when_stopped: remove_random_speakeasy_video_2
+  speakeasy_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: speakeasy_video_3.mp4
+    events_when_stopped: remove_random_speakeasy_video_3
+  speakeasy_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: speakeasy_video_4.mp4
+    events_when_stopped: remove_random_speakeasy_video_4
+  speakeasy_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: speakeasy_video_5.mp4
+    events_when_stopped: remove_random_speakeasy_video_5
+  speakeasy_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: speakeasy_video_6.mp4
+    events_when_stopped: remove_random_speakeasy_video_6
+  speakeasy_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: speakeasy_video_7.mp4
+    events_when_stopped: remove_random_speakeasy_video_7
+  speakeasy_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: speakeasy_video_8.mp4
+    events_when_stopped: remove_random_speakeasy_video_8
+  speakeasy_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: speakeasy_video_9.mp4
+    events_when_stopped: remove_random_speakeasy_video_9
+  speakeasy_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: speakeasy_video_10.mp4
+    events_when_stopped: remove_random_speakeasy_video_10
+  speakeasy_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: speakeasy_video_11.mp4
+    events_when_stopped: remove_random_speakeasy_video_11

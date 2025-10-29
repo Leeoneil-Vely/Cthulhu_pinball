@@ -1,0 +1,256 @@
+#config_version=6
+mode:
+  start_events: ball_started
+  priority: 1000
+
+
+###########################
+
+shot_groups:
+  team_lane:
+    shots: base_team_1_shot, base_team_2_shot, base_team_3_shot
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+    reset_events: team_lane_complete
+
+
+###########################
+
+show_player:
+  team_lane_lit_complete:
+    team_lane_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1
+
+  playfield_x2:
+    team_lane_2_show:
+      speed: 5
+      loops: -1
+      priority: 100
+
+  playfield_x3:
+    team_lane_3_show:
+      speed: 5
+      loops: -1
+      priority: 100
+
+  playfield_x4:
+    team_lane_4_show:
+      speed: 5
+      loops: -1
+      priority: 100
+
+###########################
+
+event_player:
+  playfield_x2: shaker_shake, launch_random_team_video
+  playfield_x3: shaker_shake, launch_random_team_video
+  playfield_x4: shaker_shake, launch_random_team_video
+
+###########################
+
+random_event_player:
+  launch_random_team_video:
+    events:
+      - launch_team_video_1
+      - launch_team_video_2
+      - launch_team_video_3
+
+###########################
+
+widgets:
+  video_team_1_scratch_widget:
+    type: video
+    video: team_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_team_2_scratch_widget:
+    type: video
+    video: team_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_team_3_scratch_widget:
+    type: video
+    video: team_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 2
+
+###########################
+
+widget_player:
+  launch_team_video_1:
+    video_team_1_scratch_widget:
+      slide: base_slide     
+  launch_team_video_2:
+    video_team_2_scratch_widget:
+      slide: base_slide
+  launch_team_video_3:
+    video_team_3_scratch_widget:
+      slide: base_slide
+
+  remove_random_team_video_1:
+    video_team_1_scratch_widget:
+      action: remove
+  remove_random_team_video_2:
+    video_team_2_scratch_widget:
+      action: remove
+  remove_random_team_video_3:
+    video_team_3_scratch_widget:
+      action: remove
+
+###########################
+
+counters:
+  team_lane_complete_count:
+    count_events: team_lane_lit_complete
+    events_when_hit: increment_multiplier
+    starting_count: 1
+    direction: up
+    persist_state: false
+    count_complete_value: 4
+
+  team_lane_complete_1_counter:
+    count_events: team_lane_lit_complete
+    starting_count: 0
+    count_complete_value: 1
+    persist_state: false
+    events_when_complete: playfield_x2
+
+  team_lane_complete_2_counter:
+    count_events: team_lane_lit_complete
+    starting_count: 0
+    count_complete_value: 2
+    persist_state: false
+    events_when_complete: playfield_x3
+
+  team_lane_complete_3_counter:
+    count_events: team_lane_lit_complete
+    starting_count: 0
+    count_complete_value: 3
+    persist_state: false
+    events_when_complete: playfield_x4
+
+###########################
+
+variable_player:
+  mode_team_lane_started:
+    multiplier:
+      int: 1
+      action: set
+  increment_multiplier:
+    multiplier: 1
+
+  team_lane_complete:
+    score: 5000
+
+  playfield_x2:
+    bonus_multiplier:
+      int: 2
+      action: set
+  playfield_x3:
+    bonus_multiplier:
+      int: 3
+      action: set
+  playfield_x4:
+    bonus_multiplier:
+      int: 4
+      action: set
+
+###########################
+
+shots:
+  base_team_1_shot:
+    switch: s_roll_skill_shot_1
+    show_tokens:
+      light: insert_0
+  base_team_2_shot:
+    switch: s_roll_skill_shot_2
+    show_tokens:
+      light: insert_1
+  base_team_3_shot:
+    switch: s_roll_skill_shot_3
+    show_tokens:
+      light: insert_2
+
+###########################
+
+sound_player:
+  team_lane_lit_complete:
+    team_lane_complete_voice_sounds:
+      action: play
+      loops: 0
+      volume: 1
+      events_when_stopped: play_multiplier_voice
+
+  play_multiplier_voice{current_player.multiplier==2}:
+    double_multiplier_voice_pool:
+      action: play
+      volume: 2
+
+  play_multiplier_voice{current_player.multiplier==3}:
+    triple_multiplier_voice_pool:
+      action: play
+      volume: 2
+
+  play_multiplier_voice{current_player.multiplier==4}:
+    four_time_multiplier_voice_pool:
+      action: play
+      volume: 2   
+
+###########################
+
+sound_pools:
+  team_lane_complete_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - team_lane_complete_1
+      - team_lane_complete_2
+
+  double_multiplier_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - 2xmultiplier_1
+      - 2xmultiplier_2
+
+  triple_multiplier_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - 3xmultiplier_1
+      - 3xmultiplier_2
+
+  four_time_multiplier_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - 4xmultiplier_1
+      - 4xmultiplier_2
+
+###########################
+
+videos:
+  team_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: team_video_1.mp4
+    events_when_stopped: remove_random_team_video_1
+  team_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: team_video_2.mp4
+    events_when_stopped: remove_random_team_video_2
+  team_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: team_video_3.mp4
+    events_when_stopped: remove_random_team_video_3

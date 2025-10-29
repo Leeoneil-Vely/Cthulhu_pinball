@@ -1,0 +1,8 @@
+#show_version=6
+- duration: 1
+  lights:
+    apron_led: white-f200ms
+    
+- duration: 1
+  lights:
+    apron_led: off-f200ms

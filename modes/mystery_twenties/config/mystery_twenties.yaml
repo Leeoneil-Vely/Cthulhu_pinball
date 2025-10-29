@@ -1,0 +1,585 @@
+#config_version=6
+
+mode:
+  start_events: start_mystery_twenties_mode
+  stop_events: stop_mystery_twenties, timer_exit_mystery_time_complete, ball_ended
+  priority: 1200
+
+###########################
+
+ball_holds:
+  mystery_twenties_scoop_haut:
+    hold_devices: bd_scoop_haut
+    release_one_events: timer_exit_mystery_time_complete
+
+###########################
+
+event_player:
+  mystery_award_12_event: start_carousel_mode, stop_mystery_twenties
+  mode_mystery_twenties_started: pick_random_object|1s
+
+###########################
+
+random_event_player:
+  mode_mystery_twenties_started:
+    events:
+      mystery_award_1_event: 9
+      mystery_award_2_event: 9
+      mystery_award_3_event: 9
+      mystery_award_4_event: 9
+      mystery_award_5_event: 9
+      mystery_award_6_event: 9
+      mystery_award_7_event: 9
+      mystery_award_8_event: 9
+      mystery_award_9_event: 9
+      mystery_award_10_event: 9
+      mystery_award_11_event{current_player.mystery_extraball_awarded=='false'}: 5
+      mystery_award_12_event{current_player.multiball_twenties_running=='false' and current_player.buddy_mode_running=='off' and current_player.pursuit_mode_running=='off' and current_player.cellar_multiball_running=='off'}: 5
+
+###########################
+
+variable_player:
+  mystery_award_1_event:
+    score: 5000
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  mystery_award_2_event:
+    score: 2000
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  mystery_award_3_event:
+    score: 2000
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  mystery_award_4_event:
+    score: 2000
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  mystery_award_5_event:
+    score: 2000
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  mystery_award_6_event:
+    score: 2000
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+  mystery_award_7_event:
+    score: 2000
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+  mystery_award_8_event:
+    score: 2000
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+  mystery_award_9_event:
+    score: 2000
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+  mystery_award_10_event:
+    score: 2000
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+
+  mystery_award_11_event:
+    mystery_extraball_awarded:
+      action: set
+      string: 'true'   
+
+###########################
+
+slide_player:
+  mode_mystery_twenties_started: mystery_slide
+
+###########################
+
+slides:
+  mystery_slide: []
+
+###########################
+
+widget_player:
+  mode_mystery_twenties_started:
+    mystery_video_scratch_widget, base_without_score_widget, superpops_widget, base_frame_widget, hatch_open_widget:
+      action: add
+      slide: mystery_slide
+  mode_mystery_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: mystery_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+
+  mystery_award_1_event:
+    tommy_gun_widget:
+      slide: mystery_slide
+  mystery_award_2_event:
+    elephant_gun_widget:
+      slide: mystery_slide
+  mystery_award_3_event:
+    45_caliber_widget:
+      slide: mystery_slide
+  mystery_award_4_event:
+    38_caliber_widget:
+      slide: mystery_slide
+  mystery_award_5_event:
+    pan_widget:
+      slide: mystery_slide
+  mystery_award_6_event:
+    object1_widget:
+      slide: mystery_slide
+  mystery_award_7_event:
+    object2_widget:
+      slide: mystery_slide
+  mystery_award_8_event:
+    object3_widget:
+      slide: mystery_slide
+  mystery_award_9_event:
+    object4_widget:
+      slide: mystery_slide
+  mystery_award_10_event:
+    object5_widget:
+      slide: mystery_slide
+  mystery_award_11_event:
+    mystery_extraball_widget:
+      slide: mystery_slide
+
+  mystery_award_12_event:
+    mystery_mission_select_widget:
+      slide: mystery_slide
+
+###########################
+
+widgets:
+  hatch_open_widget:
+    - type: text
+      text: '?'
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 1s
+      animations:
+        add_to_slide: fade_out_object
+    - type: Image
+      image: secret_hatch
+      y: 50%
+      x: 25%
+      z: 100
+      fps: 4
+      expire: 1s
+      animations:
+        add_to_slide: fade_out_object
+
+  tommy_gun_widget:
+    - type: text
+      text: Tommy gun !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: tommy_gun
+      y: 50%
+      x: 20%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+  elephant_gun_widget:
+    - type: text
+      text: Elephant gun !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: elephant_riffle
+      y: 50%
+      x: 20%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+  45_caliber_widget:
+    - type: text
+      text: 45 caliber pistol !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: pistol_45
+      y: 50%
+      x: 20%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+  38_caliber_widget:
+    - type: text
+      text: 38 caliber pistol !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: pistol_38
+      y: 40%
+      x: 20%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  pan_widget:
+    - type: text
+      text: No luck ! A frying pan !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: frying-pan
+      y: 50%
+      x: 20%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  object1_widget:
+    - type: text
+      text: A good pair of shoes
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: shoes
+      y: 30%
+      x: 25%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  object2_widget:
+    - type: text
+      text: A nice hat
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: hat
+      y: 50%
+      x: 25%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  object3_widget:
+    - type: text
+      text: Flashlight
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: flashlight
+      y: 35%
+      x: 25%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  object4_widget:
+    - type: text
+      text: Compass
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: compass
+      y: 50%
+      x: 25%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  object5_widget:
+    - type: text
+      text: Magnifying glass
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: magnifying_glass
+      y: 50%
+      x: 25%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  mystery_extraball_widget:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+    - type: Image
+      image: extraball_picture
+      y: 50%
+      x: 22%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  mystery_mission_select_widget:
+    - type: text
+      text: Mission select !
+      y: 50%
+      x: 50%
+      z: 100
+      expire: 3s
+      animations:
+        add_to_slide: fade_in_object
+
+
+  mystery_video_scratch_widget:
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 5
+
+###########################
+
+timers:
+  exit_mystery_time:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_mystery_twenties_started
+
+###########################
+
+sound_player:
+  mode_mystery_twenties_started:
+    mystery_hatch_open_pool:
+      action: play
+      volume: 2
+
+  mystery_award_1_event:
+    mystery_twenties_reload:
+      action: play
+      volume: 2
+    mystery_twenties_not_elefant_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_2_event:
+    mystery_twenties_reload:
+      action: play
+      volume: 2
+    mystery_twenties_elefant_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_3_event:
+    mystery_twenties_reload:
+      action: play
+      volume: 2
+    mystery_twenties_not_elefant_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_4_event:
+    mystery_twenties_reload:
+      action: play
+      volume: 2
+    mystery_twenties_not_elefant_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_5_event:
+    mystery_twenties_pan:
+      action: play
+      volume: 2
+    mystery_twenties_not_elefant_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+
+  mystery_award_6_event:
+    mystery_twenties_shoes_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_7_event:
+    mystery_twenties_hat_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_8_event:
+    mystery_twenties_flashlight_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_9_event:
+    mystery_twenties_compass_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+  mystery_award_10_event:
+    mystery_twenties_loupe_voice_pool:
+      action: play
+      volume: 2
+      loops: 0
+
+  mystery_award_11_event:
+    extraball_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  mystery_twenties_elefant_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_voice_1
+      - mystery_twenties_voice_2
+      - mystery_twenties_voice_3
+      - mystery_twenties_voice_5
+      - mystery_twenties_voice_6
+
+  mystery_twenties_not_elefant_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_voice_1
+      - mystery_twenties_voice_2
+      - mystery_twenties_voice_3
+      - mystery_twenties_voice_4
+      - mystery_twenties_not_elefant_voice_1
+
+
+
+  mystery_twenties_compass_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_compass_voice_1
+      - mystery_twenties_compass_voice_2
+
+  mystery_twenties_flashlight_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_flashlight_voice_1
+      - mystery_twenties_flashlight_voice_2
+
+  mystery_twenties_hat_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_hat_voice_1
+      - mystery_twenties_hat_voice_2
+
+  mystery_twenties_loupe_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_loupe_voice_1
+      - mystery_twenties_loupe_voice_2
+      - mystery_twenties_loupe_voice_3
+
+  mystery_twenties_shoes_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mystery_twenties_shoes_voice_1
+      - mystery_twenties_shoes_voice_2
+
+
+  mystery_twenties_pan:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - pan_hit_1
+      - pan_hit_2
+      - pan_hit_3
+
+  mystery_twenties_reload:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - reload_1
+      - reload_2
+      - reload_3
+
+  mystery_hatch_open_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - mystery_twenties_hatch_1
+      - mystery_twenties_hatch_2
+      - mystery_twenties_hatch_3
+      - mystery_twenties_hatch_4
+      - mystery_twenties_hatch_5

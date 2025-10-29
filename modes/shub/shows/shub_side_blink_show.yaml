@@ -1,0 +1,21 @@
+#show_version=6
+- time: 0
+  lights:
+    side_led_right: FF00FF-f200ms
+    
+- time: "+1"
+  lights:
+    side_led_left: FF00FF-f200ms
+
+- time: "+2"
+  lights:
+    side_led_right: CC0066-f200ms
+
+- time: "+3"
+  lights:
+    side_led_left: CC0066-f200ms
+    side_led_right: off
+
+- time: "+4"
+  lights:
+    side_led_left: off

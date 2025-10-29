@@ -1,0 +1,127 @@
+#config_version=6
+
+mode:
+  start_events: library_charleston_start
+  stop_events: library_charleston_stop, timer_exit_library_charleston_time_complete
+  priority: 700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_charleston_started: library_video_start
+  base_gate_secret_library_exit_shot_hit: library_charleston_stop
+  base_gate_exit_library_shot_hit: library_charleston_stop
+  timer_exit_library_charleston_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_charleston_slide: []      
+
+###########################
+
+slide_player:
+  mode_library_charleston_started: library_charleston_slide
+
+###########################
+      
+
+widgets:
+  library_charleston_start_banner:
+    type: text
+    text: You'll ruin the parquet !
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+
+  show_exit_library_charleston_time:
+    type: text
+    text: (player|exit_library_charleston_time_variable_times) seconds left
+    y: 25%
+    x: 50%
+    z: 100
+
+###########################
+
+widget_player:
+  mode_library_charleston_started:
+    library_charleston_start_banner, show_exit_library_charleston_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: library_charleston_slide
+
+###########################
+
+variable_player:
+  timer_exit_library_charleston_time_tick:
+    exit_library_charleston_time_variable_times:
+      int: device.timers.exit_library_charleston_time.ticks
+      action: set
+ 
+###########################
+
+timers:
+  exit_library_charleston_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_charleston_started
+  
+  voice_library_charleston_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_charleston_started
+
+
+###########################
+
+show_player:
+  mode_library_charleston_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+###########################
+
+sound_pools:
+  library_charleston_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - private_entrance_10
+      - private_entrance_11
+      - private_entrance_12
+      - private_entrance_13
+
+###########################
+
+sound_player:
+  mode_library_charleston_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+    clock_gong:
+      action: play
+      volume: 5
+      delay: 10  
+
+  library_charleston_stop:
+    clock_tick_10s:
+      action: stop
+    clock_gong:
+      action: stop
+  
+  timer_voice_library_charleston_time_complete:
+    library_charleston_voice_sounds:
+      action: play
+      volume: 2
+

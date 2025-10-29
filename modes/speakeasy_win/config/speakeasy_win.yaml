@@ -1,0 +1,134 @@
+#config_version=6
+mode:
+  start_events: speakeasy_win_start
+  stop_events: timer_quit_speakeasy_win_time_complete
+  restart_on_next_ball: false
+  priority: 300
+
+###########################
+
+event_player:
+  timer_quit_speakeasy_win_time_complete: twenties_start
+
+###########################
+
+show_player:
+  mode_speakeasy_win_started:
+    speakeasy_win_show:
+      speed: 15
+      loops: -1
+      priority: 100
+    speakeasy_win_show_2:
+      speed: 10
+      loops: -1
+      priority: 100
+
+###########################
+
+slide_player:
+  mode_speakeasy_win_started: speakeasy_win_slide
+
+###########################
+
+slides:
+  speakeasy_win_slide: []
+
+###########################
+
+widgets:
+  speakeasy_win_banner:
+    type: text
+    text: YOU ARE DRUNK !!!
+    color: FF9933
+    y: 28%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true
+
+  speakeasy_win_banner_2:
+    type: text
+    text: 150,000 points !
+    color: FF9933
+    y: 65%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true  
+
+  video_speakeasy_win_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_speakeasy_win_started:
+    speakeasy_win_banner, speakeasy_win_banner_2, video_speakeasy_win_scratch_widget, base_without_score_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: speakeasy_win_slide
+
+###########################
+
+variable_player:
+  mode_speakeasy_win_started:
+    mission_speakeasy:
+      action: set
+      string: 'completed'
+
+    score: 150000
+    speakeasy_champion: 150000
+
+    mission_boost_multiplier:
+      action: add
+      float: 0.1
+
+###########################
+
+timers:
+  quit_speakeasy_win_time:
+    start_value: 10
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_speakeasy_win_started
+
+###########################
+
+sound_player:
+  mode_speakeasy_win_started:
+    applause_win_sound_pool:
+      action: play
+      loops: 0
+      volume: 1
+    violin_sound_victory_pool:
+      action: play
+      loops: 0
+      volume: 1
+    super_jackpot_voice_pool:
+      action: play
+      loops: 0
+      volume: 2
+
+

@@ -1,0 +1,13 @@
+#show_version=6
+- time: '+1'
+  coils:
+    c_flipper_upleft_main: pulse
+    c_flipper_left_main:
+      action: pulse
+      pulse_ms: 15
+  lights:
+    side_led_left: 9C00FF-f200ms
+
+- time: '+2'
+  lights:
+    side_led_left: off-f200ms

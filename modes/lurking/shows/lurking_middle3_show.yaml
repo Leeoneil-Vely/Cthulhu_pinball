@@ -1,0 +1,18 @@
+#show_version=6
+- duration: 1
+  lights:
+    led_43: red-f200ms
+    led_44: red-f200ms
+    led_42: red-f200ms
+    led_69: red-f200ms
+    led_70: red-f200ms
+    led_71: red-f200ms
+
+- duration: 1
+  lights:
+    led_43: off-f200ms
+    led_44: off-f200ms
+    led_42: off-f200ms
+    led_69: off-f200ms
+    led_70: off-f200ms
+    led_71: off-f200ms

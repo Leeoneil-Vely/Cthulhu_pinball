@@ -1,0 +1,13 @@
+#show_version=6
+- time: 0
+  lights:
+    (led): white-f200ms
+
+- time: "+1"
+  lights:
+    (led): FF9933-f200ms
+
+- time: "+2"
+  lights:
+    (led): white-f200ms
+    

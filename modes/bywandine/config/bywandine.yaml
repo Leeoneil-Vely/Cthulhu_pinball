@@ -1,0 +1,947 @@
+#config_version=6
+mode:
+  start_events: bywandine_start
+  stop_events: bywandine_stop, ball_ended
+  priority: 1600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_bywandine_started: twenties_stop, hold_stop, launch_bywandine_timer
+  timer_exit_bywandine_time_complete: show_bywandine_bonus
+  timer_exit_bywandinebonus_time_complete: bywandine_stop, twenties_start
+  drop_target_bywandine_group_complete: win_bywandine_bonus
+
+###########################
+
+slides:
+  bywandine_slide: []
+
+###########################
+
+slide_player:
+  mode_bywandine_started: bywandine_slide
+
+###########################
+
+widgets:
+  bywandine_indication_banner:
+    type: text
+    text: Bywandine drug !
+    style: mission_text
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+
+  bywandine_indication_banner_2:
+    type: text
+    text: You're away from your body
+    style: mission_text
+    color: white
+    y: 72%
+    x: 50%
+    z: 100
+
+  bywandine_indication_banner_3:
+    type: text
+    text: You have (player|exit_bywandine_time_variable_times) seconds
+    style: mission_text
+    color: white
+    y: 50%
+    x: 50%
+    z: 100
+
+  bywandine_indication_banner_4:
+    type: text
+    text: to return to your body
+    style: mission_text
+    color: white
+    y: 40%
+    x: 50%
+    z: 100
+
+  bywandine_indication_banner_5:
+    type: text
+    text: (4 drop targets)
+    style: mission_text
+    color: white
+    y: 30%
+    x: 50%
+    z: 100
+
+  bywandine_indication_banner_6:
+    type: text
+    text: Well done ! (player|bywandine_bonus) bonus points !
+    style: mission_text
+    color: white
+    y: 50%
+    x: 50%
+    z: 100
+
+  video_bywandine_1_scratch_widget:
+    type: video
+    video: bywandine_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+
+###########################
+
+widget_player:
+  mode_bywandine_started:
+    bywandine_indication_banner, bywandine_indication_banner_2, bywandine_indication_banner_3, bywandine_indication_banner_4, bywandine_indication_banner_5, cthulhu_frame_image, superpops_widget, video_bywandine_1_scratch_widget:
+      action: add
+      slide: bywandine_slide
+  mode_bywandine_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: bywandine_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  show_bywandine_bonus:
+    bywandine_indication_banner, bywandine_indication_banner_2, bywandine_indication_banner_3, bywandine_indication_banner_4, bywandine_indication_banner_5:
+      action: remove
+    bywandine_indication_banner_6:
+      action: add
+      slide: bywandine_slide
+
+###########################
+
+timers:
+  exit_bywandine_time:
+    start_value: 35
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_bywandine_started
+
+  exit_bywandinebonus_time:
+    start_value: 4
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: show_bywandine_bonus
+
+###########################
+
+shot_profiles:
+  bywandine_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: bywandinehitflashing
+        show: bywandine_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 1700
+
+  bywandine_droptarget_flash:
+    advance_on_hit: true
+    loop: false
+    block: false
+    states:
+      - name: bywandinedrophitflashing
+        show: bywandine_droptarget_blink_show
+        speed: 25
+        loops: -1
+        priority: 1700
+      - name: bywandinedtoff
+        show: off
+
+###########################
+
+shots:
+  bywandine_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_86
+  bywandine_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_85
+  bywandine_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_84
+  bywandine_sling_left_shot:
+    switch: s_sling_left
+    profile: bywandine_target_flash
+    show_tokens:
+      led: led_30, led_31
+  bywandine_sling_right_shot:
+    switch: s_sling_right
+    profile: bywandine_target_flash
+    show_tokens:
+      led: led_36, led_37
+  bywandine_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  bywandine_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: bywandine_target_flash
+    show_tokens:
+      led: led_11, led_19
+
+  bywandine_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_41
+  bywandine_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_32
+  bywandine_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_30
+  bywandine_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_20
+  bywandine_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_10
+
+  bywandine_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_50
+  bywandine_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_49  
+  bywandine_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_48
+  bywandine_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_11
+  bywandine_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_12
+  bywandine_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_13
+    
+  bywandine_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  bywandine_gate_library_shot:
+    switch: s_gate_library
+    profile: bywandine_target_flash
+    show_tokens:
+      led: led_1
+  bywandine_roll_library_shot:
+    switch: s_roll_library
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  bywandine_roll_space_shot:
+    switch: s_roll_space
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43
+  bywandine_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_34
+
+  bywandine_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  bywandine_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  bywandine_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  bywandine_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  bywandine_team_1_shot:
+    switch: s_roll_skill_shot_1
+  bywandine_team_2_shot:
+    switch: s_roll_skill_shot_2
+  bywandine_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  bywandine_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  bywandine_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_74, insert_25, insert_26, insert_29
+  bywandine_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  bywandine_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: bywandine_target_flash
+    show_tokens:
+      led: led_2
+  bywandine_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  bywandine_spinner_shot:
+    switch: s_spinner
+    profile: bywandine_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  bywandine_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: bywandine_droptarget_flash
+    # reset_events: mode_bywandine_started
+    show_tokens:
+      led: insert_24
+  bywandine_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: bywandine_droptarget_flash
+    # reset_events: mode_bywandine_started
+    show_tokens:
+      led: insert_23
+  bywandine_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: bywandine_droptarget_flash
+    # reset_events: mode_bywandine_started
+    show_tokens:
+      led: insert_22
+  bywandine_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: bywandine_droptarget_flash
+    # reset_events: mode_bywandine_started
+    show_tokens:
+      led: insert_21
+
+  bywandine_green_target_1_shot:
+    switch: s_target_green_1
+  bywandine_green_target_2_shot:
+    switch: s_target_green_2
+  bywandine_green_target_3_shot:
+    switch: s_target_green_3
+
+  bywandine_space_orbit_shot:
+    hit_events: bywandine_space_orbit_sequence_hit
+  bywandine_asylum_orbit_shot:
+    hit_events: bywandine_asylum_orbit_sequence_hit
+  bywandine_library_roll_shot:
+    hit_events: bywandine_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  bywandine_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  bywandine_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  bywandine_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+shot_groups:
+  drop_target_bywandine_group:
+    shots: bywandine_drop_target_1_shot, bywandine_drop_target_2_shot, bywandine_drop_target_3_shot, bywandine_drop_target_4_shot
+    reset_events: reset_bywandine_dt
+
+###########################
+
+show_player:
+  s_left_flipper_active:
+    bywandine_coil_show_left:
+      action: play
+      speed: 5
+      priority: 1000
+      loops: 0
+  s_right_flipper_active:
+    bywandine_coil_show_right:
+      action: play
+      speed: 5
+      priority: 1000
+      loops: 0
+
+  mode_bywandine_started:
+    all_insert_bywandine_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+      events_when_completed: launch_bywandine_light_show
+
+  launch_bywandine_light_show:
+    bywandine_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: -1  
+
+  win_bywandine_bonus:
+    bywandine_complete_dt_show:
+      action: play
+      speed: 50
+      priority: 250
+      loops: 0
+      events_when_completed: reset_bywandine_dt
+
+###########################
+
+variable_player:
+  timer_exit_bywandine_time_tick:
+    exit_bywandine_time_variable_times:
+      int: device.timers.exit_bywandine_time.ticks
+      action: set
+
+  mode_bywandine_started:
+    bywandine_bonus:
+      int: 0
+      action: set
+
+
+  win_bywandine_bonus:
+    score: 25000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 25000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  bywandine_sling_left_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_sling_right_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  bywandine_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  bywandine_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  bywandine_drop_target_1_shot_hit:
+    score: 5001 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 5001 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_drop_target_2_shot_hit:
+    score: 5002 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 5002 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_drop_target_3_shot_hit:
+    score: 5003 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 5003 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_drop_target_4_shot_hit:
+    score: 5004 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 5004 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  bywandine_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  bywandine_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  bywandine_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  bywandine_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  bywandine_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  bywandine_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  bywandine_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  bywandine_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  bywandine_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  bywandine_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  bywandine_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_gate_secret_library_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+###########################
+
+sound_player:
+  show_bywandine_bonus:
+    bywandine_bonus_sfx_1:
+      action: play
+      volume: 2
+
+  bywandine_sling_left_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_sling_right_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_bumper_one_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_bumper_two_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_bumper_three_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_scoop_bas_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_scoop_haut_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_target_square_1_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_square_2_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_square_3_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_square_4_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_square_5_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_target_sanity_shot_1_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_sanity_shot_2_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_sanity_shot_3_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_sanity_shot_4_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_sanity_shot_5_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_sanity_shot_6_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_drop_target_1_shot_hit:
+    bywandine_dt_sfx_1:
+      action: play
+      volume: 2
+  bywandine_drop_target_2_shot_hit:
+    bywandine_dt_sfx_2:
+      action: play
+      volume: 2
+  bywandine_drop_target_3_shot_hit:
+    bywandine_dt_sfx_3:
+      action: play
+      volume: 2
+  bywandine_drop_target_4_shot_hit:
+    bywandine_dt_sfx_4:
+      action: play
+      volume: 2
+
+  bywandine_green_target_1_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_green_target_2_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_green_target_3_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_target_library_1_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_library_2_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_library_3_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_library_4_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_library_5_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_target_library_6_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_team_1_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_team_2_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_team_3_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_spinner_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_roll_left_outlane_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_left_inlane_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_right_inlane_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_right_outlane_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_library_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_fordt_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_space_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_roll_asylum_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+  bywandine_cthulhu_ramp_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_main_ramp_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_green_ramp_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_gate_library_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_gate_exit_library_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+  bywandine_gate_secret_library_shot_hit:
+    bywandine_sfx_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  bywandine_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - bywandine_sfx_1
+      - bywandine_sfx_2
+      - bywandine_sfx_3
+      - bywandine_sfx_4
+      - bywandine_sfx_5
+
+###########################
+
+videos:
+ bywandine_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: bywandine_video_1.mp4

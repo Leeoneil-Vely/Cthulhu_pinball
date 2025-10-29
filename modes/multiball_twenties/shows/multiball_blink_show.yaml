@@ -1,0 +1,9 @@
+#show_version=6
+
+- time: 0
+  lights:
+    (led): green-f200ms
+
+- time: "+1"
+  lights:
+    (led): white-f200ms

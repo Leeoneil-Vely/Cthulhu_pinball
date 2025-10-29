@@ -1,0 +1,40 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_43: red-f200ms
+    insert_68: red
+
+- time: '+1'
+  lights:
+    insert_42: red-f200ms
+
+- time: '+2'
+  lights:
+    insert_40: red-f200ms
+
+- time: '+3'
+  lights:
+    insert_39: red-f200ms
+
+- time: '+4'
+  lights:
+    insert_43: off
+
+- time: '+5'
+  lights:
+    insert_42: off
+
+- time: '+6'
+  lights:
+    insert_40: off
+
+- time: '+7'
+  lights:
+    insert_39: off
+
+- time: '+20'
+  lights:
+    insert_43: off
+    insert_42: off
+    insert_40: off
+    insert_39: off

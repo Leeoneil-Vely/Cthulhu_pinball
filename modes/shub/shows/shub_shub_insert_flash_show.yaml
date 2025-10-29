@@ -1,0 +1,39 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_9: CC0066-f200ms
+
+- time: '+1'
+  lights:
+    insert_8: CC0066-f200ms
+
+- time: '+2'
+  lights:
+    insert_7: CC0066-f200ms
+
+- time: '+3'
+  lights:
+    insert_6: CC0066-f200ms
+
+- time: '+4'
+  lights:
+    insert_9: off
+
+- time: '+5'
+  lights:
+    insert_8: off
+
+- time: '+6'
+  lights:
+    insert_7: off
+
+- time: '+7'
+  lights:
+    insert_6: off
+
+- time: '+20'
+  lights:
+    insert_9: off
+    insert_8: off
+    insert_7: off
+    insert_6: off

@@ -1,0 +1,295 @@
+#config_version=6
+mode:
+  start_events: mode_base_started, target_sanity_start
+  stop_events: sanity_targets_stop
+  priority: 200
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  "{current_player.sanity_gauge>=2}": launch_sanity_target_voice
+  "{current_player.sanity_gauge>=4}": launch_sanity_target_voice
+  sanity_group_hit_complete: hold_stop
+
+###########################
+
+random_event_player:
+  asylum_stay:
+    events:
+      - asylum_stay_1{device.shots.target_sanity_shot_1.state_name=='hit'}
+      - asylum_stay_2{device.shots.target_sanity_shot_2.state_name=='hit'}
+      - asylum_stay_3{device.shots.target_sanity_shot_3.state_name=='hit'}
+      - asylum_stay_4{device.shots.target_sanity_shot_4.state_name=='hit'}
+      - asylum_stay_5{device.shots.target_sanity_shot_5.state_name=='hit'}
+      - asylum_stay_6{device.shots.target_sanity_shot_6.state_name=='hit'}
+
+  action_valid_spell_shot:
+    events:
+      - action_book_shot_1{device.shots.target_sanity_shot_1.state_name=='off'}
+      - action_book_shot_2{device.shots.target_sanity_shot_2.state_name=='off'}
+      - action_book_shot_3{device.shots.target_sanity_shot_3.state_name=='off'}
+      - action_book_shot_4{device.shots.target_sanity_shot_4.state_name=='off'}
+      - action_book_shot_5{device.shots.target_sanity_shot_5.state_name=='off'}
+      - action_book_shot_6{device.shots.target_sanity_shot_6.state_name=='off'}
+    force_all: true
+
+###########################
+
+shot_profiles:
+  sanity_target_on:
+    loop: false
+    block: true
+    states:
+      - name: off
+        show: off        
+      - name: hit
+        show: led_color
+        show_tokens:
+          color: red
+        priority: 150
+
+###########################
+
+shots:
+  target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: sanity_target_on
+    hit_events: action_book_shot_1
+    reset_events: asylum_stay_1
+    show_tokens:
+      light: insert_50
+  target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: sanity_target_on
+    hit_events: action_book_shot_2
+    reset_events: asylum_stay_2
+    show_tokens:
+      light: insert_49
+  target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: sanity_target_on
+    hit_events: action_book_shot_3
+    reset_events: asylum_stay_3
+    show_tokens:
+      light: insert_48
+  target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: sanity_target_on
+    reset_events: asylum_stay_4
+    hit_events: action_book_shot_4
+    show_tokens:
+      light: insert_11
+  target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: sanity_target_on
+    reset_events: asylum_stay_5
+    hit_events: action_book_shot_5
+    show_tokens:
+      light: insert_12
+  target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: sanity_target_on
+    reset_events: asylum_stay_6
+    hit_events: action_book_shot_6
+    show_tokens:
+      light: insert_13
+
+###########################
+
+shot_groups:
+  sanity_group:
+    shots: target_sanity_shot_1, target_sanity_shot_2, target_sanity_shot_3, target_sanity_shot_4, target_sanity_shot_5, target_sanity_shot_6
+    reset_events: sanity_start #sanity_group_complete
+
+###########################
+
+show_player:
+  sanity_group_hit_complete:
+    sanity_group_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1000
+      events_when_completed: sanity_start, twenties_stop, reset_sanity_gauge
+
+    launch_sanity_show:
+      speed: 30
+      loops: 1
+      priority: 500
+      events_when_completed: launch_sanity_show_2
+  launch_sanity_show_2:
+    launch_sanity_show:
+      speed: 60
+      loops: 1
+      priority: 500
+      events_when_completed: launch_sanity_show_3
+  launch_sanity_show_3:
+    launch_sanity_show:
+      speed: 120
+      loops: 5
+      priority: 500
+
+
+  target_sanity_shot_1_hit:
+    left_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  target_sanity_shot_2_hit:
+    left_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  target_sanity_shot_3_hit:
+    left_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  target_sanity_shot_4_hit:
+    right_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  target_sanity_shot_5_hit:
+    right_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  target_sanity_shot_6_hit:
+    right_sanity_hit_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2  
+
+###########################
+
+variable_player:
+  target_sanity_shot_1_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  target_sanity_shot_2_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  target_sanity_shot_3_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  target_sanity_shot_4_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  target_sanity_shot_5_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  target_sanity_shot_6_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  target_sanity_shot_1_off_hit:
+    sanity_gauge: 1
+  target_sanity_shot_2_off_hit:
+    sanity_gauge: 1
+  target_sanity_shot_3_off_hit:
+    sanity_gauge: 1
+  target_sanity_shot_4_off_hit:
+    sanity_gauge: 1
+  target_sanity_shot_5_off_hit:
+    sanity_gauge: 1
+  target_sanity_shot_6_off_hit:
+    sanity_gauge: 1
+
+  asylum_stay_1:
+    sanity_gauge: -1
+  asylum_stay_2:
+    sanity_gauge: -1
+  asylum_stay_3:
+    sanity_gauge: -1
+  asylum_stay_4:
+    sanity_gauge: -1
+  asylum_stay_5:
+    sanity_gauge: -1
+  asylum_stay_6:
+    sanity_gauge: -1
+
+  action_valid_spell_shot:
+    variable_number_of_book_value:
+      int: -5
+    spell_boost_multiplier:
+      action: add
+      int: 1
+
+###########################
+
+counters:
+  stay_asylum_counter:
+    count_events: s_spinner_active
+    starting_count: 0
+    count_complete_value: 5
+    events_when_complete: asylum_stay
+    reset_on_complete: true
+    disable_on_complete: false
+    persist_state: false
+
+###########################
+
+light_player:
+  "{current_player.sanity_gauge>=2}":
+    insert_5: red
+  "{current_player.sanity_gauge>=4}":  
+    insert_4: red
+  "{current_player.sanity_gauge>=6}":
+    insert_3: red
+
+###########################
+
+sound_player:
+  target_sanity_shot_1_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  target_sanity_shot_2_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  target_sanity_shot_3_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  target_sanity_shot_4_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  target_sanity_shot_5_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  target_sanity_shot_6_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_group_hit_complete:
+    sanity_launch:
+      action: play
+      volume: 1
+###########################
+
+sound_pools:
+  sanity_sound:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - sanity_1
+      - sanity_2
+      - sanity_3
+      - sanity_4
+      - sanity_5
+      - sanity_6
+      - sanity_7
+      - sanity_8
+
+###########################

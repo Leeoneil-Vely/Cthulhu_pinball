@@ -1,0 +1,40 @@
+#show_version=6
+- time: 0
+  lights:
+    (led): 24da98-f200ms
+
+- time: "+1"
+  lights:
+    (led): white-f200ms
+    
+- time: "+2"
+  lights:
+    (led): 24b6da-f200ms
+
+- time: "+3"
+  lights:
+    (led): white-f200ms
+
+- time: "+4"
+  lights:
+    (led): 6432e8-f200ms
+
+- time: "+5"
+  lights:
+    (led): white-f200ms
+
+- time: "+6"
+  lights:
+    (led): 2673ea-f200ms
+
+- time: "+7"
+  lights:
+    (led): white-f200ms
+
+- time: "+8"
+  lights:
+    (led): 6432e8-f200ms
+
+- time: "+9"
+  lights:
+    (led): white-f200ms

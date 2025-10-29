@@ -1,0 +1,405 @@
+#config_version=6
+mode:
+  start_events: cellar_start
+  stop_events: cellar_stop, ball_ended
+  priority: 900
+  restart_on_next_ball: false
+
+###########################
+
+ball_holds:
+  cellar_multiball_scoop_haut:
+    hold_devices: bd_scoop_haut
+    enable_events: mode_cellar_started
+    release_one_events: launch_cellar_multiball, ball_drain
+    disable_events: launch_cellar_multiball, ball_drain
+
+###########################
+
+# queue_event_player:
+#   multiball_multiball_cellar_multiball_started:
+#     queue_event:  balldevice_bd_plunger_lane_ball_enter
+#     events_when_finished: my_queue_done
+
+# queue_relay_player:
+#   multiball_multiball_cellar_multiball_started:
+#     post: start_my_mode
+#     wait_for: my_mode_done
+
+
+###########################
+
+event_player:
+  timer_start_locked_time_complete: lock_investigator, shaker_shake
+  cellar_bumper_one_shot_hit{current_player.cellar_investigator_state=='locked'}: launch_cellar_multiball
+  cellar_bumper_two_shot_hit{current_player.cellar_investigator_state=='locked'}: launch_cellar_multiball
+  cellar_bumper_three_shot_hit{current_player.cellar_investigator_state=='locked'}: launch_cellar_multiball
+  ball_drain: no_more_cellar
+  multiball_multiball_cellar_multiball_ended: cellar_stop|5s
+
+###########################
+
+multiballs:
+  multiball_cellar_multiball:
+    ball_count: 2
+    ball_count_type: total
+    start_events: lock_investigator
+    shoot_again: 1s
+
+###########################
+
+slides:
+  cellar_slide: []
+
+###########################
+
+slide_player:
+  lock_investigator: cellar_slide
+  launch_cellar_multiball:
+    cellar_slide:
+      action: remove
+
+###########################
+
+widgets:
+  cellar_name_banner:
+    type: text
+    text: Locked in the cellar
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+
+  cellar_indication_banner:
+    type: text
+    text: Save your friend locked in the cellar
+    y: 68%
+    x: 50%
+    z: 100
+
+  cellar_indication_banner_2:
+    type: text
+    text: Go to the bumpers !
+    y: 28%
+    x: 50%
+    z: 100
+
+  cellar_indication_banner_3:
+    type: text
+    text: You failed to save your friend...
+    y: 72%
+    x: 50%
+    z: 100
+
+  cellar_indication_banner_4:
+    type: text
+    text: You save your friend...
+    y: 72%
+    x: 50%
+    z: 100
+  cellar_indication_banner_5:
+    type: text
+    text: ...fight the myth together !
+    y: 32%
+    x: 50%
+    z: 100
+
+  video_cellar_scratch_widget:
+    type: video
+    video: mystery_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  lock_investigator:
+    cellar_name_banner, cellar_indication_banner, cellar_indication_banner_2, video_cellar_scratch_widget, base_score_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: cellar_slide
+  mode_cellar_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: cellar_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove 
+
+
+  no_more_cellar:
+    cellar_indication_banner_3:
+      action: add
+      slide: cellar_slide
+    cellar_indication_banner, cellar_indication_banner_2:
+      action: remove
+
+  launch_cellar_multiball:
+    cellar_indication_banner_4, cellar_indication_banner_5:
+      action: add
+      slide: cellar_slide
+    cellar_indication_banner, cellar_indication_banner_2:
+      action: remove
+
+###########################
+
+timers:
+  start_locked_time:
+    start_value: 0
+    end_value: 2
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_cellar_started
+
+  pulse_locked_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: lock_investigator
+      - action: stop
+        event: launch_cellar_multiball
+      - action: stop
+        event: no_more_cellar
+
+  cellar_crazy_voice_time:
+    start_value: 0
+    end_value: 10
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: lock_investigator
+      - action: stop
+        event: launch_cellar_multiball
+      - action: stop
+        event: no_more_cellar
+
+###########################
+
+shot_profiles:
+  cellar_target_sanity_profile:
+    loop: true
+    block: true
+    states:
+      - name: hit
+        show: stormy_night_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+
+###########################
+
+shots:
+  cellar_bumper_one_shot:
+    switch: s_popbumper_one
+  cellar_bumper_two_shot:
+    switch: s_popbumper_two
+  cellar_bumper_three_shot:
+    switch: s_popbumper_three
+
+  cellar_scoop_haut_shot:
+    switch: s_scoop_haut
+
+  cellar_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_50
+  cellar_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_49  
+  cellar_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_48
+  cellar_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_11
+  cellar_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_12
+  cellar_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: cellar_target_sanity_profile
+    enable_events: lock_investigator
+    disable_events: multiball_multiball_cellar_multiball_ended
+    show_tokens:
+      led: insert_13
+
+
+###########################
+
+show_player:
+  mode_cellar_started:
+    save_investigator_show:
+      speed: 77
+      loops: 0
+
+  timer_pulse_locked_time_complete:
+    save_investigator_show:
+      speed: 77
+      loops: 0
+
+  lock_investigator:
+    cellar_bumper_blink_show:
+      speed: 15
+      loops: -1
+
+  launch_cellar_multiball:
+    cellar_bumper_blink_show:
+      action: stop
+    launch_cellar_multiball_show:
+      speed: 25
+      loops: 2
+
+  no_more_cellar:
+    cellar_bumper_blink_show:
+      action: stop
+
+###########################
+
+variable_player:
+  cellar_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  cellar_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  cellar_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lock_investigator:
+    cellar_investigator_state:
+      action: set
+      string: 'locked'
+
+  no_more_cellar:
+    cellar_investigator_state:
+      action: set
+      string: 'lost'
+
+  launch_cellar_multiball:
+    cellar_investigator_state:
+      action: set
+      string: 'released'
+
+  cellar_scoop_haut_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+sound_player:
+  launch_cellar_multiball:
+    impact_dark_1:
+      action: play
+      volume: 2
+    crazy_cellar_escape_voice_pool:
+      action: play
+      volume: 2
+    suspens_music_pool:
+      action: stop
+    dramatic_music_pool:
+      action: play
+      volume: 1
+      loops: -1
+      mode_end_action: stop
+      fade_out: 2s
+
+  lock_investigator:
+    cult_music, graveyard_music, city_music:
+      action: stop
+    suspens_music_pool:
+      action: play
+      volume: 1
+      loops: -1
+      mode_end_action: stop
+      fade_out: 2s
+    crazy_cellar_voice_pool:
+      action: play
+      volume: 2
+
+  timer_pulse_locked_time_complete:
+    heartbeat_1:
+      action: play
+      volume: 2
+
+  timer_cellar_crazy_voice_time_complete:
+    crazy_cellar_voice_pool:
+      action: play
+      volume: 2
+
+  no_more_cellar:
+    crazy_cellar_no_escape_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  crazy_cellar_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - cellar_voice_1
+      - cellar_voice_2
+      - cellar_voice_3
+      - cellar_voice_4
+      - cellar_voice_5
+      - cellar_voice_6
+      - cellar_voice_7
+      - cellar_voice_8
+      - cellar_voice_9
+      - cellar_voice_10
+      - cellar_voice_11
+      - cellar_voice_12
+      - cellar_voice_13
+      - cellar_voice_14
+      - cellar_voice_15
+
+  crazy_cellar_escape_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - cellar_voice_escape_1
+      - cellar_voice_escape_2
+      - cellar_voice_escape_3
+      - cellar_voice_escape_4
+
+  crazy_cellar_no_escape_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - cellar_voice_no_escape_1
+      - cellar_voice_no_escape_2
+      - cellar_voice_no_escape_3
+      - cellar_voice_no_escape_4
+      - cellar_voice_no_escape_5
+      - cellar_voice_no_escape_6
+      - cellar_voice_no_escape_7

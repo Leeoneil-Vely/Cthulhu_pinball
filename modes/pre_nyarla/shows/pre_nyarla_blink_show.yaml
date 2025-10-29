@@ -1,0 +1,13 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_69: blue-f200ms
+    side_led_right: blue-f200ms
+    side_led_left: blue-f200ms
+    
+- time: "+1"
+  lights:
+    insert_69: white-f200ms
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+    

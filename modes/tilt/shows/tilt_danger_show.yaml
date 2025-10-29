@@ -1,0 +1,33 @@
+#show_version=6
+- time: 0
+  lights:
+    gi: off
+    gi_insert: off
+    side_led_left: off
+    side_led_right: off
+    backglass_led: off
+
+- time: '+1'
+  lights:
+    gi: red-f200ms
+    gi_insert: red-f200ms
+    side_led_left: white-f200ms
+    side_led_right: white-f200ms
+    backglass_led: red-f200ms
+
+- time: '+2'
+  lights:
+    gi: off
+    gi_insert: off
+    side_led_left: off
+    side_led_right: off
+    backglass_led: off
+
+- time: '+3'
+  lights:
+    gi: red-f200ms
+    gi_insert: red-f200ms
+    side_led_left: white-f200ms
+    side_led_right: white-f200ms
+    backglass_led: red-f200ms
+

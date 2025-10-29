@@ -1,0 +1,1636 @@
+#config_version=6
+mode:
+  start_events: ball_will_start
+  use_wait_queue: false
+  priority: 1000
+  stop_events: timer_starting_video_slide_time_complete, starting_video_stop
+
+###########################
+
+event_player:
+  ball_starting{ball==1 and is_extra_ball}: launch_extraball_animation
+  ball_starting{ball==2 and is_extra_ball}: launch_extraball_animation
+  ball_starting{ball==3 and is_extra_ball}: launch_extraball_animation
+  ball_starting{ball==1 and not is_extra_ball}: launch_ball1_animation
+  ball_starting{ball==2 and not is_extra_ball}: launch_ball2_animation
+  ball_starting{ball==3 and not is_extra_ball}: launch_ball3_animation
+  launch_extraball_animation: launch_ball1_video
+  launch_ball1_animation: launch_ball1_video
+  launch_ball2_animation: launch_ball2_video
+  launch_ball3_animation: launch_ball3_video	
+
+###########################
+
+random_event_player:
+  launch_ball1_video:
+    events:
+      - play_video_start_1
+      - play_video_start_2
+      - play_video_start_3
+      - play_video_start_4
+      - play_video_start_5
+      - play_video_start_6
+      - play_video_start_7
+      - play_video_start_8
+      - play_video_start_9
+      - play_video_start_10
+      - play_video_start_11
+      - play_video_start_12
+      - play_video_start_13
+      - play_video_start_14
+      - play_video_start_15
+      - play_video_start_16
+      - play_video_start_17
+      - play_video_start_18
+      - play_video_start_19
+      - play_video_start_20
+      - play_video_start_21
+      - play_video_start_22
+      - play_video_start_23
+      - play_video_start_24
+      - play_video_start_25
+      - play_video_start_26
+      - play_video_start_27
+      - play_video_start_28
+      - play_video_start_29
+      - play_video_start_30
+      - play_video_start_31
+      - play_video_start_32
+      - play_video_start_33
+      - play_video_start_34
+      - play_video_start_35
+      - play_video_start_36
+      - play_video_start_37
+      - play_video_start_38
+      - play_video_start_39
+      - play_video_start_40
+
+  launch_ball2_video:
+    events:
+      - play_video_ball2_1
+      - play_video_ball2_2
+      - play_video_ball2_3
+      - play_video_ball2_4
+      - play_video_ball2_5
+      - play_video_ball2_6
+      - play_video_ball2_7
+      - play_video_ball2_8
+      - play_video_ball2_9
+      - play_video_ball2_10
+      - play_video_ball2_11
+      - play_video_ball2_12
+      - play_video_ball2_13
+      - play_video_ball2_14
+      - play_video_ball2_15
+      - play_video_ball2_16
+      - play_video_ball2_17
+      - play_video_ball2_18
+      - play_video_ball2_19
+      - play_video_ball2_20
+      - play_video_ball2_21
+      - play_video_ball2_22
+      - play_video_ball2_23
+      - play_video_ball2_24
+      - play_video_ball2_25
+      - play_video_ball2_26
+      - play_video_ball2_27
+      - play_video_ball2_28
+      - play_video_ball2_29
+
+  launch_ball3_video:
+    events:
+      - play_video_ball3_1
+      - play_video_ball3_2
+      - play_video_ball3_3
+      - play_video_ball3_4
+      - play_video_ball3_5
+      - play_video_ball3_6
+      - play_video_ball3_7
+      - play_video_ball3_8
+      - play_video_ball3_9
+      - play_video_ball3_10
+      - play_video_ball3_11
+      - play_video_ball3_12
+      - play_video_ball3_13
+      - play_video_ball3_14
+      - play_video_ball3_15
+      - play_video_ball3_16
+      - play_video_ball3_17
+      - play_video_ball3_18
+
+  launch_ball1_animation:
+    events:
+      - play_welcome_widget_1
+      - play_welcome_widget_2
+      - play_welcome_widget_3
+      - play_welcome_widget_4
+      - play_welcome_widget_5
+
+  launch_ball2_animation:
+    events:
+      - play_ball_two_widget_1
+      - play_ball_two_widget_2
+      - play_ball_two_widget_3
+      - play_ball_two_widget_4
+      - play_ball_two_widget_5
+
+  launch_ball3_animation:
+    events:
+      - play_ball_three_widget_1
+      - play_ball_three_widget_2
+      - play_ball_three_widget_3
+      - play_ball_three_widget_4
+      - play_ball_three_widget_5
+
+
+###########################
+
+slides:
+  starting_video_slide: []
+
+###########################
+
+slide_player:
+  mode_starting_video_started:
+    starting_video_slide:
+      action: play
+      priority: 100
+
+###########################
+
+widgets:
+  extraball_start_widget:
+    type: text
+    text: Same player shoot again !
+    y: 50%
+    x: 50%
+    z: 20
+
+  video_start_1_scratch_widget:
+    type: video
+    video: start_1_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_2_scratch_widget:
+    type: video
+    video: start_2_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_3_scratch_widget:
+    type: video
+    video: start_3_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_4_scratch_widget:
+    type: video
+    video: start_4_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_5_scratch_widget:
+    type: video
+    video: start_5_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_6_scratch_widget:
+    type: video
+    video: start_6_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_7_scratch_widget:
+    type: video
+    video: start_7_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_8_scratch_widget:
+    type: video
+    video: start_8_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_9_scratch_widget:
+    type: video
+    video: start_9_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_10_scratch_widget:
+    type: video
+    video: start_10_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_11_scratch_widget:
+    type: video
+    video: start_11_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_12_scratch_widget:
+    type: video
+    video: start_12_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_13_scratch_widget:
+    type: video
+    video: start_13_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_14_scratch_widget:
+    type: video
+    video: start_14_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_15_scratch_widget:
+    type: video
+    video: start_15_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_16_scratch_widget:
+    type: video
+    video: start_16_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_17_scratch_widget:
+    type: video
+    video: start_17_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_18_scratch_widget:
+    type: video
+    video: start_18_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_19_scratch_widget:
+    type: video
+    video: start_19_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_20_scratch_widget:
+    type: video
+    video: start_20_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_21_scratch_widget:
+    type: video
+    video: start_21_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_22_scratch_widget:
+    type: video
+    video: start_22_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_23_scratch_widget:
+    type: video
+    video: start_23_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_24_scratch_widget:
+    type: video
+    video: start_24_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_25_scratch_widget:
+    type: video
+    video: start_25_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_26_scratch_widget:
+    type: video
+    video: start_26_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_27_scratch_widget:
+    type: video
+    video: start_27_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_28_scratch_widget:
+    type: video
+    video: start_28_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_29_scratch_widget:
+    type: video
+    video: start_29_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_30_scratch_widget:
+    type: video
+    video: start_30_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_31_scratch_widget:
+    type: video
+    video: start_31_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_32_scratch_widget:
+    type: video
+    video: start_32_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_33_scratch_widget:
+    type: video
+    video: start_33_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_34_scratch_widget:
+    type: video
+    video: start_34_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_35_scratch_widget:
+    type: video
+    video: start_35_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_36_scratch_widget:
+    type: video
+    video: start_36_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_37_scratch_widget:
+    type: video
+    video: start_37_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_38_scratch_widget:
+    type: video
+    video: start_38_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_39_scratch_widget:
+    type: video
+    video: start_39_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_start_40_scratch_widget:
+    type: video
+    video: start_40_scratch_movie
+    auto_play: true
+    end_behavior: stop
+    z: 2
+
+
+  video_ball2_scratch_widget_1:
+    type: video
+    video: ball2_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_2:
+    type: video
+    video: ball2_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_3:
+    type: video
+    video: ball2_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_4:
+    type: video
+    video: ball2_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_5:
+    type: video
+    video: ball2_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_6:
+    type: video
+    video: ball2_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_7:
+    type: video
+    video: ball2_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_8:
+    type: video
+    video: ball2_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_9:
+    type: video
+    video: ball2_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_10:
+    type: video
+    video: ball2_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_11:
+    type: video
+    video: ball2_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_12:
+    type: video
+    video: ball2_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_13:
+    type: video
+    video: ball2_scratch_movie_13
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_14:
+    type: video
+    video: ball2_scratch_movie_14
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_15:
+    type: video
+    video: ball2_scratch_movie_15
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_16:
+    type: video
+    video: ball2_scratch_movie_16
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_17:
+    type: video
+    video: ball2_scratch_movie_17
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_18:
+    type: video
+    video: ball2_scratch_movie_18
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_19:
+    type: video
+    video: ball2_scratch_movie_19
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_20:
+    type: video
+    video: ball2_scratch_movie_20
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_21:
+    type: video
+    video: ball2_scratch_movie_21
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_22:
+    type: video
+    video: ball2_scratch_movie_22
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_23:
+    type: video
+    video: ball2_scratch_movie_23
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_24:
+    type: video
+    video: ball2_scratch_movie_24
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_25:
+    type: video
+    video: ball2_scratch_movie_25
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_26:
+    type: video
+    video: ball2_scratch_movie_26
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_27:
+    type: video
+    video: ball2_scratch_movie_27
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_28:
+    type: video
+    video: ball2_scratch_movie_28
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball2_scratch_widget_29:
+    type: video
+    video: ball2_scratch_movie_29
+    auto_play: true
+    end_behavior: stop
+    z: 2
+
+
+
+
+  video_ball3_scratch_widget_1:
+    type: video
+    video: ball3_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_2:
+    type: video
+    video: ball3_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_3:
+    type: video
+    video: ball3_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_4:
+    type: video
+    video: ball3_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_5:
+    type: video
+    video: ball3_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_6:
+    type: video
+    video: ball3_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_7:
+    type: video
+    video: ball3_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_8:
+    type: video
+    video: ball3_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_9:
+    type: video
+    video: ball3_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_10:
+    type: video
+    video: ball3_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_11:
+    type: video
+    video: ball3_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_12:
+    type: video
+    video: ball3_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_13:
+    type: video
+    video: ball3_scratch_movie_13
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_14:
+    type: video
+    video: ball3_scratch_movie_14
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_15:
+    type: video
+    video: ball3_scratch_movie_15
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_16:
+    type: video
+    video: ball3_scratch_movie_16
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_17:
+    type: video
+    video: ball3_scratch_movie_17
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_ball3_scratch_widget_18:
+    type: video
+    video: ball3_scratch_movie_18
+    auto_play: true
+    end_behavior: stop
+    z: 2
+
+
+  ball_one_start_widget_1:
+    type: text
+    text: Welcome to the twenties
+    y: 50%
+    x: 50%
+    z: 20
+  ball_one_start_widget_2:
+    type: text
+    text: The roaring twenties !
+    y: 50%
+    x: 50%
+    z: 20
+  ball_one_start_widget_3:
+    type: text
+    text: Step into the roaring 20s
+    y: 50%
+    x: 50%
+    z: 20
+  ball_one_start_widget_4:
+    type: text
+    text: Embrace the jazz age
+    y: 50%
+    x: 50%
+    z: 20
+  ball_one_start_widget_5:
+    type: text
+    text: Journey to the 1920s
+    y: 50%
+    x: 50%
+    z: 20
+
+  ball_two_start_widget_1:
+    type: text
+    text: Be careful with the mafia !
+    y: 50%
+    x: 50%
+    z: 20
+  ball_two_start_widget_2:
+    type: text
+    text: Try to avoid the mob
+    y: 50%
+    x: 50%
+    z: 20
+  ball_two_start_widget_3:
+    type: text
+    text: The forest seems dangerous...
+    y: 50%
+    x: 50%
+    z: 20
+  ball_two_start_widget_4:
+    type: text
+    text: Don't stay too long in the dark
+    y: 50%
+    x: 50%
+    z: 20
+  ball_two_start_widget_5:
+    type: text
+    text: Are you sure it's safe ?
+    y: 50%
+    x: 50%
+    z: 20
+
+  ball_three_start_widget_1:
+    type: text
+    text: Discover the horrible truth
+    y: 50%
+    x: 50%
+    z: 20
+  ball_three_start_widget_2:
+    type: text
+    text: Strange things are lurking...
+    y: 50%
+    x: 50%
+    z: 20
+  ball_three_start_widget_3:
+    type: text
+    text: Don't look at the stars
+    y: 50%
+    x: 50%
+    z: 20
+  ball_three_start_widget_4:
+    type: text
+    text: Some evil power is rising...
+    y: 50%
+    x: 50%
+    z: 20
+  ball_three_start_widget_5:
+    type: text
+    text: Now it's dangerous, watch out !
+    y: 50%
+    x: 50%
+    z: 20
+
+###########################
+
+widget_player:
+  launch_extraball_animation:
+    extraball_start_widget, base_without_score_widget, base_frame_widget:
+      action: add
+      slide: starting_video_slide
+
+
+  launch_ball1_animation:
+    base_without_score_widget, base_frame_widget:
+      action: add
+      slide: starting_video_slide
+  launch_ball2_animation:
+    base_without_score_widget, base_frame_widget:
+      action: add
+      slide: starting_video_slide
+  launch_ball3_animation:
+    base_without_score_widget, base_frame_widget:
+      action: add
+      slide: starting_video_slide
+
+
+  play_video_start_1:
+    video_start_1_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_2:
+    video_start_2_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_3:
+    video_start_3_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_4:
+    video_start_4_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_5:
+    video_start_5_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_6:
+    video_start_6_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_7:
+    video_start_7_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_8:
+    video_start_8_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_9:
+    video_start_9_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_10:
+    video_start_10_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_11:
+    video_start_11_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_12:
+    video_start_12_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_13:
+    video_start_13_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_14:
+    video_start_14_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_15:
+    video_start_15_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_16:
+    video_start_16_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_17:
+    video_start_17_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_18:
+    video_start_18_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_19:
+    video_start_19_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_20:
+    video_start_20_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_21:
+    video_start_21_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_22:
+    video_start_22_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_23:
+    video_start_23_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_24:
+    video_start_24_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_25:
+    video_start_25_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_26:
+    video_start_26_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_27:
+    video_start_27_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_28:
+    video_start_28_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_29:
+    video_start_29_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_30:
+    video_start_30_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_31:
+    video_start_31_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_32:
+    video_start_32_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_33:
+    video_start_33_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_34:
+    video_start_34_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_35:
+    video_start_35_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_36:
+    video_start_36_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_37:
+    video_start_37_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_38:
+    video_start_38_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_39:
+    video_start_39_scratch_widget:
+      action: add
+      slide: starting_video_slide
+  play_video_start_40:
+    video_start_40_scratch_widget:
+      action: add
+      slide: starting_video_slide
+
+
+  play_video_ball2_1:
+    video_ball2_scratch_widget_1:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_2:
+    video_ball2_scratch_widget_2:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_3:
+    video_ball2_scratch_widget_3:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_4:
+    video_ball2_scratch_widget_4:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_5:
+    video_ball2_scratch_widget_5:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_6:
+    video_ball2_scratch_widget_6:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_7:
+    video_ball2_scratch_widget_7:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_8:
+    video_ball2_scratch_widget_8:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_9:
+    video_ball2_scratch_widget_9:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_10:
+    video_ball2_scratch_widget_10:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_11:
+    video_ball2_scratch_widget_11:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_12:
+    video_ball2_scratch_widget_12:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_13:
+    video_ball2_scratch_widget_13:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_14:
+    video_ball2_scratch_widget_14:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_15:
+    video_ball2_scratch_widget_15:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_16:
+    video_ball2_scratch_widget_16:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_17:
+    video_ball2_scratch_widget_17:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_18:
+    video_ball2_scratch_widget_18:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_19:
+    video_ball2_scratch_widget_19:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_20:
+    video_ball2_scratch_widget_20:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_21:
+    video_ball2_scratch_widget_21:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_22:
+    video_ball2_scratch_widget_22:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_23:
+    video_ball2_scratch_widget_23:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_24:
+    video_ball2_scratch_widget_24:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_25:
+    video_ball2_scratch_widget_25:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_26:
+    video_ball2_scratch_widget_26:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_27:
+    video_ball2_scratch_widget_27:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_28:
+    video_ball2_scratch_widget_28:
+      action: add
+      slide: starting_video_slide
+  play_video_ball2_29:
+    video_ball2_scratch_widget_29:
+      action: add
+      slide: starting_video_slide
+
+
+  play_video_ball3_1:
+    video_ball3_scratch_widget_1:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_2:
+    video_ball3_scratch_widget_2:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_3:
+    video_ball3_scratch_widget_3:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_4:
+    video_ball3_scratch_widget_4:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_5:
+    video_ball3_scratch_widget_5:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_6:
+    video_ball3_scratch_widget_6:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_7:
+    video_ball3_scratch_widget_7:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_8:
+    video_ball3_scratch_widget_8:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_9:
+    video_ball3_scratch_widget_9:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_10:
+    video_ball3_scratch_widget_10:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_11:
+    video_ball3_scratch_widget_11:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_12:
+    video_ball3_scratch_widget_12:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_13:
+    video_ball3_scratch_widget_13:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_14:
+    video_ball3_scratch_widget_14:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_15:
+    video_ball3_scratch_widget_15:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_16:
+    video_ball3_scratch_widget_16:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_17:
+    video_ball3_scratch_widget_17:
+      action: add
+      slide: starting_video_slide
+  play_video_ball3_18:
+    video_ball3_scratch_widget_18:
+      action: add
+      slide: starting_video_slide
+
+
+  play_welcome_widget_1:
+    ball_one_start_widget_1:
+      action: add
+      slide: starting_video_slide
+  play_welcome_widget_2:
+    ball_one_start_widget_2:
+      action: add
+      slide: starting_video_slide
+  play_welcome_widget_3:
+    ball_one_start_widget_3:
+      action: add
+      slide: starting_video_slide
+  play_welcome_widget_4:
+    ball_one_start_widget_4:
+      action: add
+      slide: starting_video_slide
+  play_welcome_widget_5:
+    ball_one_start_widget_5:
+      action: add
+      slide: starting_video_slide
+
+  play_ball_two_widget_1:
+    ball_two_start_widget_1:
+      action: add
+      slide: starting_video_slide
+  play_ball_two_widget_2:
+    ball_two_start_widget_2:
+      action: add
+      slide: starting_video_slide
+  play_ball_two_widget_3:
+    ball_two_start_widget_3:
+      action: add
+      slide: starting_video_slide
+  play_ball_two_widget_4:
+    ball_two_start_widget_4:
+      action: add
+      slide: starting_video_slide
+  play_ball_two_widget_5:
+    ball_two_start_widget_5:
+      action: add
+      slide: starting_video_slide
+
+  play_ball_three_widget_1:
+    ball_three_start_widget_1:
+      action: add
+      slide: starting_video_slide
+  play_ball_three_widget_2:
+    ball_three_start_widget_2:
+      action: add
+      slide: starting_video_slide
+  play_ball_three_widget_3:
+    ball_three_start_widget_3:
+      action: add
+      slide: starting_video_slide
+  play_ball_three_widget_4:
+    ball_three_start_widget_4:
+      action: add
+      slide: starting_video_slide
+  play_ball_three_widget_5:
+    ball_three_start_widget_5:
+      action: add
+      slide: starting_video_slide
+
+
+###########################
+
+timers:
+  starting_video_slide_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_starting_video_started
+      - event: timer_starting_video_slide_time_complete
+        action: stop
+
+###########################
+
+show_player:
+  launch_extraball_animation:
+    launch_extraball_show:
+      speed: 50
+      loops: 2
+
+###########################
+
+sound_player:
+  launch_extraball_animation:
+    shootagain_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  shootagain_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - shootagain_voice_1
+      - shootagain_voice_2
+      - shootagain_voice_3
+      - shootagain_voice_4
+      - shootagain_voice_5
+      - shootagain_voice_6
+      - shootagain_voice_7
+      - shootagain_voice_8
+
+###########################
+
+videos:
+  start_1_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_1.mp4
+  start_2_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_2.mp4
+  start_3_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_3.mp4
+  start_4_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_4.mp4
+  start_5_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_5.mp4
+  start_6_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_6.mp4
+  start_7_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_7.mp4
+  start_8_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_8.mp4
+  start_9_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_9.mp4
+  start_10_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_10.mp4
+  start_11_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_11.mp4
+  start_12_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_12.mp4
+  start_13_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_13.mp4
+  start_14_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_14.mp4
+  start_15_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_15.mp4
+  start_16_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_16.mp4
+  start_17_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_17.mp4
+  start_18_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_18.mp4
+  start_19_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_19.mp4
+  start_20_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_20.mp4
+  start_21_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_21.mp4
+  start_22_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_22.mp4
+  start_23_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_23.mp4
+  start_24_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_24.mp4
+  start_25_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_25.mp4
+  start_26_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_26.mp4
+  start_27_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_27.mp4
+  start_28_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_28.mp4
+  start_29_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_29.mp4
+  start_30_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_30.mp4
+  start_31_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_31.mp4
+  start_32_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_32.mp4
+  start_33_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_33.mp4
+  start_34_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_34.mp4
+  start_35_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_35.mp4
+  start_36_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_36.mp4
+  start_37_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_37.mp4
+  start_38_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_38.mp4
+  start_39_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_39.mp4
+  start_40_scratch_movie:
+    width: 1440
+    height: 900
+    file: start_video_40.mp4
+
+
+
+
+  ball2_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: ball_2_video_1.mp4
+  ball2_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: ball_2_video_2.mp4
+  ball2_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: ball_2_video_3.mp4
+  ball2_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: ball_2_video_4.mp4
+  ball2_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: ball_2_video_5.mp4
+  ball2_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: ball_2_video_6.mp4
+  ball2_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: ball_2_video_7.mp4
+  ball2_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: ball_2_video_8.mp4
+  ball2_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: ball_2_video_9.mp4
+  ball2_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: ball_2_video_10.mp4
+  ball2_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: ball_2_video_11.mp4
+  ball2_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: ball_2_video_12.mp4
+  ball2_scratch_movie_13:
+    width: 1440
+    height: 900
+    file: ball_2_video_13.mp4
+  ball2_scratch_movie_14:
+    width: 1440
+    height: 900
+    file: ball_2_video_14.mp4
+  ball2_scratch_movie_15:
+    width: 1440
+    height: 900
+    file: ball_2_video_15.mp4
+  ball2_scratch_movie_16:
+    width: 1440
+    height: 900
+    file: ball_2_video_16.mp4
+  ball2_scratch_movie_17:
+    width: 1440
+    height: 900
+    file: ball_2_video_17.mp4
+  ball2_scratch_movie_18:
+    width: 1440
+    height: 900
+    file: ball_2_video_18.mp4
+  ball2_scratch_movie_19:
+    width: 1440
+    height: 900
+    file: ball_2_video_19.mp4
+  ball2_scratch_movie_20:
+    width: 1440
+    height: 900
+    file: ball_2_video_20.mp4
+  ball2_scratch_movie_21:
+    width: 1440
+    height: 900
+    file: ball_2_video_21.mp4
+  ball2_scratch_movie_22:
+    width: 1440
+    height: 900
+    file: ball_2_video_22.mp4
+  ball2_scratch_movie_23:
+    width: 1440
+    height: 900
+    file: ball_2_video_23.mp4
+  ball2_scratch_movie_24:
+    width: 1440
+    height: 900
+    file: ball_2_video_24.mp4
+  ball2_scratch_movie_25:
+    width: 1440
+    height: 900
+    file: ball_2_video_25.mp4
+  ball2_scratch_movie_26:
+    width: 1440
+    height: 900
+    file: ball_2_video_26.mp4
+  ball2_scratch_movie_27:
+    width: 1440
+    height: 900
+    file: ball_2_video_27.mp4
+  ball2_scratch_movie_28:
+    width: 1440
+    height: 900
+    file: ball_2_video_28.mp4
+  ball2_scratch_movie_29:
+    width: 1440
+    height: 900
+    file: ball_2_video_29.mp4
+
+
+  ball3_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: ball_3_video_1.mp4
+  ball3_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: ball_3_video_2.mp4
+  ball3_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: ball_3_video_3.mp4
+  ball3_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: ball_3_video_4.mp4
+  ball3_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: ball_3_video_5.mp4
+  ball3_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: ball_3_video_6.mp4
+  ball3_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: ball_3_video_7.mp4
+  ball3_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: ball_3_video_8.mp4
+  ball3_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: ball_3_video_9.mp4
+  ball3_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: ball_3_video_10.mp4
+  ball3_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: ball_3_video_11.mp4
+  ball3_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: ball_3_video_12.mp4
+  ball3_scratch_movie_13:
+    width: 1440
+    height: 900
+    file: ball_3_video_13.mp4
+  ball3_scratch_movie_14:
+    width: 1440
+    height: 900
+    file: ball_3_video_14.mp4
+  ball3_scratch_movie_15:
+    width: 1440
+    height: 900
+    file: ball_3_video_15.mp4
+  ball3_scratch_movie_16:
+    width: 1440
+    height: 900
+    file: ball_3_video_16.mp4
+  ball3_scratch_movie_17:
+    width: 1440
+    height: 900
+    file: ball_3_video_17.mp4
+  ball3_scratch_movie_18:
+    width: 1440
+    height: 900
+    file: ball_3_video_18.mp4

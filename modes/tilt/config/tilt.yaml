@@ -1,0 +1,146 @@
+#config_version=6
+
+
+###########################
+
+tilt:
+  multiple_hit_window: 1000ms
+  warnings_to_tilt: 3
+
+###########################
+
+slides:
+  _overwrite: true
+  tilt_warning_1:
+    widgets:
+      - type: text
+        text: "CAREFUL ! STOP IT !"
+        y: top-250
+        anchor_y: top
+        z: 20
+      - type: Image
+        image: frame_twenties
+        z: 15
+      - type: video
+        video: scratch_movie_red
+        auto_play: True
+        # end_behavior: Remove Slide/Widget
+        z: 10
+    expire: 2s
+  tilt_warning_2:
+    widgets:
+      - type: text
+        text: WARNING
+        y: top-250
+        anchor_y: top
+        z: 20
+      - type: text
+        text: "YOU'LL WAKE UP AN ANCIENT GOD !"
+        y: top-550
+        anchor_y: top
+        expire: 1s
+        z: 20
+      - type: Image
+        image: frame_twenties
+        z: 15
+      - type: video
+        video: scratch_movie_red
+        auto_play: True
+        # end_behavior: Remove Slide/Widget
+        z: 11
+    expire: 2s
+  tilt:
+    widgets:
+      - type: text
+        text: TILT
+        z: 20
+      - type: Image
+        image: frame_twenties
+        z: 15
+      - type: video
+        video: scratch_movie_red
+        auto_play: True
+        # end_behavior: Remove Slide/Widget
+        z: 12
+    expire: 5s
+
+
+###########################
+
+show_player:
+  tilt_warning_1:
+    tilt_danger_show:
+      action: play
+      speed: 20
+      priority: 3000
+      loops: 0
+
+  tilt_warning_2:
+    tilt_danger_show:
+      action: play
+      speed: 20
+      priority: 3000
+      loops: 0
+
+  tilt:
+    tilt_danger_show:
+      action: play
+      speed: 20
+      priority: 3000
+      loops: 0
+
+###########################
+
+sound_player:
+  tilt_warning_1:
+    tilt_sounds:
+      action: play
+      volume: 1
+  tilt_warning_2:
+    tilt_sounds:
+      action: play
+      volume: 2
+      loops: 1
+  tilt:
+    tilt_end_sounds:
+      action: play
+      volume: 2
+    tilt_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  tilt_sounds:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - tilt_1
+
+  tilt_end_sounds:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - tilt_end
+
+  tilt_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - tilt_voice_1
+      - tilt_voice_2
+      - tilt_voice_3
+      - tilt_voice_4
+      - tilt_voice_5
+      - tilt_voice_6
+      - tilt_voice_7
+      - tilt_voice_8
+      - tilt_voice_9
+      - tilt_voice_10
+      - tilt_voice_11
+      - tilt_voice_12
+      - tilt_voice_13

@@ -1,0 +1,14 @@
+#show_version=6
+- time: 0
+  lights:
+    gi_insert: red-f200ms
+    gi: red-f200ms
+    side_led_left: red-f200ms
+    side_led_right: red-f200ms
+    
+- time: "+1"
+  lights:
+    gi_insert: off
+    gi: off
+    side_led_left: off
+    side_led_right: off

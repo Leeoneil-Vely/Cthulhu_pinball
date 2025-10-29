@@ -1,0 +1,54 @@
+#config_version=6
+mode:
+  start_events: random_available_mission_start
+  stop_events: random_available_mission_stop
+  priority: 200
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  radio_start: random_available_mission_stop
+  charleston_start: random_available_mission_stop
+  speakeasy_start: random_available_mission_stop
+  cult_start: random_available_mission_stop
+  graveyard_start: random_available_mission_stop
+  city_start: random_available_mission_stop
+  aza_start: random_available_mission_stop
+  king_start: random_available_mission_stop
+  nyarla_start: random_available_mission_stop
+  cthulhu_start: random_available_mission_stop
+  shub_start: random_available_mission_stop
+
+###########################
+
+random_event_player:
+  launch_random_mission_pick:
+    - radio_start{current_player.mission_radio=='notcompleted'}
+    - charleston_start{current_player.mission_charleston=='notcompleted'}
+    - speakeasy_start{current_player.mission_speakeasy=='notcompleted'}
+    - cult_start{current_player.mission_cult=='notcompleted'}
+    - graveyard_start{current_player.mission_graveyard=='notcompleted'}
+    - city_start{current_player.mission_city=='notcompleted'}
+    - aza_start{current_player.azathoth_mission_available=='available'}
+    - king_start{current_player.king_mission_available=='available'}
+    - nyarla_start{current_player.nyarla_mission_available=='available'}
+    - cthulhu_start{current_player.cthulhu_mission_available=='available'}
+    - shub_start{current_player.shub_mission_available=='available'}
+
+###########################
+
+show_player:
+  mode_random_available_mission_started:
+    random_available_mission_show:
+      speed: 40
+      priority: 200
+      loops: 0
+      events_when_completed: launch_random_mission_pick
+
+###########################
+
+sound_player:
+  mode_random_available_mission_started:
+    random_mission_sound:
+      action: play   

@@ -1,0 +1,328 @@
+#show_version=6
+- time: 0
+  lights:
+    led_18: 'FC2700'
+    
+- time: '+1'
+  lights:
+    insert_35: 'FE2800'
+    led_18: '000000'
+    
+- time: '+1'
+  lights:
+    insert_35: '000000'
+    insert_36: '871500'
+    led_12: '5F0F00'
+    led_19: 'FF2800'
+    
+- time: '+1'
+  lights:
+    insert_36: '000000'
+    insert_39: 'FF2800'
+    led_12: '000000'
+    led_19: '000000'
+    led_22: '120300'
+    
+- time: '+1'
+  lights:
+    insert_39: '000000'
+    insert_40: 'FA2700'
+    led_20: 'FF2800'
+    led_22: '000000'
+    
+- time: '+1'
+  lights:
+    insert_32: 'FF2800'
+    insert_33: 'FF2800'
+    insert_40: '000000'
+    insert_41: 'FF2800'
+    led_20: '000000'
+    
+- time: '+1'
+  lights:
+    insert_30: 'FF2800'
+    insert_31: 'FF2800'
+    insert_32: '000000'
+    insert_33: '000000'
+    insert_41: '000000'
+    insert_42: 'FF2800'
+    led_21: 'FF2800'
+    
+- time: '+1'
+  lights:
+    insert_30: '000000'
+    insert_31: '000000'
+    insert_34: 'FF2800'
+    insert_42: '000000'
+    insert_43: 'FF2800'
+    led_21: '000000'
+    led_24: 'FF2800'
+    
+- time: '+1'
+  lights:
+    insert_27: 'FF2800'
+    insert_29: 'FF2800'
+    insert_34: '000000'
+    insert_43: '000000'
+    led_24: '000000'
+    
+- time: '+1'
+  lights:
+    insert_26: 'FF2800'
+    insert_27: '000000'
+    insert_29: '000000'
+    led_47: 'FF2800'
+    led_48: 'FF2800'
+    
+- time: '+1'
+  lights:
+    insert_24: 'FF2700'
+    insert_25: 'FF2700'
+    insert_26: '000000'
+    insert_84: 'FF2700'
+    led_25: 'FF2700'
+    led_46: 'CC1F00'
+    led_47: 'E72300'
+    led_48: '000000'
+    
+- time: '+1'
+  lights:
+    insert_23: 'FF2700'
+    insert_24: '000000'
+    insert_25: '000000'
+    insert_74: 'FF2700'
+    led_25: '000000'
+    led_46: 'FF2700'
+    led_47: '000000'
+    
+- time: '+1'
+  lights:
+    insert_22: 'FF2700'
+    insert_23: '000000'
+    insert_46: 'FF2700'
+    insert_47: 'FF2700'
+    insert_73: 'FF2700'
+    insert_74: '000000'
+    insert_84: '000000'
+    led_45: 'FF2700'
+    led_46: '000000'
+    
+- time: '+1'
+  lights:
+    insert_21: 'FF2700'
+    insert_22: '000000'
+    insert_45: 'FF2700'
+    insert_46: '000000'
+    insert_47: '000000'
+    insert_48: '8E1600'
+    insert_71: 'D72100'
+    insert_72: '891500'
+    insert_73: '000000'
+    led_26: 'FF2700'
+    led_45: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: 'FF2700'
+    insert_21: '000000'
+    insert_44: 'FF2700'
+    insert_45: '000000'
+    insert_48: 'E92300'
+    insert_49: 'FF2700'
+    insert_68: 'FF2700'
+    insert_69: 'FF2700'
+    insert_70: 'FF2700'
+    insert_71: '000000'
+    insert_72: '000000'
+    led_26: '000000'
+    led_27: 'FF2700'
+    led_44: 'FF2700'
+    
+- time: '+1'
+  lights:
+    insert_18: 'BA1C00'
+    insert_19: 'FF2700'
+    insert_20: '7A1300'
+    insert_44: '000000'
+    insert_48: '000000'
+    insert_49: '7A1300'
+    insert_50: 'FF2700'
+    insert_66: 'FF2700'
+    insert_67: 'FF2700'
+    insert_68: '000000'
+    insert_69: '000000'
+    insert_70: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: 'FF2700'
+    insert_17: 'FF2700'
+    insert_18: 'FF2700'
+    insert_20: '000000'
+    insert_49: '000000'
+    insert_50: '000000'
+    insert_51: 'FF2700'
+    insert_52: 'FF2700'
+    insert_64: 'FF2700'
+    insert_65: 'FF2700'
+    insert_66: '000000'
+    insert_67: '000000'
+    led_27: '000000'
+    led_43: 'FF2700'
+    led_44: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: 'FF2700'
+    insert_16: '000000'
+    insert_17: '000000'
+    insert_18: '000000'
+    insert_19: '000000'
+    insert_51: '000000'
+    insert_53: 'FF2700'
+    insert_63: 'FF2700'
+    insert_64: '000000'
+    insert_65: '000000'
+    led_43: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: '000000'
+    insert_11: 'FF2700'
+    insert_12: 'FF2700'
+    insert_52: '000000'
+    insert_53: '871500'
+    insert_54: 'FF2700'
+    insert_55: 'FF2700'
+    insert_63: '000000'
+    insert_7: 'FF2700'
+    insert_8: 'FF2700'
+    insert_9: 'FF2700'
+    led_28: 'FF2700'
+    led_30: 'FF2700'
+    
+- time: '+1'
+  lights:
+    insert_11: '000000'
+    insert_13: 'FF2700'
+    insert_53: '000000'
+    insert_54: '000000'
+    insert_6: 'FF2700'
+    insert_61: 'FF2700'
+    insert_62: 'FF2700'
+    insert_8: '000000'
+    insert_9: '000000'
+    led_30: '000000'
+    
+- time: '+1'
+  lights:
+    insert_12: '000000'
+    insert_13: '000000'
+    insert_14: 'FF2600'
+    insert_55: '000000'
+    insert_58: 'FF2600'
+    insert_59: 'FF2600'
+    insert_6: 'FF2600'
+    insert_60: 'FF2600'
+    insert_61: '000000'
+    insert_62: '000000'
+    insert_7: '000000'
+    led_28: '000000'
+    led_29: 'FF2600'
+    led_31: 'FF2600'
+    led_37: 'FF2600'
+    led_41: 'FF2600'
+    led_42: 'FF2600'
+    
+- time: '+1'
+  lights:
+    insert_15: '751100'
+    insert_56: 'C41D00'
+    insert_58: '981600'
+    insert_59: '7B1200'
+    insert_6: '000000'
+    insert_60: '000000'
+    led_31: '000000'
+    led_36: 'FF2600'
+    led_37: '8A1400'
+    led_40: 'FF2600'
+    
+- time: '+1'
+  lights:
+    insert_14: '000000'
+    insert_15: 'FF2600'
+    insert_56: 'FF2600'
+    insert_58: '000000'
+    insert_59: '000000'
+    led_29: '000000'
+    led_32: '921600'
+    led_36: 'D41F00'
+    led_37: '000000'
+    led_39: 'FF2600'
+    led_40: 'F52400'
+    led_41: '000000'
+    led_42: '000000'
+    
+- time: '+1'
+  lights:
+    insert_15: '000000'
+    insert_56: '000000'
+    led_32: 'FF2600'
+    led_33: 'FF2600'
+    led_36: '000000'
+    led_38: 'FF2600'
+    led_39: '000000'
+    led_40: '000000'
+    
+- time: '+1'
+  lights:
+    led_32: '000000'
+    led_34: 'FF2600'
+    led_35: 'FF2600'
+    led_38: '000000'
+    
+- time: '+1'
+  lights:
+    insert_57: 'FF2600'
+    insert_87: '600E00'
+    insert_88: '130300'
+    insert_89: 'FF2600'
+    insert_90: 'FF2600'
+    insert_91: 'FF2600'
+    led_33: '000000'
+    led_34: '000000'
+    led_35: '000000'
+    
+- time: '+1'
+  lights:
+    insert_57: '000000'
+    insert_87: 'FF2600'
+    insert_88: 'FF2600'
+    insert_90: '000000'
+    insert_91: '000000'
+    insert_92: 'FF2600'
+    insert_93: 'FF2600'
+    insert_94: 'FF2600'
+    
+- time: '+1'
+  lights:
+    insert_88: '5D0E00'
+    insert_89: '000000'
+    insert_92: '000000'
+    insert_93: '000000'
+    insert_94: '9C1700'
+    
+- time: '+1'
+  lights:
+    insert_87: '000000'
+    insert_88: '000000'
+    insert_94: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    

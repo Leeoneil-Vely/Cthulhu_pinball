@@ -1,0 +1,16 @@
+#show_version=6
+- duration: 1
+  lights:
+    led_24: red-f200ms
+    led_25: red-f200ms
+    led_101: red-f200ms
+    led_102: red-f200ms
+    led_103: red-f200ms
+
+- duration: 1
+  lights:
+    led_24: off-f200ms
+    led_25: off-f200ms
+    led_101: off-f200ms
+    led_102: off-f200ms
+    led_103: off-f200ms

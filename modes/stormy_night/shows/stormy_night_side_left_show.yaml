@@ -1,0 +1,11 @@
+#show_version=6
+- time: 0
+  lights:
+    side_led_left: white-f200ms
+    backglass_led: white-f200ms
+    
+- time: "+1"
+  lights:
+    side_led_left: off-f200ms
+    backglass_led: off-f200ms
+    

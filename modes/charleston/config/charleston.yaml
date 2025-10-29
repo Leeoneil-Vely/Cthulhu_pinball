@@ -1,0 +1,1581 @@
+#config_version=6
+mode:
+  start_events: charleston_start
+  stop_events: charleston_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+ball_holds:
+  multiball_scoop_haut:
+    hold_devices: bd_scoop_haut
+    release_one_events: launch_charleston_multiball
+    disable_events: release_charleston, mode_charleston_started{current_player.count_multiball_charleston=='one'}
+
+###########################
+
+event_player:
+  mode_charleston_started: mode_twenties_stop, hold_stop, launch_random_charleston_video
+  charleston_gate_library_shot_hit: library_charleston_start
+  charleston_mission_target_group_off_complete: charleston_stop, charleston_win_start
+  launch_charleston_multiball: release_charleston
+  charleston_scoop_haut_shot_hit{current_player.count_multiball_charleston=='zero'}: launch_sounds_multiball
+  relaunch_charleston_video: launch_random_charleston_video|5s
+  charleston_target_square_1_shot_lit_hit: shaker_shake
+  charleston_target_square_2_shot_lit_hit: shaker_shake
+  charleston_target_square_3_shot_lit_hit: shaker_shake
+  charleston_target_square_4_shot_lit_hit: shaker_shake
+  charleston_target_square_5_shot_lit_hit: shaker_shake
+  charleston_target_sanity_shot_1_lit_hit: shaker_shake
+  charleston_target_sanity_shot_2_lit_hit: shaker_shake
+  charleston_target_sanity_shot_3_lit_hit: shaker_shake
+  charleston_target_sanity_shot_4_lit_hit: shaker_shake
+  charleston_target_sanity_shot_5_lit_hit: shaker_shake
+  charleston_target_sanity_shot_6_lit_hit: shaker_shake
+  charleston_drop_target_1_shot_lit_hit: shaker_shake
+  charleston_drop_target_2_shot_lit_hit: shaker_shake
+  charleston_drop_target_3_shot_lit_hit: shaker_shake
+  charleston_drop_target_4_shot_lit_hit: shaker_shake
+  charleston_target_library_1_shot_lit_hit: shaker_shake
+  charleston_target_library_2_shot_lit_hit: shaker_shake
+  charleston_target_library_3_shot_lit_hit: shaker_shake
+  charleston_target_library_4_shot_lit_hit: shaker_shake
+  charleston_target_library_5_shot_lit_hit: shaker_shake
+  charleston_target_library_6_shot_lit_hit: shaker_shake
+  s_action_active{current_player.variable_number_of_object_value > 0}: action_valid_charleston_shot, shaker_shake
+  multiball_multiball_twenties_multiball_ended: relaunch_charleston_music
+  
+  mode_charleston_started{current_player.lock_rlyeh_charleston_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_charleston_music
+
+
+###########################
+
+random_event_player:
+  launch_random_charleston_video:
+    events:
+      - launch_charleston_video_1
+      - launch_charleston_video_2
+      - launch_charleston_video_3
+
+  action_valid_charleston_shot:
+    events:
+      - action_valid_charleston_shot_1{device.shots.charleston_target_library_1_shot.state_name=='lit'}
+      - action_valid_charleston_shot_2{device.shots.charleston_target_library_2_shot.state_name=='lit'}
+      - action_valid_charleston_shot_3{device.shots.charleston_target_library_3_shot.state_name=='lit'}
+      - action_valid_charleston_shot_4{device.shots.charleston_target_library_4_shot.state_name=='lit'}
+      - action_valid_charleston_shot_5{device.shots.charleston_target_library_5_shot.state_name=='lit'}
+      - action_valid_charleston_shot_6{device.shots.charleston_target_library_6_shot.state_name=='lit'}
+      - action_valid_charleston_shot_7{device.shots.charleston_target_sanity_shot_1.state_name=='lit'}
+      - action_valid_charleston_shot_8{device.shots.charleston_target_sanity_shot_2.state_name=='lit'}
+      - action_valid_charleston_shot_9{device.shots.charleston_target_sanity_shot_3.state_name=='lit'}
+      - action_valid_charleston_shot_10{device.shots.charleston_target_sanity_shot_4.state_name=='lit'}
+      - action_valid_charleston_shot_11{device.shots.charleston_target_sanity_shot_5.state_name=='lit'}
+      - action_valid_charleston_shot_12{device.shots.charleston_target_sanity_shot_6.state_name=='lit'}
+      - action_valid_charleston_shot_13{device.shots.charleston_target_square_1_shot.state_name=='lit'}
+      - action_valid_charleston_shot_14{device.shots.charleston_target_square_2_shot.state_name=='lit'}
+      - action_valid_charleston_shot_15{device.shots.charleston_target_square_3_shot.state_name=='lit'}
+      - action_valid_charleston_shot_16{device.shots.charleston_target_square_4_shot.state_name=='lit'}
+      - action_valid_charleston_shot_17{device.shots.charleston_target_square_5_shot.state_name=='lit'}
+      - action_valid_charleston_shot_18{device.shots.charleston_drop_target_1_shot.state_name=='lit'}
+      - action_valid_charleston_shot_19{device.shots.charleston_drop_target_2_shot.state_name=='lit'}
+      - action_valid_charleston_shot_20{device.shots.charleston_drop_target_3_shot.state_name=='lit'}
+      - action_valid_charleston_shot_21{device.shots.charleston_drop_target_4_shot.state_name=='lit'}
+    force_all: true
+
+
+###########################
+
+multiballs:
+  multiball_charleston_multiball:
+    ball_count: 1
+    ball_count_type: add
+    shoot_again: 15s
+    start_events: launch_charleston_multiball{current_player.count_multiball_charleston=='one'}
+
+###########################
+
+slides:
+  charleston_slide: []
+
+###########################
+
+slide_player:
+  mode_charleston_started: charleston_slide
+
+###########################
+
+widgets:
+  charleston_name_banner:
+    type: text
+    text: Charleston
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: FF8000
+
+  charleston_indication_banner:
+    type: text
+    text: Hit all the (player|charleston_target_count)
+    color: FF8000
+    y: 72%
+    x: 65%
+    z: 100
+
+  charleston_indication_banner_2:
+    type: text
+    text: flashing targets !
+    color: FF8000
+    y: 62%
+    x: 65%
+    z: 100
+
+  charleston_banner_image:
+    type: Image
+    image: mini_charleston
+    y: 50%
+    x: 20%
+    z: 100
+
+  multiball_charleston_banner:
+    type: text
+    text: Mini multiball dance !
+    color: FF8000
+    y: 28%
+    x: 70%
+    z: 100
+    expire: 5s
+
+  video_charleston_1_scratch_widget:
+    type: video
+    video: charleston_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_charleston_video
+  video_charleston_2_scratch_widget:
+    type: video
+    video: charleston_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_charleston_video
+  video_charleston_3_scratch_widget:
+    type: video
+    video: charleston_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_charleston_video
+
+
+  video_charleston_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+
+###########################
+
+widget_player:
+  mode_charleston_started:
+    charleston_name_banner, charleston_indication_banner, charleston_indication_banner_2, charleston_banner_image, video_charleston_scratch_widget, base_score_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: charleston_slide
+  mode_charleston_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: charleston_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_charleston_video_1:
+    video_charleston_1_scratch_widget:
+      slide: charleston_slide     
+  launch_charleston_video_2:
+    video_charleston_2_scratch_widget:
+      slide: charleston_slide
+  launch_charleston_video_3:
+    video_charleston_3_scratch_widget:
+      slide: charleston_slide
+
+  remove_random_charleston_video_1:
+    video_charleston_1_scratch_widget:
+      action: remove
+  remove_random_charleston_video_2:
+    video_charleston_2_scratch_widget:
+      action: remove
+  remove_random_charleston_video_3:
+    video_charleston_3_scratch_widget:
+      action: remove
+
+  multiball_multiball_charleston_multiball_started:
+    multiball_charleston_banner:
+      slide : charleston_slide
+
+###########################
+
+shot_profiles:
+  charleston_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: lit
+        show: charleston_blink_show
+        speed: 8
+        loops: -1
+        priority: 1600
+      - name: off
+        show: off
+
+  charleston_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: charlestonhitflashing
+        show: charleston_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+  charleston_target_sanity_flash:
+    loop: true
+    block: true
+    states:
+      - name: charlestonhitflashing
+        show: charleston_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 700
+
+###########################
+
+shots:
+  charleston_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_86
+  charleston_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_85
+  charleston_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_84
+  charleston_sling_left_shot:
+    switch: s_sling_left
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_30, led_31
+  charleston_sling_right_shot:
+    switch: s_sling_right
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_36, led_37
+  charleston_sling_up_shot:
+    switch: s_sling_up
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_5, led_6
+  charleston_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  charleston_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+  charleston_target_square_1_base_shot:
+    switch: s_target_square_white_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_41
+  charleston_target_square_2_base_shot:
+    switch: s_target_square_white_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_32
+  charleston_target_square_3_base_shot:
+    switch: s_target_square_white_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_30
+  charleston_target_square_4_base_shot:
+    switch: s_target_square_white_4
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_20
+  charleston_target_square_5_base_shot:
+    switch: s_target_square_white_5
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_10
+
+  charleston_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_13
+    show_tokens:
+      led: insert_41
+  charleston_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_14
+    show_tokens:
+      led: insert_32
+  charleston_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_15
+    show_tokens:
+      led: insert_30
+  charleston_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_16
+    show_tokens:
+      led: insert_20
+  charleston_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_17
+    show_tokens:
+      led: insert_10
+
+
+  charleston_target_sanity_shot_base_1:
+    switch: s_target_sanity_1
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_50
+  charleston_target_sanity_shot_base_2:
+    switch: s_target_sanity_2
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_49
+  charleston_target_sanity_shot_base_3:
+    switch: s_target_sanity_3
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_48
+  charleston_target_sanity_shot_base_4:
+    switch: s_target_sanity_4
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_11
+  charleston_target_sanity_shot_base_5:
+    switch: s_target_sanity_5
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_12
+  charleston_target_sanity_shot_base_6:
+    switch: s_target_sanity_6
+    profile: charleston_target_sanity_flash
+    show_tokens:
+      led: insert_13
+
+
+
+  charleston_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_7
+    show_tokens:
+      led: insert_50
+  charleston_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_8
+    show_tokens:
+      led: insert_49
+  charleston_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_9
+    show_tokens:
+      led: insert_48
+  charleston_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_10
+    show_tokens:
+      led: insert_11
+  charleston_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_11
+    show_tokens:
+      led: insert_12
+  charleston_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_12
+    show_tokens:
+      led: insert_13
+
+
+
+  charleston_target_library_1_base_shot:
+    switch: s_target_library_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_80
+  charleston_target_library_2_base_shot:
+    switch: s_target_library_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_79
+  charleston_target_library_3_base_shot:
+    switch: s_target_library_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_78
+  charleston_target_library_4_base_shot:
+    switch: s_target_library_4
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_77
+  charleston_target_library_5_base_shot:
+    switch: s_target_library_5
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_76
+  charleston_target_library_6_base_shot:
+    switch: s_target_library_6
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_75
+
+
+  charleston_target_library_1_shot:
+    switch: s_target_library_1
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_1
+    show_tokens:
+      led: insert_80
+  charleston_target_library_2_shot:
+    switch: s_target_library_2
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_2
+    show_tokens:
+      led: insert_79
+  charleston_target_library_3_shot:
+    switch: s_target_library_3
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_3
+    show_tokens:
+      led: insert_78
+  charleston_target_library_4_shot:
+    switch: s_target_library_4
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_4
+    show_tokens:
+      led: insert_77
+  charleston_target_library_5_shot:
+    switch: s_target_library_5
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_5
+    show_tokens:
+      led: insert_76
+  charleston_target_library_6_shot:
+    switch: s_target_library_6
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_6
+    show_tokens:
+      led: insert_75
+
+  charleston_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  charleston_gate_library_shot:
+    switch: s_gate_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_12, led_1
+  charleston_roll_library_shot:
+    switch: s_roll_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  charleston_roll_space_shot:
+    switch: s_roll_space
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  charleston_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  charleston_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  charleston_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  charleston_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  charleston_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  charleston_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  charleston_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  charleston_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  charleston_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  charleston_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  charleston_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  charleston_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_1, led_2
+  charleston_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  charleston_spinner_shot:
+    switch: s_spinner
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+
+  charleston_drop_target_1_base_shot:
+    switch: s_drop_target_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_24
+  charleston_drop_target_2_base_shot:
+    switch: s_drop_target_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_23
+  charleston_drop_target_3_base_shot:
+    switch: s_drop_target_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_22
+  charleston_drop_target_4_base_shot:
+    switch: s_drop_target_4
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_21
+
+
+  charleston_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_18
+    show_tokens:
+      led: insert_24
+  charleston_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_19
+    show_tokens:
+      led: insert_23
+  charleston_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_20
+    show_tokens:
+      led: insert_22
+  charleston_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: charleston_profile
+    hit_events: action_valid_charleston_shot_21
+    show_tokens:
+      led: insert_21
+
+  charleston_green_target_1_shot:
+    switch: s_target_green_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_47
+  charleston_green_target_2_shot:
+    switch: s_target_green_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_45
+  charleston_green_target_3_shot:
+    switch: s_target_green_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_46
+
+  charleston_space_orbit_shot:
+    hit_events: charleston_space_orbit_sequence_hit
+  charleston_asylum_orbit_shot:
+    hit_events: charleston_asylum_orbit_sequence_hit
+  charleston_library_roll_shot:
+    hit_events: charleston_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  charleston_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  charleston_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  charleston_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  mode_charleston_started:
+    mission_charleston_blink_show:
+      speed: 5
+  
+  charleston_scoop_haut_shot_hit{current_player.count_multiball_charleston=='zero'}:
+    charleston_multiball_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 2
+      events_when_completed: launch_speed_charleston_multiball_show
+  launch_speed_charleston_multiball_show:
+    charleston_multiball_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 2
+      events_when_completed: launch_charleston_multiball
+
+
+  charleston_sling_left_shot_hit:
+    charleston_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  charleston_sling_right_shot_hit:
+    charleston_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  charleston_scoop_haut_shot_hit{current_player.count_multiball_charleston!='one'}:
+    charleston_multiball_ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 200  
+
+  timer_multiball_charleston_save_time_complete:
+    charleston_multiball_ball_save_blink_show:
+      action: stop
+
+  charleston_cthulhu_ramp_shot_hit:
+    all_insert_charleston_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  charleston_green_ramp_shot_hit:
+    all_insert_charleston_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  charleston_main_ramp_shot_hit:
+    all_insert_charleston_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  charleston_asylum_orbit_shot_hit:
+    charleston_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  charleston_space_orbit_shot_hit:
+    charleston_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  charleston_library_roll_shot_hit:
+    all_insert_charleston_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  charleston_target_square_1_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_square_2_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_square_3_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_square_4_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_square_5_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_1_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_2_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_3_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_4_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_5_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_sanity_shot_6_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_drop_target_1_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_drop_target_2_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_drop_target_3_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_drop_target_4_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_1_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_2_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_3_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_4_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_5_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  charleston_target_library_6_shot_lit_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  s_action_active{current_player.variable_number_of_object_value > 0}:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_charleston_available:
+      action: set
+      string: 'no'
+
+  action_valid_charleston_shot:
+    variable_number_of_object_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  charleston_sling_left_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_sling_right_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_sling_up_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    count_multiball_charleston:
+      action: set
+      string: 'one' 
+
+  charleston_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_square_1_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_square_2_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_square_3_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_square_4_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_target_square_5_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+
+  charleston_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_1_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_2_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_3_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_4_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_5_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_sanity_shot_6_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+
+  charleston_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_drop_target_1_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_drop_target_2_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_drop_target_3_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_drop_target_4_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+
+
+  charleston_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  charleston_target_library_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_1_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_library_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_2_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_library_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_3_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_library_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_4_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_library_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_5_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+  charleston_target_library_6_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  charleston_target_library_6_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_target_count:
+      int: -1
+    bonus_targets: 1
+
+  charleston_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  charleston_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  charleston_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  charleston_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  charleston_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  charleston_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  charleston_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  charleston_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  charleston_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  sanity_charleston_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  drop_target_charleston_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  library_target_group_complete:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+###########################
+
+shot_groups:
+  sanity_charleston_group:
+    shots: charleston_target_sanity_shot_1, charleston_target_sanity_shot_2, charleston_target_sanity_shot_3, charleston_target_sanity_shot_4, charleston_target_sanity_shot_5, charleston_target_sanity_shot_6
+    reset_events: sanity_group_complete
+  drop_target_charleston_group:
+    shots: charleston_drop_target_1_shot, charleston_drop_target_2_shot, charleston_drop_target_3_shot, charleston_drop_target_4_shot
+    reset_events: drop_target_group_complete
+
+  charleston_mission_target_group:
+    shots: charleston_target_square_1_shot, charleston_target_square_2_shot, charleston_target_square_3_shot, charleston_target_square_4_shot, charleston_target_square_5_shot, charleston_drop_target_1_shot, charleston_drop_target_2_shot, charleston_drop_target_3_shot, charleston_drop_target_4_shot, charleston_target_sanity_shot_1, charleston_target_sanity_shot_2, charleston_target_sanity_shot_3, charleston_target_sanity_shot_4, charleston_target_sanity_shot_5, charleston_target_sanity_shot_6, charleston_target_library_1_shot, charleston_target_library_2_shot, charleston_target_library_3_shot, charleston_target_library_4_shot, charleston_target_library_5_shot, charleston_target_library_6_shot
+
+timers:
+  charleston_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_charleston_started    
+
+  multiball_charleston_save_time:
+    start_value: 0
+    end_value: 15
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: multiball_multiball_charleston_multiball_started
+
+###########################
+
+light_player:
+  mode_charleston_started:
+    gi:
+      color: FF8000
+    side_led_right:
+      color: FF8000
+    side_led_left:
+      color: FF8000
+    charleston_box_led: white
+
+###########################
+
+sound_player:
+  mode_charleston_started:
+    charleston_music:
+      action: play
+      loops: -1
+      track: music
+      mode_end_action: stop
+      fade_out: 1s
+    charleston_entrance:
+      action: play
+      loops: 0
+  multiball_rlyeh_has_started:
+    charleston_music:
+      action: stop
+
+
+  relaunch_charleston_music:
+    charleston_music:
+      action: play
+      loops: -1
+      track: music
+      mode_end_action: stop
+      fade_out: 1s
+
+  launch_sounds_multiball:
+    jazz_intro:
+      action: play
+      volume: 2
+    charleston_multiball_voice_pool:
+      action: play
+      volume: 4
+
+  timer_charleston_voice_time_complete:
+    charleston_voice:
+      action: play
+      volume: 2       
+      mode_end_action: stop
+      fade_out: 1s
+
+  charleston_bumper_one_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_bumper_two_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_bumper_three_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_sling_up_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_square_1_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_square_2_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_square_3_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_square_4_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_square_5_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_sling_left_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_sling_right_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_gate_library_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 2
+  charleston_target_sanity_shot_1_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_sanity_shot_2_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_sanity_shot_3_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_sanity_shot_4_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_sanity_shot_5_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_sanity_shot_6_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_roll_left_inlane_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_roll_right_inlane_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_gate_exit_library_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_gate_secret_library_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_1_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_2_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_3_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_4_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_5_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_target_library_6_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_spinner_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_main_ramp_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_green_ramp_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_cthulhu_ramp_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_roll_space_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_roll_asylum_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_roll_fordt_shot_hit:
+    fordt_switch:
+      action: play
+      volume: 1
+  charleston_roll_left_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+  charleston_roll_right_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+  sanity_group_lit_complete:
+    sanity_launch:
+      action: play
+      volume: 1
+  drop_target_group_lit_complete:
+    dt_complete_sound_pool:
+      action: play
+      volume: 1
+
+  charleston_drop_target_1_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_drop_target_2_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_drop_target_3_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+  charleston_drop_target_4_shot_hit:
+    charleston_sfx:
+      action: play
+      volume: 1
+
+
+
+###########################
+
+sound_pools:
+  charleston_music:
+    load: on_demand
+    type: random_force_all
+    track: music
+    sounds:
+      - charleston_music_1
+      - charleston_music_2
+      - charleston_music_3
+      - charleston_music_4
+      - charleston_music_5
+      - charleston_music_6
+      - charleston_music_7
+      - charleston_music_8
+      - charleston_music_9
+      - charleston_music_10
+
+  charleston_sfx:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - charleston_sfx_1
+      - charleston_sfx_2
+      - charleston_sfx_3
+      - charleston_sfx_4
+      - charleston_sfx_5
+      - charleston_sfx_8
+      - charleston_sfx_9
+      - charleston_sfx_10
+      - charleston_sfx_11
+      - charleston_sfx_12
+      - charleston_sfx_13
+      - charleston_sfx_14
+      - pop-horns_1
+      - pop-horns_2
+  
+  charleston_voice:
+    load: on_demand
+    type: random_force_all
+    track: voice
+    sounds:
+      - charleston_voice_1
+      - charleston_voice_2
+      - charleston_voice_3
+      - charleston_voice_4
+      - charleston_voice_5
+      - charleston_voice_6
+      - charleston_voice_7
+      - charleston_voice_8
+      - charleston_voice_9
+      - charleston_voice_10
+      - charleston_voice_11
+
+  charleston_multiball_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - charleston_multiball_voice_1
+      - charleston_multiball_voice_2
+      - charleston_multiball_voice_3
+      - charleston_multiball_voice_4
+
+###########################
+
+videos:
+  charleston_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: charleston_video_1.mp4
+    events_when_stopped: remove_random_charleston_video_1
+  charleston_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: charleston_video_2.mp4
+    events_when_stopped: remove_random_charleston_video_2
+  charleston_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: charleston_video_3.mp4
+    events_when_stopped: remove_random_charleston_video_3

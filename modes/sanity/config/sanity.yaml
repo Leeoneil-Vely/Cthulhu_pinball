@@ -1,0 +1,1006 @@
+#config_version=6
+mode:
+  start_events: sanity_start
+  stop_events: sanity_stop, ball_ending
+  priority: 1800
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_sanity_started: shaker_shake, multiball_twenties_stop, twenties_stop, city_stop, cult_stop, graveyard_stop, twenties_stop, azathoth_stop, king_stop, nyarla_stop, cthulhu_stop, shub_stop, stormy_night_stop, pursuit_twenties_stop, lurking_stop, launch_random_sanity_video
+  end_of_sanity_2: sanity_stop, twenties_start
+  sanity_spinner_shot_hit: shaker_shake
+  relaunch_sanity_video: launch_random_sanity_video|5s
+
+###########################
+
+random_event_player:
+  launch_random_sanity_video:
+    events:
+      - launch_sanity_video_1
+      - launch_sanity_video_2
+      - launch_sanity_video_3
+      - launch_sanity_video_4
+      - launch_sanity_video_5
+      - launch_sanity_video_6
+      - launch_sanity_video_7
+      - launch_sanity_video_8
+      - launch_sanity_video_9
+      - launch_sanity_video_10
+      - launch_sanity_video_11
+      - launch_sanity_video_12
+      - launch_sanity_video_13
+
+###########################
+
+slide_player:
+  mode_sanity_started: sanity_slide
+
+###########################
+
+slides:
+  sanity_slide: []
+
+###########################
+
+widgets:
+  sanity_start_banner:
+    type: text
+    text: You are going mad !
+    font_size: 100
+    y: 67%
+    x: 50%
+    z: 100
+    color: red
+
+  sanity_info_banner:
+    type: text
+    text: Hit spinner to exit the asylum
+    font_size: 90
+    y: 28%
+    x: 50%
+    z: 100
+    color: red
+
+  video_sanity_scratch_widget:
+    type: video
+    video: mystery_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 1
+
+  video_sanity_1_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_2_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_3_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_4_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_5_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_6_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_7_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_8_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_9_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_10_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_11_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_12_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+  video_sanity_13_scratch_widget:
+    type: video
+    video: sanity_scratch_movie_13
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_sanity_video
+
+
+###########################
+
+widget_player:
+  mode_sanity_started: 
+    sanity_start_banner, sanity_info_banner, cthulhu_frame_image, video_sanity_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: sanity_slide
+
+  mode_sanity_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: sanity_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_sanity_video_1:
+    video_sanity_1_scratch_widget:
+      slide: sanity_slide  
+  launch_sanity_video_2:
+    video_sanity_2_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_3:
+    video_sanity_3_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_4:
+    video_sanity_4_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_5:
+    video_sanity_5_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_6:
+    video_sanity_6_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_7:
+    video_sanity_7_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_8:
+    video_sanity_8_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_9:
+    video_sanity_9_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_10:
+    video_sanity_10_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_11:
+    video_sanity_11_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_12:
+    video_sanity_12_scratch_widget:
+      slide: sanity_slide
+  launch_sanity_video_13:
+    video_sanity_13_scratch_widget:
+      slide: sanity_slide
+
+  remove_random_sanity_video_1:
+    video_sanity_1_scratch_widget:
+      action: remove
+  remove_random_sanity_video_2:
+    video_sanity_2_scratch_widget:
+      action: remove
+  remove_random_sanity_video_3:
+    video_sanity_3_scratch_widget:
+      action: remove
+  remove_random_sanity_video_4:
+    video_sanity_4_scratch_widget:
+      action: remove
+  remove_random_sanity_video_5:
+    video_sanity_5_scratch_widget:
+      action: remove
+  remove_random_sanity_video_6:
+    video_sanity_6_scratch_widget:
+      action: remove
+  remove_random_sanity_video_7:
+    video_sanity_7_scratch_widget:
+      action: remove
+  remove_random_sanity_video_8:
+    video_sanity_8_scratch_widget:
+      action: remove
+  remove_random_sanity_video_9:
+    video_sanity_9_scratch_widget:
+      action: remove
+  remove_random_sanity_video_10:
+    video_sanity_10_scratch_widget:
+      action: remove
+  remove_random_sanity_video_11:
+    video_sanity_11_scratch_widget:
+      action: remove
+  remove_random_sanity_video_12:
+    video_sanity_12_scratch_widget:
+      action: remove
+  remove_random_sanity_video_13:
+    video_sanity_13_scratch_widget:
+      action: remove
+
+###########################
+
+shot_profiles:
+  sanity_mode_profile:
+    loop: true
+    block: true
+    states:      
+      - name: sanitized
+        show: sanity_blink_show
+        speed: 15
+        loops: 1
+        priority: 1800
+
+
+###########################
+
+shots:
+  sanity_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_86    
+  sanity_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_85
+  sanity_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_84
+  sanity_sling_left_shot:
+    switch: s_sling_left
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_30, led_31
+  sanity_sling_right_shot:
+    switch: s_sling_right
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_36, led_37
+  sanity_sling_up_shot:
+    switch: s_sling_up
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_5, led_6
+  sanity_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  sanity_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+
+  sanity_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_41
+  sanity_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_32
+  sanity_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_30
+  sanity_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_20
+  sanity_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_10
+
+
+  sanity_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_50
+  sanity_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_49
+  sanity_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_48
+  sanity_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_11
+  sanity_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_12
+  sanity_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_13
+    
+  sanity_target_library_1_shot:
+    switch: s_target_library_1
+  sanity_target_library_2_shot:
+    switch: s_target_library_2
+  sanity_target_library_3_shot:
+    switch: s_target_library_3
+  sanity_target_library_4_shot:
+    switch: s_target_library_4
+  sanity_target_library_5_shot:
+    switch: s_target_library_5
+  sanity_target_library_6_shot:
+    switch: s_target_library_6
+
+
+  sanity_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  sanity_gate_library_shot:
+    switch: s_gate_library
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_12, led_1
+  sanity_roll_library_shot:
+    switch: s_roll_library
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  sanity_roll_space_shot:
+    switch: s_roll_space
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  sanity_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  sanity_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  sanity_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_54, led_32, led_33
+  sanity_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_14, led_35, led_34
+  sanity_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_15, led_38, led_39
+  sanity_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_0, led_10, led_9
+  sanity_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_1, led_9, led_8
+  sanity_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  sanity_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  sanity_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  sanity_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  sanity_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_1, led_2
+  sanity_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: sanity_mode_profile
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  sanity_spinner_shot:
+    switch: s_spinner
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  sanity_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_24
+  sanity_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_23
+  sanity_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_22
+  sanity_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_21
+
+  sanity_green_target_1_shot:
+    switch: s_target_green_1
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_47
+  sanity_green_target_2_shot:
+    switch: s_target_green_2
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_45
+  sanity_green_target_3_shot:
+    switch: s_target_green_3
+    profile: sanity_mode_profile
+    show_tokens:
+      led: insert_46
+
+
+###########################
+
+counters:
+  sanity_spinner_level_1:
+    count_events: sanity_spinner_shot_hit
+    starting_count: 0
+    count_complete_value: 2
+    events_when_complete: end_of_sanity
+
+###########################
+
+light_player:
+  mode_sanity_started:
+    gi:
+      color: red
+    side_led_right:
+      color: red
+    side_led_left:
+      color: red
+
+###########################
+
+show_player:
+  mode_sanity_started:
+    sanity_show:
+      speed: 1
+    sanity_gi_show:
+      speed: 1.4
+    asylum_blink_show:
+      speed: 15
+    insert_azathoth_flash_sanity_show:
+      speed: 65
+    insert_shub_flash_sanity_show:
+      speed: 65
+
+  end_of_sanity:
+    sanity_end_show:
+      speed: 75
+      loops: 5
+      priority: 1000
+      events_when_completed: end_of_sanity_2
+
+  sanity_sling_left_shot_hit:
+    sanity_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  sanity_sling_right_shot_hit:
+    sanity_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+###########################
+
+variable_player:
+  sanity_sling_left_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_sling_right_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_bumper_one_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_bumper_two_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_bumper_three_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_scoop_bas_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_scoop_haut_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  sanity_target_square_1_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_square_2_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_square_3_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_square_4_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_square_5_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  sanity_target_sanity_shot_1_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_sanity_shot_2_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_sanity_shot_3_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_sanity_shot_4_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_sanity_shot_5_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_target_sanity_shot_6_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  sanity_drop_target_1_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_drop_target_2_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_drop_target_3_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_drop_target_4_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  sanity_green_target_1_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_green_target_2_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  sanity_green_target_3_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  sanity_target_library_1_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_target_library_2_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_target_library_3_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_target_library_4_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_target_library_5_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_target_library_6_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  sanity_team_1_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_team_2_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_team_3_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  sanity_spinner_shot_hit:
+    score: 5000
+
+  sanity_roll_left_outlane_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_left_inlane_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_right_inlane_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_right_outlane_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_library_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_fordt_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_space_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_roll_asylum_shot_hit:
+    score: 5000
+
+  sanity_cthulhu_ramp_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  sanity_main_ramp_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  sanity_green_ramp_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  sanity_gate_library_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  sanity_gate_exit_library_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  sanity_gate_secret_library_shot_hit:
+    score: -1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  mode_sanity_started:
+    sanity_level:
+      action: set
+      string: 'level_1'
+
+###########################
+
+sound_player:
+  timer_sanity_voice_timer_complete:
+    sanity_voice:
+      action: play
+      loops: 0
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  sanity_spinner_shot_hit:
+    whisper_spinner_sound:
+      action: play
+      volume: 1
+
+  sanity_green_target_1_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_green_target_2_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_green_target_3_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+
+  sanity_bumper_one_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_bumper_two_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_bumper_three_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_square_1_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_square_2_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_square_3_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_square_4_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_square_5_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_sling_left_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_sling_right_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_gate_library_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 2
+  sanity_target_sanity_shot_1_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_sanity_shot_2_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_sanity_shot_3_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_sanity_shot_4_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_sanity_shot_5_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_target_sanity_shot_6_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_roll_left_inlane_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_roll_right_inlane_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_gate_exit_library_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_gate_secret_library_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_main_ramp_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1      
+  sanity_roll_space_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_roll_asylum_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_roll_fordt_shot_hit:
+    sanity_sound:
+      action: play
+      volume: 1
+  sanity_roll_left_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+  sanity_roll_right_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+
+###########################
+
+timers:
+  sanity_voice_timer:
+    start_value: 0
+    end_value: 15  
+    tick_interval: 1s
+    direction: up
+    start_running: true
+    restart_on_complete: true
+
+
+###########################
+
+sound_pools:
+  sanity_sound:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - sanity_1
+      - sanity_2
+      - sanity_3
+      - sanity_4
+      - sanity_5
+      - sanity_6
+      - sanity_7
+      - sanity_8
+
+  whisper_spinner_sound:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - whisper_1
+      - whisper_2
+      - whisper_3
+
+  sanity_voice:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - sanity_voice_1
+      - sanity_voice_2
+      - sanity_voice_3
+      - sanity_voice_4
+      - sanity_voice_5
+      - sanity_voice_6
+      - sanity_voice_7
+      - sanity_voice_8
+      - sanity_voice_9
+      - sanity_voice_10
+      - sanity_voice_11
+      - sanity_voice_12
+      - sanity_voice_13
+      - sanity_voice_14
+      - sanity_voice_15
+      - sanity_voice_16
+      - sanity_voice_17
+      - sanity_voice_18
+      - sanity_voice_19
+      - sanity_voice_20
+      - sanity_voice_21
+      - sanity_voice_22
+      - sanity_voice_23
+      - sanity_voice_24
+      - sanity_voice_25
+      - sanity_voice_26
+      - sanity_voice_27
+      - sanity_voice_28
+      - sanity_voice_29
+      - sanity_voice_30
+      - sanity_voice_31
+      - sanity_voice_32
+      - sanity_voice_33
+      - sanity_voice_34
+      - sanity_voice_35
+      - sanity_voice_36
+      - sanity_voice_37
+
+###########################
+
+videos:
+  sanity_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: sanity_video_1.mp4
+    events_when_stopped: remove_random_sanity_video_1
+  sanity_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: sanity_video_2.mp4
+    events_when_stopped: remove_random_sanity_video_2
+  sanity_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: sanity_video_3.mp4
+    events_when_stopped: remove_random_sanity_video_3
+  sanity_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: sanity_video_4.mp4
+    events_when_stopped: remove_random_sanity_video_4
+  sanity_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: sanity_video_5.mp4
+    events_when_stopped: remove_random_sanity_video_5
+  sanity_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: sanity_video_6.mp4
+    events_when_stopped: remove_random_sanity_video_6
+  sanity_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: sanity_video_7.mp4
+    events_when_stopped: remove_random_sanity_video_7
+  sanity_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: sanity_video_8.mp4
+    events_when_stopped: remove_random_sanity_video_8
+  sanity_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: sanity_video_9.mp4
+    events_when_stopped: remove_random_sanity_video_9
+  sanity_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: sanity_video_10.mp4
+    events_when_stopped: remove_random_sanity_video_10
+  sanity_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: sanity_video_11.mp4
+    events_when_stopped: remove_random_sanity_video_11
+  sanity_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: sanity_video_12.mp4
+    events_when_stopped: remove_random_sanity_video_12
+  sanity_scratch_movie_13:
+    width: 1440
+    height: 900
+    file: sanity_video_13.mp4
+    events_when_stopped: remove_random_sanity_video_13

@@ -1,0 +1,318 @@
+#config_version=6
+mode:
+  start_events: multiball_portal_start
+  stop_events: multiball_portal_stop, ball_ended
+  priority: 900
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  timer_multiball_portal_DT_reset_time_complete: block_multiball_portal
+  multiball_portal_bumper_one_shot_active_hit: launch_multiball_portal
+  multiball_portal_bumper_two_shot_active_hit: launch_multiball_portal
+  multiball_portal_bumper_three_shot_active_hit: launch_multiball_portal
+  multiball_multiball_portal_multiball_ended: multiball_portal_stop|1s
+  "{device.shots.multiball_portal_drop_target_1_shot.state_name=='down' and device.shots.multiball_portal_drop_target_2_shot.state_name=='down' and device.shots.multiball_portal_drop_target_3_shot.state_name=='down' and device.shots.multiball_portal_drop_target_4_shot.state_name=='down'}": open_multiball_portal, portal_start
+  timer_multiball_portal_slide_reset_time_complete: stop_multiball_portal_slide 
+
+###########################
+
+multiballs:
+  multiball_portal_multiball:
+    ball_count: 2
+    ball_count_type: total
+    start_events: launch_multiball_portal_3
+    shoot_again: 15s
+
+###########################
+
+slides:
+  multiball_portal_slide: []
+
+###########################
+
+slide_player:
+  open_multiball_portal:
+    multiball_portal_slide:
+      action: play
+  
+  block_multiball_portal:
+    multiball_portal_slide:
+      action: remove
+      transition: fade
+
+  launch_multiball_portal:
+    multiball_portal_slide:
+      action: remove
+      transition: fade
+
+###########################
+
+widgets:
+  multiball_portal_name_banner:
+    type: text
+    text: Portal multiball
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+
+  multiball_portal_indication_banner:
+    type: text
+    text: Help from another reality
+    y: 68%
+    x: 50%
+    z: 100
+
+  multiball_portal_indication_banner_2:
+    type: text
+    text: Go to the bumpers !
+    y: 28%
+    x: 50%
+    z: 100
+
+  video_multiball_portal_scratch_widget:
+    type: video
+    video: mystery_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 4
+
+###########################
+
+widget_player:
+  open_multiball_portal:
+     multiball_portal_name_banner, multiball_portal_indication_banner, multiball_portal_indication_banner_2, cthulhu_frame_image, video_multiball_portal_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: multiball_portal_slide
+
+###########################
+
+timers:
+  multiball_portal_DT_reset_time:
+    start_value: 0
+    end_value: 20
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: open_multiball_portal
+      - action: stop
+        event: timer_multiball_portal_DT_reset_time_complete
+
+###########################
+
+shot_profiles:
+  multiball_portal_DT_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: up
+        show: multiball_portal_blink_show
+        speed: 25
+        loops: -1
+        priority: 600
+      - name: down
+        show: off
+
+  multiball_portal_target_sanity_profile:
+    loop: true
+    block: true
+    states:
+      - name: hit
+        show: stormy_night_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+
+  multiball_portal_bumper_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: active
+        show: multiball_portal_blink_show
+        speed: 25
+        loops: -1
+        priority: 600
+
+###########################
+
+shots:
+  multiball_portal_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: multiball_portal_bumper_profile
+    enable_events: open_multiball_portal
+    disable_events: block_multiball_portal, launch_multiball_portal
+    show_tokens:
+      led: insert_86
+  multiball_portal_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: multiball_portal_bumper_profile
+    enable_events: open_multiball_portal
+    disable_events: block_multiball_portal, launch_multiball_portal
+    show_tokens:
+      led: insert_85
+  multiball_portal_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: multiball_portal_bumper_profile
+    enable_events: open_multiball_portal
+    disable_events: block_multiball_portal, launch_multiball_portal
+    show_tokens:
+      led: insert_84
+
+  multiball_portal_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: multiball_portal_DT_profile
+    disable_events: launch_multiball_portal
+    enable_events: mode_multiball_portal_started{current_player.multiball_portal_available=='true'}
+    reset_events: block_multiball_portal
+    show_tokens:
+      led: insert_24
+  multiball_portal_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: multiball_portal_DT_profile
+    disable_events: launch_multiball_portal
+    enable_events: mode_multiball_portal_started{current_player.multiball_portal_available=='true'}
+    reset_events: block_multiball_portal
+    show_tokens:
+      led: insert_23
+  multiball_portal_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: multiball_portal_DT_profile
+    disable_events: launch_multiball_portal
+    enable_events: mode_multiball_portal_started{current_player.multiball_portal_available=='true'}
+    reset_events: block_multiball_portal
+    show_tokens:
+      led: insert_22
+  multiball_portal_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: multiball_portal_DT_profile
+    disable_events: launch_multiball_portal
+    enable_events: mode_multiball_portal_started{current_player.multiball_portal_available=='true'}
+    reset_events: block_multiball_portal
+    show_tokens:
+      led: insert_21
+
+  multiball_portal_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_50
+  multiball_portal_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_49  
+  multiball_portal_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_48
+  multiball_portal_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_11
+  multiball_portal_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_12
+  multiball_portal_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: multiball_portal_target_sanity_profile
+    enable_events: launch_multiball_portal
+    disable_events: multiball_multiball_portal_multiball_ended
+    show_tokens:
+      led: insert_13
+
+###########################
+
+variable_player:
+  multiball_multiball_portal_multiball_ended:
+    multiball_portal_available:
+      action: set
+      string: 'false'
+
+  multiball_portal_drop_target_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+show_player:
+  launch_multiball_portal:
+    launch_buddy_show:
+      action: play
+      speed: 50
+      priority: 600
+      loops: 1
+      events_when_completed: launch_multiball_portal_2
+  launch_multiball_portal_2:    
+    launch_buddy_show:
+      action: play
+      speed: 100
+      priority: 600
+      loops: 1
+      events_when_completed: launch_multiball_portal_3
+
+  multiball_multiball_portal_multiball_started:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 1000
+  multiball_multiball_portal_multiball_shoot_again_ended:
+    ball_save_blink_show:
+      action: stop
+
+###########################
+
+sound_player:
+  launch_multiball_portal:
+    multiball_portal_music_pool:
+      action: play
+      loops: -1
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+
+  multiball_portal_drop_target_1_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  multiball_portal_drop_target_2_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  multiball_portal_drop_target_3_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  multiball_portal_drop_target_4_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+
+  portal_start:
+    dt_complete_sound_pool:
+      action: play
+      volume: 1
+
+  open_multiball_portal:
+    bumpers_voice_pool:
+      action: play
+      volume: 1

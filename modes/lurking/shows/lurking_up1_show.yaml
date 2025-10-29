@@ -1,0 +1,12 @@
+#show_version=6
+- duration: 1
+  lights:
+    bumper_led: red-f200ms
+    led_5: red-f200ms
+    led_6: red-f200ms
+
+- duration: 1
+  lights:
+    bumper_led: off-f200ms
+    led_5: off-f200ms
+    led_6: off-f200ms

@@ -1,0 +1,250 @@
+#show_version=6
+- time: 0
+  lights:
+    led_46: 'EC00C0'
+    
+- time: '+1'
+  lights:
+    led_46: 'F900CA'
+    
+- time: '+1'
+  lights:
+    led_46: 'FC00CC'
+    
+- time: '+1'
+  lights:
+    led_46: 'FC00CD'
+    
+- time: '+1'
+  lights:
+    led_46: 'FD00CE'
+    
+- time: '+1'
+  lights:
+    led_46: 'FE00CE'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    led_21: '030003'
+    led_45: '060004'
+    
+- time: '+1'
+  lights:
+    led_21: '0E000B'
+    led_45: '12000F'
+    
+- time: '+1'
+  lights:
+    led_21: '1C0016'
+    led_45: '23001D'
+    
+- time: '+1'
+  lights:
+    led_21: '2E0025'
+    led_45: '37002C'
+    
+- time: '+1'
+  lights:
+    led_21: '410035'
+    led_45: '4B003D'
+    
+- time: '+1'
+  lights:
+    led_21: '550045'
+    led_45: '61004E'
+    
+- time: '+1'
+  lights:
+    led_21: '6A0056'
+    led_45: '760060'
+    
+- time: '+1'
+  lights:
+    led_21: '7D0065'
+    led_45: '8A006F'
+    led_46: 'FE00CD'
+    led_48: '010001'
+    
+- time: '+1'
+  lights:
+    led_20: '010001'
+    led_21: '8E0073'
+    led_45: '98007B'
+    led_47: '020002'
+    led_48: '050004'
+    
+- time: '+1'
+  lights:
+    led_20: '050004'
+    led_21: '9F0081'
+    led_45: 'A70087'
+    led_47: '060005'
+    led_48: '0B0009'
+    
+- time: '+1'
+  lights:
+    led_20: '0A0008'
+    led_21: 'AA008A'
+    led_45: 'B20090'
+    led_46: 'FE00CE'
+    led_47: '0C0009'
+    led_48: '11000E'
+    
+- time: '+1'
+  lights:
+    led_20: '11000E'
+    led_21: 'B50092'
+    led_22: '020002'
+    led_45: 'BC0098'
+    led_46: 'FF00CE'
+    led_47: '12000F'
+    led_48: '1A0015'
+    
+- time: '+1'
+  lights:
+    led_20: '180013'
+    led_21: 'BD0098'
+    led_22: '050004'
+    led_45: 'C4009E'
+    led_47: '1A0015'
+    led_48: '22001C'
+    
+- time: '+1'
+  lights:
+    led_20: '20001B'
+    led_21: 'C600A0'
+    led_22: '0A0008'
+    led_45: 'CB00A4'
+    led_47: '24001D'
+    led_48: '2D0024'
+    
+- time: '+1'
+  lights:
+    led_20: '2A0023'
+    led_21: 'CB00A4'
+    led_22: '0F000C'
+    led_45: 'CF00A8'
+    led_47: '2F0026'
+    led_48: '39002E'
+    
+- time: '+1'
+  lights:
+    led_20: '34002A'
+    led_21: 'D100A9'
+    led_22: '150011'
+    led_45: 'D500AC'
+    led_47: '38002D'
+    led_48: '440037'
+    
+- time: '+1'
+  lights:
+    led_20: '3F0033'
+    led_21: 'D600AD'
+    led_22: '1C0017'
+    led_45: 'D900AF'
+    led_47: '440037'
+    led_48: '500040'
+    
+- time: '+1'
+  lights:
+    led_20: '48003A'
+    led_21: 'D900B0'
+    led_22: '22001B'
+    led_44: '010001'
+    led_45: 'DD00B2'
+    led_47: '4E003F'
+    led_48: '5A0049'
+    led_5: '020002'
+    led_6: '010001'
+    
+- time: '+1'
+  lights:
+    led_20: '540044'
+    led_21: 'DD00B3'
+    led_22: '2A0022'
+    led_23: '020001'
+    led_44: '030002'
+    led_45: 'E000B5'
+    led_47: '5B0049'
+    led_48: '670053'
+    led_5: '040003'
+    led_6: '020002'
+    
+- time: '+1'
+  lights:
+    led_19: '030002'
+    led_20: '5D004C'
+    led_21: 'DF00B4'
+    led_22: '34002A'
+    led_23: '040003'
+    led_44: '050004'
+    led_45: 'E300B7'
+    led_47: '640051'
+    led_48: '71005B'
+    led_5: '070005'
+    led_6: '030003'
+    
+- time: '+1'
+  lights:
+    led_18: '010001'
+    led_19: '060005'
+    led_20: '680054'
+    led_21: 'E200B6'
+    led_22: '3B0030'
+    led_23: '060005'
+    led_44: '080007'
+    led_45: 'E500B9'
+    led_47: '70005A'
+    led_48: '7D0065'
+    led_5: '0A0008'
+    led_6: '060005'
+    led_8: '020002'
+    led_9: '010001'
+    
+- time: '+1'
+  lights:
+    led_10: '010001'
+    led_11: '010001'
+    led_18: '020001'
+    led_19: '090007'
+    led_20: '73005D'
+    led_21: 'E500B9'
+    led_22: '440037'
+    led_23: '0A0008'
+    led_44: '0B0009'
+    led_45: 'E700BA'
+    led_47: '7B0063'
+    led_48: '87006D'
+    led_5: '0E000C'
+    led_6: '0A0008'
+    led_8: '050004'
+    led_9: '030002'
+    
+- time: '+1'
+  lights:
+    led_10: '030002'
+    led_11: '020002'
+    led_18: '040003'
+    led_19: '0C000A'
+    led_20: '7C0065'
+    led_21: 'E700BB'
+    led_22: '4D003E'
+    led_23: '0D000A'
+    led_44: '10000D'
+    led_45: 'E900BC'
+    led_47: '86006C'
+    led_48: '910075'
+    led_5: '140010'
+    led_6: '0E000B'
+    led_7: '010001'
+    led_8: '070006'
+    led_9: '050004'
+    

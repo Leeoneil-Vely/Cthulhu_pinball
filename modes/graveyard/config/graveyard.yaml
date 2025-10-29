@@ -1,0 +1,1303 @@
+#config_version=6
+mode:
+  start_events: graveyard_start
+  stop_events: graveyard_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_graveyard_started: twenties_stop, hold_stop, launch_random_graveyard_video
+  graveyard_gate_library_shot_hit: library_graveyard_start
+  graveyard_roll_asylum_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_cthulhu_ramp_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_green_ramp_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_main_ramp_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_roll_library_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_roll_space_shot_graveyardghoulflashing_hit: ghoul_attack_event
+  graveyard_target_square_1_shot_lit_hit: shaker_shake
+  graveyard_target_square_2_shot_lit_hit: shaker_shake
+  graveyard_target_square_3_shot_lit_hit: shaker_shake
+  graveyard_target_square_4_shot_lit_hit: shaker_shake
+  graveyard_target_square_5_shot_lit_hit: shaker_shake
+
+  "{device.shots.graveyard_target_square_5_shot.state_name=='off' and device.shots.graveyard_target_square_4_shot.state_name=='off' and device.shots.graveyard_target_square_3_shot.state_name=='off' and device.shots.graveyard_target_square_2_shot.state_name=='off' and device.shots.graveyard_target_square_1_shot.state_name=='off'}": graveyard_stop, graveyard_win_start
+  relaunch_graveyard_video: launch_random_graveyard_video|5s
+  s_action_active{current_player.variable_number_of_bullet_value > 0}: action_valid_graveyard_shot, shaker_shake
+  graveyard_scoop_haut_shot_hit{current_player.cellar_investigator_state=='free'}: cellar_start
+  multiball_multiball_cellar_multiball_ended: relaunch_graveyard_music
+  multiball_multiball_twenties_multiball_ended: relaunch_graveyard_music
+
+  mode_graveyard_started{current_player.lock_rlyeh_graveyard_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_graveyard_music
+
+
+###########################
+
+slides:
+  graveyard_slide: []
+
+###########################
+
+slide_player:
+  mode_graveyard_started: graveyard_slide
+
+###########################
+
+widgets:
+  graveyard_name_banner:
+    type: text
+    text: Graveyard
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: 004C99
+    style: mission_text
+
+  graveyard_indication_banner:
+    type: text
+    text: Search (player|graveyard_dig_count) graves
+    color: 004C99
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  graveyard_indication_banner_2:
+    type: text
+    text: Avoid the red ghoul !
+    color: 004C99
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  graveyard_banner_image:
+    type: Image
+    image: mini_graveyard
+    y: 50%
+    x: 25%
+    z: 100
+
+  video_graveyard_1_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_2_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_3_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_4_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_5_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_6_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_7_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_8_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_9_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+  video_graveyard_10_scratch_widget:
+    type: video
+    video: graveyard_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_graveyard_video
+
+
+  video_graveyard_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_graveyard_started:
+    graveyard_name_banner, graveyard_indication_banner, graveyard_indication_banner_2, graveyard_banner_image, cthulhu_frame_image, video_graveyard_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: graveyard_slide
+  mode_graveyard_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: graveyard_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_graveyard_video_1:
+    video_graveyard_1_scratch_widget:
+      slide: graveyard_slide     
+  launch_graveyard_video_2:
+    video_graveyard_2_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_3:
+    video_graveyard_3_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_4:
+    video_graveyard_4_scratch_widget:
+      slide: graveyard_slide     
+  launch_graveyard_video_5:
+    video_graveyard_5_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_6:
+    video_graveyard_5_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_7:
+    video_graveyard_7_scratch_widget:
+      slide: graveyard_slide     
+  launch_graveyard_video_8:
+    video_graveyard_8_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_9:
+    video_graveyard_9_scratch_widget:
+      slide: graveyard_slide
+  launch_graveyard_video_10:
+    video_graveyard_10_scratch_widget:
+      slide: graveyard_slide
+
+  remove_random_graveyard_video_1:
+    video_graveyard_1_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_2:
+    video_graveyard_2_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_3:
+    video_graveyard_3_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_4:
+    video_graveyard_4_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_5:
+    video_graveyard_5_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_6:
+    video_graveyard_6_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_7:
+    video_graveyard_7_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_8:
+    video_graveyard_8_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_9:
+    video_graveyard_9_scratch_widget:
+      action: remove
+  remove_random_graveyard_video_10:
+    video_graveyard_10_scratch_widget:
+      action: remove
+
+###########################
+
+random_event_player:
+  timer_graveyard_rotate_tick:
+    events:
+      - advance_ghoul_1
+      - advance_ghoul_2
+      - advance_ghoul_3
+      - advance_ghoul_4
+      - advance_ghoul_5
+      - advance_ghoul_6
+      - nothing
+
+  launch_random_graveyard_video:
+    events:
+      - launch_graveyard_video_1
+      - launch_graveyard_video_2
+      - launch_graveyard_video_3
+      - launch_graveyard_video_4
+      - launch_graveyard_video_5
+      - launch_graveyard_video_6
+      - launch_graveyard_video_7
+      - launch_graveyard_video_8
+      - launch_graveyard_video_9
+      - launch_graveyard_video_10
+
+  action_valid_graveyard_shot:
+    events:
+      - action_valid_graveyard_shot_1{device.shots.graveyard_target_square_1_shot.state_name=='lit'}
+      - action_valid_graveyard_shot_2{device.shots.graveyard_target_square_2_shot.state_name=='lit'}
+      - action_valid_graveyard_shot_3{device.shots.graveyard_target_square_3_shot.state_name=='lit'}
+      - action_valid_graveyard_shot_4{device.shots.graveyard_target_square_4_shot.state_name=='lit'}
+      - action_valid_graveyard_shot_5{device.shots.graveyard_target_square_5_shot.state_name=='lit'}
+    force_all: true
+
+###########################
+
+shot_groups:
+  drop_target_graveyard_group:
+    shots: graveyard_drop_target_1_shot, graveyard_drop_target_2_shot, graveyard_drop_target_3_shot, graveyard_drop_target_4_shot
+    reset_events: drop_target_group_complete
+
+  graveyard_mission_target_group:
+    shots: graveyard_target_square_1_shot, graveyard_target_square_2_shot, graveyard_target_square_3_shot, graveyard_target_square_4_shot, graveyard_target_square_5_shot
+
+###########################
+
+shot_profiles:
+  ghoul_profile:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: graveyardghoulflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 600
+
+  graveyard_target_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: lit
+        show: graveyard_target_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+      - name: off
+        show: off
+
+  graveyard_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: graveyardhitflashing
+        show: graveyard_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+
+###########################
+
+shots:
+  graveyard_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_86
+  graveyard_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_85
+  graveyard_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_84
+  graveyard_sling_left_shot:
+    switch: s_sling_left
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_30, led_31
+  graveyard_sling_right_shot:
+    switch: s_sling_right
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_36, led_37
+  graveyard_sling_up_shot:
+    switch: s_sling_up
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_5, led_6
+  graveyard_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  graveyard_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+
+  graveyard_target_square_1_base_shot:
+    switch: s_target_square_white_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_41
+  graveyard_target_square_2_base_shot:
+    switch: s_target_square_white_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_32
+  graveyard_target_square_3_base_shot:
+    switch: s_target_square_white_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_30
+  graveyard_target_square_4_base_shot:
+    switch: s_target_square_white_4
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_20
+  graveyard_target_square_5_base_shot:
+    switch: s_target_square_white_5
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_10
+
+  graveyard_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: graveyard_target_profile
+    hit_events: action_valid_graveyard_shot_1
+    show_tokens:
+      led: insert_41
+  graveyard_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: graveyard_target_profile
+    hit_events: action_valid_graveyard_shot_2
+    show_tokens:
+      led: insert_32
+  graveyard_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: graveyard_target_profile
+    hit_events: action_valid_graveyard_shot_3
+    show_tokens:
+      led: insert_30
+  graveyard_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: graveyard_target_profile
+    hit_events: action_valid_graveyard_shot_4
+    show_tokens:
+      led: insert_20
+  graveyard_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: graveyard_target_profile
+    hit_events: action_valid_graveyard_shot_5
+    show_tokens:
+      led: insert_10
+
+
+  graveyard_roll_asylum_base_shot:
+    switch: s_roll_asylum
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  graveyard_gate_library_base_shot:
+    switch: s_gate_library
+    profile: graveyard_target_flash
+    show_tokens:
+      led: led_12, led_1
+  graveyard_roll_library_base_shot:
+    switch: s_roll_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  graveyard_roll_space_base_shot:
+    switch: s_roll_space
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  graveyard_roll_fordt_base_shot:
+    switch: s_roll_fordt
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  graveyard_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: ghoul_profile
+    enable_events: advance_ghoul_6
+    disable_events: advance_ghoul_1, advance_ghoul_2, advance_ghoul_3, advance_ghoul_4, advance_ghoul_5
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  graveyard_gate_library_shot:
+    switch: s_gate_library
+    profile: graveyard_target_flash
+    show_tokens:
+      led: led_1
+  graveyard_roll_library_shot:
+    switch: s_roll_library
+    enable_events: advance_ghoul_2
+    disable_events: advance_ghoul_1, advance_ghoul_3, advance_ghoul_4, advance_ghoul_5, advance_ghoul_6
+    profile: ghoul_profile
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  graveyard_roll_space_shot:
+    switch: s_roll_space
+    enable_events: advance_ghoul_1
+    disable_events: advance_ghoul_2, advance_ghoul_3, advance_ghoul_4, advance_ghoul_5, advance_ghoul_6
+    profile: ghoul_profile
+    show_tokens:
+      led: insert_43, insert_42, insert_40, insert_39
+
+  graveyard_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  graveyard_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  graveyard_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  graveyard_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  graveyard_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  graveyard_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  graveyard_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+
+  graveyard_cthulhu_ramp_base_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  graveyard_green_ramp_base_shot:
+    switch: s_gate_green_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  graveyard_main_ramp_base_shot:
+    switch: s_gate_main_ramp
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+
+  graveyard_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    enable_events: advance_ghoul_5
+    disable_events: advance_ghoul_1, advance_ghoul_2, advance_ghoul_3, advance_ghoul_4, advance_ghoul_6
+    profile: ghoul_profile
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  graveyard_green_ramp_shot:
+    switch: s_gate_green_ramp
+    enable_events: advance_ghoul_4
+    disable_events: advance_ghoul_1, advance_ghoul_2, advance_ghoul_3, advance_ghoul_5, advance_ghoul_6
+    profile: ghoul_profile
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74
+  graveyard_main_ramp_shot:
+    switch: s_gate_main_ramp
+    enable_events: advance_ghoul_3
+    disable_events: advance_ghoul_1, advance_ghoul_2, advance_ghoul_4, advance_ghoul_5, advance_ghoul_6
+    profile: ghoul_profile
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  graveyard_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_1, led_2
+  graveyard_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  graveyard_spinner_shot:
+    switch: s_spinner
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  graveyard_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_24
+  graveyard_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_23
+  graveyard_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_22
+  graveyard_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: charleston_target_flash
+    show_tokens:
+      led: insert_21
+
+  graveyard_green_target_1_shot:
+    switch: s_target_green_1
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_47
+  graveyard_green_target_2_shot:
+    switch: s_target_green_2
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_45
+  graveyard_green_target_3_shot:
+    switch: s_target_green_3
+    profile: charleston_target_flash
+    show_tokens:
+      led: led_46
+
+  graveyard_space_orbit_shot:
+    hit_events: graveyard_space_orbit_sequence_hit
+  graveyard_asylum_orbit_shot:
+    hit_events: graveyard_asylum_orbit_sequence_hit
+  graveyard_library_roll_shot:
+    hit_events: graveyard_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  graveyard_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  graveyard_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  graveyard_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  mode_graveyard_started:
+    mission_graveyard_blink_show:
+      speed: 5
+    graveyard_sides_blink_show:
+      speed: 5    
+
+  ghoul_attack_event:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 1
+
+  graveyard_sling_left_shot_hit:
+    graveyard_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  graveyard_sling_right_shot_hit:
+    graveyard_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  graveyard_cthulhu_ramp_base_shot_hit:
+    all_insert_graveyard_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  graveyard_green_ramp_base_shot_hit:
+    all_insert_graveyard_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  graveyard_main_ramp_base_shot_hit:
+    all_insert_graveyard_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  graveyard_asylum_orbit_shot_hit:
+    graveyard_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  graveyard_space_orbit_shot_hit:
+    graveyard_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  graveyard_library_roll_shot_hit:
+    all_insert_graveyard_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  graveyard_target_square_1_shot_lit_hit:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  graveyard_target_square_2_shot_lit_hit:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  graveyard_target_square_3_shot_lit_hit:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  graveyard_target_square_4_shot_lit_hit:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  graveyard_target_square_5_shot_lit_hit:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  s_action_active{current_player.variable_number_of_bullet_value > 0}:
+    graveyard_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+
+###########################
+
+timers:
+  graveyard_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_graveyard_started
+
+  graveyard_rotate:
+    start_running: true
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: mode_graveyard_started
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_cult_available:
+      action: set
+      string: 'no'
+
+  ghoul_attack_event:
+    score: -10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: -10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  action_valid_graveyard_shot:
+    variable_number_of_bullet_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  graveyard_sling_left_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_sling_right_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  graveyard_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_square_1_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_dig_count:
+      int: -1
+    bonus_targets: 1
+  graveyard_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_square_2_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_dig_count:
+      int: -1
+    bonus_targets: 1
+  graveyard_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_square_3_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_dig_count:
+      int: -1
+    bonus_targets: 1
+  graveyard_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_square_4_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_dig_count:
+      int: -1
+    bonus_targets: 1
+  graveyard_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_square_5_shot_lit_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_dig_count:
+      int: -1
+    bonus_targets: 1
+
+  graveyard_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  graveyard_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  graveyard_target_library_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_library_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_library_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_library_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_library_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  graveyard_target_library_6_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  graveyard_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  graveyard_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  graveyard_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+  graveyard_cthulhu_ramp_base_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_green_ramp_base_shot:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_main_ramp_base_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_gate_library_base_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  graveyard_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  graveyard_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  graveyard_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  graveyard_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    graveyard_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+###########################
+
+light_player:
+  mode_graveyard_started:
+    gi:
+      color: 004C99
+    side_led_right:
+      color: 004C99
+    side_led_left:
+      color: 004C99
+    graveyard_box_led: white
+
+###########################
+
+sound_player:
+  mode_graveyard_started:
+    white_targets_voice_pool:
+      action: play
+      volume: 2
+    graveyard_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    graveyard_music:
+      action: stop
+
+
+  relaunch_graveyard_music:
+    dramatic_music_pool, suspens_music_pool:
+      action: stop
+    graveyard_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_graveyard_rotate_tick:
+    ghoul_sfx_pool:
+      action: play
+  ghoul_attack_event:
+    ghoul_attack_pool:
+      action: play
+      volume: 3
+    manhurt_sfx_pool:
+      action: play
+      volume: 3
+
+  timer_graveyard_voice_time_complete:
+    graveyard_voice_pool:
+      action: play
+      volume: 3
+      mode_end_action: stop
+      fade_out: 1s
+
+  graveyard_target_square_1_shot_lit_hit:
+    dig_sfx_pool:
+      action: play
+      volume: 3
+  graveyard_target_square_2_shot_lit_hit:
+    dig_sfx_pool:
+      action: play
+      volume: 3
+  graveyard_target_square_3_shot_lit_hit:
+    dig_sfx_pool:
+      action: play
+      volume: 3
+  graveyard_target_square_4_shot_lit_hit:
+    dig_sfx_pool:
+      action: play
+      volume: 3
+  graveyard_target_square_5_shot_lit_hit:
+    dig_sfx_pool:
+      action: play
+      volume: 3
+      
+  graveyard_bumper_one_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_bumper_two_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_bumper_three_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_sling_left_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_sling_right_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_scoop_bas_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_scoop_haut_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_target_square_1_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_target_square_2_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_target_square_3_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_target_square_4_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_target_square_5_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_green_target_1_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_green_target_2_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_green_target_3_shot_hit:
+    night_sfx_pool:
+      action: play
+
+
+  graveyard_team_1_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_team_2_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_team_3_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_spinner_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_roll_left_outlane_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_left_inlane_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_right_inlane_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_right_outlane_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_library_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_fordt_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_space_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_roll_asylum_shot_hit:
+    night_sfx_pool:
+      action: play
+
+  graveyard_cthulhu_ramp_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_main_ramp_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_green_ramp_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_gate_library_shot_hit:
+    night_sfx_pool:
+      action: play
+  graveyard_gate_exit_library_shot_hit:
+    night_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  graveyard_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - graveyard_voice_1
+      - graveyard_voice_2
+      - graveyard_voice_3
+      - graveyard_voice_4
+      - graveyard_voice_5
+      - graveyard_voice_6
+      - graveyard_voice_7
+      - graveyard_voice_8
+      - graveyard_voice_9
+      - graveyard_voice_10
+      - graveyard_voice_11
+      - graveyard_voice_12
+      - graveyard_voice_13
+      - graveyard_voice_14
+      - graveyard_voice_15
+      - graveyard_voice_16
+      - graveyard_voice_17
+      - graveyard_voice_18
+      - graveyard_voice_19
+
+  ghoul_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - ghoul_1
+      - ghoul_2
+      - ghoul_3
+      - ghoul_4
+      - ghoul_5
+
+  ghoul_attack_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - ghoul_attack
+
+  manhurt_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - man_hurt_1
+      - man_hurt_2
+      - man_hurt_3
+      - man_hurt_4
+      - man_hurt_5
+
+  dig_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - shovel_dig_1
+      - shovel_dig_2
+      - shovel_dig_3
+      - shovel_dig_4
+
+  night_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - night_sfx_1
+      - night_sfx_2
+      - night_sfx_3
+      - night_sfx_4
+      - night_sfx_5
+      - night_sfx_6
+      - night_sfx_7
+      - night_sfx_8
+      - night_sfx_9
+      - night_sfx_10
+      - night_sfx_11
+      - night_sfx_12
+      - night_sfx_13
+      - night_sfx_14
+      - night_sfx_15
+      - night_sfx_16
+
+###########################
+
+videos:
+  graveyard_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: graveyard_video_1.mp4
+    events_when_stopped: remove_random_graveyard_video_1
+  graveyard_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: graveyard_video_2.mp4
+    events_when_stopped: remove_random_graveyard_video_2
+  graveyard_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: graveyard_video_3.mp4
+    events_when_stopped: remove_random_graveyard_video_3
+  graveyard_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: graveyard_video_4.mp4
+    events_when_stopped: remove_random_graveyard_video_4
+  graveyard_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: graveyard_video_5.mp4
+    events_when_stopped: remove_random_graveyard_video_5
+  graveyard_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: graveyard_video_6.mp4
+    events_when_stopped: remove_random_graveyard_video_6
+  graveyard_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: graveyard_video_7.mp4
+    events_when_stopped: remove_random_graveyard_video_7
+  graveyard_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: graveyard_video_8.mp4
+    events_when_stopped: remove_random_graveyard_video_8
+  graveyard_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: graveyard_video_9.mp4
+    events_when_stopped: remove_random_graveyard_video_9
+  graveyard_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: graveyard_video_10.mp4
+    events_when_stopped: remove_random_graveyard_video_10

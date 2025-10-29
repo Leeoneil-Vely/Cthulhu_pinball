@@ -1,0 +1,16 @@
+#show_version=6
+- time: 0
+  lights:
+    gi_insert: 00FF90-f200ms
+    
+- time: "+1"
+  lights:
+    gi_insert: off-f200ms
+
+- time: "+2"
+  lights:
+    gi_insert: 9C00FF-f200ms
+
+- time: "+3"
+  lights:
+    gi_insert: off-f200ms

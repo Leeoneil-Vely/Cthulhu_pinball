@@ -1,0 +1,16 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_83: green-f200ms
+    insert_82: green-f200ms
+    insert_81: green-f200ms
+    side_led_right: green-f200ms
+    side_led_left: green-f200ms
+    
+- time: "+1"
+  lights:
+    insert_83: white-f200ms
+    insert_82: white-f200ms
+    insert_81: white-f200ms
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms

@@ -1,0 +1,35 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_21: 006666-f200ms
+    insert_22: 006666-f200ms
+    insert_23: 006666-f200ms
+    insert_24: 006666-f200ms
+    
+- time: "+1"
+  lights:
+    insert_21: white-f200ms
+    insert_22: white-f200ms
+    insert_23: white-f200ms
+    insert_24: white-f200ms
+
+- time: "+2"
+  lights:
+    insert_21: purple-f200ms
+    insert_22: purple-f200ms
+    insert_23: purple-f200ms
+    insert_24: purple-f200ms
+    
+- time: "+3"
+  lights:
+    insert_21: white-f200ms
+    insert_22: white-f200ms
+    insert_23: white-f200ms
+    insert_24: white-f200ms
+
+- time: "+4"
+  lights:
+    insert_21: off-f200ms
+    insert_22: off-f200ms
+    insert_23: off-f200ms
+    insert_24: off-f200ms

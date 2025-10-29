@@ -1,0 +1,160 @@
+#config_version=6
+mode:
+  start_events: random_bonus_start
+  stop_events: random_bonus_stop, ball_ended
+  priority: 1200
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_random_bonus_started: shaker_shake
+  timer_exit_random_bonus_time_complete: end_random_bonus
+  end_random_bonus: random_bonus_stop # twenties_start
+
+###########################
+
+random_event_player:
+  mode_random_bonus_started:
+    events:
+      - 15000_points_bonus
+      - 20000_points_bonus
+      - ball_save_bonus
+
+###########################
+
+slides:
+  random_bonus_slide: []
+
+###########################
+
+slide_player:
+  mode_random_bonus_started: random_bonus_slide
+
+###########################
+
+widgets:
+  random_bonus_indication_banner:
+    type: text
+    text: Random bonus !
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: white
+
+  random_bonus_indication_banner_2:
+    type: text
+    text: You're lucky
+    color: white
+    y: 72%
+    x: 50%
+    z: 100
+
+  random_bonus_indication_banner_3:
+    type: text
+    text: you get a random bonus !
+    color: white
+    y: 62%
+    x: 50%
+    z: 100
+
+  video_random_bonus_scratch_widget:
+    type: video
+    video: mystery_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+  random_bonus1_banner:
+    type: text
+    text: 15,000 points !
+    y: 30%
+    x: 50%
+    z: 100
+
+  random_bonus2_banner:
+    type: text
+    text: 20,000 points !
+    y: 30%
+    x: 50%
+    z: 100
+
+  random_bonus3_banner:
+    type: text
+    text: 30 seconds ball save !
+    y: 30%
+    x: 50%
+    z: 100
+
+
+###########################
+
+widget_player:
+  mode_random_bonus_started:
+    random_bonus_indication_banner, random_bonus_indication_banner_2, random_bonus_indication_banner_3, base_frame_widget, video_random_bonus_scratch_widget, base_without_score_widget, superpops_widget:
+      action: add
+      slide: random_bonus_slide
+
+  15000_points_bonus:
+    random_bonus1_banner:
+      action: add
+      slide: random_bonus_slide
+
+  20000_points_bonus:
+    random_bonus2_banner:
+      action: add
+      slide: random_bonus_slide
+
+  ball_save_bonus:
+    random_bonus3_banner:
+      action: add
+      slide: random_bonus_slide
+
+###########################
+
+timers:
+  exit_random_bonus_time:
+    start_value: 5
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_random_bonus_started
+
+###########################
+
+show_player:
+  mode_random_bonus_started:
+    random_bonus_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 4
+
+###########################
+
+variable_player:
+  15000_points_bonus:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+  20000_points_bonus:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+sound_player:
+  mode_random_bonus_started:
+    random_bonus_pool:
+      action: play
+      volume: 2    
+
+###########################
+
+
+
+
+
+

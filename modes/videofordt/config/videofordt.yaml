@@ -1,0 +1,1400 @@
+#config_version=6
+mode:
+  start_events: videofordt_start
+  stop_events: videofordt_stop, ball_ended
+  priority: 1000
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_videofordt_started: stop_carousel
+  crash_fordt: shaker_shake, videofordt_stop|5s, start_carousel_mode|5s
+  end_videofordt_mode: videofordt_stop|5s, start_carousel_mode|5s
+  s_left_flipper_active{current_player.videofordt_running!='off'}: move_car_left
+  s_right_flipper_active{current_player.videofordt_running!='off'}: move_car_right
+
+  "{current_player.fordt_place_screen=='center'}": display_fordt_center
+  "{current_player.fordt_place_screen=='left'}": display_fordt_left
+  "{current_player.fordt_place_screen=='right'}": display_fordt_right
+
+  new_obstacle_left: change_obstacle_to_left|1.2s
+  new_obstacle_center: change_obstacle_to_center|1.2s
+  new_obstacle_right: change_obstacle_to_right|1.2s
+  change_obstacle_to_left: reset_obstacle|0.3s
+  change_obstacle_to_center: reset_obstacle|0.3s
+  change_obstacle_to_right: reset_obstacle|0.3s
+
+  "{current_player.obstacle_place_screen=='left' and current_player.fordt_place_screen=='left'}": crash_fordt
+  "{current_player.obstacle_place_screen=='center' and current_player.fordt_place_screen=='center'}": crash_fordt
+  "{current_player.obstacle_place_screen=='right' and current_player.fordt_place_screen=='right'}": crash_fordt
+
+###########################
+
+random_event_player:
+  timer_first_speed_timer_complete:
+    - new_obstacle_left{current_player.obstacle_start_screen!='left'}
+    - new_obstacle_center{current_player.obstacle_start_screen!='center'}
+    - new_obstacle_right{current_player.obstacle_start_screen!='right'}
+  timer_second_speed_timer_complete:
+    - new_obstacle_left{current_player.obstacle_start_screen!='left'}
+    - new_obstacle_center{current_player.obstacle_start_screen!='center'}
+    - new_obstacle_right{current_player.obstacle_start_screen!='right'}
+  timer_third_speed_timer_complete:
+    - new_obstacle_left{current_player.obstacle_start_screen!='left'}
+    - new_obstacle_center{current_player.obstacle_start_screen!='center'}
+    - new_obstacle_right{current_player.obstacle_start_screen!='right'}
+
+  new_obstacle_left:
+    - display_left_rock_1
+    - display_left_rock_2
+    - display_left_rock_3
+    - display_left_rock_4
+    - display_left_rock_5
+    - display_left_rock_6
+    - display_left_rock_7
+    - display_left_rock_8
+
+  new_obstacle_center:
+    - display_center_rock_1
+    - display_center_rock_2
+    - display_center_rock_3
+    - display_center_rock_4
+    - display_center_rock_5
+    - display_center_rock_6
+    - display_center_rock_7
+    - display_center_rock_8
+
+  new_obstacle_right:
+    - display_right_rock_1
+    - display_right_rock_2
+    - display_right_rock_3
+    - display_right_rock_4
+    - display_right_rock_5
+    - display_right_rock_6
+    - display_right_rock_7
+    - display_right_rock_8
+
+# random pour le décor
+  timer_decor_slow_speed_timer_complete:
+    - display_left_tree_1
+    - display_right_tree_1
+    - display_left_tree_2
+    - display_right_tree_2
+    - display_left_tree_3
+    - display_right_tree_3
+    - display_left_tree_4
+    - display_right_tree_4
+    - display_left_tree_5
+    - display_right_tree_5
+    - display_left_tree_6
+    - display_left_tree_7
+    - display_left_tree_8
+    - display_left_bush_1
+    - display_right_bush_1
+    - display_left_bush_2
+    - display_right_bush_2
+    - display_left_bush_3
+    - display_right_bush_3
+    - display_left_grave_1
+    - display_right_grave_1
+    - display_left_grave_2
+    - display_right_grave_2
+    - display_left_grave_3
+    - display_right_grave_3
+  timer_decor_normal_speed_timer_complete:
+    - display_left_tree_1
+    - display_right_tree_1
+    - display_left_tree_2
+    - display_right_tree_2
+    - display_left_tree_3
+    - display_right_tree_3
+    - display_left_tree_4
+    - display_right_tree_4
+    - display_left_tree_5
+    - display_right_tree_5
+    - display_left_tree_6
+    - display_left_tree_7
+    - display_left_tree_8
+    - display_left_bush_1
+    - display_right_bush_1
+    - display_left_bush_2
+    - display_right_bush_2
+    - display_left_bush_3
+    - display_right_bush_3
+    - display_left_grave_1
+    - display_right_grave_1
+    - display_left_grave_2
+    - display_right_grave_2
+    - display_left_grave_3
+    - display_right_grave_3
+  timer_decor_fast_speed_timer_complete:
+    - display_left_tree_1
+    - display_right_tree_1
+    - display_left_tree_2
+    - display_right_tree_2
+    - display_left_tree_3
+    - display_right_tree_3
+    - display_left_tree_4
+    - display_right_tree_4
+    - display_left_tree_5
+    - display_right_tree_5
+    - display_left_tree_6
+    - display_left_tree_7
+    - display_left_tree_8
+    - display_left_bush_1
+    - display_right_bush_1
+    - display_left_bush_2
+    - display_right_bush_2
+    - display_left_bush_3
+    - display_right_bush_3
+    - display_left_grave_1
+    - display_right_grave_1
+    - display_left_grave_2
+    - display_right_grave_2
+    - display_left_grave_3
+    - display_right_grave_3
+  timer_decor_superfast_speed_timer_complete:
+    - display_left_tree_1
+    - display_right_tree_1
+    - display_left_tree_2
+    - display_right_tree_2
+    - display_left_tree_3
+    - display_right_tree_3
+    - display_left_tree_4
+    - display_right_tree_4
+    - display_left_tree_5
+    - display_right_tree_5
+    - display_left_tree_6
+    - display_left_tree_7
+    - display_left_tree_8
+    - display_left_bush_1
+    - display_right_bush_1
+    - display_left_bush_2
+    - display_right_bush_2
+    - display_left_bush_3
+    - display_right_bush_3
+    - display_left_grave_1
+    - display_right_grave_1
+    - display_left_grave_2
+    - display_right_grave_2
+    - display_left_grave_3
+    - display_right_grave_3
+
+###########################
+
+widgets:
+  title_videofordt_widget:
+    - type: text
+      text: Video mode - Ford-T
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+
+  videofordt_video_scratch_widget:
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  crash_videofordt_widget:
+    - type: text
+      text: CRASH
+      y: 50%
+      x: 50%
+      z: 100
+      font_size: 250
+
+  widget_results_videofordt:
+    - type: text
+      text: "Video Ford-T score\n(player|variable_videofordt_score_value)"
+      number_grouping: true
+      y: 55%
+      font_size: 75
+      z: 1000
+
+  crash_vitre_widget:
+    - type: Image
+      image: fordt_crash_vitre
+      z: 1200
+      opacity: 0.8
+      expire: 0.5s
+
+### voiture
+
+  voiture_centre_widget:
+    - type: Image
+      image: voiture_centre
+      z: 15
+      animations:
+        add_to_slide: anim_fordt
+
+  voiture_gauche_widget:
+    - type: Image
+      image: voiture_gauche
+      z: 15
+      animations:
+        add_to_slide: anim_fordt
+
+  voiture_droite_widget:
+    - type: Image
+      image: voiture_droite
+      z: 15
+      animations:
+        add_to_slide: anim_fordt
+
+##
+
+  voiture_crash_centre_widget:
+    - type: Image
+      image: voiture_centre_crash
+      z: 15
+
+  voiture_crash_gauche_widget:
+    - type: Image
+      image: voiture_gauche_crash
+      z: 15
+
+  voiture_crash_droite_widget:
+    - type: Image
+      image: voiture_droite_crash
+      z: 15
+
+
+
+
+
+### moving objects décors
+
+  arbre_gauche_1_widget:
+    - type: Image
+      image: fordt_arbre_1
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_1_widget:
+    - type: Image
+      image: fordt_arbre_1
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_2_widget:
+    - type: Image
+      image: fordt_arbre_2
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_2_widget:
+    - type: Image
+      image: fordt_arbre_2
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_3_widget:
+    - type: Image
+      image: fordt_arbre_3
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_3_widget:
+    - type: Image
+      image: fordt_arbre_3
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_4_widget:
+    - type: Image
+      image: fordt_arbre_4
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_4_widget:
+    - type: Image
+      image: fordt_arbre_4
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_5_widget:
+    - type: Image
+      image: fordt_arbre_5
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_5_widget:
+    - type: Image
+      image: fordt_arbre_5
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_6_widget:
+    - type: Image
+      image: fordt_arbre_6
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+
+  arbre_gauche_7_widget:
+    - type: Image
+      image: fordt_arbre_7
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_7_widget:
+    - type: Image
+      image: fordt_arbre_7
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  arbre_gauche_8_widget:
+    - type: Image
+      image: fordt_arbre_8
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  arbre_droite_8_widget:
+    - type: Image
+      image: fordt_arbre_8
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+
+  buisson_gauche_1_widget:
+    - type: Image
+      image: fordt_buisson_1
+      z: 4
+      x: 47%
+      y: 70%
+      anchor_x: left
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  buisson_droite_1_widget:
+    - type: Image
+      image: fordt_buisson_1
+      z: 4
+      x: 53%
+      y: 70%
+      anchor_x: right
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  buisson_gauche_2_widget:
+    - type: Image
+      image: fordt_buisson_2
+      z: 4
+      x: 47%
+      y: 70%
+      anchor_x: left
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  buisson_droite_2_widget:
+    - type: Image
+      image: fordt_buisson_2
+      z: 4
+      x: 53%
+      y: 70%
+      anchor_x: right
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  buisson_gauche_3_widget:
+    - type: Image
+      image: fordt_buisson_3
+      z: 4
+      x: 47%
+      y: 70%
+      anchor_x: left
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  buisson_droite_3_widget:
+    - type: Image
+      image: fordt_buisson_3
+      z: 4
+      x: 53%
+      y: 70%
+      anchor_x: right
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  tombe_gauche_1_widget:
+    - type: Image
+      image: fordt_tombe_1
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  tombe_droite_1_widget:
+    - type: Image
+      image: fordt_tombe_1
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  tombe_gauche_2_widget:
+    - type: Image
+      image: fordt_tombe_2
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  tombe_droite_2_widget:
+    - type: Image
+      image: fordt_tombe_2
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+  tombe_gauche_3_widget:
+    - type: Image
+      image: fordt_tombe_3
+      z: 4
+      x: 47%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_gauche
+  tombe_droite_3_widget:
+    - type: Image
+      image: fordt_tombe_3
+      z: 4
+      x: 53%
+      y: 70%
+      opacity: 0
+      scale: 0.1
+      expire: 2s
+      animations:
+        add_to_slide: anim_arbre_droite
+
+
+### moving objects obstacles
+
+  rocher_gauche_1_widget:
+    - type: Image
+      image: fordt_rocher_1
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_1_widget:
+    - type: Image
+      image: fordt_rocher_1
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_1_widget:
+    - type: Image
+      image: fordt_rocher_1
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_2_widget:
+    - type: Image
+      image: fordt_rocher_2
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_2_widget:
+    - type: Image
+      image: fordt_rocher_2
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_2_widget:
+    - type: Image
+      image: fordt_rocher_2
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_3_widget:
+    - type: Image
+      image: fordt_rocher_3
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_3_widget:
+    - type: Image
+      image: fordt_rocher_3
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_3_widget:
+    - type: Image
+      image: fordt_rocher_3
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_4_widget:
+    - type: Image
+      image: fordt_rocher_4
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_4_widget:
+    - type: Image
+      image: fordt_rocher_4
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_4_widget:
+    - type: Image
+      image: fordt_rocher_4
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_5_widget:
+    - type: Image
+      image: fordt_rocher_5
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_5_widget:
+    - type: Image
+      image: fordt_rocher_5
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_5_widget:
+    - type: Image
+      image: fordt_rocher_5
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_6_widget:
+    - type: Image
+      image: fordt_rocher_6
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_6_widget:
+    - type: Image
+      image: fordt_rocher_6
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_6_widget:
+    - type: Image
+      image: fordt_rocher_6
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_7_widget:
+    - type: Image
+      image: fordt_rocher_7
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_7_widget:
+    - type: Image
+      image: fordt_rocher_7
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_7_widget:
+    - type: Image
+      image: fordt_rocher_7
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+  rocher_gauche_8_widget:
+    - type: Image
+      image: fordt_rocher_8
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_gauche
+        remove_from_slide: fade_out
+  rocher_centre_8_widget:
+    - type: Image
+      image: fordt_rocher_8
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_centre
+        remove_from_slide: fade_out
+  rocher_droite_8_widget:
+    - type: Image
+      image: fordt_rocher_8
+      z: 6
+      x: 50%
+      y: 72%
+      scale: 0
+      expire: 1.8s
+      animations:
+        add_to_slide: anim_rocher_droite
+        remove_from_slide: fade_out
+
+
+
+### décor
+
+  brouillard_widget:
+    - type: Image
+      image: fordt_brouillard
+      anchor_x: left
+      anchor_y: bottom
+      x: 0
+      y: 0
+      z: 20
+      animations:
+        add_to_slide: anim_brouillard
+
+  route_widget:
+    - type: Image
+      image: fordt_route
+      z: 5
+
+  montagnes_widget:
+    - type: Image
+      image: fordt_montagnes
+      z: 3
+      opacity: 0.8
+
+  bat_widget:
+    - type: Image
+      image: fordt_bat
+      x: 5%
+      y: 85%
+      z: 18
+      scale: 0.2
+      animations:
+        add_to_slide: anim_bat
+
+###########################
+
+slide_player:
+  mode_videofordt_started: videofordt_slide
+
+###########################
+
+slides:
+  videofordt_slide: []
+
+###########################
+
+widget_player:
+  mode_videofordt_started:
+    title_videofordt_widget, videofordt_video_scratch_widget, base_frame_widget, base_without_score_widget, superpops_widget, brouillard_widget, route_widget, montagnes_widget, bat_widget, voiture_centre_widget:
+      action: add
+      slide: videofordt_slide
+
+  display_fordt_center:
+    voiture_centre_widget:
+      slide: videofordt_slide
+    voiture_gauche_widget, voiture_droite_widget:
+      action: remove
+
+  display_fordt_left:
+    voiture_gauche_widget:
+      slide: videofordt_slide
+    voiture_centre_widget, voiture_droite_widget:
+      action: remove
+
+  display_fordt_right:
+    voiture_droite_widget:
+      slide: videofordt_slide
+    voiture_centre_widget, voiture_gauche_widget:
+      action: remove
+
+#### display obstacles
+
+  display_left_rock_1:
+    rocher_gauche_1_widget:
+      slide: videofordt_slide
+  display_center_rock_1:
+    rocher_centre_1_widget:
+      slide: videofordt_slide
+  display_right_rock_1:
+    rocher_droite_1_widget:
+      slide: videofordt_slide
+
+  display_left_rock_2:
+    rocher_gauche_2_widget:
+      slide: videofordt_slide
+  display_center_rock_2:
+    rocher_centre_2_widget:
+      slide: videofordt_slide
+  display_right_rock_2:
+    rocher_droite_2_widget:
+      slide: videofordt_slide
+
+  display_left_rock_3:
+    rocher_gauche_3_widget:
+      slide: videofordt_slide
+  display_center_rock_3:
+    rocher_centre_3_widget:
+      slide: videofordt_slide
+  display_right_rock_3:
+    rocher_droite_3_widget:
+      slide: videofordt_slide
+
+  display_left_rock_4:
+    rocher_gauche_4_widget:
+      slide: videofordt_slide
+  display_center_rock_4:
+    rocher_centre_4_widget:
+      slide: videofordt_slide
+  display_right_rock_4:
+    rocher_droite_4_widget:
+      slide: videofordt_slide
+
+  display_left_rock_5:
+    rocher_gauche_5_widget:
+      slide: videofordt_slide
+  display_center_rock_5:
+    rocher_centre_5_widget:
+      slide: videofordt_slide
+  display_right_rock_5:
+    rocher_droite_5_widget:
+      slide: videofordt_slide
+
+  display_left_rock_6:
+    rocher_gauche_6_widget:
+      slide: videofordt_slide
+  display_center_rock_6:
+    rocher_centre_6_widget:
+      slide: videofordt_slide
+  display_right_rock_6:
+    rocher_droite_6_widget:
+      slide: videofordt_slide
+
+  display_left_rock_7:
+    rocher_gauche_7_widget:
+      slide: videofordt_slide
+  display_center_rock_7:
+    rocher_centre_7_widget:
+      slide: videofordt_slide
+  display_right_rock_7:
+    rocher_droite_7_widget:
+      slide: videofordt_slide
+
+  display_left_rock_8:
+    rocher_gauche_8_widget:
+      slide: videofordt_slide
+  display_center_rock_8:
+    rocher_centre_8_widget:
+      slide: videofordt_slide
+  display_right_rock_8:
+    rocher_droite_8_widget:
+      slide: videofordt_slide
+
+
+####
+
+  crash_fordt:
+    widget_results_videofordt:
+      slide: videofordt_slide
+    crash_vitre_widget:
+      slide: videofordt_slide
+
+  crash_fordt{current_player.fordt_place_screen=='center'}:
+    voiture_crash_centre_widget:
+      slide: videofordt_slide
+    voiture_centre_widget:
+      action: remove
+  crash_fordt{current_player.fordt_place_screen=='left'}:
+    voiture_crash_gauche_widget:
+      slide: videofordt_slide
+    voiture_gauche_widget:
+      action: remove
+  crash_fordt{current_player.fordt_place_screen=='right'}:
+    voiture_crash_droite_widget:
+      slide: videofordt_slide
+    voiture_droite_widget:
+      action: remove
+
+
+#### display décor
+
+  display_left_tree_1:
+    arbre_gauche_1_widget:
+      slide: videofordt_slide
+  display_right_tree_1:
+    arbre_droite_1_widget:
+      slide: videofordt_slide
+  display_left_tree_2:
+    arbre_gauche_2_widget:
+      slide: videofordt_slide
+  display_right_tree_2:
+    arbre_droite_2_widget:
+      slide: videofordt_slide
+  display_left_tree_3:
+    arbre_gauche_3_widget:
+      slide: videofordt_slide
+  display_right_tree_3:
+    arbre_droite_3_widget:
+      slide: videofordt_slide
+  display_left_tree_4:
+    arbre_gauche_4_widget:
+      slide: videofordt_slide
+  display_right_tree_4:
+    arbre_droite_4_widget:
+      slide: videofordt_slide
+  display_left_tree_5:
+    arbre_gauche_5_widget:
+      slide: videofordt_slide
+  display_right_tree_5:
+    arbre_droite_5_widget:
+      slide: videofordt_slide
+  display_left_tree_6:
+    arbre_gauche_6_widget:
+      slide: videofordt_slide
+  display_left_tree_7:
+    arbre_gauche_7_widget:
+      slide: videofordt_slide
+  display_right_tree_7:
+    arbre_droite_7_widget:
+      slide: videofordt_slide
+  display_left_tree_8:
+    arbre_gauche_8_widget:
+      slide: videofordt_slide
+  display_right_tree_8:
+    arbre_droite_8_widget:
+      slide: videofordt_slide
+  display_left_bush_1:
+    buisson_gauche_1_widget:
+      slide: videofordt_slide
+  display_right_bush_1:
+    buisson_droite_1_widget:
+      slide: videofordt_slide
+  display_left_bush_2:
+    buisson_gauche_2_widget:
+      slide: videofordt_slide
+  display_right_bush_2:
+    buisson_droite_2_widget:
+      slide: videofordt_slide
+  display_left_bush_3:
+    buisson_gauche_3_widget:
+      slide: videofordt_slide
+  display_right_bush_3:
+    buisson_droite_3_widget:
+      slide: videofordt_slide
+  display_left_grave_1:
+    tombe_gauche_1_widget:
+      slide: videofordt_slide
+  display_right_grave_1:
+    tombe_droite_1_widget:
+      slide: videofordt_slide
+  display_left_grave_2:
+    tombe_gauche_2_widget:
+      slide: videofordt_slide
+  display_right_grave_2:
+    tombe_droite_2_widget:
+      slide: videofordt_slide
+  display_left_grave_3:
+    tombe_gauche_3_widget:
+      slide: videofordt_slide
+  display_right_grave_3:
+    tombe_droite_3_widget:
+      slide: videofordt_slide
+
+
+###########################
+
+variable_player:
+  mode_videofordt_started:
+    fordt_place_screen:
+      action: set
+      string: 'center'
+    obstacle_place_screen:
+      action: set
+      string: 'off'
+    videofordt_running:
+      action: set
+      string: 'on'
+    variable_videofordt_score_value:
+      action: set
+      int: 0
+    variable_number_of_clue_value:
+      action: add
+      int: -4
+    variable_choose_videomode:
+      action: set
+      string: 'monster'
+    variable_block_videomode:
+      action: set
+      string: 'on'
+
+
+  reset_obstacle:
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    obstacle_place_screen:
+      action: set
+      string: 'off'
+    variable_videofordt_score_value:
+      action: add
+      int: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    videofordt_champion:
+      action: add
+      int: 1
+
+
+  change_obstacle_to_left:
+    obstacle_place_screen:
+      action: set
+      string: 'left'
+  change_obstacle_to_center:
+    obstacle_place_screen:
+      action: set
+      string: 'center'
+  change_obstacle_to_right:
+    obstacle_place_screen:
+      action: set
+      string: 'right'
+
+
+  move_car_left{current_player.fordt_place_screen=='center'}:
+    fordt_place_screen:
+      action: set
+      string: 'left'
+  move_car_left{current_player.fordt_place_screen=='left'}:
+    fordt_place_screen:
+      action: set
+      string: 'left'
+  move_car_left{current_player.fordt_place_screen=='right'}:
+    fordt_place_screen:
+      action: set
+      string: 'center'
+
+  move_car_right{current_player.fordt_place_screen=='center'}:
+    fordt_place_screen:
+      action: set
+      string: 'right'
+  move_car_right{current_player.fordt_place_screen=='right'}:
+    fordt_place_screen:
+      action: set
+      string: 'right'
+  move_car_right{current_player.fordt_place_screen=='left'}:
+    fordt_place_screen:
+      action: set
+      string: 'center'
+
+  crash_fordt:
+    videofordt_running:
+      action: set
+      string: 'off'    
+
+  new_obstacle_left:
+    obstacle_start_screen:
+      action: set
+      string: 'left'
+  new_obstacle_center:
+    obstacle_start_screen:
+      action: set
+      string: 'center'
+  new_obstacle_right:
+    obstacle_start_screen:
+      action: set
+      string: 'right'
+
+###########################
+timers:
+  first_speed_timer:
+    start_value: 0
+    end_value: 2
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+
+  second_speed_timer:
+    start_value: 0
+    end_value: 2
+    tick_interval: 1.75s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+
+  third_speed_timer:
+    start_value: 0
+    end_value: 2
+    tick_interval: 1.3s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+
+
+##### timer for trees and bushes
+  decor_normal_speed_timer:
+    start_value: 2
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+  decor_slow_speed_timer:
+    start_value: 3
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+  decor_fast_speed_timer:
+    start_value: 1
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+  decor_superfast_speed_timer:
+    start_value: 1
+    end_value: 0
+    direction: down
+    tick_interval: 0.5s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_videofordt_started
+      - action: stop
+        event: crash_fordt
+
+###########################
+
+show_player:
+  mode_videofordt_started:
+    videofordt_backglass_blink_show:
+      speed: 15
+
+  s_right_flipper_active:
+    select_right_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+  s_left_flipper_active:
+    select_left_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+
+  reset_obstacle{current_player.videofordt_running!='off'}:
+    video_backglass_blink_show:
+      action: play
+      speed: 10
+      priority: 650
+      loops: 0
+
+  crash_fordt:
+    video_backglass_hit_show:
+      action: play
+      speed: 10
+      priority: 650
+      loops: 11
+
+###########################
+
+sound_player:
+  mode_videofordt_started:
+    videofordt_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  s_right_flipper_active:
+    fordt_skid_sfx_pool:
+      action: play
+      volume: 2
+  s_left_flipper_active:
+    fordt_skid_sfx_pool:
+      action: play
+      volume: 2
+
+  crash_fordt:
+    fordt_crash_sfx_pool:
+      action: play
+      volume: 2
+    videofordt_music:
+      action: stop
+
+###########################
+
+sound_pools:
+  fordt_skid_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_skid_1
+      - fordt_skid_2
+      - fordt_skid_3
+      - fordt_skid_4
+      - fordt_skid_5
+      - fordt_horn_1
+      - fordt_motor_1
+      - fordt_motor_2
+      - fordt_motor_3
+      - fordt_motor_4
+      - fordt_motor_5
+      - fordt_motor_6
+
+  fordt_crash_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_sfx_crash_1
+      - fordt_sfx_crash_2
+      - fordt_sfx_crash_3

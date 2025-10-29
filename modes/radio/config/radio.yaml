@@ -1,0 +1,1038 @@
+#config_version=6
+mode:
+  start_events: radio_start
+  stop_events: radio_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+
+###########################
+
+event_player:
+  mode_radio_started: twenties_stop, hold_stop
+  radio_gate_library_shot_hit: library_radio_start
+  radio_count_complete: radio_stop|1s, radio_win_start|1s
+  radio_scoop_haut_shot_hit: start_mystery_twenties_mode
+  radio_target_square_1_shot_litblink_hit: shaker_shake
+  radio_target_square_2_shot_litblink_hit: shaker_shake
+  radio_target_square_3_shot_litblink_hit: shaker_shake
+  radio_target_square_4_shot_litblink_hit: shaker_shake
+  radio_target_square_5_shot_litblink_hit: shaker_shake
+  s_action_active{current_player.variable_number_of_object_value > 0}: action_valid_radio_shot, shaker_shake
+  multiball_multiball_twenties_multiball_ended: relaunch_radio_music
+
+  mode_radio_started{current_player.lock_rlyeh_radio_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_radio_music
+
+###########################
+
+random_event_player:
+  action_valid_radio_shot:
+    events:
+      - action_valid_radio_shot_1{device.shots.radio_target_square_1_shot.state_name=='litblink'}
+      - action_valid_radio_shot_2{device.shots.radio_target_square_2_shot.state_name=='litblink'}
+      - action_valid_radio_shot_3{device.shots.radio_target_square_3_shot.state_name=='litblink'}
+      - action_valid_radio_shot_4{device.shots.radio_target_square_4_shot.state_name=='litblink'}
+      - action_valid_radio_shot_5{device.shots.radio_target_square_5_shot.state_name=='litblink'}
+    force_all: true
+
+###########################
+
+slides:
+  radio_slide: []
+
+###########################
+
+slide_player:
+  mode_radio_started: radio_slide
+
+###########################
+
+widgets:
+  radio_name_banner:
+    type: text
+    text: Radio shows
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: 994C00
+
+  radio_indication_banner:
+    type: text
+    text: Hit (player|radio_listen_count) moving
+    color: 994C00
+    y: 72%
+    x: 65%
+    z: 100
+
+  radio_indication_banner_2:
+    type: text
+    text: flashing targets !
+    color: 994C00
+    y: 62%
+    x: 65%
+    z: 100
+
+  radio_banner_image:
+    type: Image
+    image: mini_radio
+    y: 50%
+    x: 25%
+    z: 100
+
+  video_radio_scratch_widget:
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+###########################
+
+widget_player:
+  mode_radio_started:
+    radio_name_banner, radio_indication_banner, radio_indication_banner_2, radio_banner_image, video_radio_scratch_widget, base_score_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: radio_slide
+
+  mode_radio_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: radio_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+###########################
+
+shot_profiles:
+  radio_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: off
+        show: off
+      - name: litblink
+        show: radio_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+
+  radio_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: radiohitflashing
+        show: radio_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+  radio_target_sanity_flash:
+    loop: true
+    block: true
+    states:
+      - name: radiohitflashing
+        show: radio_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+
+###########################
+
+shots:
+  radio_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_86
+  radio_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_85
+  radio_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_84
+  radio_sling_left_shot:
+    switch: s_sling_left
+    profile: radio_target_flash
+    show_tokens:
+      led: led_30, led_31
+  radio_sling_right_shot:
+    switch: s_sling_right
+    profile: radio_target_flash
+    show_tokens:
+      led: led_36, led_37
+  radio_sling_up_shot:
+    switch: s_sling_up
+    profile: radio_target_flash
+    show_tokens:
+      led: led_5, led_6
+  radio_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: radio_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  radio_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: radio_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+  radio_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: radio_profile
+    hit_events: action_valid_radio_shot_1
+    advance_events: mode_radio_started
+    show_tokens:
+      led: insert_41
+  radio_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: radio_profile
+    hit_events: action_valid_radio_shot_2
+    show_tokens:
+      led: insert_32
+  radio_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: radio_profile
+    hit_events: action_valid_radio_shot_3
+    show_tokens:
+      led: insert_30
+  radio_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: radio_profile
+    hit_events: action_valid_radio_shot_4
+    show_tokens:
+      led: insert_20
+  radio_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: radio_profile
+    hit_events: action_valid_radio_shot_5
+    show_tokens:
+      led: insert_10
+
+  radio_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_50
+  radio_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_49  
+  radio_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_48
+  radio_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_11
+  radio_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_12
+  radio_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: radio_target_sanity_flash
+    show_tokens:
+      led: insert_13
+    
+  radio_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  radio_gate_library_shot:
+    switch: s_gate_library
+    profile: radio_target_flash
+    show_tokens:
+      led: led_12, led_1
+  radio_roll_library_shot:
+    switch: s_roll_library
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  radio_roll_space_shot:
+    switch: s_roll_space
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  radio_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  radio_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  radio_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  radio_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  radio_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  radio_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  radio_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  radio_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  radio_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  radio_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  radio_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  radio_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: radio_target_flash
+    show_tokens:
+      led: led_1, led_2
+  radio_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: radio_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  radio_spinner_shot:
+    switch: s_spinner
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  radio_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: radio_target_flash
+    show_tokens:
+      light: insert_24
+  radio_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: radio_target_flash
+    show_tokens:
+      light: insert_23
+  radio_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: radio_target_flash
+    show_tokens:
+      light: insert_22
+  radio_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: radio_target_flash
+    show_tokens:
+      light: insert_21
+
+  radio_green_target_1_shot:
+    switch: s_target_green_1
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_47
+  radio_green_target_2_shot:
+    switch: s_target_green_2
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_45
+  radio_green_target_3_shot:
+    switch: s_target_green_3
+    profile: radio_target_flash
+    show_tokens:
+      led: insert_46
+
+  radio_space_orbit_shot:
+    hit_events: radio_space_orbit_sequence_hit
+  radio_asylum_orbit_shot:
+    hit_events: radio_asylum_orbit_sequence_hit
+  radio_library_roll_shot:
+    hit_events: radio_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  radio_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  radio_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  radio_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+shot_groups:
+  radio_moving_targets:
+    shots:
+      - radio_target_square_1_shot
+      - radio_target_square_2_shot
+      - radio_target_square_3_shot
+      - radio_target_square_4_shot
+      - radio_target_square_5_shot
+    rotate_events: timer_radio_rotate_tick
+
+###########################
+
+counters:
+  radio_mission_counter:
+    count_events: radio_target_square_1_shot_litblink_hit, radio_target_square_2_shot_litblink_hit, radio_target_square_3_shot_litblink_hit, radio_target_square_4_shot_litblink_hit, radio_target_square_5_shot_litblink_hit
+    starting_count: 0
+    count_complete_value: 3
+    persist_state: true
+    events_when_complete: radio_count_complete
+
+###########################
+
+timers:
+  radio_rotate:
+    start_running: true
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: mode_radio_started
+
+  radio_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_radio_started   
+
+###########################
+
+show_player:
+  mode_radio_started:
+    mission_radio_blink_show:
+      speed: 5
+
+  radio_sling_left_shot_hit:
+    radio_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  radio_sling_right_shot_hit:
+    radio_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  radio_cthulhu_ramp_shot_hit:
+    all_insert_radio_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  radio_green_ramp_shot_hit:
+    all_insert_radio_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  radio_main_ramp_shot_hit:
+    all_insert_radio_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  radio_asylum_orbit_shot_hit:
+    radio_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  radio_space_orbit_shot_hit:
+    radio_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  radio_library_roll_shot_hit:
+    all_insert_radio_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  radio_target_square_1_shot_litblink_hit:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  radio_target_square_2_shot_litblink_hit:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  radio_target_square_3_shot_litblink_hit:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  radio_target_square_4_shot_litblink_hit:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  radio_target_square_5_shot_litblink_hit:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  s_action_active{current_player.variable_number_of_object_value > 0}:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_radio_available:
+      action: set
+      string: 'no'
+
+  action_valid_radio_shot:
+    variable_number_of_object_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  radio_sling_left_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_sling_right_shot_hit:
+    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+
+
+
+  radio_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_square_1_shot_litblink_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_listen_count:
+      int: -1
+    bonus_targets: 1
+  radio_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_square_2_shot_litblink_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_listen_count:
+      int: -1
+    bonus_targets: 1
+  radio_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_square_3_shot_litblink_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_listen_count:
+      int: -1
+    bonus_targets: 1
+  radio_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_square_4_shot_litblink_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_listen_count:
+      int: -1
+    bonus_targets: 1
+  radio_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_square_5_shot_litblink_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_listen_count:
+      int: -1
+    bonus_targets: 1
+
+  radio_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  radio_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+
+  radio_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  radio_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  radio_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  radio_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  radio_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  radio_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  radio_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  radio_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  radio_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  radio_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  radio_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  radio_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+###########################
+
+light_player:
+  mode_radio_started:
+    gi:
+      color: 994C00
+    side_led_right:
+      color: 994C00
+    side_led_left:
+      color: 994C00
+    radio_box_led: white
+
+###########################
+
+sound_player:
+  mode_radio_started:
+    radio_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    radio_music:
+      action: stop
+
+  relaunch_radio_music:
+    radio_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_radio_voice_time_complete:
+    radio_voice_pool:
+      action: play
+      volume: 2    
+      mode_end_action: stop
+      fade_out: 1s
+
+  radio_target_square_1_shot_off_hit:
+    radio_static_1:
+      action: play
+  radio_target_square_2_shot_off_hit:
+    radio_static_1:
+      action: play
+  radio_target_square_3_shot_off_hit:
+    radio_static_1:
+      action: play
+  radio_target_square_4_shot_off_hit:
+    radio_static_1:
+      action: play
+  radio_target_square_5_shot_off_hit:
+    radio_static_1:
+      action: play
+  radio_target_square_1_shot_litblink_hit:
+    radio_hit_pool:
+      action: play
+  radio_target_square_2_shot_litblink_hit:
+    radio_hit_pool:
+      action: play
+  radio_target_square_3_shot_litblink_hit:
+    radio_hit_pool:
+      action: play
+  radio_target_square_4_shot_litblink_hit:
+    radio_hit_pool:
+      action: play
+  radio_target_square_5_shot_litblink_hit:
+    radio_hit_pool:
+      action: play
+
+
+  radio_bumper_one_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_bumper_two_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_bumper_three_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+
+  radio_sling_left_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_sling_right_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_gate_library_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 2
+  radio_target_sanity_shot_1_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_target_sanity_shot_2_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_target_sanity_shot_3_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_target_sanity_shot_4_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_target_sanity_shot_5_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_target_sanity_shot_6_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_roll_left_inlane_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_roll_right_inlane_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_gate_exit_library_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_gate_secret_library_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_spinner_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_main_ramp_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_green_ramp_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_cthulhu_ramp_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1  
+  radio_roll_space_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_roll_asylum_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_roll_fordt_shot_hit:
+    fordt_switch:
+      action: play
+      volume: 1
+  radio_roll_left_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+  radio_roll_right_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 1
+
+
+  radio_drop_target_1_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_drop_target_2_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_drop_target_3_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+  radio_drop_target_4_shot_hit:
+    space_radio_sfx:
+      action: play
+      volume: 1
+
+###########################
+
+sound_pools:
+  space_radio_sfx:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - space_radio_1
+      - space_radio_2
+      - space_radio_3
+      - space_radio_4
+      - space_radio_5
+      - space_radio_6
+      - space_radio_7
+      - space_radio_8
+      - space_radio_9
+      - space_radio_10
+      - space_radio_11
+      - space_radio_12
+      - space_radio_13
+      - space_radio_14
+      - space_radio_15
+      - space_radio_16
+
+  radio_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - boring_show_1
+      - boring_show_2
+      - boring_show_3
+      - boring_show_4
+      - boring_show_5
+      - boring_show_6
+      - boring_show_7
+      - boring_show_8
+      - boring_show_9
+      - boring_show_10
+      - boring_show_11
+      - other_show_1
+      - other_show_2
+      - other_show_3
+      - other_show_4
+      - other_show_5
+      - other_show_6
+      - other_show_7
+      - other_show_8
+      - other_show_9
+      - other_show_10
+      - other_show_11
+
+  radio_hit_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - radio_hit_1
+      - radio_hit_2
+      - radio_hit_3
+      - radio_hit_4
+      - radio_hit_5
+      - radio_hit_6
+      - radio_hit_7
+      - radio_hit_8
+      - radio_hit_9
+      - radio_hit_10
+      - radio_hit_11
+      - radio_hit_12
+      - radio_hit_13
+      - radio_hit_14
+      - radio_hit_15

@@ -1,0 +1,146 @@
+#config_version=6
+mode:
+  start_events: nyarla_win_start
+  stop_events: timer_quit_nyarla_win_time_complete
+  restart_on_next_ball: false
+  priority: 300
+
+###########################
+
+event_player:
+  timer_quit_nyarla_win_time_complete: twenties_start
+
+###########################
+
+show_player:
+  mode_nyarla_win_started:
+    nyarla_win_show:
+      speed: 15
+      loops: -1
+      priority: 100
+
+###########################
+
+slide_player:
+  mode_nyarla_win_started: nyarla_win_slide
+
+###########################
+
+slides:
+  nyarla_win_slide: []
+
+###########################
+
+widgets:
+  nyarla_win_banner:
+    type: text
+    text: YOU SEND HIM BACK
+    color: blue
+    style: mission_text
+    y: 38%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true
+  nyarla_win_banner_2:
+    type: text
+    text: IN ANOTHER DIMENSION !
+    color: blue
+    style: mission_text
+    y: 28%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true
+
+  nyarla_win_banner_3:
+    type: text
+    text: 250,000 points !
+    color: blue
+    style: mission_text
+    y: 65%
+    x: 50%
+    z: 100
+    expire: 10s
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true  
+
+  video_nyarla_win_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_nyarla_win_started:
+    nyarla_win_banner, nyarla_win_banner_2, nyarla_win_banner_3, video_nyarla_win_scratch_widget, base_without_score_widget, superpops_widget, cthulhu_frame_image:
+      action: add
+      slide: nyarla_win_slide
+
+###########################
+
+variable_player:
+  mode_nyarla_win_started:
+    nyarla_mission_available:
+      action: set
+      string: 'completed'
+
+    score: 250000
+    nyarla_champion: 250000
+
+###########################
+
+timers:
+  quit_nyarla_win_time:
+    start_value: 5
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_nyarla_win_started
+
+###########################
+
+sound_player:
+  mode_nyarla_win_started:
+    evil_laugh_pool:
+      action: play
+      loops: 0
+      volume: 2
+
+    super_jackpot_voice_pool:
+      action: play
+      loops: 0
+      volume: 2
+
+    dark_win_sound_pool:
+      action: play
+      loops: 0
+      volume: 1

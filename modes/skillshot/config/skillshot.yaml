@@ -1,0 +1,73 @@
+#config_version=6
+
+mode:
+  start_events: ball_started
+  stop_events: stop_mode_skillshot
+  priority: 1000
+
+###########################
+
+shot_profiles:
+  skillshot_profile:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: off
+        show: off
+      - name: lit
+        show: skillshot_blink_show
+        speed: 10
+        loops: -1
+        priority: 100
+
+###########################
+
+shots:
+  skillshot_left:
+    advance_events: advance_skillshot_left
+    profile: skillshot_profile
+    switch: s_roll_skill_shot_1
+    show_tokens:
+      led: insert_0
+  skillshot_middle:
+    advance_events: advance_skillshot_middle
+    profile: skillshot_profile
+    switch: s_roll_skill_shot_2
+    show_tokens:
+      led: insert_1
+  skillshot_right:
+    advance_events: advance_skillshot_right
+    profile: skillshot_profile
+    switch: s_roll_skill_shot_3
+    show_tokens:
+      led: insert_2
+
+###########################
+
+shot_groups:
+  skillshot:
+    shots: skillshot_left, skillshot_middle, skillshot_right
+    rotate_left_events: s_left_flipper_active
+    rotate_right_events: s_right_flipper_active
+
+###########################
+
+random_event_player:
+  mode_skillshot_started:
+    events:
+      - advance_skillshot_left
+      - advance_skillshot_middle
+      - advance_skillshot_right
+
+###########################
+
+event_player:
+  skillshot_hit: stop_mode_skillshot
+  #playfield_active: stop_mode_skillshot|5s
+  balldevice_bd_plunger_lane_ball_eject_success: stop_mode_skillshot|5s
+
+###########################
+
+variable_player:
+  skillshot_lit_hit:
+    score: 5000

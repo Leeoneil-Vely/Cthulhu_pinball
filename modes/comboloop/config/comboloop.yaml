@@ -1,0 +1,683 @@
+#config_version=6
+mode:
+  start_events: ball_started, base_start
+  priority: 1700
+  stop_events: base_stop
+
+###########################
+
+event_player:
+  timer_combo_reset_time_complete: reset_combo
+  "{current_player.combo_count==1}": combo_give_random_object
+  "{current_player.combo_count==2}": combo_give_random_object
+  "{current_player.combo_count==3}": combo_give_random_object
+  "{current_player.combo_count==4}": combo_give_random_object
+  "{current_player.combo_count==5}": combo_give_random_object
+  "{current_player.combo_count==6}": combo_give_random_object
+  "{current_player.combo_count==7}": combo_give_random_object
+  "{current_player.combo_count==8}": combo_give_random_object
+  "{current_player.combo_count==9}": combo_give_random_object
+  "{current_player.combo_count==10}": combo_give_random_object
+  "{current_player.combo_count==11}": combo_give_random_object
+  "{current_player.combo_count==12}": combo_give_random_object
+  "{current_player.combo_count==13}": combo_give_random_object
+  "{current_player.combo_count==14}": combo_give_random_object
+  "{current_player.combo_count==15}": combo_give_random_object
+
+  "{current_player.loop_count==1}": loop_give_random_object
+  "{current_player.loop_count==2}": loop_give_random_object
+  "{current_player.loop_count==3}": loop_give_random_object
+  "{current_player.loop_count==4}": loop_give_random_object
+  "{current_player.loop_count==5}": loop_give_random_object
+  "{current_player.loop_count==6}": loop_give_random_object
+  "{current_player.loop_count==7}": loop_give_random_object
+  "{current_player.loop_count==8}": loop_give_random_object
+  "{current_player.loop_count==9}": loop_give_random_object
+  "{current_player.loop_count==10}": loop_give_random_object
+  "{current_player.loop_count==11}": loop_give_random_object
+  "{current_player.loop_count==12}": loop_give_random_object
+  "{current_player.loop_count==13}": loop_give_random_object
+  "{current_player.loop_count==14}": loop_give_random_object
+  "{current_player.loop_count==15}": loop_give_random_object
+
+
+###########################
+
+random_event_player:
+  combo_give_random_object:
+    force_different: false
+    events:
+      - combo_give_weapon
+      - combo_give_item
+      - combo_give_book
+      - combo_give_clue
+      - give_nothing
+
+  loop_give_random_object:
+    force_different: false
+    events:
+      - loop_give_weapon
+      - loop_give_item
+      - loop_give_book
+      - loop_give_clue
+      - give_nothing
+
+###########################
+
+slide_player:
+  base_green_ramp_loop_shot_activated_hit:
+    loop_slide:
+      action: play
+      expire: 2s
+  base_space_orbit_loop_shot_activated_hit:
+    loop_slide:
+      action: play
+      expire: 2s
+  base_green_ramp_combo_shot_activated_hit:
+    combo_slide:
+      action: play
+      expire: 2s
+  base_cthulhu_ramp_combo_shot_activated_hit:
+    combo_slide:
+      action: play
+      expire: 2s
+
+###########################
+
+slides:
+  combo_slide:
+    - type: text
+      text: COMBO !
+      y: 70%
+      x: 50%
+      z: 20
+    - type: text
+      text: (display_combo_bonus) points
+      y: 50%
+      x: 50%
+      color: purple
+      z: 20
+    - type: text
+      text: (combo_count) way combo
+      y: 30%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-130
+      x: right-245
+      font_size: 45
+      z: 1000
+
+  loop_slide:
+    - type: text
+      text: That's a LOOP !
+      y: 70%
+      x: 50%
+      z: 20
+    - type: text
+      text: (display_loop_bonus) points
+      y: 50%
+      x: 50%
+      color: purple
+      z: 20
+    - type: text
+      text: (loop_count) loops
+      y: 30%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-130
+      x: right-245
+      font_size: 45
+      z: 1000
+
+
+
+###########################
+
+widgets:
+  win_weapon_widget:
+    type: text
+    text: + 1 weapon
+    y: 63%
+    x: left+160
+    anchor_x: left
+    font_size: 45
+    z: 1000
+    expire: 2s
+  win_weapon_combo_widget:
+    type: text
+    text: + 2 weapons
+    y: 63%
+    x: left+160
+    anchor_x: left
+    font_size: 45
+    z: 1000
+    expire: 2s
+
+  win_item_widget:
+    type: text
+    text: + 1 item
+    y: 37%
+    x: left+160
+    anchor_x: left
+    font_size: 45
+    z: 1000
+    expire: 2s
+  win_item_combo_widget:
+    type: text
+    text: + 2 items
+    y: 37%
+    x: left+160
+    anchor_x: left
+    font_size: 45
+    z: 1000
+    expire: 2s
+
+  win_book_widget:
+    type: text
+    text: + 1 book
+    y: 6%
+    x: right-160
+    anchor_x: right
+    font_size: 45
+    z: 1000
+    expire: 2s
+  win_book_combo_widget:
+    type: text
+    text: + 2 books
+    y: 6%
+    x: right-160
+    anchor_x: right
+    font_size: 45
+    z: 1000
+    expire: 2s
+
+  win_clue_widget:
+    type: text
+    text: + 1 clue
+    y: 37%
+    x: right-160
+    anchor_x: right
+    font_size: 45
+    z: 1000
+    expire: 2s
+  win_clue_combo_widget:
+    type: text
+    text: + 2 clues
+    y: 37%
+    x: right-160
+    anchor_x: right
+    font_size: 45
+    z: 1000
+    expire: 2s
+
+###########################
+
+widget_player:
+  loop_give_weapon:
+    win_weapon_widget:
+      slide: loop_slide
+  loop_give_item:
+    win_item_widget:
+      slide: loop_slide
+  loop_give_book:
+    win_book_widget:
+      slide: loop_slide
+  loop_give_clue:
+    win_clue_widget:
+      slide: loop_slide
+
+  combo_give_weapon:
+    win_weapon_combo_widget:
+      slide: combo_slide
+  combo_give_item:
+    win_item_combo_widget:
+      slide: combo_slide
+  combo_give_book:
+    win_book_combo_widget:
+      slide: combo_slide
+  combo_give_clue:
+    win_clue_combo_widget:
+      slide: combo_slide
+
+  loop_give_random_object:
+    win_weapon_widget:
+      action: remove
+    win_item_widget:
+      action: remove
+    win_book_widget:
+      action: remove
+    win_clue_widget:
+      action: remove
+  combo_give_random_object:
+    win_weapon_combo_widget:
+      action: remove
+    win_item_combo_widget:
+      action: remove
+    win_book_combo_widget:
+      action: remove
+    win_clue_combo_widget:
+      action: remove
+
+###########################
+
+timers:
+  loop_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: base_green_ramp_shot_hit
+      - action: restart
+        event: base_green_ramp_loop_shot_activated_hit
+      - action: stop
+        event: timer_loop_reset_time_complete
+
+  loop_orbit_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: base_space_orbit_shot_hit
+      - action: restart
+        event: base_space_orbit_loop_shot_activated_hit
+      - action: stop
+        event: timer_loop_orbit_reset_time_complete
+
+
+  green_combo_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: base_cthulhu_ramp_shot_hit
+      - action: restart
+        event: base_cthulhu_ramp_combo_shot_activated_hit
+      - action: stop
+        event: timer_green_combo_reset_time_complete
+
+  cthulhu_combo_reset_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: base_green_ramp_shot_hit
+      - action: restart
+        event: base_green_ramp_shot_hit
+      - action: restart
+        event: base_green_ramp_combo_shot_activated_hit
+      - action: stop
+        event: timer_cthulhu_combo_reset_time_complete
+
+
+  combo_reset_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: base_green_ramp_combo_shot_activated_hit
+      - action: start
+        event: base_cthulhu_ramp_combo_shot_activated_hit
+      - action: restart
+        event: base_green_ramp_combo_shot_activated_hit
+      - action: restart
+        event: base_cthulhu_ramp_combo_shot_activated_hit
+      - action: stop
+        event: timer_combo_reset_time_complete
+
+###########################
+
+shot_profiles:
+  loop_profile:
+    loop: false
+    block: false
+    states:      
+      - name: activated
+        show: base_nyarla_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 1500
+
+  loop_orbit_profile:
+    loop: false
+    block: false
+    states:      
+      - name: activated
+        show: base_azatoth_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 1500
+
+  green_combo_profile:
+    loop: false
+    block: false
+    states:
+      - name: activated
+        show: base_nyarla_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 1500
+
+  cthulhu_combo_profile:
+    loop: false
+    block: false
+    states:
+      - name: activated
+        show: base_cthulhu_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 1500
+
+###########################
+
+shots:
+  base_green_ramp_shot:
+    switch: s_gate_green_ramp
+  base_green_ramp_loop_shot:
+    switch: s_gate_green_ramp
+    profile: loop_profile
+    enable_events: base_green_ramp_shot_hit, base_green_ramp_loop_shot_activated_hit
+    disable_events: timer_loop_reset_time_complete
+  base_green_ramp_combo_shot:
+    switch: s_gate_green_ramp
+    profile: green_combo_profile
+    enable_events: base_cthulhu_ramp_shot_hit
+    disable_events: timer_green_combo_reset_time_complete, base_green_ramp_combo_shot_activated_hit
+
+  base_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+  base_cthulhu_ramp_combo_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cthulhu_combo_profile
+    enable_events:  base_green_ramp_shot_hit
+    disable_events: timer_cthulhu_combo_reset_time_complete, base_cthulhu_ramp_combo_shot_activated_hit
+
+  base_space_orbit_shot:
+    hit_events: base_space_orbit_sequence_hit
+  base_space_orbit_loop_shot:
+    hit_events: base_space_orbit_sequence_hit
+    profile: loop_orbit_profile
+    enable_events: base_space_orbit_shot_hit, base_space_orbit_loop_shot_activated_hit
+    disable_events: timer_loop_orbit_reset_time_complete
+
+###########################
+
+sequence_shots:
+  base_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+
+###########################
+
+variable_player:
+  mode_comboloop_started:
+    bonus_loop:
+      action: set
+      int: 0  
+    bonus_combo:
+      action: set
+      int: 0
+
+  timer_loop_reset_time_complete:
+    display_loop_bonus:
+      action: set
+      int: 0
+    loop_count:
+      action: set
+      int: 0
+
+  timer_loop_orbit_reset_time_complete:
+    display_loop_bonus:
+      action: set
+      int: 0
+    loop_count:
+      action: set
+      int: 0
+
+  reset_combo:
+    display_combo_bonus:
+      action: set
+      int: 0
+    combo_count:
+      action: set
+      int: 0
+
+  base_green_ramp_loop_shot_activated_hit:
+    score: (2500 * current_player.multiplier * current_player.spell_boost_multiplier) + (500 * current_player.loop_count)
+    display_loop_bonus: (2500 * current_player.multiplier * current_player.spell_boost_multiplier) + (500 * current_player.loop_count)
+    bonus_loop: 1
+    loop_count: 1
+    loops_champion: 1
+  base_space_orbit_loop_shot_activated_hit:
+    score: (6000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.loop_count)
+    display_loop_bonus: (6000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.loop_count)
+    bonus_loop: 1
+    loop_count: 1
+    loops_champion: 1
+  base_green_ramp_combo_shot_activated_hit:
+    score: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
+    display_combo_bonus: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
+    bonus_combo: 1
+    combo_count: 1
+    combos_champion: 1
+  base_cthulhu_ramp_combo_shot_activated_hit:
+    score: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
+    display_combo_bonus: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
+    bonus_combo: 1
+    combo_count: 1
+    combos_champion: 1
+
+  loop_give_weapon:
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +1
+  loop_give_item:
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +1
+  loop_give_book:
+    variable_number_of_book_value:
+      int: +1
+  loop_give_clue:
+    variable_number_of_clue_value:
+      int: +1
+
+  combo_give_weapon:
+    variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
+      int: +2
+  combo_give_item:
+    variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
+      int: +2
+  combo_give_book:
+    variable_number_of_book_value:
+      int: +2
+  combo_give_clue:
+    variable_number_of_clue_value:
+      int: +2
+
+
+###########################
+
+sound_player:
+  base_green_ramp_loop_shot_activated_hit:
+    green_ramp_voice_pool:
+      action: play
+      volume: 2
+
+  base_space_orbit_loop_shot_activated_hit:
+    orbit_loop_pool:
+      action: play
+      volume: 2
+
+  base_green_ramp_combo_shot_activated_hit:
+    combo_loop_pool:
+      action: play
+      volume: 2
+
+  base_cthulhu_ramp_combo_shot_activated_hit:
+    combo_greenramp_pool:
+      action: play
+      volume: 2
+
+  loop_give_book:
+    win_1_book_voice_pool:
+      action: play
+      volume: 2
+
+  loop_give_clue:
+    win_1_clue_voice_pool:
+      action: play
+      volume: 2
+
+  loop_give_item:
+    win_1_item_voice_pool:
+      action: play
+      volume: 2
+
+  loop_give_weapon:
+    win_1_weapon_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  combo_loop_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - combo_loop_voice_1
+      - combo_loop_voice_2
+      - combo_loop_voice_3
+      - combo_loop_voice_4
+      - combo_loop_voice_5
+      - combo_loop_voice_6
+      - combo_loop_voice_7
+      - combo_loop_voice_8
+      - combo_dramp_voice_1
+      - combo_dramp_voice_2
+      - combo_dramp_voice_3
+      - combo_dramp_voice_4
+      - combo_dramp_voice_5
+      - combo_dramp_voice_6
+      - combo_dramp_voice_7
+      - combo_dramp_voice_8
+      - green_ramp_voice_1
+      - green_ramp_voice_2
+      - green_ramp_voice_3
+      - green_ramp_voice_4
+      - green_ramp_voice_5
+
+  orbit_loop_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - space_loop_voice_emilie_1
+      - space_loop_voice_emilie_2
+      - space_loop_voice_emilie_3
+      - space_loop_voice_emilie_4
+
+
+  combo_greenramp_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - combo_greenramp_voice_1
+      - combo_greenramp_voice_2
+      - combo_greenramp_voice_3
+      - combo_greenramp_voice_4
+      - combo_greenramp_voice_5
+      - combo_greenramp_voice_6
+      - combo_greenramp_voice_7
+      - combo_greenramp_voice_8

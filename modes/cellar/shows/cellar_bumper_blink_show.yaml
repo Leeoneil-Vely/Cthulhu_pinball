@@ -1,0 +1,11 @@
+#show_version=6
+- duration: 1
+  lights:
+    insert_84: off
+    insert_85: off
+    insert_86: off
+- duration: 1
+  lights:
+    insert_84: white-f200ms
+    insert_85: white-f200ms
+    insert_86: white-f200ms

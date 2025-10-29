@@ -1,0 +1,10 @@
+#show_version=6
+- time: 0
+  lights:
+    side_led_right: red-f200ms
+    backglass_led: red-f200ms
+    
+- time: "+1"
+  lights:
+    side_led_right: off-f200ms
+    backglass_led: off-f200ms

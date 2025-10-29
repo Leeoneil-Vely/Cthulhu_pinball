@@ -1,0 +1,254 @@
+#config_version=6
+
+mode:
+  start_events: library_start
+  stop_events: library_stop, timer_exit_library_time_complete
+  priority: 700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  base_gate_secret_library_exit_shot_hit: library_stop
+  base_gate_exit_library_shot_hit: library_stop
+  mode_library_started: library_video_start
+  timer_exit_library_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_slide: []
+
+###########################
+
+slide_player:
+  mode_library_started: library_slide
+
+###########################
+
+widgets:
+  library_start_banner:
+    type: text
+    text: You enter the
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+  library_start_banner_2:
+    type: text
+    text: forbidden library !
+    y: 62%
+    x: 50%
+    z: 100
+    expire: 10s
+  show_exit_library_time:
+    type: text
+    text: (player|exit_library_time_variable_times) seconds left
+    y: 25%
+    x: 50%
+    z: 100
+
+###########################
+
+widget_player:
+  mode_library_started:
+    library_start_banner, library_start_banner_2, show_exit_library_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: library_slide
+
+###########################
+
+variable_player:
+  timer_exit_library_time_tick:
+    exit_library_time_variable_times:
+      int: device.timers.exit_library_time.ticks
+      action: set
+ 
+  library_target_group_complete:
+    score: 10000  * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+###########################
+
+timers:
+  exit_library_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_started
+
+  voice_time:
+    start_value: 0
+    end_value: 7
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_started
+
+###########################
+
+shots:
+  twenties_target_library_1_shot:
+    switch: s_target_library_1
+    show_tokens:
+      light: insert_80
+  twenties_target_library_2_shot:
+    switch: s_target_library_2
+    show_tokens:
+      light: insert_79
+  twenties_target_library_3_shot:
+    switch: s_target_library_3
+    show_tokens:
+      light: insert_78
+  twenties_target_library_4_shot:
+    switch: s_target_library_4
+    show_tokens:
+      light: insert_77
+  twenties_target_library_5_shot:
+    switch: s_target_library_5
+    show_tokens:
+      light: insert_76
+  twenties_target_library_6_shot:
+    switch: s_target_library_6
+    show_tokens:
+      light: insert_75
+
+###########################
+
+shot_groups:
+  library_target_group:
+    shots: twenties_target_library_1_shot, twenties_target_library_2_shot, twenties_target_library_3_shot, twenties_target_library_4_shot, twenties_target_library_5_shot, twenties_target_library_6_shot
+    reset_events: library_target_group_complete
+
+###########################
+
+show_player:
+  library_target_group_complete:
+    library_target_group_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1
+
+  mode_library_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+###########################
+
+sound_pools:
+  gong_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - clock_gong
+
+  library_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - library_voice_1
+      - library_voice_2
+      - library_voice_3
+      - library_voice_4
+      - library_voice_5
+      - library_voice_6
+      - library_voice_7
+      - library_voice_8
+      - library_voice_9
+      - library_voice_10
+      - library_voice_11
+      - library_voice_12
+      - library_voice_13
+      - library_voice_14
+      - library_voice_15
+      - library_voice_16
+      - library_voice_17
+      - library_voice_18
+      - library_voice_19
+      - library_voice_20
+      - library_voice_21
+      - library_voice_22
+
+###########################
+
+sound_player:
+  twenties_target_library_1_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  twenties_target_library_2_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  twenties_target_library_3_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  twenties_target_library_4_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  twenties_target_library_5_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  twenties_target_library_6_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+      
+  library_target_group_complete:  
+    complete_library_sound:
+      action: play
+      volume: 0.5
+
+  mode_library_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+      events_when_stopped: launch_gong_sound
+    library_voice_sounds:
+      action: play
+      volume: 3
+
+  launch_gong_sound:
+    gong_sound_pool:
+      action: play
+      volume: 5
+
+  library_stop:
+    clock_tick_10s:
+      action: stop
+    gong_sound_pool:
+      action: stop
+  
+  timer_voice_time_complete:
+    library_voice_sounds:
+      action: play
+      volume: 2
+

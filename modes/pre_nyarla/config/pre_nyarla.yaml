@@ -1,0 +1,106 @@
+#config_version=6
+mode:
+  start_events: pre_nyarla_start
+  stop_events: pre_nyarla_stop, timer_launch_nyarla_time_complete
+  priority: 200
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  s_action_active{current_player.great_ones_availability=='ok'}: nyarla_start, pre_nyarla_stop, twenties_stop
+
+###########################
+
+variable_player:
+  mode_pre_nyarla_started:
+    nyarla_mission_available:
+      action: set
+      string: 'available'
+    random_event_available:
+      action: set
+      string: 'no'
+
+###########################
+
+slides:
+  pre_nyarla_slide:
+    - type: text
+      text: GOD OF A THOUSAND FORMS
+      color: blue
+      y: 28%
+      x: 50%
+      z: 100
+      style: mission_text
+    - type: text
+      text: Nyarlathothep will find you
+      color: blue
+      y: 72%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: text
+      text: Action button now to launch the fight !
+      color: blue
+      y: 62%
+      x: 50%
+      z: 100
+      style: mission_text_small
+    - type: image
+      image: mini_nyarla_NB    
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 10
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 3
+
+
+###########################
+
+slide_player:
+  mode_pre_nyarla_started:
+    pre_nyarla_slide:
+      action: play
+
+###########################
+
+show_player:
+  mode_pre_nyarla_started:
+    pre_nyarla_blink_show:
+      speed: 10
+
+###########################
+
+timers:
+  launch_nyarla_time:
+    start_value: 7
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_pre_nyarla_started
+
+###########################
+
+sound_player:
+  mode_pre_nyarla_started:
+    nyarla_ready_voice_pool:
+      action: play
+      volume: 2
+
+sound_pools:
+  nyarla_ready_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - nyarla_ready_1
+      - nyarla_ready_2
+

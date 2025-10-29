@@ -1,0 +1,29 @@
+#show_version=6
+- duration: 1
+  lights:
+    led_25: purple-f200ms
+    led_26: purple-f200ms
+    led_27: purple-f200ms
+    led_28: purple-f200ms
+    led_29: purple-f200ms
+- duration: 1
+  lights:
+    led_25: off
+    led_26: off
+    led_27: off
+    led_28: off
+    led_29: off
+- duration: 1
+  lights:
+    led_25: white-f200ms
+    led_26: white-f200ms
+    led_27: white-f200ms
+    led_28: white-f200ms
+    led_29: white-f200ms
+- duration: 1
+  lights:
+    led_25: off
+    led_26: off
+    led_27: off
+    led_28: off
+    led_29: off

@@ -1,0 +1,276 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_86: 'BE00FA'
+    
+- time: '+1'
+  lights:
+    insert_86: 'BC00F6'
+    
+- time: '+1'
+  lights:
+    insert_86: 'B900F3'
+    
+- time: '+1'
+  lights:
+    insert_86: 'B800F1'
+    
+- time: '+1'
+  lights:
+    insert_86: 'B400ED'
+    
+- time: '+1'
+  lights:
+    insert_86: 'B100E9'
+    
+- time: '+1'
+  lights:
+    insert_86: 'AE00E5'
+    
+- time: '+1'
+  lights:
+    insert_86: 'B200E9'
+    
+- time: '+1'
+  lights:
+    insert_86: 'AF00E6'
+    
+- time: '+1'
+  lights:
+    insert_86: 'AC00E2'
+    
+- time: '+1'
+  lights:
+    insert_86: 'AA00DF'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A800DD'
+    led_10: '020002'
+    led_11: '010002'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A600DA'
+    led_10: '070009'
+    led_11: '060007'
+    led_20: '010001'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A400D8'
+    led_10: '0F0014'
+    led_11: '0D0011'
+    led_19: '000001'
+    led_20: '030004'
+    led_9: '010002'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A700DC'
+    led_10: '14001B'
+    led_11: '130019'
+    led_19: '010001'
+    led_20: '070009'
+    led_9: '040005'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A600DA'
+    led_10: '1F0029'
+    led_11: '1E0027'
+    led_19: '050007'
+    led_20: '0B000E'
+    led_9: '08000B'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A400D8'
+    led_10: '2B0039'
+    led_11: '2B0039'
+    led_19: '0A000D'
+    led_20: '0F0014'
+    led_8: '010001'
+    led_9: '0E0012'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A200D5'
+    led_10: '370048'
+    led_11: '39004B'
+    led_19: '120018'
+    led_20: '14001A'
+    led_8: '020003'
+    led_9: '14001B'
+    
+- time: '+1'
+  lights:
+    insert_86: 'A300D6'
+    led_10: '46005D'
+    led_11: '47005D'
+    led_19: '17001F'
+    led_20: '180020'
+    led_8: '040006'
+    led_9: '1E0027'
+    
+- time: '+1'
+  lights:
+    insert_0: '010001'
+    insert_86: 'A100D4'
+    led_10: '550070'
+    led_11: '570073'
+    led_19: '20002A'
+    led_20: '1E0028'
+    led_8: '070009'
+    led_9: '270033'
+    
+- time: '+1'
+  lights:
+    insert_0: '020003'
+    insert_86: 'A000D2'
+    led_10: '630082'
+    led_11: '680088'
+    led_19: '2B0038'
+    led_20: '24002F'
+    led_8: '0A000D'
+    led_9: '30003F'
+    
+- time: '+1'
+  lights:
+    insert_0: '040006'
+    insert_86: '9F00D1'
+    led_10: '6F0092'
+    led_11: '75009A'
+    led_12: '020002'
+    led_19: '350046'
+    led_20: '290036'
+    led_8: '0E0012'
+    led_9: '39004A'
+    
+- time: '+1'
+  lights:
+    insert_0: '070009'
+    insert_86: 'A200D4'
+    led_10: '76009C'
+    led_11: '7B00A2'
+    led_12: '030005'
+    led_19: '3D0050'
+    led_20: '310040'
+    led_21: '010001'
+    led_8: '110017'
+    led_9: '400054'
+    
+- time: '+1'
+  lights:
+    insert_0: '0A000E'
+    insert_86: 'A000D3'
+    led_10: '8100AA'
+    led_11: '8600B0'
+    led_12: '07000A'
+    led_19: '4A0061'
+    led_20: '360047'
+    led_8: '15001C'
+    led_9: '490060'
+    
+- time: '+1'
+  lights:
+    insert_0: '0E0012'
+    insert_1: '010001'
+    insert_86: '9F00D1'
+    led_10: '8B00B6'
+    led_11: '9000BD'
+    led_12: '0C0010'
+    led_18: '010001'
+    led_19: '550070'
+    led_20: '3B004E'
+    led_21: '020002'
+    led_8: '1A0022'
+    led_9: '53006D'
+    
+- time: '+1'
+  lights:
+    insert_0: '130019'
+    insert_1: '010002'
+    insert_86: '9E00CF'
+    led_10: '9100BF'
+    led_11: '9800C7'
+    led_12: '120017'
+    led_18: '020003'
+    led_19: '61007F'
+    led_20: '410055'
+    led_21: '030004'
+    led_8: '1E0028'
+    led_9: '5C0079'
+    
+- time: '+1'
+  lights:
+    insert_0: '180020'
+    insert_1: '030003'
+    insert_80: '010001'
+    insert_86: '9F00D0'
+    led_10: '9800C8'
+    led_11: '9E00CF'
+    led_12: '17001F'
+    led_18: '040005'
+    led_19: '680089'
+    led_20: '440059'
+    led_21: '040006'
+    led_7: '010001'
+    led_8: '250031'
+    led_9: '660086'
+    
+- time: '+1'
+  lights:
+    insert_0: '1D0027'
+    insert_1: '050006'
+    insert_80: '020002'
+    insert_86: '9D00CF'
+    led_10: '9D00CF'
+    led_11: 'A400D7'
+    led_12: '20002A'
+    led_18: '060008'
+    led_19: '730097'
+    led_20: '490060'
+    led_21: '050007'
+    led_7: '010002'
+    led_8: '2A0037'
+    led_9: '6F0092'
+    
+- time: '+1'
+  lights:
+    insert_0: '23002E'
+    insert_1: '060008'
+    insert_80: '030004'
+    insert_86: '9C00CD'
+    led_10: 'A100D4'
+    led_11: 'A800DC'
+    led_12: '280035'
+    led_18: '0A000D'
+    led_19: '7C00A2'
+    led_20: '4E0066'
+    led_21: '070009'
+    led_7: '020003'
+    led_8: '2D003B'
+    led_9: '76009B'
+    
+- time: '+1'
+  lights:
+    insert_0: '2A0038'
+    insert_1: '0A000D'
+    insert_80: '060007'
+    insert_86: '9D00CE'
+    led_10: 'A600DB'
+    led_11: 'AC00E2'
+    led_12: '300040'
+    led_18: '0C0010'
+    led_19: '8100A9'
+    led_20: '51006A'
+    led_21: '08000B'
+    led_7: '040005'
+    led_8: '350046'
+    led_9: '7E00A5'
+    

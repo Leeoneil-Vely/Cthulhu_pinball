@@ -1,0 +1,21 @@
+#show_version=6
+- duration: 1
+  lights:
+    led_12: white-f200ms
+    led_19: white-f200ms
+    led_20: white-f200ms
+    led_21: white-f200ms
+    led_48: white-f200ms
+    led_11: white-f200ms
+    led_6: white-f200ms
+    led_5: white-f200ms
+- duration: 1
+  lights:
+    led_12: off-f200ms
+    led_19: off-f200ms
+    led_20: off-f200ms
+    led_21: off-f200ms
+    led_48: off-f200ms
+    led_11: off-f200ms
+    led_6: off-f200ms
+    led_5: off-f200ms

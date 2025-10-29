@@ -1,0 +1,256 @@
+#config_version=6
+mode:
+  priority: 5000
+
+mode_settings:
+  display_delay_ms: 1.5s
+  hurry_up_delay_ms: 0
+  bonus_entries:
+    - event: bonus_ramps_loops_targets
+      score: 1000 * (current_player.bonus_ramps + current_player.bonus_loop + current_player.bonus_combo + current_player.bonus_targets)
+    - event: bonus_objects
+      score: 1000 * (current_player.variable_number_of_bullet_value + current_player.variable_number_of_object_value + current_player.variable_number_of_book_value + current_player.variable_number_of_clue_value)
+
+###########################
+
+slide_player:
+  mode_bonus_started:
+    bonus_start_slide:
+      action: play
+  bonus_ramps_loops_targets:
+    bonus_ramp_slide:
+      action: play
+  bonus_objects:
+    bonus_objects_slide:
+      action: play
+  bonus_subtotal:
+    bonus_multiplier_slide:
+      action: play
+  bonus_total:
+    bonus_total_slide:
+      action: play
+
+###########################
+
+slides:
+  bonus_start_slide:
+    widgets:
+      - type: text
+        text: Bonus
+        y: 70%
+        x: 50%
+        z: 20
+      - type: Image
+        image: frame_twenties
+        z: 10
+      - type: video
+        video: scratch_movie_red
+        auto_play: True
+        end_behavior: loop
+        z: 1
+
+  bonus_ramp_slide:
+    - type: text
+      text: Experience points
+      y: 50%
+      x: 50%
+      z: 20
+    - type: text
+      text: (score)
+      y: 40%
+      x: 50%
+      z: 20
+    - type: Image
+      image: mini_dead_1
+      y: 65%
+      x: 12%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie_red
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  bonus_objects_slide:
+    - type: text
+      text: Loot
+      y: 50%
+      x: 50%
+      z: 20
+    - type: text
+      text: (score)
+      y: 40%
+      x: 50%
+      z: 20
+    - type: Image
+      image: mini_dead_2
+      y: 44%
+      x: 85%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie_red
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  bonus_multiplier_slide:
+    - type: text
+      text: Multiplier
+      y: 50%
+      x: 50%
+      z: 20
+    - type: text
+      text: X(bonus_multiplier)
+      y: 40%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie_red
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  bonus_total_slide:
+    - type: text
+      text: "Total Bonus"
+      y: 40%
+      x: 50%
+      z: 20
+    - type: text
+      text: (score)
+      y: 30%
+      x: 50%
+      z: 20
+    - type: Image
+      image: mini_dead_3
+      y: 35%
+      x: 15%
+      z: 20
+    - type: Image
+      image: mini_dead_4
+      y: 35%
+      x: 15%
+      z: 15
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie_red
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+
+###########################
+
+light_player:
+  mode_bonus_started:
+    gi: off
+    gi_insert: off
+    side_led_right: off
+    side_led_left: off
+
+###########################
+
+show_player:
+  mode_bonus_started:
+    ball_drain_show:
+      speed: 50
+      loops: 0
+      priority: 2500
+  bonus_ramps_loops_targets:
+    bonus_show:
+      speed: 0.75
+      loops: 0
+      priority: 2500
+  bonus_objects:
+    bonus_show:
+      speed: 0.75
+      loops: 0
+      priority: 2500
+  bonus_subtotal:
+    bonus_show:
+      speed: 0.75
+      loops: 0
+      priority: 2500
+  bonus_total:
+    bonus_show:
+      speed: 0.75
+      loops: 0
+      priority: 2500
+
+sound_player:
+  mode_bonus_started:
+    dead_voice_sound_pool:
+      action: play
+      volume: 2
+    woom_sound_pool:
+      action: play
+      volume: 1
+  bonus_ramps_loops_targets:
+    woom_sound_pool:
+      action: play
+      volume: 1
+  bonus_objects:
+    woom_sound_pool:
+      action: play
+      volume: 1
+  bonus_subtotal:
+    woom_sound_pool:
+      action: play
+      volume: 1  
+  bonus_total:
+    woom_sound_pool:
+      action: play
+      volume: 1    
+###########################
+
+sound_pools:
+  woom_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - woom_1
+  dead_voice_sound_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - dead_voice_1
+      - dead_voice_2
+      - dead_voice_3
+      - dead_voice_4
+      - dead_voice_5
+      - dead_voice_6
+      - dead_voice_7
+      - dead_voice_8
+      - dead_voice_9
+      - dead_voice_10
+      - dead_voice_11
+      - dead_voice_12
+      - dead_voice_13
+      - dead_voice_14
+      - dead_voice_15
+      - dead_voice_16
+      - dead_voice_17
+      - dead_voice_18
+      - dead_voice_19
+      - dead_voice_20
+      - dead_voice_21
+      - dead_voice_22
+      - dead_voice_23
+      - dead_voice_24
+      - dead_voice_25
+      - dead_voice_26
+      - dead_voice_27
+      - dead_voice_28

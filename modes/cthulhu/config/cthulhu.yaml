@@ -1,0 +1,1923 @@
+#config_version=6
+mode:
+  start_events: cthulhu_start
+  stop_events: cthulhu_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_cthulhu_started: twenties_stop, hold_stop
+  mode_cthulhu_started{current_player.multiball_portal_available=='true'}: multiball_portal_start
+  cthulhu_gate_library_shot_hit: library_cthulhu_start
+  s_action_book_active{current_player.variable_number_of_book_value >= 5}: action_valid_spell_shot, shaker_shake
+  timer_exit_cthulhuend_time_complete: killplayer
+  launchcthulhuend{current_player.insert_eldersign!='five'}: killplayer
+
+  mode_cthulhu_started{current_player.cthulhu_mission_level=='step_two'}: launchship
+  mode_cthulhu_started{current_player.cthulhu_mission_level=='step_three'}: launchrlyeh
+  mode_cthulhu_started{current_player.cthulhu_mission_level=='step_four'}: launchcthulhuend
+
+  cthulhu_target_library_locate_1_shot_locateflashing_hit: shaker_shake
+  cthulhu_target_library_locate_2_shot_locateflashing_hit: shaker_shake
+  cthulhu_target_library_locate_3_shot_locateflashing_hit: shaker_shake
+  cthulhu_target_library_locate_4_shot_locateflashing_hit: shaker_shake
+  cthulhu_target_library_locate_5_shot_locateflashing_hit: shaker_shake
+  cthulhu_target_library_locate_6_shot_locateflashing_hit: shaker_shake
+  cthulhu_scoop_bas_locate_shot_locateflashing_hit: shaker_shake
+  "{device.shots.cthulhu_target_library_locate_1_shot.state_name=='locateoff' and device.shots.cthulhu_target_library_locate_2_shot.state_name=='locateoff' and device.shots.cthulhu_target_library_locate_3_shot.state_name=='locateoff' and device.shots.cthulhu_target_library_locate_4_shot.state_name=='locateoff' and device.shots.cthulhu_target_library_locate_5_shot.state_name=='locateoff' and device.shots.cthulhu_target_library_locate_6_shot.state_name=='locateoff' and device.shots.cthulhu_scoop_bas_locate_shot.state_name=='locateoff'}": launchship
+
+  cthulhu_bumper_one_ship_shot_shipflashing_hit: shaker_shake
+  cthulhu_bumper_two_ship_shot_shipflashing_hit: shaker_shake
+  cthulhu_bumper_three_ship_shot_shipflashing_hit: shaker_shake
+
+  cthulhu_target_square_rlyeh_1_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_target_square_rlyeh_2_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_target_square_rlyeh_3_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_target_square_rlyeh_4_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_target_square_rlyeh_5_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_space_orbit_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_library_roll_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_main_ramp_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_green_ramp_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_cthulhu_ramp_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  cthulhu_asylum_orbit_rlyeh_shot_rlyehflashing_hit: shaker_shake
+  "{device.shots.cthulhu_target_square_rlyeh_1_shot.state_name=='rlyehoff' and device.shots.cthulhu_target_square_rlyeh_2_shot.state_name=='rlyehoff' and device.shots.cthulhu_target_square_rlyeh_3_shot.state_name=='rlyehoff' and device.shots.cthulhu_target_square_rlyeh_4_shot.state_name=='rlyehoff' and device.shots.cthulhu_target_square_rlyeh_5_shot.state_name=='rlyehoff' and device.shots.cthulhu_space_orbit_rlyeh_shot.state_name=='rlyehoff' and device.shots.cthulhu_library_roll_rlyeh_shot.state_name=='rlyehoff' and device.shots.cthulhu_main_ramp_rlyeh_shot.state_name=='rlyehoff' and device.shots.cthulhu_green_ramp_rlyeh_shot.state_name=='rlyehoff' and device.shots.cthulhu_cthulhu_ramp_rlyeh_shot.state_name=='rlyehoff' and device.shots.cthulhu_asylum_orbit_rlyeh_shot.state_name=='rlyehoff'}": launchcthulhuend
+
+  cthulhu_target_square_cthulhuend_1_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_target_square_cthulhuend_2_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_target_square_cthulhuend_3_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_target_square_cthulhuendh_4_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_target_square_cthulhuend_5_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_space_orbit_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_library_roll_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_main_ramp_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_green_ramp_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_cthulhu_ramp_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+  cthulhu_asylum_orbit_cthulhuend_shot_cthulhuendflashing_hit: shaker_shake
+
+  s_action_active{current_player.variable_cthulhu_life=='almostdead'}: cthulhu_stop, cthulhu_win_start
+  multiball_multiball_twenties_multiball_ended: relaunch_cthulhu_music
+  multiball_portal_stop: relaunch_cthulhu_music
+
+  mode_cthulhu_started{current_player.lock_rlyeh_cthulhu_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_cthulhu_music
+
+###########################
+
+random_event_player:
+  timer_advance_cthulhu_end_time_complete:
+    events:
+      - advance_cthulhu_end_1
+      - advance_cthulhu_end_2
+      - advance_cthulhu_end_3
+      - advance_cthulhu_end_4
+      - advance_cthulhu_end_5
+      - advance_cthulhu_end_6
+      - advance_cthulhu_end_7
+      - advance_cthulhu_end_8
+      - advance_cthulhu_end_9
+      - advance_cthulhu_end_10
+      - advance_cthulhu_end_11
+    force_all: true
+
+  launchcthulhuend:
+    events:
+      - advance_cthulhu_end_1
+      - advance_cthulhu_end_2
+      - advance_cthulhu_end_3
+      - advance_cthulhu_end_4
+      - advance_cthulhu_end_5
+      - advance_cthulhu_end_6
+      - advance_cthulhu_end_7
+      - advance_cthulhu_end_8
+      - advance_cthulhu_end_9
+      - advance_cthulhu_end_10
+      - advance_cthulhu_end_11
+    force_all: true
+  
+###########################
+
+slides:
+  cthulhu_slide: []
+
+###########################
+
+slide_player:
+  mode_cthulhu_started: cthulhu_slide
+
+###########################
+
+widgets:
+  cthulhu_name_banner:
+    type: text
+    text: CTHULHU
+    y: top-10
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: 00994C
+    style: mission_text
+
+  cthulhu_locate_indication_banner:
+    type: text
+    text: Locate R'lyeh
+    color: 00994C
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  cthulhu_locate_indication_banner_2:
+    type: text
+    text: Need (player|cthulhu_clue_gauge) clue and (player|cthulhu_book_gauge) books
+    color: 00994C
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cthulhu_ship_indication_banner:
+    type: text
+    text: Find a ship
+    color: 00994C
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  cthulhu_ship_indication_banner_2:
+    type: text
+    text: Give (player|cthulhu_punch_gauge) punches/bumpers !
+    color: 00994C
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cthulhu_rlyeh_indication_banner:
+    type: text
+    text: R'lyeh rises
+    color: 00994C
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  cthulhu_rlyeh_indication_banner_2:
+    type: text
+    text: Navigate through (player|cthulhu_wave_gauge) waves
+    color: 00994C
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cthulhu_end_indication_banner:
+    type: text
+    text: CTHULHU
+    color: 00994C
+    y: 72%
+    x: 65%
+    z: 10
+    style: mission_text
+  cthulhu_end_indication_banner_2:
+    type: text
+    text: final escape
+    color: 00994C
+    y: 62%
+    x: 65%
+    z: 10
+    style: mission_text
+  cthulhu_end_indication_banner_3:
+    type: text
+    text: Run for your life, need (player|cthulhu_escape_gauge) hits
+    color: 00994C
+    y: 35%
+    x: 65%
+    z: 100
+    style: mission_text
+  show_hurryup_cthulhu_time:
+    type: text
+    text: (player|exit_cthulhuend_time_variable_times) seconds left
+    y: 25%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+
+  cthulhu_kill_indication_banner:
+    type: text
+    text: Escape from sunking R'lyeh !
+    color: 00994C
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  cthulhu_kill_indication_banner_2:
+    type: text
+    text: Press action button !
+    color: 00994C
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  cthulhu_banner_image:
+    type: Image
+    image: mini_cthulhu
+    y: 50%
+    x: 20%
+    z: 100
+  cthulhu_frame_image:
+    type: Image
+    image: frame_cthulhu
+    z: 15
+  cthulhu_video_scratch_widget:
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+###########################
+
+widget_player:
+  mode_cthulhu_started:
+    cthulhu_name_banner, cthulhu_banner_image, cthulhu_frame_image, cthulhu_video_scratch_widget, base_score_widget, superpops_widget, cthulhu_locate_indication_banner, cthulhu_locate_indication_banner_2:
+      action: add
+      slide: cthulhu_slide
+  mode_cthulhu_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: cthulhu_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launchship:
+    cthulhu_locate_indication_banner, cthulhu_locate_indication_banner_2:
+      action: remove
+    cthulhu_ship_indication_banner, cthulhu_ship_indication_banner_2:
+      action: add
+      slide: cthulhu_slide
+
+  launchrlyeh:
+    cthulhu_locate_indication_banner, cthulhu_locate_indication_banner_2, cthulhu_ship_indication_banner, cthulhu_ship_indication_banner_2:
+      action: remove
+    cthulhu_rlyeh_indication_banner, cthulhu_rlyeh_indication_banner_2:
+      action: add
+      slide: cthulhu_slide
+
+  launchcthulhuend:
+    cthulhu_locate_indication_banner, cthulhu_locate_indication_banner_2, cthulhu_rlyeh_indication_banner, cthulhu_rlyeh_indication_banner_2:
+      action: remove
+    cthulhu_end_indication_banner, cthulhu_end_indication_banner_2, cthulhu_end_indication_banner_3, show_hurryup_cthulhu_time:
+      action: add
+      slide: cthulhu_slide
+
+  launchcthulhukill:
+    cthulhu_locate_indication_banner, cthulhu_locate_indication_banner_2, cthulhu_end_indication_banner_2, cthulhu_end_indication_banner, cthulhu_end_indication_banner_2, cthulhu_end_indication_banner_3, show_hurryup_cthulhu_time:
+      action: remove
+    cthulhu_kill_indication_banner, cthulhu_kill_indication_banner_2:
+      action: add
+      slide: cthulhu_slide
+
+###########################
+
+shot_profiles:
+  cthulhu_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: cthulhuhitflashing
+        show: cthulhu_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+  locate_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: locateflashing
+        show: cthulhu_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+      - name: locateoff
+        show: off
+  locate_clue_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: locateflashing
+        show: cthulhu_clue_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: locateoff
+        show: off
+
+  ship_profile:
+    block: false
+    states:
+      - name: shipflashing
+        show: cthulhu_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+
+  rlyeh_target_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: rlyehflashing
+        show: cthulhu_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+
+
+
+  rlyeh_aza_ramp_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: rlyehflashing
+        show: cthulhu_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+  rlyeh_library_ramp_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: rlyehflashing
+        show: cthulhu_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+  rlyeh_main_ramp_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: rlyehflashing
+        show: cthulhu_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+  rlyeh_green_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: rlyehflashing
+        show: cthulhu_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+  rlyeh_cthulhu_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: rlyehflashing
+        show: cthulhu_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+  rlyeh_shub_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: rlyehflashing
+        show: cthulhu_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: rlyehoff
+        show: off
+
+
+
+  cthulhuend_target_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+
+  cthulhuend_aza_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+  cthulhuend_library_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+  cthulhuend_main_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+  cthulhuend_green_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+  cthulhuend_cthulhu_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+  cthulhuend_shub_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: cthulhuendflashing
+        show: cthulhu_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+
+###########################
+
+shots:
+  cthulhu_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_86
+  cthulhu_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_85
+  cthulhu_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_84
+  cthulhu_sling_left_shot:
+    switch: s_sling_left
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_30, led_31
+  cthulhu_sling_right_shot:
+    switch: s_sling_right
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_36, led_37
+  cthulhu_sling_up_shot:
+    switch: s_sling_up
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_5, led_6
+  cthulhu_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  cthulhu_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_19, led_20, led_1
+
+  cthulhu_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_41
+  cthulhu_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_32
+  cthulhu_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_30
+  cthulhu_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_20
+  cthulhu_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_10
+    
+  cthulhu_target_library_1_shot:
+    switch: s_target_library_1
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_80
+  cthulhu_target_library_2_shot:
+    switch: s_target_library_2
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_79
+  cthulhu_target_library_3_shot:
+    switch: s_target_library_3
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_78
+  cthulhu_target_library_4_shot:
+    switch: s_target_library_4
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_77
+  cthulhu_target_library_5_shot:
+    switch: s_target_library_5
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_76
+  cthulhu_target_library_6_shot:
+    switch: s_target_library_6
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_75
+
+  cthulhu_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  cthulhu_gate_library_shot:
+    switch: s_gate_library
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_12, led_1
+  cthulhu_roll_library_shot:
+    switch: s_roll_library
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  cthulhu_roll_space_shot:
+    switch: s_roll_space
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  cthulhu_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  cthulhu_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  cthulhu_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  cthulhu_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  cthulhu_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  cthulhu_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  cthulhu_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  cthulhu_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  cthulhu_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  cthulhu_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  cthulhu_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  cthulhu_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_1, led_2
+  cthulhu_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  cthulhu_spinner_shot:
+    switch: s_spinner
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  cthulhu_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_24
+  cthulhu_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_23
+  cthulhu_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_22
+  cthulhu_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_21
+
+  cthulhu_green_target_1_shot:
+    switch: s_target_green_1
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_47
+  cthulhu_green_target_2_shot:
+    switch: s_target_green_2
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_45
+  cthulhu_green_target_3_shot:
+    switch: s_target_green_3
+    profile: cthulhu_target_flash
+    show_tokens:
+      led: insert_46
+
+  cthulhu_space_orbit_shot:
+    hit_events: cthulhu_space_orbit_sequence_hit
+  cthulhu_asylum_orbit_shot:
+    hit_events: cthulhu_asylum_orbit_sequence_hit
+  cthulhu_library_roll_shot:
+    hit_events: cthulhu_library_roll_sequence_hit
+
+###########################
+
+  cthulhu_target_library_locate_1_shot:
+    switch: s_target_library_1
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_80
+  cthulhu_target_library_locate_2_shot:
+    switch: s_target_library_2
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_79
+  cthulhu_target_library_locate_3_shot:
+    switch: s_target_library_3
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_78
+  cthulhu_target_library_locate_4_shot:
+    switch: s_target_library_4
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_77
+  cthulhu_target_library_locate_5_shot:
+    switch: s_target_library_5
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_76
+  cthulhu_target_library_locate_6_shot:
+    switch: s_target_library_6
+    profile: locate_profile
+    disable_events: launchship
+    show_tokens:
+      led: insert_75
+
+  cthulhu_scoop_bas_locate_shot:
+    switch: s_scoop_bas
+    profile: locate_clue_profile
+    disable_events: launchship
+
+  cthulhu_bumper_one_ship_shot:
+    switch: s_popbumper_one
+    profile: ship_profile
+    enable_events: launchship
+    disable_events: launchrlyeh
+    show_tokens:
+      led: insert_86
+  cthulhu_bumper_two_ship_shot:
+    switch: s_popbumper_two
+    profile: ship_profile
+    enable_events: launchship
+    disable_events: launchrlyeh
+    show_tokens:
+      led: insert_85
+  cthulhu_bumper_three_ship_shot:
+    switch: s_popbumper_three
+    profile: ship_profile
+    enable_events: launchship
+    disable_events: launchrlyeh
+    show_tokens:
+      led: insert_84
+
+
+  cthulhu_target_square_rlyeh_1_shot:
+    switch: s_target_square_white_1
+    profile: rlyeh_target_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+    show_tokens:
+      led: insert_41
+  cthulhu_target_square_rlyeh_2_shot:
+    switch: s_target_square_white_2
+    profile: rlyeh_target_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+    show_tokens:
+      led: insert_32
+  cthulhu_target_square_rlyeh_3_shot:
+    switch: s_target_square_white_3
+    profile: rlyeh_target_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+    show_tokens:
+      led: insert_30
+  cthulhu_target_square_rlyeh_4_shot:
+    switch: s_target_square_white_4
+    profile: rlyeh_target_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+    show_tokens:
+      led: insert_20
+  cthulhu_target_square_rlyeh_5_shot:
+    switch: s_target_square_white_5
+    profile: rlyeh_target_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+    show_tokens:
+      led: insert_10
+
+  cthulhu_space_orbit_rlyeh_shot:
+    hit_events: cthulhu_space_orbit_sequence_hit
+    profile: rlyeh_aza_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+  cthulhu_library_roll_rlyeh_shot:
+    hit_events: cthulhu_library_roll_sequence_hit
+    profile: rlyeh_library_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+  cthulhu_main_ramp_rlyeh_shot:
+    switch: s_gate_main_ramp
+    profile: rlyeh_main_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+  cthulhu_green_ramp_rlyeh_shot:
+    switch: s_gate_green_ramp
+    profile: rlyeh_green_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+  cthulhu_cthulhu_ramp_rlyeh_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: rlyeh_cthulhu_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+  cthulhu_asylum_orbit_rlyeh_shot:
+    hit_events: cthulhu_asylum_orbit_sequence_hit
+    profile: rlyeh_shub_ramp_profile
+    enable_events: launchrlyeh
+    disable_events: launchcthulhuend
+
+
+
+  cthulhu_target_square_cthulhuend_1_shot:
+    switch: s_target_square_white_1
+    profile: cthulhuend_target_profile
+    enable_events: advance_cthulhu_end_1
+    disable_events: advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+    show_tokens:
+      led: insert_41
+  cthulhu_target_square_cthulhuend_2_shot:
+    switch: s_target_square_white_2
+    profile: cthulhuend_target_profile
+    enable_events: advance_cthulhu_end_2
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+    show_tokens:
+      led: insert_32
+  cthulhu_target_square_cthulhuend_3_shot:
+    switch: s_target_square_white_3
+    profile: cthulhuend_target_profile
+    enable_events: advance_cthulhu_end_3
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+    show_tokens:
+      led: insert_30
+  cthulhu_target_square_cthulhuend_4_shot:
+    switch: s_target_square_white_4
+    profile: cthulhuend_target_profile
+    enable_events: advance_cthulhu_end_4
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+    show_tokens:
+      led: insert_20
+  cthulhu_target_square_cthulhuend_5_shot:
+    switch: s_target_square_white_5
+    profile: cthulhuend_target_profile
+    enable_events: advance_cthulhu_end_5
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+    show_tokens:
+      led: insert_10
+
+  cthulhu_space_orbit_cthulhuend_shot:
+    hit_events: cthulhu_space_orbit_sequence_hit
+    profile: cthulhuend_aza_ramp_profile
+    enable_events: advance_cthulhu_end_6
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+  cthulhu_library_roll_cthulhuend_shot:
+    hit_events: cthulhu_library_roll_sequence_hit
+    profile: cthulhuend_library_ramp_profile
+    enable_events: advance_cthulhu_end_7
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+  cthulhu_main_ramp_cthulhuend_shot:
+    switch: s_gate_main_ramp
+    profile: cthulhuend_main_ramp_profile
+    enable_events: advance_cthulhu_end_8
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_9, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+  cthulhu_green_ramp_cthulhuend_shot:
+    switch: s_gate_green_ramp
+    profile: cthulhuend_green_ramp_profile
+    enable_events: advance_cthulhu_end_9
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_10, advance_cthulhu_end_11, launchcthulhukill
+  cthulhu_cthulhu_ramp_cthulhuend_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cthulhuend_cthulhu_ramp_profile
+    enable_events: advance_cthulhu_end_10
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_11, launchcthulhukill
+  cthulhu_asylum_orbit_cthulhuend_shot:
+    hit_events: cthulhu_asylum_orbit_sequence_hit
+    profile: cthulhuend_shub_ramp_profile
+    enable_events: advance_cthulhu_end_11
+    disable_events: advance_cthulhu_end_1, advance_cthulhu_end_2, advance_cthulhu_end_3, advance_cthulhu_end_4, advance_cthulhu_end_5, advance_cthulhu_end_6, advance_cthulhu_end_7, advance_cthulhu_end_8, advance_cthulhu_end_9, advance_cthulhu_end_10, launchcthulhukill
+
+
+###########################
+
+sequence_shots:
+  cthulhu_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  cthulhu_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  cthulhu_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+show_player:
+  mode_cthulhu_started:
+    mission_cthulhu_blink_show:
+      speed: 5
+    library_side_flash_show:
+      speed: 300
+      loops: -1
+    cthulhu_library_insert_flash_show:
+      speed: 65
+      loops: -1
+    cthulhu_backglass_blink_show:
+      speed: 15
+
+
+  launchship:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 1
+    library_side_flash_show, cthulhu_library_insert_flash_show:
+      action: stop
+  launchrlyeh:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 2
+    library_side_flash_show, cthulhu_library_insert_flash_show:
+      action: stop
+  launchcthulhuend:
+    nyarla_new_step_show:
+      speed: 35
+      loops: 3
+    library_side_flash_show, cthulhu_library_insert_flash_show:
+      action: stop
+  launchcthulhukill:
+    nyarla_new_step_show:
+      speed: 35
+      loops: -1
+    library_side_flash_show, cthulhu_library_insert_flash_show:
+      action: stop
+
+  cthulhu_target_library_locate_1_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_library_locate_2_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_library_locate_3_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_library_locate_4_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_library_locate_5_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_library_locate_6_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_scoop_bas_locate_shot_locateflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_bumper_one_ship_shot_shipflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_bumper_two_ship_shot_shipflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_bumper_three_ship_shot_shipflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_rlyeh_1_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_rlyeh_2_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_rlyeh_3_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_rlyeh_4_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_rlyeh_5_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_space_orbit_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_library_roll_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_main_ramp_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_green_ramp_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_cthulhu_ramp_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_asylum_orbit_rlyeh_shot_rlyehflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_cthulhuend_1_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_cthulhuend_2_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_cthulhuend_3_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_cthulhuendh_4_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_target_square_cthulhuend_5_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_space_orbit_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_library_roll_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_main_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_green_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_cthulhu_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  cthulhu_asylum_orbit_cthulhuend_shot_cthulhuendflashing_hit:
+    cthulhu_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_cthulhu_available:
+      action: set
+      string: 'no'
+
+  timer_exit_cthulhuend_time_tick:
+    exit_cthulhuend_time_variable_times:
+      int: device.timers.exit_cthulhuend_time.ticks
+      action: set
+
+  launchship: 
+    cthulhu_mission_level:
+      action: set
+      string: 'step_two'
+  launchrlyeh: 
+    cthulhu_mission_level:
+      action: set
+      string: 'step_three'
+  launchcthulhuend: 
+    cthulhu_mission_level:
+      action: set
+      string: 'step_four'
+  launchcthulhukill:
+    variable_cthulhu_life:
+      action: set
+      string: 'almostdead'
+
+
+  cthulhu_sling_left_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_sling_right_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_bumper_one_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_bumper_two_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_bumper_three_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_scoop_bas_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_scoop_haut_shot_hit:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  cthulhu_target_square_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_square_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_square_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_square_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_square_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  cthulhu_drop_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_drop_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_drop_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_drop_target_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  cthulhu_green_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_green_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_green_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  cthulhu_target_library_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_library_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_library_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_library_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_library_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  cthulhu_target_library_6_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  cthulhu_team_1_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_team_2_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_team_3_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  cthulhu_spinner_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  cthulhu_roll_left_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_left_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_right_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_right_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_fordt_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_space_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_roll_asylum_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  cthulhu_main_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  cthulhu_green_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  cthulhu_cthulhu_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  cthulhu_gate_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  cthulhu_gate_exit_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  cthulhu_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+  cthulhu_target_library_locate_1_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_target_library_locate_2_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_target_library_locate_3_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_target_library_locate_4_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_target_library_locate_5_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_target_library_locate_6_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_book_gauge:
+      action: add
+      int: -1
+  cthulhu_scoop_bas_locate_shot_locateflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_clue_gauge:
+      action: add
+      int: -1
+
+  cthulhu_bumper_one_ship_shot_shipflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_punch_gauge:
+      action: add
+      int: -1
+  cthulhu_bumper_two_ship_shot_shipflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_punch_gauge:
+      action: add
+      int: -1
+  cthulhu_bumper_three_ship_shot_shipflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_punch_gauge:
+      action: add
+      int: -1
+
+  cthulhu_target_square_rlyeh_1_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_rlyeh_2_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_rlyeh_3_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_rlyeh_4_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_rlyeh_5_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_space_orbit_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_library_roll_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_main_ramp_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_green_ramp_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_cthulhu_ramp_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+  cthulhu_asylum_orbit_rlyeh_shot_rlyehflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_wave_gauge:
+      action: add
+      int: -1
+
+  cthulhu_target_square_cthulhuend_1_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_cthulhuend_2_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_cthulhuend_3_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_cthulhuendh_4_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_target_square_cthulhuend_5_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_space_orbit_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_library_roll_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_main_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_green_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_cthulhu_ramp_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+  cthulhu_asylum_orbit_cthulhuend_shot_cthulhuendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_escape_gauge:
+      action: add
+      int: -1
+
+
+###########################
+
+counters:
+  hit_cthulhu_bumper_counter:
+    count_events: cthulhu_bumper_one_ship_shot_shipflashing_hit, cthulhu_bumper_two_ship_shot_shipflashing_hit, cthulhu_bumper_three_ship_shot_shipflashing_hit
+    starting_count: 0
+    count_complete_value: 20
+    events_when_complete: launchrlyeh
+    reset_on_complete: false
+    disable_on_complete: false
+    persist_state: true
+
+  hit_cthulhuend_counter:
+    count_events: cthulhu_target_square_cthulhuend_1_shot_cthulhuendflashing_hit, cthulhu_target_square_cthulhuend_2_shot_cthulhuendflashing_hit, cthulhu_target_square_cthulhuend_3_shot_cthulhuendflashing_hit, cthulhu_target_square_cthulhuend_4_shot_cthulhuendflashing_hit, cthulhu_target_square_cthulhuend_5_shot_cthulhuendflashing_hit, cthulhu_space_orbit_cthulhuend_shot_cthulhuendflashing_hit, cthulhu_library_roll_cthulhuend_shot_cthulhuendflashing_hit, cthulhu_main_ramp_cthulhuend_shot_cthulhuendflashing_hit, cthulhu_green_ramp_cthulhuend_shot_cthulhuendflashing_hit, cthulhu_cthulhu_ramp_cthulhuend_shot_cthulhuendflashing_hit, cthulhu_asylum_orbit_cthulhuend_shot_cthulhuendflashing_hit
+    starting_count: 0
+    count_complete_value: 5
+    events_when_complete: launchcthulhukill
+    reset_on_complete: false
+    disable_on_complete: true
+    persist_state: true
+
+###########################
+
+timers:
+  advance_cthulhu_end_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: launchcthulhuend
+      - action: stop
+        event: launchcthulhukill
+
+  exit_cthulhuend_time:
+    start_value: 60
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    restart_on_complete: false
+    control_events:
+      - action: start
+        event: launchcthulhuend
+      - action: stop
+        event: timer_exit_cthulhuend_time_complete
+
+  cthulhu_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_cthulhu_started
+
+###########################
+
+light_player:
+  mode_cthulhu_started:
+    gi:
+      color: 00994C
+    side_led_left:
+      color: 00994C
+    side_led_right:
+      color: 00994C
+
+###########################
+
+sound_player:
+  mode_cthulhu_started:
+    cthulhu_music_calme:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    cthulhu_music_calme:
+      action: stop
+    cthulhu_music:
+      action: stop
+
+  relaunch_cthulhu_music:
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+
+  timer_cthulhu_voice_time_complete:
+    cthulhu_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  launchship:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+    cthulhu_music_calme:
+      action: stop    
+    cthulhu_music_0:
+      action: play
+      loops: 0
+      volume: 1
+      events_when_stopped: launch_action_cthulhu_music
+      mode_end_action: stop
+      fade_out: 1s
+
+  launch_action_cthulhu_music:
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  launchrlyeh:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchcthulhuend:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchcthulhukill:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+
+
+  cthulhu_sling_left_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_sling_right_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_bumper_one_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_bumper_two_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_bumper_three_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_scoop_bas_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_scoop_haut_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+
+  cthulhu_target_square_1_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_target_square_2_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_target_square_3_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_target_square_4_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_target_square_5_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+
+
+  cthulhu_drop_target_1_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_drop_target_2_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_drop_target_3_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_drop_target_4_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+
+  cthulhu_green_target_1_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_green_target_2_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+  cthulhu_green_target_3_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+    cthulhu_hit_sfx_pool:
+      action: play
+
+
+  cthulhu_team_1_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_team_2_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_team_3_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+
+  cthulhu_spinner_shot_hit:
+    cthulhu_hit_sfx_pool:
+      action: play
+
+  cthulhu_roll_left_outlane_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_left_inlane_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_right_inlane_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_right_outlane_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_library_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_fordt_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_space_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_roll_asylum_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+
+  cthulhu_main_ramp_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_green_ramp_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_cthulhu_ramp_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_gate_library_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+
+  cthulhu_gate_exit_library_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+  cthulhu_gate_secret_library_shot_hit:
+    cthulhu_sfx_pool:
+      action: play
+
+
+###########################
+
+sound_pools:
+  cthulhu_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - cthulhu_voice_1
+      - cthulhu_voice_2
+      - cthulhu_voice_3
+      - cthulhu_voice_4
+      - cthulhu_voice_5
+      - cthulhu_voice_6
+      - cthulhu_voice_7
+      - cthulhu_voice_8
+      - cthulhu_voice_9
+      - cthulhu_voice_10
+      - cthulhu_voice_11
+      - cthulhu_voice_12
+      - cthulhu_voice_13
+      - cthulhu_voice_14
+      - cthulhu_voice_15
+      - cthulhu_voice_16
+      - cthulhu_voice_17
+      - cthulhu_voice_18
+      - cthulhu_voice_19
+      - cthulhu_voice_20
+      - cthulhu_voice_21
+      - cthulhu_voice_22
+      - cthulhu_voice_23
+      - cthulhu_voice_24
+      - cthulhu_voice_25
+      - cthulhu_voice_26
+
+  cthulhu_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - cthulhu_sfx_1
+      - cthulhu_sfx_2
+      - cthulhu_sfx_3
+      - cthulhu_sfx_4
+      - cthulhu_sfx_5
+      - cthulhu_sfx_6
+      - cthulhu_sfx_7
+      - cthulhu_sfx_8
+      - cthulhu_sfx_9
+
+  cthulhu_hit_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - cthulhu_hit_sfx_1
+      - cthulhu_hit_sfx_2
+      - cthulhu_hit_sfx_3
+      - cthulhu_hit_sfx_4
+      - cthulhu_hit_sfx_5
+      - cthulhu_hit_sfx_6

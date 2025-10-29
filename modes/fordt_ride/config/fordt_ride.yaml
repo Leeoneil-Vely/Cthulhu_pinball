@@ -1,0 +1,632 @@
+#config_version=6
+mode:
+  start_events: fordt_ride_start
+  stop_events: fordt_ride_stop, ball_ended
+  priority: 1600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_fordt_ride_started: twenties_stop, hold_stop, launch_fordt_ride_timer
+  timer_exit_fordt_ride_time_complete: show_fordt_ride_bonus
+  timer_exit_fordt_ride_bonus_time_complete: fordt_ride_stop, twenties_start
+  fordt_ride_roll_fordt_shot_hit: shaker_shake
+
+###########################
+
+slides:
+  fordt_ride_slide: []
+
+###########################
+
+slide_player:
+  mode_fordt_ride_started: fordt_ride_slide
+
+###########################
+
+widgets:
+  fordt_ride_indication_banner:
+    type: text
+    text: Fordt ride
+    style: mission_text
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+
+  fordt_ride_indication_banner_2:
+    type: text
+    text: "Shoot the Ford-T\nwith upper left flipper"
+    style: mission_text
+    color: white
+    y: 60%
+    x: 50%
+    z: 100
+
+  fordt_ride_indication_banner_3:
+    type: text
+    text: You have (player|exit_fordt_ride_time_variable_times) seconds left
+    style: mission_text
+    color: white
+    y: 30%
+    x: 50%
+    z: 100
+
+  fordt_ride_indication_banner_4:
+    type: text
+    text: Well done ! (player|fordt_ride_bonus) bonus points !
+    style: mission_text
+    color: white
+    y: 50%
+    x: 50%
+    z: 100
+
+  video_fordt_ride_scratch_widget:
+    type: video
+    video: fordt_ride_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_fordt_ride_started:
+    fordt_ride_indication_banner, fordt_ride_indication_banner_2, fordt_ride_indication_banner_3, base_frame_widget, superpops_widget, video_fordt_ride_scratch_widget:
+      action: add
+      slide: fordt_ride_slide
+  mode_fordt_ride_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: fordt_ride_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  show_fordt_ride_bonus:
+    fordt_ride_indication_banner, fordt_ride_indication_banner_2, fordt_ride_indication_banner_3, video_fordt_ride_scratch_widget:
+      action: remove
+    fordt_ride_indication_banner_4, video_scratch_widget:
+      action: add
+      slide: fordt_ride_slide
+
+###########################
+
+multiballs:
+  multiball_fordt_ride_multiball:
+    ball_count: 3
+    ball_count_type: add
+    shoot_again: 30s
+    start_events: mode_fordt_ride_started
+
+###########################
+
+# ball_saves:
+#   fake_fordt_ride_ball_save:
+#     enable_events:
+#       - multiball_multiball_fordt_ride_multiball_ended
+#     auto_launch: false
+#     balls_to_save: 1
+
+###########################
+
+timers:
+  exit_fordt_ride_time:
+    start_value: 35
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_fordt_ride_timer
+
+  exit_fordt_ride_bonus_time:
+    start_value: 8
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: show_fordt_ride_bonus
+
+###########################
+
+shot_profiles:
+  fordt_ride_switch_flash:
+    loop: true
+    block: false
+    states:
+      - name: fordswitchflashing
+        show: fordt_ride_blink_show
+        speed: 25
+        loops: -1
+        priority: 1700
+
+  fordt_ride_target_flash:
+    loop: true
+    block: true
+    states:
+      - name: fordtargetflashing
+        show: fordt_ride_blink_show
+        speed: 5
+        loops: 0
+        priority: 5500
+
+  fordt_ride_dttarget_flash:
+    loop: false
+    block: true
+    states:
+      - name: fordtargetflashing
+        show: fordt_ride_blink_show
+        speed: 5
+        loops: -1
+        priority: 5500
+      - name: forddttargetdown
+        show: on
+
+
+  fordt_ride_greentarget_flash:
+    loop: false
+    block: true
+    states:
+      - name: fordtargetflashing
+        show: fordt_ride_blink_show
+        speed: 5
+        loops: -1
+        priority: 5500
+
+###########################
+
+shots:
+  fordt_ride_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_86
+  fordt_ride_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_85
+  fordt_ride_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_84
+  fordt_ride_sling_left_shot:
+    switch: s_sling_left
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: led_30, led_31
+  fordt_ride_sling_right_shot:
+    switch: s_sling_right
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: led_36, led_37
+  fordt_ride_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  fordt_ride_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: led_11, led_19
+
+  fordt_ride_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_41
+  fordt_ride_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_32
+  fordt_ride_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_30
+  fordt_ride_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_20
+  fordt_ride_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_10
+
+  fordt_ride_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_50
+  fordt_ride_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_49  
+  fordt_ride_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_48
+  fordt_ride_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_11
+  fordt_ride_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_12
+  fordt_ride_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_13
+    
+  fordt_ride_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  fordt_ride_gate_library_shot:
+    switch: s_gate_library
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: led_1
+  fordt_ride_roll_library_shot:
+    switch: s_roll_library
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  fordt_ride_roll_space_shot:
+    switch: s_roll_space
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43
+  fordt_ride_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: fordt_ride_switch_flash
+    show_tokens:
+      led: insert_34, led_48
+
+  fordt_ride_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  fordt_ride_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  fordt_ride_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  fordt_ride_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  fordt_ride_team_1_shot:
+    switch: s_roll_skill_shot_1
+  fordt_ride_team_2_shot:
+    switch: s_roll_skill_shot_2
+  fordt_ride_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  fordt_ride_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  fordt_ride_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_74, insert_25, insert_26, insert_29
+  fordt_ride_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  fordt_ride_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: led_2
+  fordt_ride_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  fordt_ride_spinner_shot:
+    switch: s_spinner
+    profile: fordt_ride_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  fordt_ride_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: fordt_ride_dttarget_flash
+    show_tokens:
+      led: insert_24
+  fordt_ride_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: fordt_ride_dttarget_flash
+    show_tokens:
+      led: insert_23
+  fordt_ride_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: fordt_ride_dttarget_flash
+    show_tokens:
+      led: insert_22
+  fordt_ride_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: fordt_ride_dttarget_flash
+    show_tokens:
+      led: insert_21
+
+  fordt_ride_green_target_1_shot:
+    switch: s_target_green_1
+    profile: fordt_ride_greentarget_flash
+    show_tokens:
+      led: led_47
+  fordt_ride_green_target_2_shot:
+    switch: s_target_green_2
+    profile: fordt_ride_greentarget_flash
+    show_tokens:
+      led: led_45
+  fordt_ride_green_target_3_shot:
+    switch: s_target_green_3
+    profile: fordt_ride_greentarget_flash
+    show_tokens:
+      led: led_46
+
+
+  fordt_ride_space_orbit_shot:
+    hit_events: fordt_ride_space_orbit_sequence_hit
+  fordt_ride_asylum_orbit_shot:
+    hit_events: fordt_ride_asylum_orbit_sequence_hit
+  fordt_ride_library_roll_shot:
+    hit_events: fordt_ride_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  fordt_ride_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  fordt_ride_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  fordt_ride_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+variable_player:
+  timer_exit_fordt_ride_time_tick:
+    exit_fordt_ride_time_variable_times:
+      int: device.timers.exit_fordt_ride_time.ticks
+      action: set
+
+  mode_fordt_ride_started:
+    fordt_ride_bonus:
+      int: 0
+      action: set
+    fordt_ride_multiplier:
+      float: 1
+      action: set
+
+  fordt_ride_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  fordt_ride_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  fordt_ride_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  fordt_ride_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  fordt_ride_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  fordt_ride_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  fordt_ride_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  fordt_ride_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  fordt_ride_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  fordt_ride_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+  fordt_ride_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+  fordt_ride_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+
+
+  fordt_ride_drop_target_1_shot_fordtargetflashing_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+  fordt_ride_drop_target_2_shot_fordtargetflashing_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+  fordt_ride_drop_target_3_shot_fordtargetflashing_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+  fordt_ride_drop_target_4_shot_fordtargetflashing_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    fordt_ride_bonus:
+      action: add
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+
+
+  fordt_ride_roll_fordt_shot_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    fordt_ride_bonus:
+      action: add
+      int: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+    fordt_ride_multiplier:
+      action: add
+      float: 0.2
+  fordt_ride_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  fordt_ride_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+light_player:
+  mode_fordt_ride_started:
+    led_21:
+      color: white
+    led_98:
+      color: white
+    led_99:
+      color: white
+    led_100:
+      color: white
+    led_101:
+      color: white
+    led_102:
+      color: white
+  
+###########################
+
+show_player:
+  fordt_ride_roll_fordt_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+###########################
+
+sound_player:
+  fordt_ride_team_1_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_team_2_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_team_3_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+
+  fordt_ride_spinner_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+
+  fordt_ride_roll_left_outlane_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_roll_left_inlane_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_roll_right_inlane_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_roll_right_outlane_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_roll_library_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+
+  fordt_ride_green_target_1_shot_hit:
+    fordt_horn_sfx_pool:
+      action: play
+  fordt_ride_green_target_2_shot_hit:
+    fordt_horn_sfx_pool:
+      action: play
+  fordt_ride_green_target_3_shot_hit:
+    fordt_horn_sfx_pool:
+      action: play
+
+  fordt_ride_drop_target_1_shot_fordtargetflashing_hit:
+    fordt_horn_sfx_pool:
+      action: play
+  fordt_ride_drop_target_2_shot_fordtargetflashing_hit:
+    fordt_horn_sfx_pool:
+      action: play
+  fordt_ride_drop_target_3_shot_fordtargetflashing_hit:
+    fordt_horn_sfx_pool:
+      action: play
+  fordt_ride_drop_target_4_shot_fordtargetflashing_hit:
+    fordt_horn_sfx_pool:
+      action: play
+
+  fordt_ride_roll_fordt_shot_hit:
+    fordt_ride_motor_sfx_pool:
+      action: play
+
+  fordt_ride_roll_space_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+  fordt_ride_roll_asylum_shot_hit:
+    fordt_ride_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  fordt_ride_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_skid_1
+      - fordt_skid_2
+      - fordt_skid_3
+      - fordt_skid_4
+      - fordt_skid_5
+
+  fordt_horn_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_5
+      - fordt_6
+
+  fordt_ride_motor_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_ride_motor_1
+      - fordt_ride_motor_2
+      - fordt_ride_motor_3
+      - fordt_ride_motor_4
+      - fordt_ride_motor_5
+
+###########################
+
+videos:
+  fordt_ride_scratch_movie:
+    width: 1440
+    height: 900
+    file: fordt_ride_video_1.mp4

@@ -1,0 +1,556 @@
+#config_version=6
+
+mode:
+  start_events: game_ending     # start on game ending process
+  use_wait_queue: true          # delay ball ending
+  game_mode: false              # the game is no longer running at this point
+  priority: 500                 # determines the order of game end modes
+  stop_events: stop_game_over     # post this event to stop the mode and continue the game ending process
+
+###########################
+
+event_player:
+  timer_game_over_display_time_complete: stop_game_over
+
+###########################
+
+slides:
+  game_over_slide_1:
+    widgets:
+      - type: text
+        text: Killed by the mafia
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: The end
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_1
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_2:
+    widgets:
+      - type: text
+        text: Killed by the mafia
+        y: 30%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game Over
+        y: 50%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_2
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_3:
+    widgets:
+      - type: text
+        text: Machine-gunned by the mafia
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: The end
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_3
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_4:
+    widgets:
+      - type: text
+        text: Melted alive...
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_4
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_5:
+    widgets:
+      - type: text
+        text: What was that horror ?
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: The end
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_5
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_6:
+    widgets:
+      - type: text
+        text: Suffocated to death
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_6
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_7:
+    widgets:
+      - type: text
+        text: You misjudged
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: the power of this spell
+        y: 40%
+        x: 50%
+        z: 100
+      - type: text
+        text: The end
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_7
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_8:
+    widgets:
+      - type: text
+        text: Why did you summon
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: this monstruosity ?
+        y: 40%
+        x: 50%
+        z: 100
+      - type: text
+        text: The world is doomed
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_8
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_9:
+    widgets:
+      - type: text
+        text: Bad idea
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: to disguise yourself as a cultist
+        y: 40%
+        x: 50%
+        z: 100
+      - type: text
+        text: You are dead
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_9
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_10:
+    widgets:
+      - type: text
+        text: Destroy everything
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: was not the solution
+        y: 40%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_10
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_11:
+    widgets:
+      - type: text
+        text: Burn everything
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: was not a good idea
+        y: 40%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_11
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_12:
+    widgets:
+      - type: text
+        text: Army took care of the problem...
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_12
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_13:
+    widgets:
+      - type: text
+        text: You just lost your head
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: The end
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_twenties
+        z: 10
+      - type: video
+        video: game_over_video_13
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_14:
+    widgets:
+      - type: text
+        text: This death seems really painful
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_14
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_15:
+    widgets:
+      - type: text
+        text: You just ruined the carpet...
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: You are dead
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_15
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_16:
+    widgets:
+      - type: text
+        text: A blood-curdling death
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_16
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_17:
+    widgets:
+      - type: text
+        text: It's now your turn...
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Your are dead
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_17
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+  game_over_slide_18:
+    widgets:
+      - type: text
+        text: Devoured alive... Not nice
+        y: 50%
+        x: 50%
+        z: 100
+      - type: text
+        text: Game over
+        y: 30%
+        x: 50%
+        z: 100
+      - type: Image
+        image: half_frame_cthulhu
+        z: 10
+      - type: video
+        video: game_over_video_18
+        auto_play: True
+        end_behavior: stop
+        z: 5
+
+###########################
+
+slide_player:
+  mode_game_over_started{current_player.game_over_number=='1'}: game_over_slide_1
+  mode_game_over_started{current_player.game_over_number=='2'}: game_over_slide_2
+  mode_game_over_started{current_player.game_over_number=='3'}: game_over_slide_3
+  mode_game_over_started{current_player.game_over_number=='4'}: game_over_slide_4
+  mode_game_over_started{current_player.game_over_number=='5'}: game_over_slide_5
+  mode_game_over_started{current_player.game_over_number=='6'}: game_over_slide_6
+  mode_game_over_started{current_player.game_over_number=='7'}: game_over_slide_7
+  mode_game_over_started{current_player.game_over_number=='8'}: game_over_slide_8
+  mode_game_over_started{current_player.game_over_number=='9'}: game_over_slide_9
+  mode_game_over_started{current_player.game_over_number=='10'}: game_over_slide_10
+  mode_game_over_started{current_player.game_over_number=='11'}: game_over_slide_11
+  mode_game_over_started{current_player.game_over_number=='12'}: game_over_slide_12
+  mode_game_over_started{current_player.game_over_number=='13'}: game_over_slide_13
+  mode_game_over_started{current_player.game_over_number=='14'}: game_over_slide_14
+  mode_game_over_started{current_player.game_over_number=='15'}: game_over_slide_15
+  mode_game_over_started{current_player.game_over_number=='16'}: game_over_slide_16
+  mode_game_over_started{current_player.game_over_number=='17'}: game_over_slide_17
+  mode_game_over_started{current_player.game_over_number=='18'}: game_over_slide_18
+
+###########################
+
+timers:
+  game_over_display_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_game_over_started
+
+###########################
+
+light_player:
+  mode_game_over_started:
+    gi: off
+    gi_insert: off
+    side_led_left: off
+    side_led_right: off
+    backglass_led: off
+
+###########################
+
+videos:
+  game_over_video_1:
+    width: 1440
+    height: 900
+    file: game_over_video_1.mp4
+  game_over_video_2:
+    width: 1440
+    height: 900
+    file: game_over_video_2.mp4
+  game_over_video_3:
+    width: 1440
+    height: 900
+    file: game_over_video_3.mp4
+  game_over_video_4:
+    width: 1440
+    height: 900
+    file: game_over_video_4.mp4
+  game_over_video_5:
+    width: 1440
+    height: 900
+    file: game_over_video_5.mp4
+  game_over_video_6:
+    width: 1440
+    height: 900
+    file: game_over_video_6.mp4
+  game_over_video_7:
+    width: 1440
+    height: 900
+    file: game_over_video_7.mp4
+  game_over_video_8:
+    width: 1440
+    height: 900
+    file: game_over_video_8.mp4
+  game_over_video_9:
+    width: 1440
+    height: 900
+    file: game_over_video_9.mp4
+  game_over_video_10:
+    width: 1440
+    height: 900
+    file: game_over_video_10.mp4
+  game_over_video_11:
+    width: 1440
+    height: 900
+    file: game_over_video_11.mp4
+  game_over_video_12:
+    width: 1440
+    height: 900
+    file: game_over_video_12.mp4
+  game_over_video_13:
+    width: 1440
+    height: 900
+    file: game_over_video_13.mp4
+  game_over_video_14:
+    width: 1440
+    height: 900
+    file: game_over_video_14.mp4
+  game_over_video_15:
+    width: 1440
+    height: 900
+    file: game_over_video_15.mp4
+  game_over_video_16:
+    width: 1440
+    height: 900
+    file: game_over_video_16.mp4
+  game_over_video_17:
+    width: 1440
+    height: 900
+    file: game_over_video_17.mp4
+  game_over_video_18:
+    width: 1440
+    height: 900
+    file: game_over_video_18.mp4
+
+###########################
+
+sound_player:
+  mode_game_over_started:
+    game_over_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  game_over_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - game_over_sfx_1

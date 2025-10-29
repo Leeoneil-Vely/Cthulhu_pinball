@@ -1,0 +1,882 @@
+#config_version=6
+mode:
+  start_events: videomonster_start
+  stop_events: videomonster_stop, ball_ended
+  priority: 1000
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_videomonster_started: shaker_shake, slow_videomonster|2s, stop_carousel
+  end_videomonster_mode: stop_videomonster_timer, videomonster_stop|5s, start_carousel_mode|5s
+
+  s_left_flipper_active{current_player.monster_place_screen=='1'}: good_shot
+  s_left_flipper_active{current_player.monster_place_screen=='2'}: good_shot
+  s_left_flipper_active{current_player.monster_place_screen=='3'}: good_shot
+  s_left_flipper_active{current_player.monster_place_screen=='4'}: good_shot
+
+  s_action_active{current_player.monster_place_screen=='5'}: good_shot
+  s_action_active{current_player.monster_place_screen=='6'}: good_shot
+  s_action_active{current_player.monster_place_screen=='7'}: good_shot
+  s_action_active{current_player.monster_place_screen=='8'}: good_shot
+
+  s_right_flipper_active{current_player.monster_place_screen=='9'}: good_shot
+  s_right_flipper_active{current_player.monster_place_screen=='10'}: good_shot
+  s_right_flipper_active{current_player.monster_place_screen=='11'}: good_shot
+  s_right_flipper_active{current_player.monster_place_screen=='12'}: good_shot
+
+  timer_videomonster_slow_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+  timer_videomonster_normal_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+  timer_videomonster_fast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+  timer_videomonster_superfast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+  timer_videomonster_hyperfast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+  timer_videomonster_megafast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
+
+  "{current_player.variable_speed_videomonster_gauge_value==1}": normal_videomonster
+  "{current_player.variable_speed_videomonster_gauge_value==2}": fast_videomonster
+  "{current_player.variable_speed_videomonster_gauge_value==3}": superfast_videomonster
+  "{current_player.variable_speed_videomonster_gauge_value==4}": hyperfast_videomonster
+  "{current_player.variable_speed_videomonster_gauge_value==5}": megafast_videomonster
+  "{current_player.variable_videomonster_bite_gauge_value==10}": end_videomonster_mode
+  
+  ###########################
+
+timers:
+  videomonster_slow_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: slow_videomonster
+      - action: stop
+        event: normal_videomonster
+      - action: stop
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+  videomonster_normal_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 1.75s
+    control_events:
+      - action: start
+        event: normal_videomonster
+      - action: stop
+        event: fast_videomonster
+      - action: stop
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+  videomonster_fast_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 1.5s
+    control_events:
+      - action: start
+        event: fast_videomonster
+      - action: stop
+        event: superfast_videomonster
+      - action: stop
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+  videomonster_superfast_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: superfast_videomonster
+      - action: stop
+        event: hyperfast_videomonster
+      - action: stop
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+  videomonster_hyperfast_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 0.75s
+    control_events:
+      - action: start
+        event: hyperfast_videomonster
+      - action: stop
+        event: megafast_videomonster
+      - action: stop
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+  videomonster_megafast_rotate:
+    start_value: 0
+    end_value: 1
+    restart_on_complete: true
+    tick_interval: 0.5s
+    control_events:
+      - action: start
+        event: megafast_videomonster
+      - action: reset
+        event: end_videomonster_mode
+      - action: stop
+        event: stop_videomonster_timer
+
+
+  videomonster_speed_rotate:
+    start_value: 0
+    end_value: 6
+    start_running: true
+    tick_interval: 1s
+    restart_on_complete: true
+
+
+###########################
+
+random_event_player:
+  timer_videomonster_slow_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+  timer_videomonster_normal_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+  timer_videomonster_fast_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+  timer_videomonster_superfast_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+  timer_videomonster_hyperfast_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+  timer_videomonster_megafast_rotate_tick{current_player.variable_videomonster_bite_gauge_value<10}:
+    events:
+      - monster_left_1
+      - monster_left_2
+      - monster_left_3
+      - monster_left_4
+      - monster_center_1
+      - monster_center_2
+      - monster_center_3
+      - monster_center_4
+      - monster_right_1
+      - monster_right_2
+      - monster_right_3
+      - monster_right_4
+
+###########################
+
+widgets:
+  widget_fond_videomonster:
+    - type: text
+      text: Video mode - Monster
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: frame_video_mode_monster
+      z: 5
+      animations:
+        add_to_slide: fade_in
+
+  widget_frame_videomonster:
+    - type: Image
+      image: frame_videomonster_mode
+      z: 500
+
+  videomonster_video_scratch_widget:
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  widget_results_videomonster:
+    - type: text
+      text: Video monster score
+      y: 55%
+      font_size: 75
+      z: 1000
+
+  widget_results_2_videomonster:
+    - type: text
+      text: (player|variable_videomonster_score_value)
+      number_grouping: true
+      y: 45%
+      font_size: 75
+      z: 1000
+
+
+  number_bullet_widget:
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+  number_object_widget:
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+  number_clue_widget:
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+  number_book_widget:
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+  number_spells_widget:
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-130
+      x: right-245
+      font_size: 45
+      z: 1000
+
+
+
+  widget_monster_1:
+    - type: Image
+      image: monstre_video_mode_1
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_2:
+    - type: Image
+      image: monstre_video_mode_2
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_3:
+    - type: Image
+      image: monstre_video_mode_3D
+      z: 6
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_4:
+    - type: Image
+      image: monstre_video_mode_4D
+      z: 6
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_5:
+    - type: Image
+      image: monstre_video_mode_5
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_6:
+    - type: Image
+      image: monstre_video_mode_6
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_7:
+    - type: Image
+      image: monstre_video_mode_7
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_8:
+    - type: Image
+      image: monstre_video_mode_8D
+      z: 6
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_9:
+    - type: Image
+      image: monstre_video_mode_9
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_10:
+    - type: Image
+      image: monstre_video_mode_10
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_11:
+    - type: Image
+      image: monstre_video_mode_11
+      z: 4
+      animations:
+        add_to_slide: anim_shake
+  widget_monster_12:
+    - type: Image
+      image: monstre_video_mode_12D
+      z: 6
+      animations:
+        add_to_slide: anim_shake
+
+  widget_monster_1_killed:
+    - type: Image
+      image: monstre_video_mode_1_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_2_killed:
+    - type: Image
+      image: monstre_video_mode_2_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_3_killed:
+    - type: Image
+      image: monstre_video_mode_3D_killed
+      z: 6
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_4_killed:
+    - type: Image
+      image: monstre_video_mode_4D_killed
+      z: 6
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_5_killed:
+    - type: Image
+      image: monstre_video_mode_5_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_6_killed:
+    - type: Image
+      image: monstre_video_mode_6_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_7_killed:
+    - type: Image
+      image: monstre_video_mode_7_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_8_killed:
+    - type: Image
+      image: monstre_video_mode_8D_killed
+      z: 6
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_9_killed:
+    - type: Image
+      image: monstre_video_mode_9_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_10_killed:
+    - type: Image
+      image: monstre_video_mode_10_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_11_killed:
+    - type: Image
+      image: monstre_video_mode_11_killed
+      z: 4
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+  widget_monster_12_killed:
+    - type: Image
+      image: monstre_video_mode_12D_killed
+      z: 6
+      animations:
+        add_to_slide: anim_mini_shake
+      expire: .3s
+
+  widget_tir_1:
+    - type: Image
+      image: tir_1_video_mode
+      z: 15
+      expire: .3s
+  widget_tir_2:
+    - type: Image
+      image: tir_2_video_mode
+      z: 15
+      expire: .3s
+  widget_tir_3:
+    - type: Image
+      image: tir_3_video_mode
+      z: 15
+      expire: .3s
+
+  widget_monster_bite:
+    - type: Image
+      image: monster_scratch
+      z: 50
+      expire: .3s
+      opacity: 0.5
+      animations:
+        add_to_slide: anim_shake
+
+  videomonstergauge_widget:
+    - type: text
+      text: (player|variable_videomonster_goodshot_gauge_value)
+      y: bottom+166
+      x: left+392
+      color: green
+      anchor_x: center
+      anchor_y: top
+      font_size: 75
+      z: 1000
+
+  videomonsterbitegauge_widget:
+    - type: text
+      text: (player|variable_videomonster_bite_gauge_value)
+      y: bottom+166
+      x: right-382
+      color: red
+      anchor_x: center
+      anchor_y: top
+      font_size: 75
+      z: 1000
+
+
+###########################
+
+slide_player:
+  mode_videomonster_started: videomonster_slide
+
+###########################
+
+slides:
+  videomonster_slide: []
+
+###########################
+
+widget_player:
+  mode_videomonster_started:
+    widget_frame_videomonster, videomonster_video_scratch_widget, videomonsterbitegauge_widget, videomonstergauge_widget, widget_fond_videomonster, cthulhu_frame_image, base_without_score_widget, superpops_widget:
+      action: add
+      slide: videomonster_slide
+
+
+  end_videomonster_mode:
+    widget_results_videomonster, widget_results_2_videomonster:
+      slide: videomonster_slide
+    widget_fond_videomonster, widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  s_left_flipper_active:
+    widget_tir_1:
+      slide: videomonster_slide
+  s_action_active:
+    widget_tir_2:
+      slide: videomonster_slide
+  s_right_flipper_active:
+    widget_tir_3:
+      slide: videomonster_slide
+
+  good_shot:
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+
+  monster_left_1:
+    widget_monster_1: 
+      slide: videomonster_slide
+    widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_left_2:
+    widget_monster_2: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_left_3:
+    widget_monster_3: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_left_4:
+    widget_monster_4: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_center_1:
+    widget_monster_5: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_center_2:
+    widget_monster_6: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_center_3:
+    widget_monster_7: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_center_4:
+    widget_monster_8: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_9, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_right_1:
+    widget_monster_9: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_10, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_right_2:
+    widget_monster_10: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_11, widget_monster_12:
+      action: remove
+
+  monster_right_3:
+    widget_monster_11: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_12:
+      action: remove
+
+  monster_right_4:
+    widget_monster_12: 
+      slide: videomonster_slide
+    widget_monster_1, widget_monster_2, widget_monster_3, widget_monster_4, widget_monster_5, widget_monster_6, widget_monster_7, widget_monster_8, widget_monster_9, widget_monster_10, widget_monster_11:
+      action: remove
+
+  s_left_flipper_active{current_player.monster_place_screen=='1'}:
+    widget_monster_1_killed: 
+      slide: videomonster_slide
+  s_left_flipper_active{current_player.monster_place_screen=='2'}:
+    widget_monster_2_killed: 
+      slide: videomonster_slide
+  s_left_flipper_active{current_player.monster_place_screen=='3'}:
+    widget_monster_3_killed: 
+      slide: videomonster_slide
+  s_left_flipper_active{current_player.monster_place_screen=='4'}:
+    widget_monster_4_killed: 
+      slide: videomonster_slide
+
+  s_action_active{current_player.monster_place_screen=='5'}:
+    widget_monster_5_killed: 
+      slide: videomonster_slide
+  s_action_active{current_player.monster_place_screen=='6'}:
+    widget_monster_6_killed: 
+      slide: videomonster_slide
+  s_action_active{current_player.monster_place_screen=='7'}:
+    widget_monster_7_killed: 
+      slide: videomonster_slide
+  s_action_active{current_player.monster_place_screen=='8'}:
+    widget_monster_8_killed: 
+      slide: videomonster_slide
+
+  s_right_flipper_active{current_player.monster_place_screen=='9'}:
+    widget_monster_9_killed: 
+      slide: videomonster_slide
+  s_right_flipper_active{current_player.monster_place_screen=='10'}:
+    widget_monster_10_killed: 
+      slide: videomonster_slide
+  s_right_flipper_active{current_player.monster_place_screen=='11'}:
+    widget_monster_11_killed: 
+      slide: videomonster_slide
+  s_right_flipper_active{current_player.monster_place_screen=='12'}:
+    widget_monster_12_killed: 
+      slide: videomonster_slide
+
+  hit_by_monster:
+    widget_monster_bite:
+      slide: videomonster_slide
+
+###########################
+
+variable_player:
+  mode_videomonster_started:
+    variable_number_of_clue_value:
+      action: add
+      int: -4
+    variable_choose_videomode:
+      action: set
+      string: 'fordt'
+    variable_block_videomode:
+      action: set
+      string: 'on'
+
+
+  timer_videomonster_speed_rotate_complete:
+    variable_speed_videomonster_gauge_value:
+      action: add
+      int: 1
+
+  monster_left_1:
+    monster_place_screen:
+      action: set
+      string: '1'
+  monster_left_2:
+    monster_place_screen:
+      action: set
+      string: '2'
+  monster_left_3:
+    monster_place_screen:
+      action: set
+      string: '3'
+  monster_left_4:
+    monster_place_screen:
+      action: set
+      string: '4'
+
+  monster_center_1:
+    monster_place_screen:
+      action: set
+      string: '5'
+  monster_center_2:
+    monster_place_screen:
+      action: set
+      string: '6'
+  monster_center_3:
+    monster_place_screen:
+      action: set
+      string: '7'
+  monster_center_4:
+    monster_place_screen:
+      action: set
+      string: '8'
+
+  monster_right_1:
+    monster_place_screen:
+      action: set
+      string: '9'
+  monster_right_2:
+    monster_place_screen:
+      action: set
+      string: '10'
+  monster_right_3:
+    monster_place_screen:
+      action: set
+      string: '11'
+  monster_right_4:
+    monster_place_screen:
+      action: set
+      string: '12'
+
+  good_shot:
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    variable_videomonster_goodshot_gauge_value:
+      action: add
+      int: 1
+    variable_videomonster_score_value:
+      action: add
+      int: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    monster_place_screen:
+      action: set
+      string: 'hidden'
+    monster_life:
+      action: set
+      string: 'killed'
+    videomonster_champion:
+      action: add
+      int: 1
+
+  timer_videomonster_slow_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+  timer_videomonster_normal_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+  timer_videomonster_fast_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+  timer_videomonster_superfast_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+  timer_videomonster_hyperfast_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+  timer_videomonster_megafast_rotate_complete:
+    monster_life:
+      action: set
+      string: 'alive'
+
+
+  hit_by_monster:
+    variable_videomonster_bite_gauge_value:
+      action: add
+      int: 1
+
+###########################
+
+show_player:
+  mode_videomonster_started:
+    videomonster_backglass_blink_show:
+      speed: 15
+
+  good_shot:
+    video_backglass_blink_show:
+      action: play
+      speed: 10
+      priority: 650
+      loops: 1
+
+  hit_by_monster:
+    video_backglass_hit_show:
+      action: play
+      speed: 10
+      priority: 650
+      loops: 1
+
+###########################
+
+sound_player:
+  mode_videomonster_started:
+    videomonster_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  end_videomonster_mode:
+    new_highscore_sound:
+      action: play
+    videomonster_music:
+      action: stop
+
+  hit_by_monster:
+    monster_attack_sfx_pool:
+      action: play
+      volume: 2
+
+  s_left_flipper_active:
+    guns_sfx_pool:
+      action: play
+  s_action_active:
+    guns_sfx_pool:
+      action: play
+  s_right_flipper_active:
+    guns_sfx_pool:
+      action: play
+
+  s_left_flipper_active{current_player.monster_place_screen=='left'}:
+    blood_splat_1:
+      action: play
+      volume: 2
+  s_action_active{current_player.monster_place_screen=='center'}:
+    blood_splat_1:
+      action: play
+      volume: 2
+  s_right_flipper_active{current_player.monster_place_screen=='right'}:
+    blood_splat_1:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  monster_attack_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - monster_attack_1
+      - monster_attack_2
+      - monster_attack_3

@@ -1,0 +1,1154 @@
+#config_version=6
+mode:
+  start_events: stormy_night_start
+  stop_events: stormy_night_stop, ball_ended
+  priority: 1200
+  restart_on_next_ball: false
+
+
+###########################
+
+event_player:
+  mode_stormy_night_started: twenties_stop, hold_stop, launch_random_stormy_night_video
+  timer_exit_stormy_time_complete: stormy_night_stop, twenties_start
+  relaunch_stormy_night_video: launch_random_stormy_night_video|3s
+
+
+  stormy_night_target_square_1_shot_stormflash_hit: shaker_shake
+  stormy_night_target_square_2_shot_stormflash_hit: shaker_shake
+  stormy_night_target_square_3_shot_stormflash_hit: shaker_shake
+  stormy_night_target_square_4_shot_stormflash_hit: shaker_shake
+  stormy_night_target_square_5_shot_stormflash_hit: shaker_shake
+  stormy_night_green_target_1_shot_stormflash_hit: shaker_shake
+  stormy_night_green_target_2_shot_stormflash_hit: shaker_shake
+  stormy_night_green_target_3_shot_stormflash_hit: shaker_shake
+  stormy_night_cthulhu_ramp_shot_stormflash_hit: shaker_shake
+  stormy_night_main_ramp_shot_stormflash_hit: shaker_shake
+  stormy_night_green_ramp_shot_stormflash_hit: shaker_shake
+  stormy_night_space_orbit_shot_stormflash_hit: shaker_shake
+  stormy_night_asylum_orbit_shot_stormflash_hit: shaker_shake
+  stormy_night_library_roll_shot_stormflash_hit: shaker_shake
+  multiball_multiball_twenties_multiball_ended: relaunch_stormy_night_music
+
+###########################
+
+slides:
+  stormy_night_slide: []
+
+###########################
+
+slide_player:
+  mode_stormy_night_started: stormy_night_slide
+
+###########################
+
+widgets:
+  stormy_night_indication_banner:
+    type: text
+    text: Stormy night !
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: white
+
+  stormy_night_indication_banner_2:
+    type: text
+    text: The storm will stop 
+    color: white
+    y: 72%
+    x: 50%
+    z: 100
+
+  stormy_night_indication_banner_3:
+    type: text
+    text: in (player|exit_stormy_time_variable_times) seconds !
+    color: white
+    y: 62%
+    x: 50%
+    z: 100
+
+  stormy_night_banner_image:
+    type: Image
+    image: eclairs
+    y: 55%
+    x: 25%
+    z: 100
+
+  video_stormy_night_scratch_widget:
+    type: video
+    video: mystery_scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 5
+
+
+  video_stormy_night_1_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_2_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_3_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_4_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_5_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_6_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_7_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_8_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_9_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+  video_stormy_night_10_scratch_widget:
+    type: video
+    video: stormy_night_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 6
+    events_when_removed: relaunch_stormy_night_video
+
+
+###########################
+
+widget_player:
+  mode_stormy_night_started:
+    stormy_night_indication_banner, stormy_night_indication_banner_2, stormy_night_indication_banner_3, stormy_night_banner_image, cthulhu_frame_image, video_stormy_night_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: stormy_night_slide
+
+  mode_stormy_night_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: stormy_night_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove 
+
+
+  launch_stormy_night_video_1:
+    video_stormy_night_1_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_2:
+    video_stormy_night_2_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_3:
+    video_stormy_night_3_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_4:
+    video_stormy_night_4_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_5:
+    video_stormy_night_5_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_6:
+    video_stormy_night_6_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_7:
+    video_stormy_night_7_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_8:
+    video_stormy_night_8_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_9:
+    video_stormy_night_9_scratch_widget:
+      slide: stormy_night_slide
+  launch_stormy_night_video_10:
+    video_stormy_night_10_scratch_widget:
+      slide: stormy_night_slide
+
+  remove_random_stormy_night_video_1:
+    video_stormy_night_1_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_2:
+    video_stormy_night_2_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_3:
+    video_stormy_night_3_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_4:
+    video_stormy_night_4_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_5:
+    video_stormy_night_5_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_6:
+    video_stormy_night_6_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_7:
+    video_stormy_night_7_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_8:
+    video_stormy_night_8_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_9:
+    video_stormy_night_9_scratch_widget:
+      action: remove
+  remove_random_stormy_night_video_10:
+    video_stormy_night_10_scratch_widget:
+      action: remove
+
+
+###########################
+
+timers:
+  exit_stormy_time:
+    start_value: 30
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_stormy_night_started
+
+  storm_rotate:
+    start_running: true
+    tick_interval: 6s
+    control_events:
+      - action: start
+        event: mode_stormy_night_started
+
+  storm_lightning_rotate:
+    start_running: true
+    tick_interval: 3s
+    control_events:
+      - action: start
+        event: mode_stormy_night_started
+
+###########################
+
+random_event_player:
+  timer_storm_rotate_tick:
+    events:
+      - advance_storm_1
+      - advance_storm_2
+      - advance_storm_3
+
+  timer_storm_lightning_rotate_tick:
+    events:
+      - advance_lightning_1
+      - advance_lightning_2
+      - advance_lightning_3
+      - advance_lightning_4
+      - advance_lightning_5
+      - advance_lightning_6
+      - advance_lightning_7
+
+  launch_random_stormy_night_video:
+    events:
+      - launch_stormy_night_video_1
+      - launch_stormy_night_video_2
+      - launch_stormy_night_video_3
+      - launch_stormy_night_video_4
+      - launch_stormy_night_video_5
+      - launch_stormy_night_video_6
+      - launch_stormy_night_video_7
+      - launch_stormy_night_video_8
+      - launch_stormy_night_video_9
+      - launch_stormy_night_video_10
+
+
+###########################
+
+shot_profiles:
+  storm_profile:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: stormy_night_blink_show
+        speed: 10
+        loops: -1
+        priority: 600
+  storm_sanity_profile:
+    loop: true
+    block: true
+    states:
+      - name: multiballthitflashing
+        show: multiball_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+  storm_profile_aza:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  storm_profile_library:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  storm_profile_king:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  storm_profile_nyarla:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  storm_profile_cthulhu:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  storm_profile_shub:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: stormflash
+        show: base_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+
+###########################
+
+shots:
+  stormy_night_bumper_one_shot:
+    switch: s_popbumper_one
+  stormy_night_bumper_two_shot:
+    switch: s_popbumper_two
+  stormy_night_bumper_three_shot:
+    switch: s_popbumper_three
+  stormy_night_sling_left_shot:
+    switch: s_sling_left
+  stormy_night_sling_right_shot:
+    switch: s_sling_right
+  stormy_night_scoop_bas_shot:
+    switch: s_scoop_bas
+  stormy_night_scoop_haut_shot:
+    switch: s_scoop_haut
+
+  stormy_night_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: storm_profile
+    enable_events: advance_storm_1
+    disable_events: advance_storm_2, advance_storm_3
+    show_tokens:
+      led: insert_41
+  stormy_night_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: storm_profile
+    enable_events: advance_storm_1
+    disable_events: advance_storm_2, advance_storm_3
+    show_tokens:
+      led: insert_32
+  stormy_night_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: storm_profile
+    enable_events: advance_storm_1
+    disable_events: advance_storm_2, advance_storm_3
+    show_tokens:
+      led: insert_30
+  stormy_night_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: storm_profile
+    enable_events: advance_storm_1
+    disable_events: advance_storm_2, advance_storm_3
+    show_tokens:
+      led: insert_20
+  stormy_night_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: storm_profile
+    enable_events: advance_storm_1
+    disable_events: advance_storm_2, advance_storm_3
+    show_tokens:
+      led: insert_10
+
+  stormy_night_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_50
+  stormy_night_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_49  
+  stormy_night_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_48
+  stormy_night_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_11
+  stormy_night_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_12
+  stormy_night_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: storm_sanity_profile
+    show_tokens:
+      led: insert_13
+    
+  stormy_night_roll_asylum_shot:
+    switch: s_roll_asylum
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  stormy_night_gate_library_shot:
+    switch: s_gate_library
+    show_tokens:
+      led: led_1
+  stormy_night_roll_library_shot:
+    switch: s_roll_library
+  stormy_night_roll_space_shot:
+    switch: s_roll_space
+  stormy_night_roll_fordt_shot:
+    switch: s_roll_fordt
+    show_tokens:
+      led: insert_34
+
+  stormy_night_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  stormy_night_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  stormy_night_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  stormy_night_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  stormy_night_team_1_shot:
+    switch: s_roll_skill_shot_1
+  stormy_night_team_2_shot:
+    switch: s_roll_skill_shot_2
+  stormy_night_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  stormy_night_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: storm_profile_cthulhu
+    enable_events: advance_storm_2
+    disable_events: advance_storm_1, advance_storm_3
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  stormy_night_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: storm_profile_nyarla
+    enable_events: advance_storm_2
+    disable_events: advance_storm_1, advance_storm_3
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74
+  stormy_night_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: storm_profile_king
+    enable_events: advance_storm_2
+    disable_events: advance_storm_1, advance_storm_3
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  stormy_night_gate_secret_library_shot:
+    switch: s_gate_secret_library
+  stormy_night_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    show_tokens:
+      led: side_led_right
+  stormy_night_spinner_shot:
+    switch: s_spinner
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+
+  stormy_night_drop_target_1_shot:
+    switch: s_drop_target_1
+    show_tokens:
+      led: insert_24
+  stormy_night_drop_target_2_shot:
+    switch: s_drop_target_2
+    show_tokens:
+      led: insert_23
+  stormy_night_drop_target_3_shot:
+    switch: s_drop_target_3
+    show_tokens:
+      led: insert_22
+  stormy_night_drop_target_4_shot:
+    switch: s_drop_target_4
+    show_tokens:
+      led: insert_21
+
+  stormy_night_green_target_1_shot:
+    switch: s_target_green_1
+    profile: storm_profile
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    show_tokens:
+      led: led_47
+  stormy_night_green_target_2_shot:
+    switch: s_target_green_2
+    profile: storm_profile
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    show_tokens:
+      led: led_45
+  stormy_night_green_target_3_shot:
+    switch: s_target_green_3
+    profile: storm_profile
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    show_tokens:
+      led: led_46
+
+  stormy_night_space_orbit_shot:
+    hit_events: stormy_night_space_orbit_sequence_hit
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    profile: storm_profile_aza
+    show_tokens:
+      led: insert_43, insert_42, insert_40, insert_39
+  stormy_night_asylum_orbit_shot:
+    hit_events: stormy_night_asylum_orbit_sequence_hit
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    profile: storm_profile_shub
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  stormy_night_library_roll_shot:
+    hit_events: stormy_night_library_roll_sequence_hit
+    enable_events: advance_storm_3
+    disable_events: advance_storm_1, advance_storm_2
+    profile: storm_profile_library
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+
+###########################
+
+sequence_shots:
+  stormy_night_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  stormy_night_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  stormy_night_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  mode_stormy_night_started:
+    stormy_night_start_show:
+      action: play
+      speed: 8
+      priority: 500
+      loops: 2
+
+  advance_lightning_1:
+    stormy_night_side_left_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    stormy_night_side_right_show:
+      action: stop
+  advance_lightning_2:
+    stormy_night_side_right_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    stormy_night_side_left_show:
+      action: stop
+  advance_lightning_3:
+    stormy_left_sanity_show:
+      action: play
+      speed: 7
+      priority: 200
+      loops: -1
+    stormy_right_sanity_show, stormy_upleft_sanity_show, stormy_upright_sanity_show, stormy_apron_sanity_show:
+      action: stop
+  advance_lightning_4:
+    stormy_right_sanity_show:
+      action: play
+      speed: 7
+      priority: 200
+      loops: -1
+    stormy_left_sanity_show, stormy_upleft_sanity_show, stormy_upright_sanity_show, stormy_apron_sanity_show:
+      action: stop
+  advance_lightning_5:
+    stormy_upleft_sanity_show:
+      action: play
+      speed: 7
+      priority: 200
+      loops: -1
+    stormy_left_sanity_show, stormy_right_sanity_show, stormy_upright_sanity_show, stormy_apron_sanity_show:
+      action: stop
+  advance_lightning_6:
+    stormy_upright_sanity_show:
+      action: play
+      speed: 7
+      priority: 200
+      loops: -1
+    stormy_left_sanity_show, stormy_right_sanity_show, stormy_upleft_sanity_show, stormy_apron_sanity_show:
+      action: stop
+  advance_lightning_7:
+    stormy_apron_sanity_show:
+      action: play
+      speed: 7
+      priority: 200
+      loops: -1
+    stormy_left_sanity_show, stormy_right_sanity_show, stormy_upleft_sanity_show, stormy_upright_sanity_show:
+      action: stop
+
+  stormy_night_target_square_1_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_target_square_2_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_target_square_3_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_target_square_4_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_target_square_5_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  stormy_night_green_target_1_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_green_target_2_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_green_target_3_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  stormy_night_cthulhu_ramp_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_main_ramp_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_green_ramp_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  stormy_night_space_orbit_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_asylum_orbit_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  stormy_night_library_roll_shot_stormflash_hit:
+    storm_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+###########################
+
+light_player:
+  mode_stormy_night_started:
+    gi:
+      color: off
+    side_led_right:
+      color: off
+    side_led_left:
+      color: off
+      
+###########################
+
+variable_player:
+  timer_exit_stormy_time_tick:
+    exit_stormy_time_variable_times:
+      int: device.timers.exit_stormy_time.ticks
+      action: set
+
+  stormy_night_sling_left_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_sling_right_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  stormy_night_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  stormy_night_target_square_1_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_2_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_3_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_4_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_square_5_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  stormy_night_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  stormy_night_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  stormy_night_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  stormy_night_green_target_1_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_green_target_2_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_green_target_3_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  stormy_night_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  stormy_night_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  stormy_night_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  stormy_night_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  stormy_night_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  stormy_night_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_cthulhu_ramp_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_main_ramp_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_green_ramp_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  stormy_night_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  stormy_night_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_gate_secret_library_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  stormy_night_space_orbit_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_asylum_orbit_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  stormy_night_library_roll_shot_stormflash_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+sound_player:
+  mode_stormy_night_started:
+    stormy_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+    thunder_start_sound:
+      action: play
+      volume: 3
+      events_when_stopped: play_storm_voice
+
+  relaunch_stormy_night_music:
+    stormy_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+
+  play_storm_voice:
+    storm_voice_pool:
+      action: play
+      volume: 5
+
+  stormy_night_cthulhu_ramp_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_main_ramp_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_green_ramp_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_space_orbit_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_asylum_orbit_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_library_roll_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+
+  stormy_night_target_square_1_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_target_square_2_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_target_square_3_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_target_square_4_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_target_square_5_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+
+  stormy_night_green_target_1_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_green_target_2_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+  stormy_night_green_target_3_shot_stormflash_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 3
+
+  advance_lightning_1:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_2:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_3:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_4:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_5:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_6:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+  advance_lightning_7:
+    thunder_sound_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  thunder_sound_pool:
+    load: on_demand
+    type: random_force_all
+    track: sfx
+    sounds:
+      - thunder_1
+      - thunder_2
+      - thunder_3
+      - thunder_4
+      - thunder_5
+      - thunder_6
+      - thunder_7
+      - thunder_8
+      - thunder_9
+      - thunder_10
+
+  storm_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - storm_voice_1
+      - storm_voice_2
+      - storm_voice_3
+
+###########################
+
+videos:
+  stormy_night_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: stormy_night_video_1.mp4
+    events_when_stopped: remove_random_stormy_night_video_1
+
+  stormy_night_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: stormy_night_video_2.mp4
+    events_when_stopped: remove_random_stormy_night_video_2
+
+  stormy_night_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: stormy_night_video_3.mp4
+    events_when_stopped: remove_random_stormy_night_video_3
+
+  stormy_night_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: stormy_night_video_4.mp4
+    events_when_stopped: remove_random_stormy_night_video_4
+
+  stormy_night_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: stormy_night_video_5.mp4
+    events_when_stopped: remove_random_stormy_night_video_5
+
+  stormy_night_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: stormy_night_video_6.mp4
+    events_when_stopped: remove_random_stormy_night_video_6
+
+  stormy_night_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: stormy_night_video_7.mp4
+    events_when_stopped: remove_random_stormy_night_video_7
+
+  stormy_night_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: stormy_night_video_8.mp4
+    events_when_stopped: remove_random_stormy_night_video_8
+
+  stormy_night_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: stormy_night_video_9.mp4
+    events_when_stopped: remove_random_stormy_night_video_9
+
+  stormy_night_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: stormy_night_video_10.mp4
+    events_when_stopped: remove_random_stormy_night_video_10

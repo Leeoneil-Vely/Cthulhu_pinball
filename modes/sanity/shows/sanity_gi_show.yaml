@@ -1,0 +1,11 @@
+#show_version=6
+- time: 0
+  lights:
+    gi: red-f200ms
+    
+- time: "+1"
+  lights:
+    gi: off
+
+
+    

@@ -1,0 +1,15 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_21: white
+    insert_22: white
+    insert_23: white
+    insert_24: white
+
+    insert_55: off
+    insert_54: off
+    insert_14: off
+    insert_15: off
+    insert_0: off
+    insert_1: off
+    insert_2: off

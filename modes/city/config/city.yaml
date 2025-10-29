@@ -1,0 +1,1387 @@
+#config_version=6
+mode:
+  start_events: city_start
+  stop_events: city_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+event_player:
+  mode_city_started: twenties_stop, hold_stop, launch_random_city_video
+  relaunch_city_video: launch_random_city_video|5s
+  city_gate_library_shot_hit: library_city_start
+  city_drop_target_1_shot_lit_hit: shaker_shake
+  city_drop_target_2_shot_lit_hit: shaker_shake
+  city_drop_target_3_shot_lit_hit: shaker_shake
+  city_drop_target_4_shot_lit_hit: shaker_shake
+  "{current_player.city_DT_row_count_value==4}": reset_city_DT, city_DT_row_complete
+  "{current_player.city_DT_count==0}": city_stop, city_win_start
+  s_action_active{current_player.variable_number_of_bullet_value > 0}: action_valid_city_shot, shaker_shake
+  "{current_player.city_sanity_gauge>=2}": launch_sanity_target_voice
+  "{current_player.city_sanity_gauge>=4}": launch_sanity_target_voice
+  city_scoop_haut_shot_hit{current_player.cellar_investigator_state=='free'}: cellar_start
+  multiball_multiball_cellar_multiball_ended: relaunch_city_music
+  multiball_multiball_twenties_multiball_ended: relaunch_city_music
+
+  mode_city_started{current_player.lock_rlyeh_city_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_city_music
+
+###########################
+
+random_event_player:
+  action_valid_city_shot:
+    events:
+      - action_valid_city_shot_1{device.shots.city_drop_target_1_shot.state_name=='lit'}
+      - action_valid_city_shot_2{device.shots.city_drop_target_2_shot.state_name=='lit'}
+      - action_valid_city_shot_3{device.shots.city_drop_target_3_shot.state_name=='lit'}
+      - action_valid_city_shot_4{device.shots.city_drop_target_4_shot.state_name=='lit'}
+    force_all: true
+
+  launch_random_city_video:
+    events:
+      - launch_city_video_1
+      - launch_city_video_2
+      - launch_city_video_3
+      - launch_city_video_4
+      - launch_city_video_5
+      - launch_city_video_6
+      - launch_city_video_7
+      - launch_city_video_8
+      - launch_city_video_9
+      - launch_city_video_10
+      - launch_city_video_11
+      - launch_city_video_12
+      - launch_city_video_13
+      - launch_city_video_14
+      - launch_city_video_15
+      - launch_city_video_16
+      - launch_city_video_17
+      - launch_city_video_18
+      - launch_city_video_19
+      - launch_city_video_20
+      - launch_city_video_21
+      - launch_city_video_22
+      - launch_city_video_23
+      - launch_city_video_24
+      - launch_city_video_25
+      - launch_city_video_26
+
+###########################
+
+slides:
+  city_slide: []
+
+###########################
+
+slide_player:
+  mode_city_started: city_slide
+
+###########################
+
+widgets:
+  city_indication_banner:
+    type: text
+    text: Search the ruins !
+    color: '006666'
+    style: mission_text
+    y: 72%
+    x: 65%
+    z: 100
+
+  city_indication_banner_2:
+    type: text
+    text: Drop targets (player|city_DT_count) times
+    color: '006666'
+    style: mission_text
+    y: 62%
+    x: 65%
+    z: 100
+
+  city_banner_image:
+    type: Image
+    image: mini_city
+    y: 50%
+    x: 20%
+    z: 100
+
+  city_name_banner:
+    type: text
+    text: Sunken city
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: '006666'
+    style: mission_text
+
+
+  video_city_1_scratch_widget:
+    type: video
+    video: city_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_2_scratch_widget:
+    type: video
+    video: city_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_3_scratch_widget:
+    type: video
+    video: city_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_4_scratch_widget:
+    type: video
+    video: city_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_5_scratch_widget:
+    type: video
+    video: city_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_6_scratch_widget:
+    type: video
+    video: city_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_7_scratch_widget:
+    type: video
+    video: city_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_8_scratch_widget:
+    type: video
+    video: city_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_9_scratch_widget:
+    type: video
+    video: city_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_10_scratch_widget:
+    type: video
+    video: city_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_11_scratch_widget:
+    type: video
+    video: city_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_12_scratch_widget:
+    type: video
+    video: city_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_13_scratch_widget:
+    type: video
+    video: city_scratch_movie_13
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_14_scratch_widget:
+    type: video
+    video: city_scratch_movie_14
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_15_scratch_widget:
+    type: video
+    video: city_scratch_movie_15
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_16_scratch_widget:
+    type: video
+    video: city_scratch_movie_16
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_17_scratch_widget:
+    type: video
+    video: city_scratch_movie_17
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_18_scratch_widget:
+    type: video
+    video: city_scratch_movie_18
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_19_scratch_widget:
+    type: video
+    video: city_scratch_movie_19
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_20_scratch_widget:
+    type: video
+    video: city_scratch_movie_20
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_21_scratch_widget:
+    type: video
+    video: city_scratch_movie_21
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_22_scratch_widget:
+    type: video
+    video: city_scratch_movie_22
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_23_scratch_widget:
+    type: video
+    video: city_scratch_movie_23
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_24_scratch_widget:
+    type: video
+    video: city_scratch_movie_24
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_25_scratch_widget:
+    type: video
+    video: city_scratch_movie_25
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+  video_city_26_scratch_widget:
+    type: video
+    video: city_scratch_movie_26
+    auto_play: true
+    end_behavior: stop
+    z: 5
+    events_when_removed: relaunch_city_video
+
+
+
+  video_city_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+###########################
+
+widget_player:
+  mode_city_started:
+    city_indication_banner, city_indication_banner_2, city_name_banner, city_banner_image, cthulhu_frame_image, video_city_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: city_slide
+  mode_city_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: city_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_city_video_1:
+    video_city_1_scratch_widget:
+      slide: city_slide   
+  launch_city_video_2:
+    video_city_2_scratch_widget:
+      slide: city_slide   
+  launch_city_video_3:
+    video_city_3_scratch_widget:
+      slide: city_slide
+  launch_city_video_4:
+    video_city_4_scratch_widget:
+      slide: city_slide
+  launch_city_video_5:
+    video_city_5_scratch_widget:
+      slide: city_slide   
+  launch_city_video_6:
+    video_city_6_scratch_widget:
+      slide: city_slide
+  launch_city_video_7:
+    video_city_7_scratch_widget:
+      slide: city_slide
+  launch_city_video_8:
+    video_city_8_scratch_widget:
+      slide: city_slide 
+  launch_city_video_9:
+    video_city_9_scratch_widget:
+      slide: city_slide   
+  launch_city_video_10:
+    video_city_10_scratch_widget:
+      slide: city_slide   
+  launch_city_video_11:
+    video_city_11_scratch_widget:
+      slide: city_slide
+  launch_city_video_12:
+    video_city_12_scratch_widget:
+      slide: city_slide
+  launch_city_video_13:
+    video_city_13_scratch_widget:
+      slide: city_slide   
+  launch_city_video_14:
+    video_city_14_scratch_widget:
+      slide: city_slide
+  launch_city_video_15:
+    video_city_15_scratch_widget:
+      slide: city_slide
+  launch_city_video_16:
+    video_city_16_scratch_widget:
+      slide: city_slide
+  launch_city_video_17:
+    video_city_17_scratch_widget:
+      slide: city_slide   
+  launch_city_video_18:
+    video_city_18_scratch_widget:
+      slide: city_slide   
+  launch_city_video_19:
+    video_city_19_scratch_widget:
+      slide: city_slide
+  launch_city_video_20:
+    video_city_20_scratch_widget:
+      slide: city_slide
+  launch_city_video_21:
+    video_city_21_scratch_widget:
+      slide: city_slide   
+  launch_city_video_22:
+    video_city_22_scratch_widget:
+      slide: city_slide
+  launch_city_video_23:
+    video_city_23_scratch_widget:
+      slide: city_slide
+  launch_city_video_24:
+    video_city_24_scratch_widget:
+      slide: city_slide
+  launch_city_video_25:
+    video_city_25_scratch_widget:
+      slide: city_slide
+  launch_city_video_26:
+    video_city_26_scratch_widget:
+      slide: city_slide
+
+
+  remove_random_city_video_1:
+    video_city_1_scratch_widget:
+      action: remove
+  remove_random_city_video_2:
+    video_city_2_scratch_widget:
+      action: remove
+  remove_random_city_video_3:
+    video_city_3_scratch_widget:
+      action: remove
+  remove_random_city_video_4:
+    video_city_4_scratch_widget:
+      action: remove
+  remove_random_city_video_5:
+    video_city_5_scratch_widget:
+      action: remove
+  remove_random_city_video_6:
+    video_city_6_scratch_widget:
+      action: remove
+  remove_random_city_video_7:
+    video_city_7_scratch_widget:
+      action: remove
+  remove_random_city_video_8:
+    video_city_8_scratch_widget:
+      action: remove
+  remove_random_city_video_9:
+    video_city_9_scratch_widget:
+      action: remove
+  remove_random_city_video_10:
+    video_city_10_scratch_widget:
+      action: remove
+  remove_random_city_video_11:
+    video_city_11_scratch_widget:
+      action: remove
+  remove_random_city_video_12:
+    video_city_12_scratch_widget:
+      action: remove
+  remove_random_city_video_13:
+    video_city_13_scratch_widget:
+      action: remove
+  remove_random_city_video_14:
+    video_city_14_scratch_widget:
+      action: remove
+  remove_random_city_video_15:
+    video_city_15_scratch_widget:
+      action: remove
+  remove_random_city_video_16:
+    video_city_16_scratch_widget:
+      action: remove
+  remove_random_city_video_17:
+    video_city_17_scratch_widget:
+      action: remove
+  remove_random_city_video_18:
+    video_city_18_scratch_widget:
+      action: remove
+  remove_random_city_video_19:
+    video_city_19_scratch_widget:
+      action: remove
+  remove_random_city_video_20:
+    video_city_20_scratch_widget:
+      action: remove
+  remove_random_city_video_21:
+    video_city_21_scratch_widget:
+      action: remove
+  remove_random_city_video_22:
+    video_city_22_scratch_widget:
+      action: remove
+  remove_random_city_video_23:
+    video_city_23_scratch_widget:
+      action: remove
+  remove_random_city_video_24:
+    video_city_24_scratch_widget:
+      action: remove
+  remove_random_city_video_25:
+    video_city_25_scratch_widget:
+      action: remove
+  remove_random_city_video_26:
+    video_city_26_scratch_widget:
+      action: remove
+
+
+###########################
+
+shot_profiles:
+  city_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: lit
+        show: city_blink_show
+        speed: 8
+        loops: -1
+        priority: 100
+      - name: off
+        show: off
+
+  city_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: citythitflashing
+        show: city_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 600
+
+###########################
+
+shots:
+  city_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: city_target_flash
+    show_tokens:
+      led: insert_84
+  city_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: city_target_flash
+    show_tokens:
+      led: insert_85
+  city_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: city_target_flash
+    show_tokens:
+      led: insert_86
+  city_sling_left_shot:
+    switch: s_sling_left
+    profile: city_target_flash
+    show_tokens:
+      led: led_30, led_31
+  city_sling_right_shot:
+    switch: s_sling_right
+    profile: city_target_flash
+    show_tokens:
+      led: led_36, led_37
+  scity_sling_up_shot:
+    switch: s_sling_up
+    profile: city_target_flash
+    show_tokens:
+      led: led_5, led_6
+  city_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: city_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  city_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: city_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+  city_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: city_target_flash
+    show_tokens:
+      led: insert_41
+  city_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: city_target_flash
+    show_tokens:
+      led: insert_32
+  city_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: city_target_flash
+    show_tokens:
+      led: insert_30
+  city_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: city_target_flash
+    show_tokens:
+      led: insert_20
+  city_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: city_target_flash
+    show_tokens:
+      led: insert_10
+    
+  city_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: city_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  city_gate_library_shot:
+    switch: s_gate_library
+    profile: city_target_flash
+    show_tokens:
+      led: led_12, led_1
+  city_roll_library_shot:
+    switch: s_roll_library
+    profile: city_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  city_roll_space_shot:
+    switch: s_roll_space
+    profile: city_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  city_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: city_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  city_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: city_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  city_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: city_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  city_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: city_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  city_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: city_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  city_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: city_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  city_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: city_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  city_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: city_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  city_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: city_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  city_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: city_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  city_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: city_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  city_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: city_target_flash
+    show_tokens:
+      led: led_1, led_2
+  city_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: city_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  city_spinner_shot:
+    switch: s_spinner
+    profile: city_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+
+  city_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: city_profile
+    reset_events: city_DT_row_complete
+    hit_events: action_valid_city_shot_1
+    show_tokens:
+      led: insert_24
+  city_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: city_profile
+    reset_events: city_DT_row_complete
+    hit_events: action_valid_city_shot_2
+    show_tokens:
+      led: insert_23
+  city_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: city_profile
+    reset_events: city_DT_row_complete
+    hit_events: action_valid_city_shot_3
+    show_tokens:
+      led: insert_22
+  city_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: city_profile
+    reset_events: city_DT_row_complete
+    hit_events: action_valid_city_shot_4
+    show_tokens:
+      led: insert_21
+
+  city_green_target_1_shot:
+    switch: s_target_green_1
+    profile: city_target_flash
+    show_tokens:
+      led: insert_47
+  city_green_target_2_shot:
+    switch: s_target_green_2
+    profile: city_target_flash
+    show_tokens:
+      led: insert_45
+  city_green_target_3_shot:
+    switch: s_target_green_3
+    profile: city_target_flash
+    show_tokens:
+      led: insert_46
+
+  city_space_orbit_shot:
+    hit_events: city_space_orbit_sequence_hit
+  city_asylum_orbit_shot:
+    hit_events: city_asylum_orbit_sequence_hit
+  city_library_roll_shot:
+    hit_events: city_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  city_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  city_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  city_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+
+###########################
+
+show_player:
+  mode_city_started:
+    mission_city_blink_show:
+      speed: 5
+  reset_city_DT:
+    city_DT_show:
+      speed: 50
+      loops: 1
+    city_DT_2_show:
+      speed: 40
+      loops: 15
+      priority: 800
+
+  city_sling_left_shot_hit:
+    city_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  city_sling_right_shot_hit:
+    city_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+  city_cthulhu_ramp_shot_hit:
+    all_insert_city_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  city_green_ramp_shot_hit:
+    all_insert_city_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  city_main_ramp_shot_hit:
+    all_insert_city_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  city_asylum_orbit_shot_hit:
+    city_roll_asylum_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  city_space_orbit_shot_hit:
+    city_roll_space_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  city_library_roll_shot_hit:
+    all_insert_city_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  city_drop_target_1_shot_lit_hit:
+    city_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  city_drop_target_2_shot_lit_hit:
+    city_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  city_drop_target_3_shot_lit_hit:
+    city_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  city_drop_target_4_shot_lit_hit:
+    city_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+###########################
+
+timers:
+  DT_city_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: reset_city_DT
+      - action: stop
+        event: timer_DT_city_reset_time_complete
+
+  city_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_city_started
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_city_available:
+      action: set
+      string: 'no'
+
+  action_valid_city_shot:
+    variable_number_of_bullet_value:
+      int: -1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_drop_target_1_shot_lit_hit:
+    city_DT_row_count_value:
+      int: +1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_drop_target_2_shot_lit_hit:
+    city_DT_row_count_value:
+      int: +1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_drop_target_3_shot_lit_hit:
+    city_DT_row_count_value:
+      int: +1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_drop_target_4_shot_lit_hit:
+    city_DT_row_count_value:
+      int: +1
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  reset_city_DT:
+    city_DT_row_count_value:
+      action: set
+      int: 0
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_DT_row_complete:
+    city_DT_count:
+      int: -1
+
+  city_sling_left_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_sling_right_shot_hit:
+    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  city_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+  city_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 1
+
+  city_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  city_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  city_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  city_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+  city_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 1
+
+  city_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  city_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  sanity_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  green_target_group_complete:
+    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  library_target_group_complete:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+###########################
+
+light_player:
+  mode_city_started:
+    gi:
+      color: '006666'
+    side_led_right:
+      color: '006666'
+    side_led_left:
+      color: '006666'
+    city_box_led: white
+
+###########################
+
+sound_player:
+  mode_city_started:
+    city_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    city_music:
+      action: stop
+
+
+  relaunch_city_music:
+    dramatic_music_pool, suspens_music_pool:
+      action: stop
+    city_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_city_voice_time_complete:
+    city_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+  drop_target_city_group_complete:
+    city_dt_complete_sfx:
+      action: play
+      volume: 2
+
+  city_bumper_one_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_bumper_two_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_bumper_three_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_sling_left_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_sling_right_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_scoop_bas_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_scoop_haut_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_target_square_1_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_target_square_2_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_target_square_3_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_target_square_4_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_target_square_5_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_green_target_1_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_green_target_2_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_green_target_3_shot_hit:
+    city_sfx_pool:
+      action: play
+
+
+  city_team_1_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_team_2_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_team_3_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_spinner_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_roll_left_outlane_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_left_inlane_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_right_inlane_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_right_outlane_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_library_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_fordt_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_space_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_roll_asylum_shot_hit:
+    city_sfx_pool:
+      action: play
+
+  city_cthulhu_ramp_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_main_ramp_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_green_ramp_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_gate_library_shot_hit:
+    city_sfx_pool:
+      action: play
+  city_gate_exit_library_shot_hit:
+    city_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  city_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - city_voice_1
+      - city_voice_2
+      - city_voice_3
+      - city_voice_4
+      - city_voice_5
+      - city_voice_6
+      - city_voice_7
+      - city_voice_8
+      - city_voice_9
+      - city_voice_10
+      - city_voice_11
+      - city_voice_12
+      - city_voice_13
+      - city_voice_14
+      - city_voice_15
+      - city_voice_16
+      - city_voice_17
+      - city_voice_18
+      - city_voice_19
+      - city_voice_20
+      - city_voice_21
+      - city_voice_22
+
+  city_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - city_sfx_1
+      - city_sfx_2
+      - city_sfx_3
+      - city_sfx_4
+      - city_sfx_5
+      - city_sfx_6
+      - city_sfx_7
+      - city_sfx_8
+      - city_sfx_9
+      - city_sfx_10
+      - city_sfx_11
+      - city_sfx_12
+      - city_sfx_13
+      - city_sfx_14
+      - city_sfx_15
+      - city_sfx_16
+      - city_sfx_17
+
+###########################
+
+videos:
+  city_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: city_video_1.mp4
+    events_when_stopped: remove_random_city_video_1
+  city_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: city_video_2.mp4
+    events_when_stopped: remove_random_city_video_2
+  city_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: city_video_3.mp4
+    events_when_stopped: remove_random_city_video_3
+  city_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: city_video_4.mp4
+    events_when_stopped: remove_random_city_video_4
+  city_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: city_video_5.mp4
+    events_when_stopped: remove_random_city_video_5
+  city_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: city_video_6.mp4
+    events_when_stopped: remove_random_city_video_6
+  city_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: city_video_7.mp4
+    events_when_stopped: remove_random_city_video_7
+  city_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: city_video_7.mp4
+    events_when_stopped: remove_random_city_video_8
+  city_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: city_video_9.mp4
+    events_when_stopped: remove_random_city_video_9
+  city_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: city_video_10.mp4
+    events_when_stopped: remove_random_city_video_10
+  city_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: city_video_11.mp4
+    events_when_stopped: remove_random_city_video_11
+  city_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: city_video_12.mp4
+    events_when_stopped: remove_random_city_video_12
+  city_scratch_movie_13:
+    width: 1440
+    height: 900
+    file: city_video_13.mp4
+    events_when_stopped: remove_random_city_video_13
+  city_scratch_movie_14:
+    width: 1440
+    height: 900
+    file: city_video_14.mp4
+    events_when_stopped: remove_random_city_video_14
+  city_scratch_movie_15:
+    width: 1440
+    height: 900
+    file: city_video_15.mp4
+    events_when_stopped: remove_random_city_video_15
+  city_scratch_movie_16:
+    width: 1440
+    height: 900
+    file: city_video_16.mp4
+    events_when_stopped: remove_random_city_video_16
+  city_scratch_movie_17:
+    width: 1440
+    height: 900
+    file: city_video_17.mp4
+    events_when_stopped: remove_random_city_video_17
+  city_scratch_movie_18:
+    width: 1440
+    height: 900
+    file: city_video_18.mp4
+    events_when_stopped: remove_random_city_video_18
+  city_scratch_movie_19:
+    width: 1440
+    height: 900
+    file: city_video_19.mp4
+    events_when_stopped: remove_random_city_video_19
+  city_scratch_movie_20:
+    width: 1440
+    height: 900
+    file: city_video_20.mp4
+    events_when_stopped: remove_random_city_video_20
+  city_scratch_movie_21:
+    width: 1440
+    height: 900
+    file: city_video_21.mp4
+    events_when_stopped: remove_random_city_video_21
+  city_scratch_movie_22:
+    width: 1440
+    height: 900
+    file: city_video_22.mp4
+    events_when_stopped: remove_random_city_video_22
+  city_scratch_movie_23:
+    width: 1440
+    height: 900
+    file: city_video_23.mp4
+    events_when_stopped: remove_random_city_video_23
+  city_scratch_movie_24:
+    width: 1440
+    height: 900
+    file: city_video_24.mp4
+    events_when_stopped: remove_random_city_video_24
+  city_scratch_movie_25:
+    width: 1440
+    height: 900
+    file: city_video_25.mp4
+    events_when_stopped: remove_random_city_video_25
+  city_scratch_movie_26:
+    width: 1440
+    height: 900
+    file: city_video_26.mp4
+    events_when_stopped: remove_random_city_video_26

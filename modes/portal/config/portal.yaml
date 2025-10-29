@@ -1,0 +1,257 @@
+#config_version=6
+mode:
+  start_events: portal_start
+  stop_events: portal_stop, ball_ended
+  priority: 950
+  restart_on_next_ball: false
+
+
+###########################
+
+event_player:
+  timer_portal_end_time_complete: portal_stop
+
+###########################
+
+random_event_player:
+  mode_portal_started:
+    events:
+      - launch_portal_video_1
+      - launch_portal_video_2
+      - launch_portal_video_3
+      - launch_portal_video_4
+      - launch_portal_video_5
+      - launch_portal_video_6
+      - launch_portal_video_7
+      - launch_portal_video_8
+      - launch_portal_video_9
+      - launch_portal_video_10
+      - launch_portal_video_11
+      - launch_portal_video_12
+
+###########################
+
+slides:
+  portal_slide: []
+
+###########################
+
+slide_player:
+  mode_portal_started: portal_slide
+
+###########################
+
+widgets:
+  video_portal_1_scratch_widget:
+    type: video
+    video: portal_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_2_scratch_widget:
+    type: video
+    video: portal_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_3_scratch_widget:
+    type: video
+    video: portal_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_4_scratch_widget:
+    type: video
+    video: portal_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_5_scratch_widget:
+    type: video
+    video: portal_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_6_scratch_widget:
+    type: video
+    video: portal_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_7_scratch_widget:
+    type: video
+    video: portal_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_8_scratch_widget:
+    type: video
+    video: portal_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_9_scratch_widget:
+    type: video
+    video: portal_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_10_scratch_widget:
+    type: video
+    video: portal_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_11_scratch_widget:
+    type: video
+    video: portal_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+  video_portal_12_scratch_widget:
+    type: video
+    video: portal_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 7
+
+###########################
+
+widget_player:
+  mode_portal_started:
+    cthulhu_frame_image, base_score_widget, superpops_widget:
+      action: add
+      slide: portal_slide
+
+  launch_portal_video_1:
+    video_portal_1_scratch_widget:
+      slide: portal_slide   
+  launch_portal_video_2:
+    video_portal_2_scratch_widget:
+      slide: portal_slide   
+  launch_portal_video_3:
+    video_portal_3_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_4:
+    video_portal_4_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_5:
+    video_portal_5_scratch_widget:
+      slide: portal_slide   
+  launch_portal_video_6:
+    video_portal_6_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_7:
+    video_portal_7_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_8:
+    video_portal_8_scratch_widget:
+      slide: portal_slide 
+  launch_portal_video_9:
+    video_portal_9_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_10:
+    video_portal_10_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_11:
+    video_portal_11_scratch_widget:
+      slide: portal_slide
+  launch_portal_video_12:
+    video_portal_12_scratch_widget:
+      slide: portal_slide
+
+###########################
+
+timers:
+  portal_end_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_portal_started
+
+###########################
+
+show_player:
+  mode_portal_started:
+    portal_led_blink_show:
+      speed: 40
+      loops: 10
+      priority: 500
+
+###########################
+
+videos:
+  portal_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: portal_video_1.mp4
+
+  portal_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: portal_video_2.mp4
+
+  portal_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: portal_video_3.mp4
+
+  portal_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: portal_video_4.mp4
+
+  portal_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: portal_video_5.mp4
+
+  portal_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: portal_video_6.mp4
+
+  portal_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: portal_video_7.mp4
+
+  portal_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: portal_video_8.mp4
+
+  portal_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: portal_video_9.mp4
+
+  portal_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: portal_video_10.mp4
+
+  portal_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: portal_video_11.mp4
+
+  portal_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: portal_video_12.mp4

@@ -1,0 +1,72 @@
+#config_version=6
+
+mode:
+  start_events: start_mode_superskillshot, ball_started
+  stop_events: stop_mode_superskillshot
+  priority: 1000
+  restart_on_next_ball: true
+
+###########################
+
+shots:
+  superskillshot:
+    switch: s_roll_fordt
+
+###########################
+
+show_player:
+  mode_superskillshot_started:
+    superskillshot_blink_show:
+      speed: 10
+      priority: 100
+
+###########################
+
+event_player:
+  superskillshot_hit: stop_mode_superskillshot|2s
+  #playfield_active: stop_mode_superskillshot|5s
+  balldevice_bd_plunger_lane_ball_eject_success: stop_mode_superskillshot|5s
+
+###########################
+
+variable_player:
+  superskillshot_hit:
+    score: 50000
+
+###########################
+
+widget_player:
+  superskillshot_hit:
+    superskillshot_widget:
+      slide: base_slide
+
+###########################
+
+widgets:
+  superskillshot_widget:
+    type: text
+    text: SUPERSKILLSHOT ! FORD-T RIDE !
+    y: 28%
+    x: 50%
+    z: 100
+    expire: 5s
+
+###########################
+
+sound_player:
+  superskillshot_hit:
+    superskillshot_sound_pool:
+      action: play
+      volume: 2
+
+
+sound_pools:
+  superskillshot_sound_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - superskillshot_1
+      - superskillshot_2
+      - superskillshot_3
+

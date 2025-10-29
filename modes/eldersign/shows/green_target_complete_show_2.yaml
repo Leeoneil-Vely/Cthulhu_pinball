@@ -1,0 +1,1055 @@
+#show_version=6
+- time: 0
+  lights:
+    insert_23: '010001'
+    insert_24: '020002'
+    insert_34: '010001'
+    led_45: 'C900C9'
+    led_46: 'F600F6'
+    led_47: 'B600B6'
+    
+- time: '+1'
+  lights:
+    insert_23: '0A000A'
+    insert_24: '0D000D'
+    insert_34: '000000'
+    led_44: '040004'
+    led_46: 'D700D7'
+    led_47: '6B006B'
+    
+- time: '+1'
+  lights:
+    insert_22: '0D000D'
+    insert_23: '250025'
+    insert_24: '220022'
+    led_44: '050005'
+    led_45: 'AA00AA'
+    led_46: '9B009B'
+    led_47: '340034'
+    
+- time: '+1'
+  lights:
+    insert_21: '080008'
+    insert_22: '340034'
+    insert_23: '570057'
+    insert_24: '3B003B'
+    led_44: '070007'
+    led_45: '750075'
+    led_46: '4A004A'
+    led_47: '0E000E'
+    
+- time: '+1'
+  lights:
+    insert_21: '230023'
+    insert_22: '750075'
+    insert_23: '950095'
+    insert_24: '560056'
+    led_44: '030003'
+    led_45: '3D003D'
+    led_46: '1A001A'
+    led_47: '010001'
+    
+- time: '+1'
+  lights:
+    insert_20: '010001'
+    insert_21: '610061'
+    insert_22: 'C300C3'
+    insert_23: 'C200C2'
+    insert_24: '5D005D'
+    led_44: '010001'
+    led_45: '160016'
+    led_46: '040004'
+    led_47: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: '080008'
+    insert_21: 'AB00AB'
+    insert_22: 'EB00EB'
+    insert_23: 'D600D6'
+    insert_24: '5A005A'
+    led_44: '000000'
+    led_45: '040004'
+    led_46: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: '1B001B'
+    insert_21: 'E100E1'
+    insert_22: 'F900F9'
+    insert_23: 'CE00CE'
+    insert_24: '3E003E'
+    insert_25: '010001'
+    insert_74: '010001'
+    led_45: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: '320032'
+    insert_21: 'F500F5'
+    insert_22: 'FB00FB'
+    insert_23: 'B700B7'
+    insert_24: '270028'
+    insert_25: '000000'
+    insert_74: '030003'
+    
+- time: '+1'
+  lights:
+    insert_18: '010001'
+    insert_20: '520052'
+    insert_21: 'FA00FA'
+    insert_22: 'ED00ED'
+    insert_23: '7B007B'
+    insert_24: '0F000F'
+    insert_68: '0F000F'
+    insert_72: '010001'
+    insert_74: '050005'
+    
+- time: '+1'
+  lights:
+    insert_18: '040004'
+    insert_20: '690069'
+    insert_21: 'F000F0'
+    insert_22: 'C200C2'
+    insert_23: '3C003C'
+    insert_24: '020002'
+    insert_68: '350035'
+    insert_72: '050005'
+    insert_74: '040004'
+    
+- time: '+1'
+  lights:
+    insert_17: '030003'
+    insert_20: '610061'
+    insert_21: 'D100D1'
+    insert_22: '7C007C'
+    insert_23: '180018'
+    insert_24: '000000'
+    insert_68: '750077'
+    insert_69: '010001'
+    insert_72: '120012'
+    insert_74: '030003'
+    
+- time: '+1'
+  lights:
+    insert_16: '060006'
+    insert_17: '0B000B'
+    insert_18: '050005'
+    insert_20: '4F004F'
+    insert_21: '8D008E'
+    insert_22: '340034'
+    insert_23: '030003'
+    insert_67: '080008'
+    insert_68: 'C300C3'
+    insert_69: '0A000A'
+    insert_72: '1E001E'
+    insert_74: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: '100010'
+    insert_17: '0E000E'
+    insert_18: '020002'
+    insert_20: '300030'
+    insert_21: '440045'
+    insert_22: '100010'
+    insert_23: '000000'
+    insert_67: '230023'
+    insert_68: 'EB00EB'
+    insert_69: '200020'
+    insert_71: '010001'
+    insert_72: '2D002D'
+    insert_73: '010001'
+    
+- time: '+1'
+  lights:
+    insert_16: '230023'
+    insert_17: '110011'
+    insert_18: '000000'
+    insert_20: '180018'
+    insert_21: '160016'
+    insert_22: '000000'
+    insert_64: '010001'
+    insert_67: '610061'
+    insert_68: 'F800F8'
+    insert_69: '3E003E'
+    insert_71: '020002'
+    insert_72: '300030'
+    insert_73: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: '2F002F'
+    insert_17: '0D000D'
+    insert_20: '060006'
+    insert_21: '030003'
+    insert_64: '0F000F'
+    insert_66: '070007'
+    insert_67: 'AE00AE'
+    insert_68: 'F900F9'
+    insert_69: '620062'
+    insert_71: '040004'
+    insert_72: '2C002C'
+    insert_73: '010001'
+    
+- time: '+1'
+  lights:
+    insert_16: '370037'
+    insert_17: '090009'
+    insert_20: '000000'
+    insert_21: '000000'
+    insert_63: '030003'
+    insert_64: '380038'
+    insert_65: '0A000A'
+    insert_66: '180018'
+    insert_67: 'E200E2'
+    insert_68: 'E800E8'
+    insert_69: '730073'
+    insert_71: '020002'
+    insert_72: '1B001B'
+    insert_73: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: '2D002D'
+    insert_17: '020002'
+    insert_63: '170017'
+    insert_64: '7C007C'
+    insert_65: '260026'
+    insert_66: '360036'
+    insert_67: 'F800F8'
+    insert_68: 'C100C1'
+    insert_69: '790079'
+    insert_71: '010001'
+    insert_72: '0F000F'
+    
+- time: '+1'
+  lights:
+    insert_16: '220022'
+    insert_17: '000000'
+    insert_63: '450045'
+    insert_64: 'CA00CA'
+    insert_65: '630063'
+    insert_66: '570057'
+    insert_67: 'FB00FB'
+    insert_68: '730073'
+    insert_69: '5B005B'
+    insert_71: '000000'
+    insert_72: '030003'
+    
+- time: '+1'
+  lights:
+    insert_16: '110011'
+    insert_63: '900090'
+    insert_64: 'EF00EF'
+    insert_65: 'AF00AF'
+    insert_66: '730073'
+    insert_67: 'F400F4'
+    insert_68: '340034'
+    insert_69: '400041'
+    insert_72: '000000'
+    
+- time: '+1'
+  lights:
+    insert_16: '050005'
+    insert_63: 'D600D6'
+    insert_64: 'FC00FC'
+    insert_65: 'DE00DE'
+    insert_67: 'D500D5'
+    insert_68: '0D000D'
+    insert_69: '1F001F'
+    
+- time: '+1'
+  lights:
+    insert_16: '000000'
+    insert_63: 'F500F5'
+    insert_65: 'F300F3'
+    insert_66: '5E005E'
+    insert_67: '900090'
+    insert_68: '000000'
+    insert_69: '080008'
+    
+- time: '+1'
+  lights:
+    insert_62: '050005'
+    insert_63: 'FE00FE'
+    insert_64: 'EF00EF'
+    insert_65: 'F500F5'
+    insert_66: '460046'
+    insert_67: '480048'
+    insert_69: '000000'
+    
+- time: '+1'
+  lights:
+    insert_62: '1E001E'
+    insert_63: 'F900F9'
+    insert_64: 'C600C6'
+    insert_65: 'E600E6'
+    insert_66: '220022'
+    insert_67: '170017'
+    
+- time: '+1'
+  lights:
+    insert_60: '0A000A'
+    insert_61: '050005'
+    insert_62: '510051'
+    insert_63: 'E800E8'
+    insert_64: '7E007E'
+    insert_65: 'C300C3'
+    insert_66: '0F000F'
+    insert_67: '030003'
+    
+- time: '+1'
+  lights:
+    insert_60: '2B002B'
+    insert_61: '1D001D'
+    insert_62: 'A800A8'
+    insert_63: 'B600B6'
+    insert_64: '340034'
+    insert_65: '790079'
+    insert_66: '010001'
+    insert_67: '000000'
+    
+- time: '+1'
+  lights:
+    insert_53: '010001'
+    insert_59: '090009'
+    insert_60: '5A005A'
+    insert_61: '4C004C'
+    insert_62: 'DE00DE'
+    insert_63: '690069'
+    insert_64: '0F000F'
+    insert_65: '390039'
+    insert_66: '000000'
+    
+- time: '+1'
+  lights:
+    insert_58: '0D000D'
+    insert_59: '260026'
+    insert_60: 'A000A0'
+    insert_61: '930093'
+    insert_62: 'F800F8'
+    insert_63: '280028'
+    insert_64: '010001'
+    insert_65: '100010'
+    
+- time: '+1'
+  lights:
+    insert_58: '2E002E'
+    insert_59: '540054'
+    insert_60: 'C500C5'
+    insert_61: 'CB00CB'
+    insert_62: 'FF00FF'
+    insert_63: '090009'
+    insert_64: '000000'
+    insert_65: '010001'
+    
+- time: '+1'
+  lights:
+    insert_53: '000000'
+    insert_58: '6E006E'
+    insert_59: 'A000A0'
+    insert_60: 'DC00DC'
+    insert_61: 'E200E2'
+    insert_62: 'F800F8'
+    insert_63: '000000'
+    insert_65: '000000'
+    
+- time: '+1'
+  lights:
+    insert_58: 'BB00BB'
+    insert_59: 'CC00CC'
+    insert_60: 'D400D4'
+    insert_61: 'E800E8'
+    insert_62: 'FF00FF'
+    
+- time: '+1'
+  lights:
+    insert_58: '000000'
+    insert_59: '000000'
+    insert_60: '000000'
+    insert_61: '000000'
+    insert_62: 'FF00FD'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_60: '190019'
+    
+- time: '+1'
+  lights:
+    insert_60: 'F900F7'
+    
+- time: '+1'
+  lights:
+    insert_60: 'FF00FD'
+    
+- time: '+1'
+  lights:
+    insert_62: '460046'
+    
+- time: '+1'
+  lights:
+    insert_62: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_59: 'EF00ED'
+    
+- time: '+1'
+  lights:
+    insert_59: 'FF00FD'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_60: 'DF00DD'
+    
+- time: '+1'
+  lights:
+    insert_60: '040004'
+    
+- time: '+1'
+  lights:
+    insert_60: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_58: '0E000D'
+    
+- time: '+1'
+  lights:
+    insert_58: 'FF00FD'
+    insert_59: '0B000B'
+    
+- time: '+1'
+  lights:
+    insert_59: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_61: '1E001D'
+    
+- time: '+1'
+  lights:
+    insert_61: 'EB00E9'
+    
+- time: '+1'
+  lights:
+    insert_61: 'FF00FD'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_58: '120011'
+    
+- time: '+1'
+  lights:
+    insert_58: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_62: 'AE00AC'
+    
+- time: '+1'
+  lights:
+    insert_62: 'FF00FD'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_61: 'F500F3'
+    
+- time: '+1'
+  lights:
+    insert_61: '290029'
+    
+- time: '+1'
+  lights:
+    insert_61: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_59: '010001'
+    insert_60: '4C004C'
+    insert_61: '610061'
+    insert_62: 'FF00FF'
+    
+- time: '+1'
+  lights:
+    insert_59: '040004'
+    insert_60: '5C005C'
+    insert_61: '710071'
+    insert_62: 'FE00FE'
+    
+- time: '+1'
+  lights:
+    insert_59: '050005'
+    insert_60: '640064'
+    insert_61: '780078'
+    
+- time: '+1'
+  lights:
+    insert_59: '0C000C'
+    insert_60: '740074'
+    insert_61: '880088'
+    insert_62: 'FD00FD'
+    
+- time: '+1'
+  lights:
+    insert_58: '010001'
+    insert_59: '0E000F'
+    insert_60: '7B007B'
+    insert_61: '900090'
+    
+- time: '+1'
+  lights:
+    insert_58: '040004'
+    insert_59: '160016'
+    insert_60: '8A008B'
+    insert_61: '9D009D'
+    
+- time: '+1'
+  lights:
+    insert_58: '090009'
+    insert_59: '200020'
+    insert_60: '970097'
+    insert_61: 'A800A8'
+    insert_62: 'FB00FB'
+    
+- time: '+1'
+  lights:
+    insert_58: '0C000C'
+    insert_59: '240024'
+    insert_60: '9C009C'
+    insert_61: 'AE00AE'
+    insert_62: 'FC00FC'
+    
+- time: '+1'
+  lights:
+    insert_58: '110011'
+    insert_59: '300030'
+    insert_60: 'A700A7'
+    insert_61: 'B700B7'
+    insert_62: 'FA00FA'
+    
+- time: '+1'
+  lights:
+    insert_58: '140014'
+    insert_59: '360036'
+    insert_60: 'AC00AC'
+    insert_61: 'BB00BB'
+    
+- time: '+1'
+  lights:
+    insert_58: '1D001D'
+    insert_59: '420042'
+    insert_60: 'B400B4'
+    insert_61: 'C200C2'
+    insert_62: 'F900F9'
+    
+- time: '+1'
+  lights:
+    insert_58: '210021'
+    insert_59: '470047'
+    insert_60: 'B800B8'
+    insert_61: 'C500C5'
+    
+- time: '+1'
+  lights:
+    insert_58: '2B002B'
+    insert_59: '550055'
+    insert_60: 'BF00BF'
+    insert_61: 'CB00CB'
+    insert_62: 'F700F7'
+    
+- time: '+1'
+  lights:
+    insert_58: '360036'
+    insert_59: '650065'
+    insert_60: 'C600C6'
+    insert_61: 'CF00CF'
+    insert_62: 'F500F5'
+    
+- time: '+1'
+  lights:
+    insert_58: '3B003B'
+    insert_59: '6B006B'
+    insert_60: 'C800C8'
+    insert_61: 'D200D2'
+    insert_62: 'F600F6'
+    
+- time: '+1'
+  lights:
+    insert_58: '470047'
+    insert_59: '7A007A'
+    insert_60: 'CD00CD'
+    insert_61: 'D500D5'
+    insert_62: 'F400F4'
+    
+- time: '+1'
+  lights:
+    insert_58: '4C004C'
+    insert_59: '800080'
+    insert_60: 'CF00CF'
+    insert_61: 'D600D6'
+    insert_62: 'F500F5'
+    
+- time: '+1'
+  lights:
+    insert_58: '590059'
+    insert_59: '8F008F'
+    insert_60: 'D300D3'
+    insert_61: 'D900D9'
+    insert_62: 'F300F3'
+    
+- time: '+1'
+  lights:
+    insert_58: '670067'
+    insert_59: '9D009D'
+    insert_60: 'D600D6'
+    insert_61: 'DC00DC'
+    insert_62: 'F100F1'
+    
+- time: '+1'
+  lights:
+    insert_58: '6E006E'
+    insert_59: 'A100A1'
+    insert_60: 'D700D7'
+    insert_61: 'DE00DE'
+    
+- time: '+1'
+  lights:
+    insert_58: '7B007B'
+    insert_59: 'AD00AD'
+    insert_60: 'D900D9'
+    insert_61: 'E000E0'
+    insert_62: 'F000F0'
+    
+- time: '+1'
+  lights:
+    insert_58: '810081'
+    insert_59: 'B100B1'
+    insert_60: 'DA00DA'
+    insert_61: 'E100E1'
+    
+- time: '+1'
+  lights:
+    insert_58: '8E008E'
+    insert_59: 'BA00BA'
+    insert_60: 'DD00DD'
+    insert_61: 'E200E2'
+    insert_62: 'EE00EE'
+    
+- time: '+1'
+  lights:
+    insert_58: '930093'
+    insert_59: 'BD00BD'
+    insert_60: 'DE00DE'
+    insert_61: 'E300E3'
+    insert_62: 'EF00EF'
+    
+- time: '+1'
+  lights:
+    insert_58: '9E009E'
+    insert_59: 'C500C5'
+    insert_60: 'E000E0'
+    insert_61: 'E400E4'
+    insert_62: 'EB00EB'
+    
+- time: '+1'
+  lights:
+    insert_58: 'AA00AA'
+    insert_59: 'CD00CD'
+    insert_62: 'E900E9'
+    
+- time: '+1'
+  lights:
+    insert_58: 'AD00AD'
+    insert_59: 'CF00CF'
+    insert_60: 'E100E1'
+    insert_61: 'E500E5'
+    insert_62: 'EA00EA'
+    
+- time: '+1'
+  lights:
+    insert_58: 'B700B7'
+    insert_59: 'D500D5'
+    insert_60: 'E200E2'
+    insert_62: 'E700E7'
+    
+- time: '+1'
+  lights:
+    insert_58: 'BA00BA'
+    insert_59: 'D700D7'
+    insert_60: 'E300E3'
+    insert_61: 'E600E6'
+    insert_62: 'E800E8'
+    
+- time: '+1'
+  lights:
+    insert_58: 'C100C1'
+    insert_59: 'DB00DB'
+    insert_62: 'E500E5'
+    
+- time: '+1'
+  lights:
+    insert_58: 'FF00FF'
+    insert_59: 'FF00FF'
+    insert_60: 'FF00FF'
+    insert_61: 'FF00FF'
+    insert_62: 'FF00FF'
+    
+- time: '+1'
+  lights:
+    insert_58: 'B400B4'
+    insert_59: 'DA00DA'
+    insert_60: 'E400E4'
+    insert_61: 'DF00DF'
+    insert_62: 'E300E3'
+    
+- time: '+1'
+  lights:
+    insert_58: 'AD00AD'
+    insert_59: 'D700D7'
+    insert_60: 'E200E2'
+    insert_61: 'DC00DC'
+    insert_62: 'E100E1'
+    
+- time: '+1'
+  lights:
+    insert_58: 'A500A5'
+    insert_59: 'D400D4'
+    insert_60: 'E000E0'
+    insert_61: 'D800D8'
+    insert_62: 'DE00DE'
+    
+- time: '+1'
+  lights:
+    insert_58: '9D009D'
+    insert_59: 'D000D0'
+    insert_60: 'DD00DD'
+    insert_61: 'D500D5'
+    insert_62: 'DA00DA'
+    
+- time: '+1'
+  lights:
+    insert_58: '940094'
+    insert_59: 'CC00CC'
+    insert_60: 'DA00DA'
+    insert_61: 'D200D2'
+    insert_62: 'D700D7'
+    
+- time: '+1'
+  lights:
+    insert_58: '880088'
+    insert_59: 'C700C7'
+    insert_60: 'D600D6'
+    insert_61: 'CD00CD'
+    insert_62: 'D400D4'
+    
+- time: '+1'
+  lights:
+    insert_58: '7D007D'
+    insert_59: 'C000C0'
+    insert_60: 'D300D3'
+    insert_61: 'C800C8'
+    insert_62: 'CF00CF'
+    
+- time: '+1'
+  lights:
+    insert_58: '700070'
+    insert_59: 'B900B9'
+    insert_60: 'CF00CF'
+    insert_61: 'C200C2'
+    insert_62: 'CB00CB'
+    
+- time: '+1'
+  lights:
+    insert_58: '640064'
+    insert_59: 'B200B2'
+    insert_60: 'CA00CA'
+    insert_61: 'BB00BB'
+    insert_62: 'C500C5'
+    
+- time: '+1'
+  lights:
+    insert_58: '570057'
+    insert_59: 'A900A9'
+    insert_60: 'C500C5'
+    insert_61: 'B200B2'
+    insert_62: 'BE00BE'
+    
+- time: '+1'
+  lights:
+    insert_58: '4A004A'
+    insert_59: '9F009F'
+    insert_60: 'BE00BE'
+    insert_61: 'A800A8'
+    insert_62: 'B700B7'
+    
+- time: '+1'
+  lights:
+    insert_58: '3D003D'
+    insert_59: '930093'
+    insert_60: 'B600B6'
+    insert_61: '9D009D'
+    insert_62: 'AE00AE'
+    
+- time: '+1'
+  lights:
+    insert_58: '300030'
+    insert_59: '850085'
+    insert_60: 'AC00AC'
+    insert_61: '910091'
+    insert_62: 'A400A4'
+    
+- time: '+1'
+  lights:
+    insert_58: '250025'
+    insert_59: '750075'
+    insert_60: 'A100A1'
+    insert_61: '810081'
+    insert_62: '980098'
+    
+- time: '+1'
+  lights:
+    insert_58: '190019'
+    insert_59: '650065'
+    insert_60: '940094'
+    insert_61: '700070'
+    insert_62: '890089'
+    
+- time: '+1'
+  lights:
+    insert_58: '110011'
+    insert_59: '540054'
+    insert_60: '850085'
+    insert_61: '5E005E'
+    insert_62: '7A007A'
+    
+- time: '+1'
+  lights:
+    insert_58: '090009'
+    insert_59: '440044'
+    insert_60: '730073'
+    insert_61: '4D004D'
+    insert_62: '680068'
+    
+- time: '+1'
+  lights:
+    insert_58: '030003'
+    insert_59: '330033'
+    insert_60: '610061'
+    insert_61: '3C003C'
+    insert_62: '550055'
+    
+- time: '+1'
+  lights:
+    insert_58: '000000'
+    insert_59: '240024'
+    insert_60: '4E004E'
+    insert_61: '2B002B'
+    insert_62: '420042'
+    
+- time: '+1'
+  lights:
+    insert_59: '160016'
+    insert_60: '3B003B'
+    insert_61: '1B001B'
+    insert_62: '300030'
+    
+- time: '+1'
+  lights:
+    insert_59: '0B000B'
+    insert_60: '290029'
+    insert_61: '0E000E'
+    insert_62: '1F001F'
+    
+- time: '+1'
+  lights:
+    insert_59: '030003'
+    insert_60: '180018'
+    insert_61: '050005'
+    insert_62: '110011'
+    
+- time: '+1'
+  lights:
+    insert_59: '000000'
+    insert_60: '0B000B'
+    insert_61: '000000'
+    insert_62: '060006'
+    
+- time: '+1'
+  lights:
+    insert_60: '020002'
+    insert_62: '000000'
+    
+- time: '+1'
+  lights:
+    insert_60: '000000'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    

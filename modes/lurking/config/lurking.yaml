@@ -1,0 +1,1236 @@
+#config_version=6
+mode:
+  start_events: lurking_start
+  stop_events: lurking_stop, ball_ended
+  priority: 1200
+  restart_on_next_ball: false
+
+
+###########################
+
+event_player:
+  mode_lurking_started: twenties_stop, hold_stop
+  lurking_end: lurking_stop, twenties_start
+
+  lurking_slow_action_shot_active_hit: shaker_shake
+  lurking_medium_action_shot_active_hit: shaker_shake
+  lurking_fast_action_shot_active_hit: shaker_shake
+
+###########################
+
+slides:
+  lurking_slide: []
+
+###########################
+
+slide_player:
+  mode_lurking_started: lurking_slide
+
+###########################
+
+widgets:
+  lurking_win_banner:
+    type: text
+    text: You killed it !
+    style: mission_text
+    color: red
+    y: 30%
+    x: 50%
+    z: 100
+
+  lurking_loose_banner:
+    type: text
+    text: It hurts !
+    style: mission_text
+    color: red
+    y: 30%
+    x: 50%
+    z: 100
+
+  lurking_indication_banner:
+    type: text
+    text: Lurking in the dark !
+    style: mission_text
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+
+  lurking_indication_banner_2:
+    type: text
+    text: Be ready to shoot
+    color: red
+    style: mission_text
+    y: 72%
+    x: 50%
+    z: 100
+
+  lurking_indication_banner_3:
+    type: text
+    text: the monster !
+    color: red
+    style: mission_text
+    y: 62%
+    x: 50%
+    z: 100
+
+  video_lurking_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 1
+
+###########################
+
+widget_player:
+  mode_lurking_started:
+    lurking_indication_banner, lurking_indication_banner_2, lurking_indication_banner_3, cthulhu_frame_image, video_lurking_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: lurking_slide
+
+  mode_lurking_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: lurking_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  lurking_slow_action_shot_active_hit:
+    lurking_win_banner:
+      action: add
+      slide: lurking_slide
+
+  lurking_medium_action_shot_active_hit:
+    lurking_win_banner:
+      action: add
+      slide: lurking_slide
+
+  lurking_fast_action_shot_active_hit:
+    lurking_win_banner:
+      action: add
+      slide: lurking_slide
+
+  timer_slow_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    lurking_loose_banner:
+      action: add
+      slide: lurking_slide
+
+  timer_medium_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    lurking_loose_banner:
+      action: add
+      slide: lurking_slide
+
+  timer_fast_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    lurking_loose_banner:
+      action: add
+      slide: lurking_slide
+
+###########################
+
+timers:
+  lurking_rotate:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_lurking_started
+
+  lurking_2_rotate:
+    start_value: 0
+    end_value: 2
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: timer_lurking_rotate_complete
+
+  lurking_3_rotate:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: timer_lurking_2_rotate_complete
+
+  lurking_4_rotate:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: timer_lurking_3_rotate_complete
+
+  lurking_5_rotate:
+    start_value: 0
+    end_value: 3
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: timer_lurking_4_rotate_complete
+
+
+  slow_bite_rotate:
+    start_value: 0
+    end_value: 1
+    tick_interval: 5s
+    control_events:
+      - action: start
+        event: slow_lurking_bite
+
+  medium_bite_rotate:
+    start_value: 0
+    end_value: 1
+    tick_interval: 3s
+    control_events:
+      - action: start
+        event: medium_lurking_bite
+
+  fast_bite_rotate:
+    start_value: 0
+    end_value: 1
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: fast_lurking_bite
+
+
+  slow_bite_action:
+    start_value: 0
+    end_value: 1
+    tick_interval: 2s
+    control_events:
+      - action: start
+        event: timer_slow_bite_rotate_complete
+
+  medium_bite_action:
+    start_value: 0
+    end_value: 1
+    tick_interval: 1.5s
+    control_events:
+      - action: start
+        event: timer_medium_bite_rotate_complete
+
+  fast_bite_action:
+    start_value: 0
+    end_value: 1
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: timer_fast_bite_rotate_complete
+
+
+
+###########################
+
+random_event_player:
+  timer_lurking_rotate_complete:
+    events:
+      - advance_lurking_1
+      - advance_lurking_2
+      - advance_lurking_3
+
+  timer_lurking_2_rotate_complete:
+    events:
+      - advance_lurking_4
+      - advance_lurking_5
+      - advance_lurking_6
+
+  timer_lurking_3_rotate_complete:
+    events:
+      - advance_lurking_7
+      - advance_lurking_8
+      - advance_lurking_9
+
+  timer_lurking_4_rotate_complete:
+    events:
+      - advance_lurking_10
+      - advance_lurking_11
+      - advance_lurking_12
+
+  timer_lurking_5_rotate_complete:
+    events:
+      - slow_lurking_bite
+      - medium_lurking_bite
+      - fast_lurking_bite
+
+###########################
+
+shot_profiles:
+  lurking_slow_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: active
+        show: lurking_end_show
+        speed: 5
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+
+  lurking_medium_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: active
+        show: lurking_end_show
+        speed: 10
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+
+  lurking_fast_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: active
+        show: lurking_end_show
+        speed: 15
+        loops: -1
+        priority: 600
+      - name: off
+        show: off
+
+  lurking_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: lurkinghitflashing
+        show: lurking_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 1200
+
+###########################
+
+shots:
+  lurking_slow_action_shot:
+    switch: s_action
+    profile: lurking_slow_profile
+    enable_events: timer_slow_bite_rotate_complete
+    disable_events: timer_slow_bite_action_complete
+    show_tokens:
+      led: led_30, led_31, led_32, led_33, led_34, led_35, apron_led
+  lurking_medium_action_shot:
+    switch: s_action
+    profile: lurking_medium_profile
+    enable_events: timer_medium_bite_rotate_complete
+    disable_events: timer_medium_bite_action_complete
+    show_tokens:
+      led: led_30, led_31, led_32, led_33, led_34, led_35, apron_led
+  lurking_fast_action_shot:
+    switch: s_action
+    profile: lurking_fast_profile
+    enable_events: timer_fast_bite_rotate_complete
+    disable_events: timer_fast_bite_action_complete
+    show_tokens:
+      led: led_30, led_31, led_32, led_33, led_34, led_35, apron_led
+
+
+  lurking_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_86
+  lurking_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_85
+  lurking_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_84
+  lurking_sling_left_shot:
+    switch: s_sling_left
+    profile: lurking_target_flash
+    show_tokens:
+      led: led_30, led_31
+  lurking_sling_right_shot:
+    switch: s_sling_right
+    profile: lurking_target_flash
+    show_tokens:
+      led: led_36, led_37
+  lurking_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  lurking_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: lurking_target_flash
+    show_tokens:
+      led: led_11, led_19
+
+  lurking_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_41
+  lurking_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_32
+  lurking_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_30
+  lurking_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_20
+  lurking_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_10
+
+  lurking_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_50
+  lurking_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_49  
+  lurking_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_48
+  lurking_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_11
+  lurking_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_12
+  lurking_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_13
+    
+  lurking_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  lurking_gate_library_shot:
+    switch: s_gate_library
+    profile: lurking_target_flash
+    show_tokens:
+      led: led_1
+  lurking_roll_library_shot:
+    switch: s_roll_library
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  lurking_roll_space_shot:
+    switch: s_roll_space
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43
+  lurking_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_34
+
+  lurking_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  lurking_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  lurking_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  lurking_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  lurking_team_1_shot:
+    switch: s_roll_skill_shot_1
+  lurking_team_2_shot:
+    switch: s_roll_skill_shot_2
+  lurking_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  lurking_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  lurking_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_74, insert_25, insert_26, insert_29
+  lurking_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  lurking_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: lurking_target_flash
+    show_tokens:
+      led: led_2
+  lurking_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  lurking_spinner_shot:
+    switch: s_spinner
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  lurking_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_24
+  lurking_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_23
+  lurking_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_22
+  lurking_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: lurking_target_flash
+    show_tokens:
+      led: insert_21
+
+  lurking_green_target_1_shot:
+    switch: s_target_green_1
+  lurking_green_target_2_shot:
+    switch: s_target_green_2
+  lurking_green_target_3_shot:
+    switch: s_target_green_3
+
+  lurking_space_orbit_shot:
+    hit_events: lurking_space_orbit_sequence_hit
+  lurking_asylum_orbit_shot:
+    hit_events: lurking_asylum_orbit_sequence_hit
+  lurking_library_roll_shot:
+    hit_events: lurking_library_roll_sequence_hit
+
+###########################
+
+sequence_shots:
+  lurking_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  lurking_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  lurking_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  lurking_slow_action_shot_active_hit:
+    lurking_win_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 1
+      events_when_completed: launch_lurking_transition
+  lurking_medium_action_shot_active_hit:
+    lurking_win_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 1
+      events_when_completed: launch_lurking_transition
+  lurking_fast_action_shot_active_hit:
+    lurking_win_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 1
+      events_when_completed: launch_lurking_transition
+
+  launch_lurking_transition:
+    lurking_end_transition:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+      events_when_completed: lurking_end
+
+  mode_lurking_started:
+    lurking_backglass_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: 7
+    lurking_start_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 1
+
+  advance_lurking_1:
+    lurking_start1_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+  advance_lurking_2:
+    lurking_start2_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_up1_show:
+      action: stop
+  advance_lurking_3:
+    lurking_start3_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_up2_show:
+      action: stop
+
+  advance_lurking_4:
+    lurking_up1_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_start1_show, lurking_start2_show, lurking_start3_show:
+      action: stop
+  advance_lurking_5:
+    lurking_up2_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_start1_show, lurking_start2_show, lurking_start3_show:
+      action: stop
+  advance_lurking_6:
+    lurking_up3_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_start1_show, lurking_start2_show, lurking_start3_show:
+      action: stop
+
+  advance_lurking_7:
+    lurking_middle1_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_up1_show, lurking_up2_show, lurking_up3_show:
+      action: stop
+  advance_lurking_8:
+    lurking_middle2_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_up1_show, lurking_up2_show, lurking_up3_show:
+      action: stop
+  advance_lurking_9:
+    lurking_middle3_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_up1_show, lurking_up2_show, lurking_up3_show:
+      action: stop
+
+  advance_lurking_10:
+    lurking_down1_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_middle1_show, lurking_middle2_show, lurking_middle3_show:
+      action: stop
+  advance_lurking_11:
+    lurking_down2_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_middle1_show, lurking_middle2_show, lurking_middle3_show:
+      action: stop
+  advance_lurking_12:
+    lurking_down3_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+    lurking_middle1_show, lurking_middle2_show, lurking_middle3_show:
+      action: stop
+
+  slow_lurking_bite:
+    lurking_down1_show, lurking_down2_show, lurking_down3_show:
+      action: stop
+  medium_lurking_bite:
+    lurking_down1_show, lurking_down2_show, lurking_down3_show:
+      action: stop
+  fast_lurking_bite:
+    lurking_down1_show, lurking_down2_show, lurking_down3_show:
+      action: stop
+
+  timer_slow_bite_rotate_complete:
+    lurking_end_show:
+      action: play
+      speed: 5
+      priority: 200
+      loops: -1
+  timer_medium_bite_rotate_complete:
+    lurking_end_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: -1
+  timer_fast_bite_rotate_complete:
+    lurking_end_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: -1
+
+  timer_slow_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 1
+      events_when_completed: lurking_end
+  timer_medium_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 1
+      events_when_completed: lurking_end
+  timer_fast_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 1
+      events_when_completed: lurking_end
+
+
+###########################
+
+light_player:
+  mode_lurking_started:
+    gi:
+      color: off
+    side_led_right:
+      color: off
+    side_led_left:
+      color: off
+    apron_led:
+      color: white
+
+###########################
+
+variable_player:
+  timer_slow_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    score: -10000 * current_player.multiplier * current_player.spell_boost_multiplier
+  timer_medium_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    score: -10000 * current_player.multiplier * current_player.spell_boost_multiplier
+  timer_fast_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    score: -10000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lurking_slow_action_shot_active_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    lurking_monster_life:
+      action: set
+      string: 'dead'
+  lurking_medium_action_shot_active_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    lurking_monster_life:
+      action: set    
+      string: 'dead'
+  lurking_fast_action_shot_active_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    lurking_monster_life:
+      action: set
+      string: 'dead'
+
+  lurking_sling_left_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_sling_right_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lurking_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_square_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_square_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  lurking_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  lurking_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  lurking_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  lurking_target_library_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_library_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_library_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_library_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_library_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  lurking_target_library_6_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  lurking_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lurking_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lurking_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  lurking_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  lurking_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  lurking_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  lurking_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  lurking_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  lurking_gate_secret_library_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+
+###########################
+
+sound_player:
+  mode_lurking_started:
+    lurking_laugh:
+      action: play
+      volume: 1
+    lurking_music:
+      action: play
+      loops: 0
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  advance_lurking_1:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_2:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_3:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_4:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_5:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_6:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_7:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_8:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_9:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_10:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_11:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+  advance_lurking_13:
+    lurking_monster_pool:
+      action: play
+      volume: 1
+
+  timer_slow_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    monster-bite:
+      action: play
+      volume: 2
+  timer_medium_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    monster-bite:
+      action: play
+      volume: 2
+  timer_fast_bite_action_complete{current_player.lurking_monster_life=='ok'}:
+    monster-bite:
+      action: play
+      volume: 2
+
+  lurking_slow_action_shot_active_hit:
+    guns_sfx_pool:
+      action: play
+      volume: 2
+  lurking_medium_action_shot_active_hit:
+    guns_sfx_pool:
+      action: play
+      volume: 2
+  lurking_fast_action_shot_active_hit:
+    guns_sfx_pool:
+      action: play
+      volume: 2
+
+  timer_lurking_5_rotate_complete:
+    monster_sfx_end:
+      action: play
+      volume: 2
+
+
+  lurking_sling_left_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_sling_right_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_bumper_one_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_bumper_two_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_bumper_three_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_scoop_bas_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_scoop_haut_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_target_square_1_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_square_2_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_square_3_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_square_4_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_square_5_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_target_sanity_shot_1_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_sanity_shot_2_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_sanity_shot_3_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_sanity_shot_4_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_sanity_shot_5_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_sanity_shot_6_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_drop_target_1_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_drop_target_2_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_drop_target_3_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_drop_target_4_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+
+  lurking_green_target_1_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_green_target_2_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_green_target_3_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_target_library_1_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_library_2_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_library_3_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_library_4_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_library_5_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_target_library_6_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_team_1_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_team_2_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_team_3_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_spinner_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_roll_left_outlane_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_left_inlane_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_right_inlane_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_right_outlane_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_library_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_fordt_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_space_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_roll_asylum_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+  lurking_cthulhu_ramp_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_main_ramp_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_green_ramp_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_gate_library_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_gate_exit_library_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+  lurking_gate_secret_library_shot_hit:
+    heart_breath_sfx_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  lurking_monster_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - monster_sfx_1
+      - monster_sfx_2
+      - monster_sfx_3
+      - monster_sfx_4
+      - monster_sfx_5
+      - monster_sfx_6
+      - monster_sfx_7

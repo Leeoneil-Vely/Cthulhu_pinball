@@ -1,0 +1,880 @@
+#config_version=6
+
+mode:
+  start_events: start_carousel_mode
+  stop_events: carousel_item_selected, stop_carousel
+  code: mpf.modes.carousel.code.carousel.Carousel
+  events_when_stopped: carousel_mission_selected
+  use_wait_queue: true
+  priority: 2000
+
+ball_holds:
+  mission_scoop_bas:
+    hold_devices: bd_scoop_bas
+    release_one_events: carousel_mission1_selected, carousel_mission2_selected, carousel_mission3_selected, carousel_mission4_selected, carousel_mission5_selected, carousel_mission6_selected, carousel_missionAZATHOTH_selected, carousel_missionKING_selected, carousel_missionNYARLA_selected, carousel_missionCTHULHU_selected, carousel_missionSHUB_selected, carousel_exit_selected    #carousel_item_selected
+
+  mission_scoop_haut:
+    hold_devices: bd_scoop_haut
+    release_one_events: carousel_mission1_selected, carousel_mission2_selected, carousel_mission3_selected, carousel_mission4_selected, carousel_mission5_selected, carousel_mission6_selected, carousel_missionAZATHOTH_selected, carousel_missionKING_selected, carousel_missionNYARLA_selected, carousel_missionCTHULHU_selected, carousel_missionSHUB_selected, carousel_exit_selected    #carousel_item_selected
+
+
+###########################
+
+mode_settings:
+  selectable_items:
+    - missionVIDEOMONSTER{current_player.variable_number_of_clue_value>=4 and current_player.variable_choose_videomode=='monster'}
+    - missionVIDEOFORDT{current_player.variable_number_of_clue_value>=4 and current_player.variable_choose_videomode=='fordt'}
+    - mission1{current_player.mission_radio=='notcompleted'}
+    - mission2{current_player.mission_charleston=='notcompleted'}
+    - mission3{current_player.mission_speakeasy=='notcompleted'}
+    - mission4{current_player.mission_graveyard=='notcompleted'}
+    - mission5{current_player.mission_cult=='notcompleted'}
+    - mission6{current_player.mission_city=='notcompleted'}
+    - missionAZATHOTH{current_player.azathoth_mission_available=='available'}
+    - missionKING{current_player.king_mission_available=='available'}
+    - missionNYARLA{current_player.nyarla_mission_available=='available'}
+    - missionCTHULHU{current_player.cthulhu_mission_available=='available'}
+    - missionSHUB{current_player.shub_mission_available=='available'}
+    - exit
+  select_item_events: select_mission, s_action_active
+  next_item_events: s_right_flipper_inactive
+  previous_item_events: s_left_flipper_inactive
+
+###########################
+ 
+variable_player:
+  carousel_missionVIDEOMONSTER_selected:
+    selected_mission:
+      action: set
+      string: 'missionVIDEOMONSTER'
+  carousel_missionVIDEOFORDT_selected:
+    selected_mission:
+      action: set
+      string: 'missionVIDEOFORDT'
+  carousel_mission1_selected:
+    selected_mission:
+      action: set
+      string: 'mission1'
+  carousel_mission2_selected:
+    selected_mission:
+      action: set
+      string: 'mission2'
+  carousel_mission3_selected:
+    selected_mission:
+      action: set
+      string: 'mission3'
+  carousel_mission4_selected:
+    selected_mission:
+      action: set
+      string: 'mission4'
+  carousel_mission5_selected:
+    selected_mission:
+      action: set
+      string: 'mission5'
+  carousel_mission6_selected:
+    selected_mission:
+      action: set
+      string: 'mission6'
+  carousel_missionAZATHOTH_selected:
+    selected_mission:
+      action: set
+      string: 'missionAZATHOTH'
+  carousel_missionKING_selected:
+    selected_mission:
+      action: set
+      string: 'missionKING'  
+  carousel_missionNYARLA_selected:
+    selected_mission:
+      action: set
+      string: 'missionNYARLA' 
+  carousel_missionCTHULHU_selected:
+    selected_mission:
+      action: set
+      string: 'missionCTHULHU'
+  carousel_missionSHUB_selected:
+    selected_mission:
+      action: set
+      string: 'missionSHUB' 
+  carousel_exit_selected:
+    selected_mission:
+      action: set
+      string: 'exit' 
+
+  mode_carousel_started:
+    variable_videomonster_bite_gauge_value:
+      action: set
+      int: 0
+    variable_videomonster_goodshot_gauge_value:
+      action: set
+      int: 0
+    variable_speed_videomonster_gauge_value:
+      action: set
+      int: 0
+    variable_videomonster_score_value:
+      action: set
+      int: 0
+
+###########################
+
+widgets:
+  carousel_video_scratch_widget:
+    - type: video
+      video: mystery_scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 5
+
+  carousel_start_banner:
+    - type: text
+      text: Press action to select !
+      y: 35%
+      x: 65%
+      z: 100
+      font_size: 60
+      animations:
+          add_to_slide:                   
+            - property: opacity         
+              value: 1                  
+              duration: .5s             
+            - property: opacity         
+              value: 0
+              duration: .5s
+              repeat: true
+
+  select_missionVIDEOMONSTER:
+    - type: text
+      text: Video mode - Monster
+      style: mission_text
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+    - type: Image
+      image: profond_NB
+      y: 50%
+      x: 25%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+    - type: text
+      text: Shoot monsters
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: with left/action/right
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+
+  select_missionVIDEOFORDT:
+    - type: text
+      text: Video mode - Ford-T ride
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+    - type: Image
+      image: fordt_carousel_NB
+      y: 50%
+      x: 25%
+      z: 100
+      scale: 1.2
+    - type: Image
+      image: frame_twenties
+      z: 15
+    - type: text
+      text: Avoid all obstacles
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: with left/right
+      y: 62%
+      x: 65%
+      z: 100
+
+
+  select_mission1:
+    - type: text
+      text: Radio shows
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+    - type: Image
+      image: mini_radio_NB
+      y: 50%
+      x: 25%
+      z: 100
+    - type: Image
+      image: frame_twenties
+      z: 15
+    - type: text
+      text: Hit (player|radio_listen_count) moving
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: flashing targets !
+      y: 62%
+      x: 65%
+      z: 100
+
+  select_mission2:
+    - type: text
+      text: Charleston
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+    - type: Image
+      image: mini_charleston_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_twenties
+      z: 15
+    - type: text
+      text: Hit all the (player|charleston_target_count)
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: flashing targets !
+      y: 62%
+      x: 65%
+      z: 100
+
+  select_mission3:
+    - type: text
+      text: Speakeasy
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+    - type: Image
+      image: mini_speakeasy_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_twenties
+      z: 15
+    - type: text
+      text: Hit (player|speakeasy_bumper_count) bumpers !
+      y: 67%
+      x: 65%
+      z: 100
+
+  select_mission4:
+    - type: text
+      text: Graveyard
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_graveyard_NB
+      y: 50%
+      x: 25%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+    - type: text
+      text: Search (player|graveyard_dig_count) graves
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: Avoid the red ghoul !
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+
+  select_mission5:
+    - type: text
+      text: Cult temple
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_cult_NB
+      y: 50%
+      x: 25%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+    - type: text
+      text: Escape the cultists
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: Run to the (player|cult_escape_gauge) lights !
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+
+
+
+  select_mission6:
+    - type: text
+      text: Sunken city
+      y: top-15
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_city_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: text
+      text: Search the ruins !
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: Drop targets (player|city_DT_count) times
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_missionAZATHOTH:
+    - type: text
+      text: AZATHOTH
+      y: top-10
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_aza_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: text
+      text: Can you project
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: your mind in space ?
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_missionKING:
+    - type: text
+      text: HASTUR - THE KING
+      y: top-10
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_king_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: text
+      text: Can you stop
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: this play ?
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_missionNYARLA:
+    - type: text
+      text: NYARLATHOTHEP
+      y: top-10
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_nyarla_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: text
+      text: The Crawling
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: Chaos !
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_missionCTHULHU:
+    - type: text
+      text: CTHULHU
+      y: top-10
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: text
+      text: Are you crazy enough
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: to locate R'lyeh ?
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: mini_cthulhu_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_missionSHUB:
+    - type: text
+      text: SHUB-NIGGURATH
+      y: top-10
+      x: 10
+      z: 100
+      font_size: 50
+      anchor_x: left
+      anchor_y: top
+      style: mission_text
+    - type: Image
+      image: mini_shub_NB
+      y: 50%
+      x: 20%
+      z: 100
+    - type: text
+      text: The Black Goat
+      style: mission_text
+      y: 72%
+      x: 65%
+      z: 100
+    - type: text
+      text: of the Woods !
+      style: mission_text
+      y: 62%
+      x: 65%
+      z: 100
+    - type: Image
+      image: frame_cthulhu
+      z: 15
+
+  select_exit:
+    - type: text
+      text: Exit mission selection
+      y: 55%
+      x: 50%
+      z: 100
+    - type: text
+      text: Keep having fun in the twenties
+      y: 45%
+      x: 50%
+      z: 100
+    - type: Image
+      image: frame_twenties
+      z: 15
+
+
+###########################
+
+slide_player:
+  mode_carousel_started: carousel_slide
+
+###########################
+
+slides:
+  carousel_slide: []
+
+###########################
+
+widget_player:
+  mode_carousel_started: 
+    carousel_start_banner, carousel_video_scratch_widget, base_without_score_widget, superpops_widget:
+      action: add
+      slide: carousel_slide
+  mode_carousel_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: carousel_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove 
+
+
+  carousel_missionVIDEOMONSTER_highlighted:
+    select_missionVIDEOMONSTER:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_missionVIDEOFORDT_highlighted:
+    select_missionVIDEOFORDT:
+      slide: carousel_slide
+    select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission1_highlighted:
+    select_mission1:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission2_highlighted:
+    select_mission2:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission3_highlighted:
+    select_mission3:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission4_highlighted:
+    select_mission4:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission5_highlighted:
+    select_mission5:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_mission6_highlighted:
+    select_mission6:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+
+  carousel_missionAZATHOTH_highlighted:
+    select_missionAZATHOTH:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_missionKING_highlighted:
+    select_missionKING:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove
+  carousel_missionNYARLA_highlighted:
+    select_missionNYARLA:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionCTHULHU, select_missionSHUB, select_exit:
+      action : remove      
+  carousel_missionCTHULHU_highlighted:
+    select_missionCTHULHU:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionSHUB, select_exit:
+      action : remove
+  carousel_missionSHUB_highlighted:
+    select_missionSHUB:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_exit:
+      action : remove
+
+  carousel_exit_highlighted:
+    select_exit:
+      slide: carousel_slide
+    select_missionVIDEOFORDT, select_missionVIDEOMONSTER, select_mission1, select_mission2, select_mission3, select_mission4, select_mission5, select_mission6, select_missionAZATHOTH, select_missionKING, select_missionNYARLA, select_missionCTHULHU, select_missionSHUB:
+      action : remove
+
+###########################
+
+event_player:
+  carousel_missionVIDEOMONSTER_selected: videomonster_start, twenties_stop #wait_and_start
+  carousel_missionVIDEOFORDT_selected: videofordt_start, twenties_stop #wait_and_start
+  carousel_mission1_selected: radio_start, twenties_stop, hold_stop #wait_and_start
+  carousel_mission2_selected: charleston_start, twenties_stop, hold_stop #wait_and_start
+  carousel_mission3_selected: speakeasy_start, twenties_stop, hold_stop #wait_and_start
+  carousel_mission4_selected: graveyard_start, twenties_stop, hold_stop #wait_and_start
+  carousel_mission5_selected: cult_start, twenties_stop, hold_stop #wait_and_start
+  carousel_mission6_selected: city_start, twenties_stop, hold_stop #wait_and_start
+  carousel_missionAZATHOTH_selected: aza_start, twenties_stop, hold_stop #wait_and_start
+  carousel_missionKING_selected: king_start, twenties_stop, hold_stop #wait_and_start
+  carousel_missionNYARLA_selected: nyarla_start, twenties_stop, hold_stop #wait_and_start
+  carousel_missionCTHULHU_selected: cthulhu_start, twenties_stop, hold_stop #wait_and_start
+  carousel_missionSHUB_selected: shub_start, twenties_stop, hold_stop #wait_and_start
+  carousel_exit_selected: twenties_start, hold_stop #stop_carousel
+
+  mode_carousel_started: pre_azathoth_stop, pre_cthulhu_stop, pre_king_stop, pre_nyarla_stop, pre_shub_stop
+
+###########################
+
+show_player:
+  s_right_flipper_active:
+    select_right_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+  s_left_flipper_active:
+    select_left_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+  
+  mode_carousel_started:
+    carousel_enter_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+      events_when_completed: stop_gi_carousel
+    carousel_side_left_flash_show:
+      action: play
+      speed: 600
+      priority: 300
+      loops: 1
+    carousel_side_right_flash_show:
+      action: play
+      speed: 600
+      priority: 300
+      loops: 1  
+
+  carousel_exit_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop  
+  carousel_mission1_highlighted:
+    select_mission_1_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_mission2_highlighted:
+    select_mission_2_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_1_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_mission3_highlighted:
+    select_mission_3_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_1_show, select_mission_2_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_mission4_highlighted:
+    select_mission_4_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_mission5_highlighted:
+    select_mission_5_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_6_show:
+      action: stop
+  carousel_mission6_highlighted:
+    select_mission_6_show:
+      action: play
+      priority: 500
+      loops: -1
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show:
+      action: stop
+  carousel_missionAZATHOTH_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_missionKING_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_missionNYARLA_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_missionCTHULHU_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop
+  carousel_missionSHUB_highlighted:
+    select_mission_1_show, select_mission_2_show, select_mission_3_show, select_mission_4_show, select_mission_5_show, select_mission_6_show:
+      action: stop  
+###########################
+
+light_player:
+  carousel_missionVIDEOMONSTER_highlighted:
+    profond_backglass_led: white
+    insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_73, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+  carousel_missionVIDEOFORDT_highlighted:
+    car_backglass_led: white
+    insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_73, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+
+  carousel_mission1_highlighted:
+    insert_71: white
+    radio_box_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_73, insert_63, insert_64, insert_65, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+  carousel_mission2_highlighted:
+    insert_72: white
+    charleston_box_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_73, insert_71, insert_63, insert_64, insert_65, radio_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+  carousel_mission3_highlighted:
+    insert_73: white
+    speakeasy_box_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_71, insert_63, insert_64, insert_65, charleston_box_led, radio_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+  carousel_mission4_highlighted:
+    insert_63: white
+    graveyard_box_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_71, insert_73, insert_64, insert_65, charleston_box_led, speakeasy_box_led, radio_box_led, cult_box_led, city_box_led, moon_backglass_led: off
+  carousel_mission5_highlighted:
+    insert_64: white
+    cult_box_led: white
+    boss_backglass_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_71, insert_73, insert_63, insert_65, charleston_box_led, speakeasy_box_led, radio_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+  carousel_mission6_highlighted:
+    insert_65: white
+    city_box_led: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_72, insert_71, insert_63, insert_64, insert_73, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, radio_box_led, moon_backglass_led: off
+  carousel_missionAZATHOTH_highlighted:
+    moon_backglass_led: red
+    insert_68: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_69, insert_70, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led: off
+  carousel_missionKING_highlighted:
+    moon_backglass_led: yellow
+    insert_67: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_68, insert_69, insert_70, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led: off
+  carousel_missionNYARLA_highlighted:
+    moon_backglass_led: blue
+    insert_69: white
+    nyarla_backglass_led: white
+    profond_backglass_led, car_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_70, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led: off
+  carousel_missionCTHULHU_highlighted:
+    moon_backglass_led: '00994C'
+    insert_70: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led: off
+  carousel_missionSHUB_highlighted:
+    moon_backglass_led: purple
+    insert_66: white
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_67, insert_68, insert_69, insert_70, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led: off
+  carousel_exit_highlighted:
+    profond_backglass_led, car_backglass_led, nyarla_backglass_led, boss_backglass_led, insert_66, insert_67, insert_68, insert_69, insert_70, insert_73, insert_72, insert_71, insert_63, insert_64, insert_65, radio_box_led, charleston_box_led, speakeasy_box_led, cult_box_led, graveyard_box_led, city_box_led, moon_backglass_led: off
+
+  stop_gi_carousel:
+    gi: off
+    side_led_left: off
+    side_led_right: off
+
+###########################
+
+sound_player:
+  s_right_flipper_active:
+    clouc_select:
+      action: play
+  s_left_flipper_active:
+    button_select:
+      action: play
+  
+  mode_carousel_started:
+    carousel_voice_pool:
+      action: play
+      volume: 2
+
+  carousel_mission1_highlighted:
+    carousel_radio_voice_pool:
+      action: play
+      volume: 2
+  carousel_mission2_highlighted:
+    carousel_voice_charleston:
+      action: play
+      volume: 2
+  carousel_mission3_highlighted:
+    carousel_voice_speakeasy:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  carousel_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mission_select_1
+      - mission_select_2
+      - mission_select_3
+      - mission_select_4
+      - mission_select_5
+      - mission_select_6
+
+  carousel_radio_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - carousel_voice_radio_1
+      - carousel_voice_radio_2
+      - carousel_voice_radio_3

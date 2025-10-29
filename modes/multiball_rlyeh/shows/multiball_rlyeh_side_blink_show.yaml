@@ -1,0 +1,50 @@
+#show_version=6
+- time: 0
+  lights:
+    side_led_right: green-f200ms
+    side_led_left: green-f200ms
+    
+- time: "+1"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+
+- time: "+2"
+  lights:
+    side_led_right: 24da98-f200ms
+    side_led_left: 24b6da-f200ms
+
+- time: "+3"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+
+- time: "+4"
+  lights:
+    side_led_right: 24b6da-f200ms
+    side_led_left: 24da98-f200ms
+
+- time: "+5"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+
+- time: "+6"
+  lights:
+    side_led_right: 6432e8-f200ms
+    side_led_left: 2673ea-f200ms
+
+- time: "+7"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+
+- time: "+8"
+  lights:
+    side_led_right: 2673ea-f200ms
+    side_led_left: 6432e8-f200ms
+
+- time: "+9"
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms

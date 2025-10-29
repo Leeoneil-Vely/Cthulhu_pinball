@@ -1,0 +1,390 @@
+#config_version=6
+
+mode:
+  start_events: mode_twenties_started, mode_speakeasy_started, mode_radio_started, mode_charleston_started
+  stop_events: stop_eldersign, mode_sanity_started, mode_cult_started, mode_graveyard_started, mode_city_started, mode_stormy_night_started
+  priority: 800
+
+###########################
+
+event_player:
+  green_target_group_complete: shaker_shake, launch_random_eldersign_video
+
+###########################
+
+random_event_player:
+  launch_random_eldersign_video:
+    events:
+      - launch_eldersign_video_1
+      - launch_eldersign_video_2
+      - launch_eldersign_video_3
+      - launch_eldersign_video_4
+      - launch_eldersign_video_5
+      - launch_eldersign_video_6
+
+###########################
+
+widgets:
+  video_eldersign_1_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_eldersign_2_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_eldersign_3_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_eldersign_4_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_eldersign_5_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 2
+  video_eldersign_6_scratch_widget:
+    type: video
+    video: eldersign_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 2
+
+###########################
+
+widget_player:
+  launch_eldersign_video_1:
+    video_eldersign_1_scratch_widget:
+      slide: base_slide
+  launch_eldersign_video_2:
+    video_eldersign_2_scratch_widget:
+      slide: base_slide
+  launch_eldersign_video_3:
+    video_eldersign_3_scratch_widget:
+      slide: base_slide
+  launch_eldersign_video_4:
+    video_eldersign_4_scratch_widget:
+      slide: base_slide
+  launch_eldersign_video_5:
+    video_eldersign_5_scratch_widget:
+      slide: base_slide
+  launch_eldersign_video_6:
+    video_eldersign_6_scratch_widget:
+      slide: base_slide
+
+  remove_random_eldersign_video_1:
+    video_eldersign_1_scratch_widget:
+      action: remove
+  remove_random_eldersign_video_2:
+    video_eldersign_2_scratch_widget:
+      action: remove
+  remove_random_eldersign_video_3:
+    video_eldersign_3_scratch_widget:
+      action: remove
+  remove_random_eldersign_video_4:
+    video_eldersign_4_scratch_widget:
+      action: remove
+  remove_random_eldersign_video_5:
+    video_eldersign_5_scratch_widget:
+      action: remove
+  remove_random_eldersign_video_6:
+    video_eldersign_6_scratch_widget:
+      action: remove
+
+###########################
+
+shots:
+  eldersign_green_target_1_shot:
+    switch: s_target_green_1
+    profile: elder_profile
+    reset_events: green_target_group_complete
+    show_tokens:
+      led: led_47
+  eldersign_green_target_2_shot:
+    switch: s_target_green_2
+    profile: elder_profile
+    reset_events: green_target_group_complete
+    show_tokens:
+      led: led_45
+  eldersign_green_target_3_shot:
+    switch: s_target_green_3
+    profile: elder_profile
+    reset_events: green_target_group_complete
+    show_tokens:
+      led: led_46
+
+###########################
+
+shot_groups:
+  green_target_group:
+    shots: eldersign_green_target_1_shot, eldersign_green_target_2_shot, eldersign_green_target_3_shot
+    reset_events: green_target_group_complete
+
+###########################
+
+shot_profiles:
+  elder_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: unlit
+        show: "off"
+      - name: lit
+        show: green_target_solo_blink_show
+        speed: 15
+        loops: 5
+        show_tokens:
+          color: purple
+        
+###########################
+
+variable_player:
+  green_target_group_lit_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  eldersign_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  eldersign_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  eldersign_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  eldersign_1_counter_complete:
+    insert_eldersign:
+      action: set
+      string: 'one'
+  eldersign_2_counter_complete:
+    insert_eldersign:
+      action: set
+      string: 'two'
+  eldersign_3_counter_complete:
+    insert_eldersign:
+      action: set
+      string: 'three'
+  eldersign_4_counter_complete:
+    insert_eldersign:
+      action: set
+      string: 'four'
+  eldersign_5_counter_complete:
+    insert_eldersign:
+      action: set
+      string: 'five'
+
+###########################
+
+counters:
+  eldersign_complete_count:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 3
+    persist_state: true
+    events_when_complete: eldersign_counter_complete
+
+  eldersign_1_counter:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 1
+    persist_state: true
+    events_when_complete: eldersign_1_counter_complete
+  eldersign_2_counter:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 2
+    persist_state: true
+    events_when_complete: eldersign_2_counter_complete
+  eldersign_3_counter:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 3
+    persist_state: true
+    events_when_complete: eldersign_3_counter_complete
+  eldersign_4_counter:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 4
+    persist_state: true
+    events_when_complete: eldersign_4_counter_complete
+  eldersign_5_counter:
+    count_events: green_target_group_lit_complete
+    starting_count: 0
+    count_complete_value: 5
+    persist_state: true
+    events_when_complete: eldersign_5_counter_complete
+
+###########################
+light_player:
+  eldersign_1_counter_complete:
+    insert_58:
+      color: purple
+  eldersign_2_counter_complete:
+    insert_59:
+      color: purple
+  eldersign_3_counter_complete:
+    insert_61:
+      color: purple
+  eldersign_4_counter_complete:
+    insert_60:
+      color: purple
+  eldersign_5_counter_complete:
+    insert_62:
+      color: purple
+
+  mode_eldersign_started{current_player.insert_eldersign=='one'}:
+    insert_58:
+      color: purple
+  mode_eldersign_started{current_player.insert_eldersign=='two'}:
+    insert_58:
+      color: purple
+    insert_59:
+      color: purple
+  mode_eldersign_started{current_player.insert_eldersign=='three'}:
+    insert_58:
+      color: purple
+    insert_59:
+      color: purple
+    insert_61:
+      color: purple
+  mode_eldersign_started{current_player.insert_eldersign=='four'}:
+    insert_58:
+      color: purple
+    insert_59:
+      color: purple
+    insert_61:
+      color: purple
+    insert_60:
+      color: purple
+  mode_eldersign_started{current_player.insert_eldersign=='five'}:
+    insert_58:
+      color: purple
+    insert_59:
+      color: purple
+    insert_61:
+      color: purple
+    insert_60:
+      color: purple
+    insert_62:
+      color: purple
+
+###########################
+
+show_player:
+  green_target_group_complete:
+    green_target_complete_show:
+      speed: 50
+      loops: 0
+    green_target_complete_show_2:
+      speed: 50
+      loops: 0
+    green_target_blink_show:
+      speed: 15
+      loops: 20
+
+  eldersign_5_counter_complete:
+    eldersign_blink_show:
+      speed: 5
+      loops: -1
+      priority: 1
+  mode_eldersign_started{current_player.insert_eldersign=='five'}:
+    eldersign_blink_show:
+      speed: 5
+      loops: -1
+      priority: 1
+
+###########################
+
+sound_player:
+  eldersign_green_target_1_shot_hit:
+    green_target_sounds_pool:
+      action: play
+      volume: 1  
+  eldersign_green_target_2_shot_hit:
+    green_target_sounds_pool:
+      action: play
+      volume: 1  
+  eldersign_green_target_3_shot_hit:
+    green_target_sounds_pool:
+      action: play
+      volume: 1  
+  green_target_group_complete:
+    complete_green_target_sound_pool:
+      action: play
+      volume: 1
+
+  green_target_group_lit_complete:
+    eldersign_voice_pool:
+      action: play
+      delay: 2
+      volume: 1  
+
+###########################
+
+sound_pools:
+  green_target_sounds_pool:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - green_target_sound_1
+      - green_target_sound_2
+      - green_target_sound_3
+
+  complete_green_target_sound_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - complete_green_target
+      - complete_green_target_2
+
+  eldersign_voice_pool:
+    load: preload
+    type: random
+    track: voice
+    sounds:
+      - eldersign_voice_1
+
+###########################
+
+videos:
+  eldersign_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: elder_sign_video_1.mp4
+    events_when_stopped: remove_random_eldersign_video_1
+  eldersign_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: elder_sign_video_2.mp4
+    events_when_stopped: remove_random_eldersign_video_2
+  eldersign_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: elder_sign_video_3.mp4
+    events_when_stopped: remove_random_eldersign_video_3
+  eldersign_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: elder_sign_video_4.mp4
+    events_when_stopped: remove_random_eldersign_video_4
+  eldersign_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: elder_sign_video_5.mp4
+    events_when_stopped: remove_random_eldersign_video_5
+  eldersign_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: elder_sign_video_6.mp4
+    events_when_stopped: remove_random_eldersign_video_6

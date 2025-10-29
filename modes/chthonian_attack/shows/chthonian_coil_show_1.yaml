@@ -1,0 +1,24 @@
+#show_version=6
+- time: 0
+  coils:
+    c_flipper_upleft_main: pulse
+
+- time: '+1'
+  coils:
+    c_flipper_left_main:
+      action: pulse
+      pulse_ms: 15
+
+- time: '+2'
+  coils:
+    c_flipper_right_main:
+      action: pulse
+      pulse_ms: 15
+
+- time: '+3'
+  coils:
+    c_flipper_petitgauche_main: pulse
+
+- time: '+4'
+  coils:
+    c_flipper_petitdroit_main: pulse

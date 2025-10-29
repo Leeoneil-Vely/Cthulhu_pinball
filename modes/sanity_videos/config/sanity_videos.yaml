@@ -1,0 +1,674 @@
+#config_version=6
+mode:
+  start_events: launch_sanity_target_voice
+  stop_events: sanity_videos_stop
+  priority: 1000
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  timer_video_sanity_loss_stop_time_complete: sanity_videos_stop
+
+###########################
+
+random_event_player:
+  mode_sanity_videos_started:
+    - launch_sanity_loss_video_1
+    - launch_sanity_loss_video_2
+    - launch_sanity_loss_video_3
+    - launch_sanity_loss_video_4
+    - launch_sanity_loss_video_5
+    - launch_sanity_loss_video_6
+    - launch_sanity_loss_video_7
+    - launch_sanity_loss_video_8
+    - launch_sanity_loss_video_9
+    - launch_sanity_loss_video_10
+    - launch_sanity_loss_video_11
+    - launch_sanity_loss_video_12
+    - launch_sanity_loss_video_13
+    - launch_sanity_loss_video_14
+    - launch_sanity_loss_video_15
+    - launch_sanity_loss_video_16
+    - launch_sanity_loss_video_17
+    - launch_sanity_loss_video_18
+    - launch_sanity_loss_video_19
+    - launch_sanity_loss_video_20
+    - launch_sanity_loss_video_21
+    - launch_sanity_loss_video_22
+    - launch_sanity_loss_video_23
+    - launch_sanity_loss_video_24
+    - launch_sanity_loss_video_25
+    - launch_sanity_loss_video_26
+    - launch_sanity_loss_video_27
+    - launch_sanity_loss_video_28
+    - launch_sanity_loss_video_29
+    - launch_sanity_loss_video_30
+    - launch_sanity_loss_video_31
+    - launch_sanity_loss_video_32
+    - launch_sanity_loss_video_33
+    - launch_sanity_loss_video_34
+    - launch_sanity_loss_video_35
+    - launch_sanity_loss_video_36
+    - launch_sanity_loss_video_37
+    - launch_sanity_loss_video_38
+    - launch_sanity_loss_video_39
+    - launch_sanity_loss_video_40
+    - launch_sanity_loss_video_41
+
+###########################
+
+slides:
+  sanity_loss_video_slide: []
+
+###########################
+
+slide_player:
+  mode_sanity_videos_started: sanity_loss_video_slide
+
+###########################
+
+widgets:
+  sanity_loss_scratch_video_widget_1:
+    type: video
+    video: sanity_loss_scratch_video_1
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_2:
+    type: video
+    video: sanity_loss_scratch_video_2
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_3:
+    type: video
+    video: sanity_loss_scratch_video_3
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_4:
+    type: video
+    video: sanity_loss_scratch_video_4
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_5:
+    type: video
+    video: sanity_loss_scratch_video_5
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_6:
+    type: video
+    video: sanity_loss_scratch_video_6
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_7:
+    type: video
+    video: sanity_loss_scratch_video_7
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_8:
+    type: video
+    video: sanity_loss_scratch_video_8
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_9:
+    type: video
+    video: sanity_loss_scratch_video_9
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_10:
+    type: video
+    video: sanity_loss_scratch_video_10
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_11:
+    type: video
+    video: sanity_loss_scratch_video_11
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_12:
+    type: video
+    video: sanity_loss_scratch_video_12
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_13:
+    type: video
+    video: sanity_loss_scratch_video_13
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_14:
+    type: video
+    video: sanity_loss_scratch_video_14
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_15:
+    type: video
+    video: sanity_loss_scratch_video_15
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_16:
+    type: video
+    video: sanity_loss_scratch_video_16
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_17:
+    type: video
+    video: sanity_loss_scratch_video_17
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_18:
+    type: video
+    video: sanity_loss_scratch_video_18
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_19:
+    type: video
+    video: sanity_loss_scratch_video_19
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_20:
+    type: video
+    video: sanity_loss_scratch_video_20
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_21:
+    type: video
+    video: sanity_loss_scratch_video_21
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_22:
+    type: video
+    video: sanity_loss_scratch_video_22
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_23:
+    type: video
+    video: sanity_loss_scratch_video_23
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_24:
+    type: video
+    video: sanity_loss_scratch_video_24
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_25:
+    type: video
+    video: sanity_loss_scratch_video_25
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_26:
+    type: video
+    video: sanity_loss_scratch_video_26
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_27:
+    type: video
+    video: sanity_loss_scratch_video_27
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_28:
+    type: video
+    video: sanity_loss_scratch_video_28
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_29:
+    type: video
+    video: sanity_loss_scratch_video_29
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_30:
+    type: video
+    video: sanity_loss_scratch_video_30
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_31:
+    type: video
+    video: sanity_loss_scratch_video_31
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_32:
+    type: video
+    video: sanity_loss_scratch_video_32
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_33:
+    type: video
+    video: sanity_loss_scratch_video_33
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_34:
+    type: video
+    video: sanity_loss_scratch_video_34
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_35:
+    type: video
+    video: sanity_loss_scratch_video_35
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_36:
+    type: video
+    video: sanity_loss_scratch_video_36
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_37:
+    type: video
+    video: sanity_loss_scratch_video_37
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_38:
+    type: video
+    video: sanity_loss_scratch_video_38
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_39:
+    type: video
+    video: sanity_loss_scratch_video_39
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_40:
+    type: video
+    video: sanity_loss_scratch_video_40
+    auto_play: true
+    end_behavior: stop
+    z: 10
+  sanity_loss_scratch_video_widget_41:
+    type: video
+    video: sanity_loss_scratch_video_41
+    auto_play: true
+    end_behavior: stop
+    z: 10
+
+###########################
+
+widget_player:
+  mode_sanity_videos_started:
+    cthulhu_frame_image, base_score_widget, superpops_widget:
+      action: add
+      slide: sanity_loss_video_slide
+
+
+  launch_sanity_loss_video_1:
+    sanity_loss_scratch_video_widget_1:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_2:
+    sanity_loss_scratch_video_widget_2:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_3:
+    sanity_loss_scratch_video_widget_3:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_4:
+    sanity_loss_scratch_video_widget_4:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_5:
+    sanity_loss_scratch_video_widget_5:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_6:
+    sanity_loss_scratch_video_widget_6:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_7:
+    sanity_loss_scratch_video_widget_7:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_8:
+    sanity_loss_scratch_video_widget_8:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_9:
+    sanity_loss_scratch_video_widget_9:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_10:
+    sanity_loss_scratch_video_widget_10:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_11:
+    sanity_loss_scratch_video_widget_11:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_12:
+    sanity_loss_scratch_video_widget_12:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_13:
+    sanity_loss_scratch_video_widget_13:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_14:
+    sanity_loss_scratch_video_widget_14:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_15:
+    sanity_loss_scratch_video_widget_15:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_16:
+    sanity_loss_scratch_video_widget_16:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_17:
+    sanity_loss_scratch_video_widget_17:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_18:
+    sanity_loss_scratch_video_widget_18:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_19:
+    sanity_loss_scratch_video_widget_19:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_20:
+    sanity_loss_scratch_video_widget_20:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_21:
+    sanity_loss_scratch_video_widget_21:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_22:
+    sanity_loss_scratch_video_widget_22:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_23:
+    sanity_loss_scratch_video_widget_23:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_24:
+    sanity_loss_scratch_video_widget_24:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_25:
+    sanity_loss_scratch_video_widget_25:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_26:
+    sanity_loss_scratch_video_widget_26:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_27:
+    sanity_loss_scratch_video_widget_27:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_28:
+    sanity_loss_scratch_video_widget_28:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_29:
+    sanity_loss_scratch_video_widget_29:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_30:
+    sanity_loss_scratch_video_widget_30:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_31:
+    sanity_loss_scratch_video_widget_31:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_32:
+    sanity_loss_scratch_video_widget_32:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_33:
+    sanity_loss_scratch_video_widget_33:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_34:
+    sanity_loss_scratch_video_widget_34:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_35:
+    sanity_loss_scratch_video_widget_35:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_36:
+    sanity_loss_scratch_video_widget_36:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_37:
+    sanity_loss_scratch_video_widget_37:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_38:
+    sanity_loss_scratch_video_widget_38:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_39:
+    sanity_loss_scratch_video_widget_39:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_40:
+    sanity_loss_scratch_video_widget_40:
+      action: add
+      slide: sanity_loss_video_slide
+  launch_sanity_loss_video_41:
+    sanity_loss_scratch_video_widget_41:
+      action: add
+      slide: sanity_loss_video_slide
+
+###########################
+
+timers:
+  video_sanity_loss_stop_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: false
+    control_events:
+      - action: start
+        event: mode_sanity_videos_started
+      - action: stop
+        event: timer_video_sanity_loss_stop_time_complete
+
+###########################
+
+videos:
+  sanity_loss_scratch_video_1:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_1.mp4
+  sanity_loss_scratch_video_2:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_2.mp4
+  sanity_loss_scratch_video_3:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_3.mp4
+  sanity_loss_scratch_video_4:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_4.mp4
+  sanity_loss_scratch_video_5:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_5.mp4
+  sanity_loss_scratch_video_6:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_6.mp4
+  sanity_loss_scratch_video_7:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_7.mp4
+  sanity_loss_scratch_video_8:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_8.mp4
+  sanity_loss_scratch_video_9:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_9.mp4
+  sanity_loss_scratch_video_10:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_10.mp4
+  sanity_loss_scratch_video_11:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_11.mp4
+  sanity_loss_scratch_video_12:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_12.mp4
+  sanity_loss_scratch_video_13:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_13.mp4
+  sanity_loss_scratch_video_14:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_14.mp4
+  sanity_loss_scratch_video_15:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_15.mp4
+  sanity_loss_scratch_video_16:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_16.mp4
+  sanity_loss_scratch_video_17:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_17.mp4
+  sanity_loss_scratch_video_18:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_18.mp4
+  sanity_loss_scratch_video_19:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_19.mp4
+  sanity_loss_scratch_video_20:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_20.mp4
+  sanity_loss_scratch_video_21:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_21.mp4
+  sanity_loss_scratch_video_22:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_22.mp4
+  sanity_loss_scratch_video_23:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_23.mp4
+  sanity_loss_scratch_video_24:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_24.mp4
+  sanity_loss_scratch_video_25:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_25.mp4
+  sanity_loss_scratch_video_26:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_26.mp4
+  sanity_loss_scratch_video_27:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_27.mp4
+  sanity_loss_scratch_video_28:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_28.mp4
+  sanity_loss_scratch_video_29:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_29.mp4
+  sanity_loss_scratch_video_30:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_30.mp4
+  sanity_loss_scratch_video_31:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_31.mp4
+  sanity_loss_scratch_video_32:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_32.mp4
+  sanity_loss_scratch_video_33:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_33.mp4
+  sanity_loss_scratch_video_34:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_34.mp4
+  sanity_loss_scratch_video_35:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_35.mp4
+  sanity_loss_scratch_video_36:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_36.mp4
+  sanity_loss_scratch_video_37:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_37.mp4
+  sanity_loss_scratch_video_38:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_38.mp4
+  sanity_loss_scratch_video_39:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_39.mp4
+  sanity_loss_scratch_video_40:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_40.mp4
+  sanity_loss_scratch_video_41:
+    width: 1440
+    height: 900
+    file: sanity_loss_video_41.mp4

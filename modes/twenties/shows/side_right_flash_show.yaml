@@ -1,0 +1,178 @@
+#show_version=6
+- time: 0
+  lights:
+    led_83: 006644-f200ms
+
+- time: '+1'
+  lights:
+    led_82: 006644-f200ms
+    led_83: white-f200ms
+
+- time: '+2'
+  lights:
+    led_81: 006644-f200ms
+    led_82: white-f200ms
+
+- time: '+3'
+  lights:
+    led_80: 006644-f200ms
+    led_81: white-f200ms
+
+- time: '+4'
+  lights:
+    led_79: 006644-f200ms
+    led_80: white-f200ms
+
+- time: '+5'
+  lights:
+    led_78: 006644-f200ms
+    led_79: white-f200ms
+
+- time: '+6'
+  lights:
+    led_77: 006644-f200ms
+    led_78: white-f200ms
+
+- time: '+7'
+  lights:
+    led_76: 006644-f200ms
+    led_77: white-f200ms
+
+- time: '+8'
+  lights:
+    led_75: 006644-f200ms
+    led_76: white-f200ms
+
+- time: '+9'
+  lights:
+    led_74: 006644-f200ms
+    led_75: white-f200ms
+
+- time: '+10'
+  lights:
+    led_73: 006644-f200ms
+    led_74: white-f200ms
+
+- time: '+11'
+  lights:
+    led_72: 006644-f200ms
+    led_73: white-f200ms
+
+- time: '+12'
+  lights:
+    led_71: 006644-f200ms
+    led_72: white-f200ms
+
+- time: '+13'
+  lights:
+    led_70: 006644-f200ms
+    led_71: white-f200ms
+
+- time: '+14'
+  lights:
+    led_69: 006644-f200ms
+    led_70: white-f200ms
+
+- time: '+15'
+  lights:
+    led_68: 006644-f200ms
+    led_69: white-f200ms
+
+- time: '+16'
+  lights:
+    led_67: 006644-f200ms
+    led_68: white-f200ms
+
+- time: '+17'
+  lights:
+    led_66: 006644-f200ms
+    led_67: white-f200ms
+
+- time: '+18'
+  lights:
+    led_65: 006644-f200ms
+    led_66: white-f200ms
+
+- time: '+19'
+  lights:
+    led_64: 006644-f200ms
+    led_65: white-f200ms
+
+- time: '+20'
+  lights:
+    led_63: 006644-f200ms
+    led_64: white-f200ms
+
+- time: '+21'
+  lights:
+    led_62: 006644-f200ms
+    led_63: white-f200ms
+
+- time: '+22'
+  lights:
+    led_61: 006644-f200ms
+    led_62: white-f200ms
+
+- time: '+23'
+  lights:
+    led_60: 006644-f200ms
+    led_61: white-f200ms
+
+- time: '+24'
+  lights:
+    led_59: 006644-f200ms
+    led_60: white-f200ms
+
+- time: '+25'
+  lights:
+    led_58: 006644-f200ms
+    led_59: white-f200ms
+
+- time: '+26'
+  lights:
+    led_57: 006644-f200ms
+    led_58: white-f200ms
+
+- time: '+27'
+  lights:
+    led_56: 006644-f200ms
+    led_57: white-f200ms
+
+- time: '+28'
+  lights:
+    led_55: 006644-f200ms
+    led_56: white-f200ms
+
+- time: '+29'
+  lights:
+    led_54: 006644-f200ms
+    led_55: white-f200ms
+
+- time: '+30'
+  lights:
+    led_53: 006644-f200ms
+    led_54: white-f200ms
+
+- time: '+31'
+  lights:
+    led_52: 006644-f200ms
+    led_53: white-f200ms
+
+- time: '+32'
+  lights:
+    led_51: 006644-f200ms
+    led_52: white-f200ms
+
+- time: '+33'
+  lights:
+    led_50: 006644-f200ms
+    led_51: white-f200ms
+
+- time: '+34'
+  lights:
+    led_49: 006644-f200ms
+    led_50: white-f200ms
+
+- time: '+35'
+  lights:
+    led_49: white-f200ms

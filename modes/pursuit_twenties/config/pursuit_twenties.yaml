@@ -1,0 +1,836 @@
+#config_version=6
+mode:
+  start_events: pursuit_twenties_start
+  stop_events: pursuit_twenties_stop, ball_ended
+  priority: 1600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_pursuit_twenties_started: twenties_stop, hold_stop, launch_random_pursuit_video
+  timer_exit_pursuit_time_complete: pursuit_twenties_stop, twenties_start
+  pursuit_twenties_roll_asylum_shot_bonusflashing_hit: shaker_shake
+  pursuit_twenties_roll_library_shot_bonusflashing_hit: shaker_shake
+  pursuit_twenties_roll_space_shot_bonusflashing_hit: shaker_shake
+  pursuit_twenties_cthulhu_ramp_shot_bonusflashing_hit: shaker_shake
+  pursuit_twenties_green_ramp_shot_bonusflashing_hit: shaker_shake
+  pursuit_twenties_main_ramp_shot_bonusflashing_hit: shaker_shake
+  give_shoot_points: shaker_shake
+  "{device.shots.pursuit_twenties_roll_asylum_shot.state_name=='bonusflashing'}": give_shoot_points
+  "{device.shots.pursuit_twenties_roll_library_shot.state_name=='bonusflashing'}": give_shoot_points
+  "{device.shots.pursuit_twenties_roll_space_shot.state_name=='bonusflashing'}": give_shoot_points
+  "{device.shots.pursuit_twenties_cthulhu_ramp_shot.state_name=='bonusflashing'}": give_shoot_points
+  "{device.shots.pursuit_twenties_green_ramp_shot.state_name=='bonusflashing'}": give_shoot_points
+  "{device.shots.pursuit_twenties_main_ramp_shot.state_name=='bonusflashing'}": give_shoot_points
+
+  "{device.shots.pursuit_twenties_roll_asylum_shot.state_name=='bonusflashing' and device.shots.pursuit_twenties_roll_library_shot.state_name=='bonusflashing' and device.shots.pursuit_twenties_roll_space_shot.state_name=='bonusflashing' and device.shots.pursuit_twenties_cthulhu_ramp_shot.state_name=='bonusflashing' and device.shots.pursuit_twenties_green_ramp_shot.state_name=='bonusflashing' and device.shots.pursuit_twenties_main_ramp_shot.state_name=='bonusflashing'}": stop_voice_pursuit
+
+###########################
+
+random_event_player:
+  timer_badguy_rotate_tick:
+    events:
+      - advance_badguy_1
+      - advance_badguy_2
+      - advance_badguy_3
+      - advance_badguy_4
+      - advance_badguy_5
+      - advance_badguy_6
+
+  s_action_active:
+    events:
+      - shoot_badguy_1
+      - shoot_badguy_2
+      - shoot_badguy_3
+      - miss_badguy_1
+
+  launch_random_pursuit_video:
+    events:
+      - launch_pursuit_video_1
+      - launch_pursuit_video_2
+      - launch_pursuit_video_3
+      - launch_pursuit_video_4
+      - launch_pursuit_video_5
+
+###########################
+
+slides:
+  pursuit_slide: []
+
+###########################
+
+slide_player:
+  mode_pursuit_twenties_started: pursuit_slide
+
+###########################
+
+widgets:
+  pursuit_indication_banner:
+    type: text
+    text: Bad guys !
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: red
+
+  pursuit_indication_banner_2:
+    type: text
+    text: The fight will stop
+    color: white
+    y: 72%
+    x: 50%
+    z: 100
+
+  pursuit_indication_banner_3:
+    type: text
+    text: in (player|exit_pursuit_time_variable_times) seconds !
+    color: white
+    y: 62%
+    x: 50%
+    z: 100
+
+  pursuit_indication_banner_4:
+    type: text
+    text: Shoot bad guys with action button
+    color: red
+    y: 30%
+    x: 50%
+    z: 100
+
+  video_pursuit_1_scratch_widget:
+    type: video
+    video: pursuit_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_pursuit_2_scratch_widget:
+    type: video
+    video: pursuit_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_pursuit_3_scratch_widget:
+    type: video
+    video: pursuit_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_pursuit_4_scratch_widget:
+    type: video
+    video: pursuit_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_pursuit_5_scratch_widget:
+    type: video
+    video: pursuit_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 5
+
+###########################
+
+widget_player:
+  mode_pursuit_twenties_started:
+    pursuit_indication_banner, pursuit_indication_banner_2, pursuit_indication_banner_3, pursuit_indication_banner_4, base_frame_widget, video_lurking_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: pursuit_slide
+  mode_pursuit_twenties_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: pursuit_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launch_pursuit_video_1:
+    video_pursuit_1_scratch_widget:
+      slide: pursuit_slide     
+  launch_pursuit_video_2:
+    video_pursuit_2_scratch_widget:
+      slide: pursuit_slide
+  launch_pursuit_video_3:
+    video_pursuit_3_scratch_widget:
+      slide: pursuit_slide
+  launch_pursuit_video_4:
+    video_pursuit_4_scratch_widget:
+      slide: pursuit_slide
+  launch_pursuit_video_5:
+    video_pursuit_5_scratch_widget:
+      slide: pursuit_slide
+
+  remove_random_pursuit_video_1:
+    video_pursuit_1_scratch_widget:
+      action: remove
+  remove_random_pursuit_video_2:
+    video_pursuit_2_scratch_widget:
+      action: remove
+  remove_random_pursuit_video_3:
+    video_pursuit_3_scratch_widget:
+      action: remove
+  remove_random_pursuit_video_4:
+    video_pursuit_4_scratch_widget:
+      action: remove
+  remove_random_pursuit_video_5:
+    video_pursuit_5_scratch_widget:
+      action: remove
+
+###########################
+
+timers:
+  badguy_rotate:
+    start_running: true
+    tick_interval: 4s
+    control_events:
+      - action: start
+        event: mode_pursuit_twenties_started
+
+  exit_pursuit_time:
+    start_value: 35
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_pursuit_twenties_started
+
+  pursuit_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_pursuit_twenties_started
+
+  pursuit_smash_button_time:
+    start_value: 0
+    end_value: 7
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_pursuit_twenties_started
+      - action: stop
+        event: stop_voice_pursuit
+
+###########################
+
+shot_profiles:
+  pursuit_profile_aza:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  pursuit_profile_library:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  pursuit_profile_king:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  pursuit_profile_nyarla:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  pursuit_profile_cthulhu:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+  pursuit_profile_shub:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: pursuitflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1100
+      - name: bonusflashing
+        show: base_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 600
+
+  pursuit_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: pursuithitflashing
+        show: pursuit_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 1700
+
+###########################
+
+shots:
+  pursuit_twenties_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: pursuit_profile_shub
+    enable_events: advance_badguy_1
+    advance_events: shoot_badguy_1
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+  pursuit_twenties_roll_library_shot:
+    switch: s_roll_library
+    profile: pursuit_profile_library
+    enable_events: advance_badguy_2
+    advance_events: shoot_badguy_2
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  pursuit_twenties_roll_space_shot:
+    switch: s_roll_space
+    profile: pursuit_profile_aza
+    enable_events: advance_badguy_3
+    advance_events: shoot_badguy_3
+    show_tokens:
+      led: insert_43, insert_42, insert_40, insert_39
+  pursuit_twenties_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: pursuit_profile_cthulhu
+    enable_events: advance_badguy_4
+    advance_events: shoot_badguy_1
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  pursuit_twenties_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: pursuit_profile_nyarla
+    enable_events: advance_badguy_5
+    advance_events: shoot_badguy_2
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74
+  pursuit_twenties_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: pursuit_profile_king
+    enable_events: advance_badguy_6
+    advance_events: shoot_badguy_3
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+
+
+  pursuit_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_86
+  pursuit_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_85
+  pursuit_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_84
+  pursuit_sling_left_shot:
+    switch: s_sling_left
+    profile: pursuit_target_flash
+    show_tokens:
+      led: led_30, led_31
+  pursuit_sling_right_shot:
+    switch: s_sling_right
+    profile: pursuit_target_flash
+    show_tokens:
+      led: led_36, led_37
+  pursuit_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  pursuit_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: pursuit_target_flash
+    show_tokens:
+      led: led_11, led_19
+
+  pursuit_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_41
+  pursuit_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_32
+  pursuit_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_30
+  pursuit_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_20
+  pursuit_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_10
+
+  pursuit_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_50
+  pursuit_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_49  
+  pursuit_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_48
+  pursuit_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_11
+  pursuit_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_12
+  pursuit_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_13
+    
+  pursuit_gate_library_shot:
+    switch: s_gate_library
+    profile: pursuit_target_flash
+    show_tokens:
+      led: led_1
+  pursuit_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_34
+
+  pursuit_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  pursuit_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  pursuit_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  pursuit_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  pursuit_team_1_shot:
+    switch: s_roll_skill_shot_1
+  pursuit_team_2_shot:
+    switch: s_roll_skill_shot_2
+  pursuit_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+
+  pursuit_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: pursuit_target_flash
+    show_tokens:
+      led: led_2
+  pursuit_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  pursuit_spinner_shot:
+    switch: s_spinner
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  pursuit_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_24
+  pursuit_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_23
+  pursuit_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_22
+  pursuit_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: pursuit_target_flash
+    show_tokens:
+      led: insert_21
+
+  pursuit_green_target_1_shot:
+    switch: s_target_green_1
+  pursuit_green_target_2_shot:
+    switch: s_target_green_2
+  pursuit_green_target_3_shot:
+    switch: s_target_green_3
+
+###########################
+
+variable_player:
+  timer_exit_pursuit_time_tick:
+    exit_pursuit_time_variable_times:
+      int: device.timers.exit_pursuit_time.ticks
+      action: set
+
+  pursuit_twenties_roll_asylum_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_roll_library_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_roll_space_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_cthulhu_ramp_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_green_ramp_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_main_ramp_shot_pursuitflashing_hit:
+    score: -5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  pursuit_twenties_roll_asylum_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_roll_library_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_roll_space_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_cthulhu_ramp_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_green_ramp_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_twenties_main_ramp_shot_bonusflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  give_shoot_points:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  pursuit_sling_left_shot_hit:
+    score: 105 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_sling_right_shot_hit:
+    score: 105 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_bumper_one_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_bumper_two_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_bumper_three_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  pursuit_target_square_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_target_square_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_target_square_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_target_square_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_target_square_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  pursuit_drop_target_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_drop_target_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_drop_target_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  pursuit_drop_target_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  pursuit_green_target_1_shot_hit:
+    bonus_targets: 1
+  pursuit_green_target_2_shot_hit:
+    bonus_targets: 1
+  pursuit_green_target_3_shot_hit:
+    bonus_targets: 1
+
+  pursuit_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  pursuit_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  pursuit_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_roll_fordt_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  pursuit_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  pursuit_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+###########################
+
+light_player:
+  mode_pursuit_twenties_started:
+    gi:
+      color: white
+
+###########################
+
+show_player:
+  mode_pursuit_twenties_started:
+    all_insert_pursuit_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+    pursuit_blink_show:
+      action: play
+      speed: 15
+      loops: -1
+      priority: 600
+
+  give_shoot_points:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  pursuit_twenties_roll_asylum_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+  pursuit_twenties_roll_library_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+  pursuit_twenties_roll_space_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+  pursuit_twenties_cthulhu_ramp_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+  pursuit_twenties_green_ramp_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+  pursuit_twenties_main_ramp_shot_pursuitflashing_hit:
+    ghoul_attack_show:
+      action: play
+      speed: 20
+      priority: 650
+      loops: 0
+
+  pursuit_twenties_roll_asylum_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  pursuit_twenties_roll_library_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  pursuit_twenties_roll_space_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  pursuit_twenties_cthulhu_ramp_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  pursuit_twenties_green_ramp_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  pursuit_twenties_main_ramp_shot_bonusflashing_hit:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+###########################
+
+sound_player:
+  mode_pursuit_twenties_started:
+    pursuit_voice_pool:
+      action: play
+      volume: 2
+    pursuit_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 2s
+
+  timer_pursuit_voice_time_complete:
+    pursuit_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  s_action_active:
+    guns_sfx_pool:
+      action: play
+      volume: 3
+      mode_end_action: stop
+      fade_out: 1s
+
+  timer_pursuit_smash_button_time_complete:
+    smash_action_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+###########################
+
+sound_pools:
+  pursuit_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - pursuit_voice_1
+      - pursuit_voice_2
+      - pursuit_voice_3
+      - pursuit_voice_4
+      - pursuit_voice_5
+      - pursuit_voice_6
+      - pursuit_voice_7
+      - pursuit_voice_8
+      - pursuit_voice_9
+      - pursuit_voice_10
+      - pursuit_voice_11
+      - pursuit_voice_12
+      - pursuit_voice_13
+      - pursuit_voice_14
+      - pursuit_voice_15
+      - pursuit_voice_16
+
+
+###########################
+
+videos:
+  pursuit_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: pursuit_video_1.mp4
+    events_when_stopped: remove_random_pursuit_video_1
+  pursuit_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: pursuit_video_2.mp4
+    events_when_stopped: remove_random_pursuit_video_2
+  pursuit_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: pursuit_video_3.mp4
+    events_when_stopped: remove_random_pursuit_video_3
+  pursuit_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: pursuit_video_4.mp4
+    events_when_stopped: remove_random_pursuit_video_4
+  pursuit_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: pursuit_video_5.mp4
+    events_when_stopped: remove_random_pursuit_video_5

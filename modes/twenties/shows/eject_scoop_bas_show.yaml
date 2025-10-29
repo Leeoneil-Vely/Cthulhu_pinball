@@ -1,0 +1,12 @@
+#show_version=6
+- time: 0
+  lights:
+    led_28: purple-f200ms
+    led_29: purple-f200ms
+    led_25: purple-f200ms
+    
+- time: "+1"
+  lights:
+    led_28: white-f200ms
+    led_29: white-f200ms
+    led_25: white-f200ms    

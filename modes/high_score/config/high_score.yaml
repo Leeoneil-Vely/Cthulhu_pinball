@@ -1,0 +1,1185 @@
+#config_version=6
+
+mode:
+  priority: 500
+  start_events: game_ending, start_high_score
+  use_wait_queue: true
+
+high_score:
+  _overwrite: true
+  enter_initials_timeout: 120
+  award_slide_display_time: 5s
+  # define your high score categories and the awards
+  categories: !!omap
+    - score:
+        - GRAND CHAMPION
+        - HIGH SCORE 1
+        - HIGH SCORE 2
+        - HIGH SCORE 3
+        - HIGH SCORE 4
+        - HIGH SCORE 5
+        - HIGH SCORE 6
+        - HIGH SCORE 7
+        - HIGH SCORE 8
+
+    - loops_champion:
+        - CRAZY LOOPER
+        - INSANE LOOPER
+        - MAD LOOPER
+
+    - combos_champion:
+        - COMBO CHAMPION
+        - COMBO MASTER
+        - COMBO VIRTUOSO
+
+    - radio_champion:
+        - LISTENER CHAMPION
+        - LAZY MASTER
+        - SLEEPER VIRTUOSO
+
+    - charleston_champion:
+        - DANCER CHAMPION
+        - BALLERINA MASTER
+        - CHARLESTON VIRTUOSO
+
+    - speakeasy_champion:
+        - BOOZER CHAMPION
+        - LUSH MASTER
+        - SOUSE VIRTUOSO
+
+    - cult_champion:
+        - RUNNER CHAMPION
+        - PUSILLANIMOUS MASTER
+        - COWARD VIRTUOSO
+
+    - graveyard_champion:
+        - DISGUSTING CHAMPION
+        - GRAVEDIGGER MASTER
+        - NAUSEATING VIRTUOSO
+
+    - city_champion:
+        - EXPLORER CHAMPION
+        - ADVENTUROUS MASTER
+        - WAYFARER VIRTUOSO
+
+    - aza_champion:
+        - OUTER SPACE CHAMPION
+        - BEYOND SKY MASTER
+        - GALAXY VIRTUOSO
+
+    - king_champion:
+        - ACTOR CHAMPION
+        - PERFORMER MASTER
+        - ARTIST VIRTUOSO
+
+    - nyarla_champion:
+        - TRAITOR CHAMPION
+        - BETRAYER MASTER
+        - BACKSTABBER VIRTUOSO
+
+    - cthulhu_champion:
+        - SAILOR CHAMPION
+        - CARTOGRAPHER MASTER
+        - MAPMAKER VIRTUOSO
+
+    - shub_champion:
+        - TREKKER CHAMPION
+        - HIKER MASTER
+        - RAMBLER VIRTUOSO
+
+    - videomonster_champion:
+        - DEADEYE CHAMPION
+        - SHARPSHOOTER MASTER
+        - SNIPER VIRTUOSO
+
+    - videofordt_champion:
+        - RACER CHAMPION
+        - DRIVER MASTER
+        - DRIVER VIRTUOSO
+
+  # set the defaults
+  defaults:
+    score:
+      - HPL: 100000000
+      - HPL: 400000
+      - HPL: 350000
+      - HPL: 300000
+      - HPL: 250000
+      - HPL: 200000
+      - HPL: 150000
+      - HPL: 100000
+      - HPL: 50000
+
+    loops_champion:
+      - HPL: 3
+      - HPL: 2
+      - HPL: 1
+
+    combos_champion:
+      - HPL: 3
+      - HPL: 2
+      - HPL: 1
+
+    radio_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    charleston_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    speakeasy_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    cult_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    graveyard_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    city_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    aza_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    king_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    nyarla_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    cthulhu_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    shub_champion:
+      - HPL: 1000
+      - HPL: 500
+      - HPL: 100
+
+    videomonster_champion:
+      - HPL: 20
+      - HPL: 10
+      - HPL: 5
+
+    videofordt_champion:
+      - HPL: 20
+      - HPL: 10
+      - HPL: 5
+
+  vars:
+    loops_champion, combos_champion, radio_champion, charleston_champion, speakeasy_champion, cult_champion, graveyard_champion, city_champion, aza_champion, king_champion, nyarla_champion, cthulhu_champion, shub_champion, videomonster_champion, videofordt_champion:
+      - player: character
+
+
+# optional: change the slides (you can omit all the following)
+slide_player:
+  _overwrite: true
+  high_score_enter_initials: high_score_enter_initials
+  high_score_award_display: high_score_award_display
+slides:
+  _overwrite: true
+  high_score_enter_initials:
+    - type: text
+      style: mission_text
+      font_size: 100
+      text: PLAYER (player_num)
+      color: white
+      x: 50%
+      y: 70%
+      z: 10
+    - type: text
+      style: mission_text
+      font_size: 100
+      text: (award)
+      color: white
+      x: 50%
+      y: 50%
+      z: 10
+    - type: text_input
+      initial_char: A
+      dynamic_x: true
+      key: high_score
+      style: mission_text
+      font_size: 100
+      max_chars: 3
+      x: 50%
+      y: 30%
+      z: 10
+      shift_left_event: s_left_flipper_active
+      shift_right_event: s_right_flipper_active
+      select_event: s_start_active
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.3s
+            easing: in_out_quint
+          - property: opacity
+            value: 0
+            duration: 0.3s
+            repeat: true
+            easing: in_out_quint
+    - type: text
+      text: ''
+      key: high_score
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+
+  high_score_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+
+  loops_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: purple
+      font_size: 100
+
+
+  combos_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: purple
+      font_size: 100
+
+  radio_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: 994C00
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: 994C00
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: 994C00
+      font_size: 100
+
+  charleston_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: FF8000
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: FF8000
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: FF8000
+      font_size: 100
+
+  speakeasy_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: FF9933
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: FF9933
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: FF9933
+      font_size: 100
+
+  cult_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: green
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: green
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: green
+      font_size: 100
+
+  graveyard_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: 004C99
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: 004C99
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: 004C99
+      font_size: 100
+
+  city_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: '006666'
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: '006666'
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: '006666'
+      font_size: 100
+
+  aza_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: red
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: red
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: red
+      font_size: 100
+
+  king_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: yellow
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: yellow
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: yellow
+      font_size: 100
+
+  nyarla_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: blue
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: blue
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: blue
+      font_size: 100
+
+  cthulhu_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: 00994C
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: 00994C
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: 00994C
+      font_size: 100
+
+  shub_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: purple
+      font_size: 100
+
+  videomonster_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: purple
+      font_size: 100
+
+  videofordt_champion_award_display:
+    - type: text
+      text: (player_name)
+      font_size: 150
+      style: mission_text
+      anchor_y: middle
+      anchor_x: middle
+      x: 50%
+      y: 65%
+      z: 10
+      color: purple
+      animations:
+        show_slide:
+          - property: opacity
+            value: 1
+            duration: 0.05s
+          - property: opacity
+            value: 0
+            duration: 0.05s
+            repeat: true
+    - type: image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 1
+    - type: text
+      text: (award)
+      font_size: 100
+      style: mission_text
+      x: 50%
+      y: 40%
+      z: 10
+      color: white
+    - type: text
+      text: (value)
+      style: mission_text
+      x: 50%
+      y: 30%
+      z: 10
+      color: purple
+      font_size: 100
+      number_grouping: true
+      min_digits: 2
+    - type: text
+      text: (player(player_num)|character)
+      style: mission_text
+      x: 50%
+      y: 30%
+      color: purple
+      font_size: 100
+
+
+###########################
+
+event_player:
+  high_score_enter_initials: knocker_pulse
+
+###########################
+
+widgets:
+  score_frame_widget:
+    type: Image
+    image: frame_twenties
+    z: 10
+  video_score_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 1
+
+widget_player:
+  mode_high_score_started: score_frame_widget, video_score_widget
+
+###########################
+
+light_player:
+  mode_high_score_started:
+    gi:
+      color: off
+    side_led_right:
+      color: off
+    side_led_left:
+      color: off
+
+###########################
+
+show_player:
+  s_right_flipper_active:
+    select_right_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+  s_left_flipper_active:
+    select_left_show:
+      action: play
+      speed: 10
+      priority: 500
+      loops: 1
+
+###########################
+
+sound_player:
+  s_right_flipper_active:
+    clouc_select:
+      action: play
+  s_left_flipper_active:
+    button_select:
+      action: play
+  s_start_active:
+    impact_score:
+      action: play
+  # s_action_active:
+  #   impact_score:
+  #     action: play
+  high_score_award_display:
+    new_highscore_sound:
+      action: play

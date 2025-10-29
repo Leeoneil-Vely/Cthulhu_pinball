@@ -1,0 +1,156 @@
+#config_version=6
+mode:
+  start_events: buddy_twenties_start
+  stop_events: buddy_twenties_stop
+  priority: 1000
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_buddy_twenties_started: shaker_shake
+  multiball_buddy_twenties_multiball_ended: buddy_twenties_stop|1s
+
+###########################
+
+multiballs:
+  buddy_twenties_multiball:
+    ball_count: 1
+    ball_count_type: add
+    shoot_again: 30s
+    start_events: launch_buddy_multiball
+
+###########################
+
+shot_profiles:
+  buddy_twenties_target_flash:
+    loop: true
+    block: true
+    states:
+      - name: multiballthitflashing
+        show: multiball_target_blink_show
+        speed: 10
+        loops: 0
+        priority: 600
+
+###########################
+
+shots:
+  buddy_twenties_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: multiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_50
+  buddy_twenties_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: multiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_49
+  buddy_twenties_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: mmultiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_48
+  buddy_twenties_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: multiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_11
+  buddy_twenties_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: multiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_12
+  buddy_twenties_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: buddy_twenties_target_flash
+    enable_events: mode_buddy_twenties_started
+    disable_events: multiball_buddy_twenties_multiball_ended
+    show_tokens:
+      led: insert_13
+
+
+###########################
+
+show_player:
+  mode_buddy_twenties_started:
+    launch_buddy_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 1
+      events_when_completed: launch_buddy_show_2
+  launch_buddy_show_2:
+    launch_buddy_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 1
+      events_when_completed: launch_buddy_multiball
+
+  multiball_buddy_twenties_multiball_started:
+    multiball_ball_save_blink_show, multiball_buddy_blink_show:
+      speed: 15
+      loops: -1
+      priority: 500
+  timer_buddy_save_time_complete:
+    multiball_ball_save_blink_show:
+      action: stop
+  buddy_twenties_stop:
+    multiball_buddy_blink_show:
+      action: stop
+
+###########################
+
+timers:
+  buddy_save_time:
+    start_value: 0
+    end_value: 30
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: launch_buddy_multiball
+
+###########################
+
+variable_player:
+  multiball_buddy_twenties_multiball_ended:
+    buddy_mode_running:
+      action: set
+      string: 'off'
+
+
+###########################
+
+sound_player:
+  mode_buddy_twenties_started:
+    buddy_twenties_voice_pool:
+      action: play
+      volume: 2
+    multiball_crescendo_1:
+      action: play
+      volume: 2
+###########################
+
+sound_pools:
+  buddy_twenties_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - buddy_twenties_multi_1
+      - buddy_twenties_multi_2
+      - buddy_twenties_multi_3
+      - buddy_twenties_multi_4

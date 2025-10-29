@@ -1,0 +1,717 @@
+#config_version=6
+mode:
+  start_events: mode_base_started{current_player.variable_extraball_twenties=='undone'}
+  priority: 5000
+  stop_events: mode_extraball_twenties_stop
+
+###########################
+
+event_player:
+  extraball_ready: shaker_shake, mode_extraball_twenties_stop|10s
+
+##########################
+
+random_event_player:
+  extraball_ready:
+    events:
+      - launch_extraball_video_1
+      - launch_extraball_video_2
+      - launch_extraball_video_3
+      - launch_extraball_video_4
+      - launch_extraball_video_5
+      - launch_extraball_video_6
+      - launch_extraball_video_7
+      - launch_extraball_video_8
+
+###########################
+
+slide_player:
+  launch_extraball_video_1:
+    extraball_ready_slide_1:
+      action: play
+      expire: 9s
+  launch_extraball_video_2:
+    extraball_ready_slide_2:
+      action: play
+      expire: 9s
+  launch_extraball_video_3:
+    extraball_ready_slide_3:
+      action: play
+      expire: 9s
+  launch_extraball_video_4:
+    extraball_ready_slide_4:
+      action: play
+      expire: 9s
+  launch_extraball_video_5:
+    extraball_ready_slide_5:
+      action: play
+      expire: 9s
+  launch_extraball_video_6:
+    extraball_ready_slide_6:
+      action: play
+      expire: 9s
+  launch_extraball_video_7:
+    extraball_ready_slide_7:
+      action: play
+      expire: 9s
+  launch_extraball_video_8:
+    extraball_ready_slide_8:
+      action: play
+      expire: 9s
+
+###########################
+
+slides:
+  extraball_ready_slide_1:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_1
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_2:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_2
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_3:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_3
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_4:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_4
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+  extraball_ready_slide_5:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_5
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_6:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_6
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_7:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_7
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+  extraball_ready_slide_8:
+    - type: text
+      text: Extraball !
+      y: 50%
+      x: 50%
+      z: 20
+    - type: Image
+      image: frame_twenties
+      z: 10
+    - type: video
+      video: extraball_video_8
+      auto_play: True
+      end_behavior: loop
+      z: 5
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (spell_boost_multiplier)
+      y: top-132
+      x: right-243
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+
+
+
+###########################
+
+widgets:
+  extraball_widget:
+    - type: text
+      text: (player|variable_extraball_value) spins
+      y: top-20
+      x: right-10
+      anchor_x: right
+      anchor_y: top
+      font_size: 45
+      z: 1000
+
+###########################
+
+show_player:
+  extraball_ready:
+    win_extraball_twenties_show:
+      speed: 35
+      loops: 1
+      priority: 2000
+
+###########################
+
+variable_player:
+  extraball_ready:
+    variable_extraball_twenties:
+      action: set
+      string: 'done'    
+
+  extraball_spinner_shot_hit:
+    variable_extraball_value:
+      int: -1
+
+###########################
+
+counters:
+  extraball_counter:
+    count_events: extraball_spinner_shot_hit #s_spinner_active
+    starting_count: 50
+    count_complete_value: 0
+    direction: down
+    events_when_complete: extraball_ready
+    persist_state: true
+
+###########################
+
+shot_profiles:
+  extraball_spinner_flash:
+    loop: true
+    block: false
+    states:
+      - name: spinnerflashing
+        priority: 5000
+
+###########################
+
+shots:
+  extraball_spinner_shot:
+    switch: s_spinner
+    profile: extraball_spinner_flash
+    disable_events: mode_fordt_ride_started
+    enable_events: mode_extraball_twenties_started, mode_fordt_ride_stopped
+
+###########################
+
+sound_player:
+  extraball_ready:
+    extraball_voice_pool:
+      action: play
+      volume: 2
+
+###########################
+
+sound_pools:
+  extraball_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - extraball_voice_1
+      - extraball_voice_2
+      - extraball_voice_3
+      - extraball_voice_4
+      - extraball_voice_5
+      - extraball_voice_6
+      - extraball_voice_7
+      - extraball_voice_8
+      - extraball_voice_9
+
+###########################
+
+videos:
+  extraball_video_1:
+    width: 1440
+    height: 900
+    file: extraball_video_1.mp4
+  extraball_video_2:
+    width: 1440
+    height: 900
+    file: extraball_video_2.mp4
+  extraball_video_3:
+    width: 1440
+    height: 900
+    file: extraball_video_3.mp4
+  extraball_video_4:
+    width: 1440
+    height: 900
+    file: extraball_video_4.mp4
+  extraball_video_5:
+    width: 1440
+    height: 900
+    file: extraball_video_5.mp4
+  extraball_video_6:
+    width: 1440
+    height: 900
+    file: extraball_video_6.mp4
+  extraball_video_7:
+    width: 1440
+    height: 900
+    file: extraball_video_7.mp4
+  extraball_video_8:
+    width: 1440
+    height: 900
+    file: extraball_video_8.mp4

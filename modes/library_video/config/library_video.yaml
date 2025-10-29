@@ -1,0 +1,323 @@
+#config_version=6
+mode:
+  start_events: library_video_start
+  stop_events: library_video_stop, ball_ended
+  priority: 1000
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_video_started: launch_random_library_video
+  remove_random_library_video_1: launch_random_library_video
+  remove_random_library_video_2: launch_random_library_video
+  remove_random_library_video_3: launch_random_library_video
+  remove_random_library_video_4: launch_random_library_video
+  remove_random_library_video_5: launch_random_library_video
+  remove_random_library_video_6: launch_random_library_video
+  remove_random_library_video_7: launch_random_library_video
+  remove_random_library_video_8: launch_random_library_video
+  remove_random_library_video_9: launch_random_library_video
+  remove_random_library_video_10: launch_random_library_video
+  remove_random_library_video_11: launch_random_library_video
+  remove_random_library_video_12: launch_random_library_video
+  remove_random_library_video_13: launch_random_library_video
+  remove_random_library_video_14: launch_random_library_video
+
+###########################
+
+random_event_player:
+  launch_random_library_video:
+    events:
+      - launch_library_video_1
+      - launch_library_video_2
+      - launch_library_video_3
+      - launch_library_video_4
+      - launch_library_video_5
+      - launch_library_video_6
+      - launch_library_video_7
+      - launch_library_video_8
+      - launch_library_video_9
+      - launch_library_video_10
+      - launch_library_video_11
+      - launch_library_video_12
+      - launch_library_video_13
+      - launch_library_video_14
+
+###########################
+
+widgets:
+  video_library_1_scratch_widget:
+    type: video
+    video: library_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_2_scratch_widget:
+    type: video
+    video: library_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_3_scratch_widget:
+    type: video
+    video: library_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_4_scratch_widget:
+    type: video
+    video: library_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_5_scratch_widget:
+    type: video
+    video: library_scratch_movie_5
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_6_scratch_widget:
+    type: video
+    video: library_scratch_movie_6
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_7_scratch_widget:
+    type: video
+    video: library_scratch_movie_7
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_8_scratch_widget:
+    type: video
+    video: library_scratch_movie_8
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_9_scratch_widget:
+    type: video
+    video: library_scratch_movie_9
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_10_scratch_widget:
+    type: video
+    video: library_scratch_movie_10
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_11_scratch_widget:
+    type: video
+    video: library_scratch_movie_11
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_12_scratch_widget:
+    type: video
+    video: library_scratch_movie_12
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_13_scratch_widget:
+    type: video
+    video: library_scratch_movie_13
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+  video_library_14_scratch_widget:
+    type: video
+    video: library_scratch_movie_14
+    auto_play: true
+    end_behavior: stop
+    z: 6
+
+###########################
+
+widget_player:
+
+  launch_library_video_1:
+    video_library_1_scratch_widget:
+      action: add
+  launch_library_video_2:
+    video_library_2_scratch_widget:
+      action: add
+  launch_library_video_3:
+    video_library_3_scratch_widget:
+      action: add
+  launch_library_video_4:
+    video_library_4_scratch_widget:
+      action: add
+  launch_library_video_5:
+    video_library_5_scratch_widget:
+      action: add
+  launch_library_video_6:
+    video_library_6_scratch_widget:
+      action: add
+  launch_library_video_7:
+    video_library_7_scratch_widget:
+      action: add
+  launch_library_video_8:
+    video_library_8_scratch_widget:
+      action: add
+  launch_library_video_9:
+    video_library_9_scratch_widget:
+      action: add
+  launch_library_video_10:
+    video_library_10_scratch_widget:
+      action: add
+  launch_library_video_11:
+    video_library_11_scratch_widget:
+      action: add
+  launch_library_video_12:
+    video_library_12_scratch_widget:
+      action: add
+  launch_library_video_13:
+    video_library_13_scratch_widget:
+      action: add
+  launch_library_video_14:
+    video_library_14_scratch_widget:
+      action: add
+
+
+  remove_random_library_video_1:
+    video_library_1_scratch_widget:
+      action: remove
+  remove_random_library_video_2:
+    video_library_2_scratch_widget:
+      action: remove
+  remove_random_library_video_3:
+    video_library_3_scratch_widget:
+      action: remove
+  remove_random_library_video_4:
+    video_library_4_scratch_widget:
+      action: remove
+  remove_random_library_video_5:
+    video_library_5_scratch_widget:
+      action: remove
+  remove_random_library_video_6:
+    video_library_6_scratch_widget:
+      action: remove
+  remove_random_library_video_7:
+    video_library_7_scratch_widget:
+      action: remove
+  remove_random_library_video_8:
+    video_library_8_scratch_widget:
+      action: remove
+  remove_random_library_video_9:
+    video_library_9_scratch_widget:
+      action: remove
+  remove_random_library_video_10:
+    video_library_10_scratch_widget:
+      action: remove
+  remove_random_library_video_11:
+    video_library_11_scratch_widget:
+      action: remove
+  remove_random_library_video_12:
+    video_library_12_scratch_widget:
+      action: remove
+  remove_random_library_video_13:
+    video_library_13_scratch_widget:
+      action: remove
+  remove_random_library_video_14:
+    video_library_14_scratch_widget:
+      action: remove
+
+###########################
+
+timers:
+  library_video_end_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_video_started
+
+###########################
+
+videos:
+  library_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: library_video_1.mp4
+    events_when_stopped: remove_random_library_video_1
+  library_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: library_video_2.mp4
+    events_when_stopped: remove_random_library_video_2
+  library_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: library_video_3.mp4
+    events_when_stopped: remove_random_library_video_3
+  library_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: library_video_4.mp4
+    events_when_stopped: remove_random_library_video_4
+  library_scratch_movie_5:
+    width: 1440
+    height: 900
+    file: library_video_5.mp4
+    events_when_stopped: remove_random_library_video_5
+  library_scratch_movie_6:
+    width: 1440
+    height: 900
+    file: library_video_6.mp4
+    events_when_stopped: remove_random_library_video_6
+  library_scratch_movie_7:
+    width: 1440
+    height: 900
+    file: library_video_7.mp4
+    events_when_stopped: remove_random_library_video_7
+  library_scratch_movie_8:
+    width: 1440
+    height: 900
+    file: library_video_8.mp4
+    events_when_stopped: remove_random_library_video_8
+  library_scratch_movie_9:
+    width: 1440
+    height: 900
+    file: library_video_9.mp4
+    events_when_stopped: remove_random_library_video_9
+  library_scratch_movie_10:
+    width: 1440
+    height: 900
+    file: library_video_10.mp4
+    events_when_stopped: remove_random_library_video_10
+  library_scratch_movie_11:
+    width: 1440
+    height: 900
+    file: library_video_11.mp4
+    events_when_stopped: remove_random_library_video_11
+  library_scratch_movie_12:
+    width: 1440
+    height: 900
+    file: library_video_12.mp4
+    events_when_stopped: remove_random_library_video_12
+  library_scratch_movie_13:
+    width: 1440
+    height: 900
+    file: library_video_13.mp4
+    events_when_stopped: remove_random_library_video_13
+  library_scratch_movie_14:
+    width: 1440
+    height: 900
+    file: library_video_14.mp4
+    events_when_stopped: remove_random_library_video_14

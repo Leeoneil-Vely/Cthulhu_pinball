@@ -1,0 +1,9 @@
+#show_version=6
+- time: 0
+  lights:
+    (led): CC0066-f200ms
+    
+- time: "+1"
+  lights:
+    (led): off
+    

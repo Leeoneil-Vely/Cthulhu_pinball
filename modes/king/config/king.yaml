@@ -1,0 +1,1646 @@
+#config_version=6
+mode:
+  start_events: king_start
+  stop_events: king_stop, ball_ended
+  priority: 600
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_king_started: twenties_stop, hold_stop
+  mode_king_started{current_player.multiball_portal_available=='true'}: multiball_portal_start
+  mode_king_started{current_player.king_mission_level=='step_two'}: launchcurtainup
+  mode_king_started{current_player.king_mission_level=='step_three'}: launchchorrorstage
+  mode_king_started{current_player.king_mission_level=='step_four'}: launchkingend
+
+  king_gate_library_shot_hit: library_king_start
+  launchkingend{current_player.insert_eldersign!='five'}: killplayer
+  s_action_book_active{current_player.variable_number_of_book_value >= 5}: action_valid_spell_shot, shaker_shake
+  "{device.shots.king_scoop_bas_tatterdemalion_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_one_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_two_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_three_shot.state_name=='tatterdemalionroff'}": launchcurtainup
+  "{current_player.king_curtain_gauge<=0}": launchchorrorstage
+  "{current_player.king_horror_gauge<=0}": launchkingend
+  "{current_player.king_end_gauge<=0}": launchkingkill
+  king_scoop_bas_tatterdemalion_shot_tatterdemalionflashing_hit: shaker_shake
+  king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit: shaker_shake
+  king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit: shaker_shake
+  king_bumper_tatterdemalion_three_shot_tatterdemalionflashing_hit: shaker_shake
+  king_curtain_cthulhu_ramp_shot_curtainflashing_hit: shaker_shake
+  king_curtain_green_ramp_shot_curtainflashing_hit: shaker_shake
+  king_curtain_main_ramp_shot_curtainflashing_hit: shaker_shake
+  king_horror_target_square_1_shot_horrorthitflashing_hit: shaker_shake
+  king_horror_target_square_2_shot_horrorthitflashing_hit: shaker_shake
+  king_horror_target_square_3_shot_horrorthitflashing_hit: shaker_shake
+  king_horror_target_square_4_shot_horrorthitflashing_hit: shaker_shake
+  king_horror_target_square_5_shot_horrorthitflashing_hit: shaker_shake
+  king_end_main_ramp_shot_kingendflashing_hit: shaker_shake
+  king_end_green_ramp_shot_kingendflashing_hit: shaker_shake
+  king_end_cthulhu_ramp_shot_kingendflashing_hit: shaker_shake
+  king_end_target_square_1_shot_kingendflashing_hit: shaker_shake
+  king_end_target_square_2_shot_kingendflashing_hit: shaker_shake
+  king_end_target_square_3_shot_kingendflashing_hit: shaker_shake
+  king_end_target_square_4_shot_kingendflashing_hit: shaker_shake
+  king_end_target_square_5_shot_kingendflashing_hit: shaker_shake
+  "{device.timers.curtain_knock_time.ticks}": knocker_pulse
+  "{device.timers.curtain_knocker_time.ticks}": knocker_pulse
+  s_action_active{current_player.variable_king_life=='almostdead'}: king_stop, king_win_start
+
+  multiball_multiball_twenties_multiball_ended: relaunch_cthulhu_music
+  multiball_portal_stop: relaunch_cthulhu_music
+
+  mode_king_started{current_player.lock_rlyeh_king_available=='yes'}: open_rlyeh_lock
+  multiball_rlyeh_has_stopped: relaunch_cthulhu_music
+
+###########################
+
+random_event_player:
+  timer_advance_king_ramp_time_complete:
+    events:
+      - advance_king_ramp_1
+      - advance_king_ramp_2
+      - advance_king_ramp_3
+    force_all: true
+
+  launchcurtainup:
+    events:
+      - advance_king_ramp_1
+      - advance_king_ramp_2
+      - advance_king_ramp_3
+    force_all: true
+
+###########################
+
+slides:
+  king_slide: []
+
+###########################
+
+slide_player:
+  mode_king_started: king_slide
+
+###########################
+
+widgets:
+  king_name_banner:
+    type: text
+    text: HASTUR - THE KING
+    y: top-10
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    color: yellow
+    style: mission_text
+
+  king_tadder_indication_banner:
+    type: text
+    text: Tatterdemalion
+    color: yellow
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+
+  king_curtain_indication_banner:
+    type: text
+    text: Curtain's Up
+    color: yellow
+    y: 67%
+    x: 65%
+    z: 100
+    style: mission_text
+  king_curtain_indication_banner_2:
+    type: text
+    text: Still need (player|king_curtain_gauge) to go
+    color: yellow
+    y: 28%
+    x: 65%
+    z: 100
+
+
+  king_horror_indication_banner:
+    type: text
+    text: Horror
+    color: yellow
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  king_horror_indication_banner_2:
+    type: text
+    text: on stage
+    color: yellow
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+  king_horror_indication_banner_3:
+    type: text
+    text: Need to hit (player|king_horror_gauge) targets
+    color: yellow
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+  king_end_indication_banner:
+    type: text
+    text: KING IN YELLOW
+    color: yellow
+    y: 72%
+    x: 65%
+    z: 100
+    style: mission_text
+  king_end_indication_banner_2:
+    type: text
+    text: final battle
+    color: yellow
+    y: 62%
+    x: 65%
+    z: 100
+    style: mission_text
+  king_end_indication_banner_3:
+    type: text
+    text: Need (player|king_end_gauge) hit
+    color: yellow
+    y: 28%
+    x: 65%
+    z: 100
+    style: mission_text
+
+
+  king_kill_indication_banner:
+    type: text
+    text: Burn the theatre !
+    color: yellow
+    y: 72%
+    x: 65%
+    z: 100
+  king_kill_indication_banner_2:
+    type: text
+    text: Press action button !
+    color: yellow
+    y: 62%
+    x: 65%
+    z: 100
+
+  king_banner_image:
+    type: Image
+    image: mini_king
+    y: 50%
+    x: 20%
+    z: 100
+
+  king_video_scratch_widget:
+    - type: video
+      video: scratch_movie
+      auto_play: True
+      end_behavior: loop
+      z: 2
+
+###########################
+
+widget_player:
+  mode_king_started:
+    king_name_banner, king_banner_image, cthulhu_frame_image, king_tadder_indication_banner, king_video_scratch_widget, base_score_widget, superpops_widget:
+      action: add
+      slide: king_slide
+  mode_king_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: king_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove
+
+  launchcurtainup:
+    king_tadder_indication_banner:
+      action: remove
+    king_curtain_indication_banner, king_curtain_indication_banner_2:
+      action: add
+      slide: king_slide
+  launchchorrorstage:
+    king_tadder_indication_banner, king_curtain_indication_banner, king_curtain_indication_banner_2:
+      action: remove
+    king_horror_indication_banner, king_horror_indication_banner_2, king_horror_indication_banner_3:
+      action: add
+      slide: king_slide
+  launchkingend:
+    king_tadder_indication_banner, king_horror_indication_banner, king_horror_indication_banner_2, king_horror_indication_banner_3:
+      action: remove
+    king_end_indication_banner, king_end_indication_banner_2, king_end_indication_banner_3:
+      action: add
+      slide: king_slide
+  launchkingkill:
+    king_end_indication_banner, king_end_indication_banner_2, king_end_indication_banner_3:
+      action: remove
+    king_kill_indication_banner, king_kill_indication_banner_2:
+      action: add
+      slide: king_slide
+
+###########################
+
+counters:
+  king_clue_counter:
+    count_events: king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit, king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit, king_bumper_tatterdemalion_three_shot_tatterdemalionflashing_hit
+    starting_count: 0
+    count_complete_value: 3
+    direction: up
+    persist_state: true
+
+###########################
+
+shot_profiles:
+  king_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: kingthitflashing
+        show: king_target_blink_show
+        speed: 15
+        loops: 1
+        priority: 1600
+
+  tatterdemalion_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: tatterdemalionflashing
+        show: king_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+      - name: tatterdemalionroff
+        show: off
+  king_tatterdemalion_profile_clue:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: tatterdemalionflashing
+        show: king_clue_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: tatterdemalionroff
+        show: off
+
+  curtain_main_ramp_profile:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: curtainflashing
+        show: insert_king_king_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: curtainoff
+        show: off
+  curtain_green_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: curtainflashing
+        show: insert_king_nyarla_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: curtainoff
+        show: off
+  curtain_cthulhu_ramp_profile:
+    advance_on_hit: false
+    block: false
+    states:
+      - name: curtainflashing
+        show: insert_king_cthulhu_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: curtainoff
+        show: off
+
+  horror_ramp_profile:
+    advance_on_hit: false
+    block: true
+    states:
+      - name: horrorflashing
+        show: graveyard_ghoul_blink_show
+        speed: 10
+        loops: -1
+        priority: 1600
+  horror_target_profile:
+    advance_on_hit: true
+    loop: false
+    block: false
+    states:
+      - name: horrorthitflashing
+        show: king_target_blink_show
+        speed: 25
+        loops: -1
+        priority: 1600
+      - name: horrorroff
+        show: off
+
+  king_end_main_ramp_profile:
+    advance_on_hit: true
+    block: true
+    states:
+      - name: kingendflashing
+        show: insert_king_king_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: kingendroff
+        show: off
+  king_end_green_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: kingendflashing
+        show: insert_king_nyarla_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: kingendroff
+        show: off
+  king_end_cthulhu_ramp_profile:
+    advance_on_hit: true
+    block: false
+    states:
+      - name: kingendflashing
+        show: insert_king_cthulhu_flash_show
+        speed: 65
+        loops: -1
+        priority: 1600
+      - name: kingendroff
+        show: off
+  king_end_target_profile:
+    advance_on_hit: true
+    loop: false
+    block: false
+    states:
+      - name: kingendflashing
+        show: king_target_blink_show
+        speed: 25
+        loops: -1
+        priority: 1600
+      - name: kingendroff
+        show: off
+
+###########################
+
+shots:
+  king_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: king_target_flash
+    show_tokens:
+      led: insert_86
+  king_bumper_tatterdemalion_one_shot:
+    switch: s_popbumper_one
+    profile: tatterdemalion_profile
+    disable_events: launchcurtainup
+    show_tokens:
+      led: insert_86
+
+  king_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: king_target_flash
+    show_tokens:
+      led: insert_85
+  king_bumper_tatterdemalion_two_shot:
+    switch: s_popbumper_two
+    profile: tatterdemalion_profile
+    disable_events: launchcurtainup
+    show_tokens:
+      led: insert_85
+
+  king_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: king_target_flash
+    show_tokens:
+      led: insert_84
+  king_bumper_tatterdemalion_three_shot:
+    switch: s_popbumper_three
+    profile: tatterdemalion_profile
+    disable_events: launchcurtainup
+    show_tokens:
+      led: insert_84
+
+
+  king_sling_left_shot:
+    switch: s_sling_left
+    profile: king_target_flash
+    show_tokens:
+      led: led_30, led_31
+  king_sling_right_shot:
+    switch: s_sling_right
+    profile: king_target_flash
+    show_tokens:
+      led: led_36, led_37
+  king_sling_up_shot:
+    switch: s_sling_up
+    profile: king_target_flash
+    show_tokens:
+      led: led_5, led_6
+  king_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: king_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  king_scoop_bas_tatterdemalion_shot:
+    switch: s_scoop_bas
+    profile: king_tatterdemalion_profile_clue
+    disable_events: launchcurtainup
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+
+  king_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: king_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+  king_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: king_target_flash
+    show_tokens:
+      led: insert_41
+  king_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: king_target_flash
+    show_tokens:
+      led: insert_32
+  king_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: king_target_flash
+    show_tokens:
+      led: insert_30
+  king_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: king_target_flash
+    show_tokens:
+      led: insert_20
+  king_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: king_target_flash
+    show_tokens:
+      led: insert_10
+
+  king_horror_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: horror_target_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    reset_events: king_horror_cthulhu_ramp_shot_hit, king_horror_green_ramp_shot_hit, king_horror_main_ramp_shot_hit, king_horror_space_orbit_shot_hit, king_horror_asylum_orbit_shot_hit, king_horror_library_roll_shot_hit
+    show_tokens:
+      led: insert_41
+  king_horror_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: horror_target_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    reset_events: king_horror_cthulhu_ramp_shot_hit, king_horror_green_ramp_shot_hit, king_horror_main_ramp_shot_hit, king_horror_space_orbit_shot_hit, king_horror_asylum_orbit_shot_hit, king_horror_library_roll_shot_hit
+    show_tokens:
+      led: insert_32
+  king_horror_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: horror_target_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    reset_events: king_horror_cthulhu_ramp_shot_hit, king_horror_green_ramp_shot_hit, king_horror_main_ramp_shot_hit, king_horror_space_orbit_shot_hit, king_horror_asylum_orbit_shot_hit, king_horror_library_roll_shot_hit
+    show_tokens:
+      led: insert_30
+  king_horror_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: horror_target_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    reset_events: king_horror_cthulhu_ramp_shot_hit, king_horror_green_ramp_shot_hit, king_horror_main_ramp_shot_hit, king_horror_space_orbit_shot_hit, king_horror_asylum_orbit_shot_hit, king_horror_library_roll_shot_hit
+    show_tokens:
+      led: insert_20
+  king_horror_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: horror_target_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    reset_events: king_horror_cthulhu_ramp_shot_hit, king_horror_green_ramp_shot_hit, king_horror_main_ramp_shot_hit, king_horror_space_orbit_shot_hit, king_horror_asylum_orbit_shot_hit, king_horror_library_roll_shot_hit
+    show_tokens:
+      led: insert_10
+
+  king_end_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: king_end_target_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+    show_tokens:
+      led: insert_41
+  king_end_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: king_end_target_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+    show_tokens:
+      led: insert_32
+  king_end_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: king_end_target_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+    show_tokens:
+      led: insert_30
+  king_end_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: king_end_target_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+    show_tokens:
+      led: insert_20
+  king_end_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: king_end_target_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+    show_tokens:
+      led: insert_10
+  
+  king_target_library_1_shot:
+    switch: s_target_library_1
+    profile: king_target_flash
+    show_tokens:
+      led: insert_80
+  king_target_library_2_shot:
+    switch: s_target_library_2
+    profile: king_target_flash
+    show_tokens:
+      led: insert_79
+  king_target_library_3_shot:
+    switch: s_target_library_3
+    profile: king_target_flash
+    show_tokens:
+      led: insert_78
+  king_target_library_4_shot:
+    switch: s_target_library_4
+    profile: king_target_flash
+    show_tokens:
+      led: insert_77
+  king_target_library_5_shot:
+    switch: s_target_library_5
+    profile: king_target_flash
+    show_tokens:
+      led: insert_76
+  king_target_library_6_shot:
+    switch: s_target_library_6
+    profile: king_target_flash
+    show_tokens:
+      led: insert_75
+
+  king_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: king_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  king_gate_library_shot:
+    switch: s_gate_library
+    profile: king_target_flash
+    show_tokens:
+      led: led_12, led_1
+  king_roll_library_shot:
+    switch: s_roll_library
+    profile: king_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  king_roll_space_shot:
+    switch: s_roll_space
+    profile: king_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  king_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: king_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  king_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: king_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  king_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: king_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  king_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: king_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  king_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: king_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  king_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: king_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  king_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: king_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  king_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: king_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  king_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: king_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  king_curtain_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: curtain_cthulhu_ramp_profile
+    enable_events: advance_king_ramp_3
+    disable_events: advance_king_ramp_1, advance_king_ramp_2, launchchorrorstage
+  king_horror_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  king_end_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: king_end_cthulhu_ramp_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+
+
+  king_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: king_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  king_curtain_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: curtain_green_ramp_profile
+    enable_events: advance_king_ramp_2
+    disable_events: advance_king_ramp_1, advance_king_ramp_3, launchchorrorstage
+  king_horror_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74
+  king_end_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: king_end_green_ramp_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+
+  king_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: king_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  king_curtain_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: curtain_main_ramp_profile
+    enable_events: advance_king_ramp_1
+    disable_events: advance_king_ramp_2, advance_king_ramp_3, launchchorrorstage
+  king_horror_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  king_end_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: king_end_main_ramp_profile
+    enable_events: launchkingend
+    disable_events: launchkingkill
+
+  king_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: king_target_flash
+    show_tokens:
+      led: led_1, led_2
+  king_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: king_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  king_spinner_shot:
+    switch: s_spinner
+    profile: king_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  king_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: king_target_flash
+    show_tokens:
+      led: insert_24    
+  king_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: king_target_flash
+    show_tokens:
+      led: insert_23
+  king_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: king_target_flash
+    show_tokens:
+      led: insert_22
+  king_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: king_target_flash
+    show_tokens:
+      led: insert_21
+
+  king_green_target_1_shot:
+    switch: s_target_green_1
+    profile: king_target_flash
+    show_tokens:
+      led: insert_47
+  king_green_target_2_shot:
+    switch: s_target_green_2
+    profile: king_target_flash
+    show_tokens:
+      led: insert_45
+  king_green_target_3_shot:
+    switch: s_target_green_3
+    profile: king_target_flash
+    show_tokens:
+      led: insert_46
+
+  king_space_orbit_shot:
+    hit_events: king_space_orbit_sequence_hit
+  king_horror_space_orbit_shot:
+    hit_events: king_space_orbit_sequence_hit
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_43, insert_42, insert_40, insert_39
+
+  king_asylum_orbit_shot:
+    hit_events: king_asylum_orbit_sequence_hit
+  king_horror_asylum_orbit_shot:
+    hit_events: king_asylum_orbit_sequence_hit
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+
+  king_library_roll_shot:
+    hit_events: king_library_roll_sequence_hit
+    profile: king_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  king_horror_library_roll_shot:
+    hit_events: king_library_roll_sequence_hit
+    profile: horror_ramp_profile
+    enable_events: launchchorrorstage
+    disable_events: launchkingend
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+
+###########################
+
+sequence_shots:
+  king_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  king_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  king_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+timers:
+  advance_king_ramp_time:
+    start_value: 0
+    end_value: 6
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: launchcurtainup
+      - action: stop
+        event: launchchorrorstage
+
+  curtain_knock_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 0.3s
+    control_events:
+      - action: start
+        event: launchcurtainup
+
+  curtain_knocker_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1.5s
+    control_events:
+      - action: start
+        event: timer_curtain_knock_time_complete
+
+  king_voice_time:
+    start_value: 0
+    end_value: 15
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mode_king_started
+
+###########################
+
+show_player:
+  mode_king_started:
+    mission_king_blink_show:
+      speed: 5
+    king_backglass_blink_show:
+      speed: 15
+
+  launchcurtainup:
+    king_new_step_show:
+      speed: 35
+      loops: 1
+  launchchorrorstage:
+    king_new_step_show:
+      speed: 35
+      loops: 2
+  launchkingend{current_player.insert_eldersign=='five'}:
+    king_new_step_show:
+      speed: 35
+      loops: 3
+  launchkingkill:
+    king_new_step_show:
+      speed: 35
+      loops: -1
+
+  king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_bumper_tatterdemalion_three_shot_tatterdemalionflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_curtain_cthulhu_ramp_shot_curtainflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_curtain_green_ramp_shot_curtainflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_curtain_main_ramp_shot_curtainflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  king_end_main_ramp_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_green_ramp_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_cthulhu_ramp_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_target_square_1_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_target_square_2_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_target_square_3_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_target_square_4_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+  king_end_target_square_5_shot_kingendflashing_hit:
+    king_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 0
+
+  king_cthulhu_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  king_green_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  king_main_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  king_asylum_orbit_shot_hit:
+    king_asylum_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  king_space_orbit_shot_hit:
+    king_space_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  king_library_roll_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+
+  king_sling_left_shot_hit:
+    sanity_side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  king_sling_right_shot_hit:
+    sanity_side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+
+###########################
+
+variable_player:
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_king_available:
+      action: set
+      string: 'no'
+
+  launchcurtainup: 
+    king_mission_level:
+      action: set
+      string: 'step_two'
+  launchchorrorstage: 
+    king_mission_level:
+      action: set
+      string: 'step_three'
+  launchkingend: 
+    king_mission_level:
+      action: set
+      string: 'step_four'
+
+
+  king_clue_counter_complete:
+    king_clue_variable:
+      action: set
+      string: 'ok'
+
+  launchkingkill:
+    variable_king_life:
+      action: set
+      string: 'almostdead'
+  s_action_active{current_player.variable_king_life=='almostdead'}:
+    king_mission_available:
+      action: set
+      string: 'completed'
+
+  king_curtain_cthulhu_ramp_shot_curtainflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_curtain_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  king_curtain_green_ramp_shot_curtainflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_curtain_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  king_curtain_main_ramp_shot_curtainflashing_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_curtain_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+
+  king_horror_target_square_1_shot_horrorthitflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_horror_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_horror_target_square_2_shot_horrorthitflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_horror_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_horror_target_square_3_shot_horrorthitflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_horror_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_horror_target_square_4_shot_horrorthitflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_horror_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_horror_target_square_5_shot_horrorthitflashing_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_horror_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+
+  king_horror_cthulhu_ramp_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+    bonus_ramps: 1
+  king_horror_green_ramp_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+    bonus_ramps: 1
+  king_horror_main_ramp_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+    bonus_ramps: 1
+  king_horror_space_orbit_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+  king_horror_asylum_orbit_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+  king_horror_library_roll_shot_hit:
+    king_horror_gauge:
+      action: add
+      int: 1
+    bonus_ramps: 1
+
+  king_end_main_ramp_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  king_end_green_ramp_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  king_end_cthulhu_ramp_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 1
+  king_end_target_square_1_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_end_target_square_2_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_end_target_square_3_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_end_target_square_4_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+  king_end_target_square_5_shot_kingendflashing_hit:
+    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 1
+
+  king_sling_left_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_sling_right_shot_hit:
+    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_one_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_two_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_three_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_scoop_bas_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_scoop_haut_shot_hit:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  king_target_square_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_square_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_square_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_square_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_square_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  king_drop_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_drop_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_drop_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_drop_target_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  king_green_target_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_green_target_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_green_target_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  king_target_library_1_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_library_2_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_library_3_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_library_4_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_library_5_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  king_target_library_6_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  king_team_1_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_team_2_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_team_3_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  king_spinner_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  king_roll_left_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_left_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_right_inlane_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_right_outlane_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_fordt_shot_hit:
+    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_space_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_roll_asylum_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  king_cthulhu_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  king_main_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  king_green_ramp_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  king_gate_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  king_gate_exit_library_shot_hit:
+    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  king_scoop_bas_tatterdemalion_shot_tatterdemalionflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  king_bumper_tatterdemalion_three_shot_tatterdemalionflashing_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+###########################
+
+light_player:
+  mode_king_started:
+    gi:
+      color: yellow
+    side_led_left:
+      color: 'FF8000'    
+    side_led_right:
+      color: 'FF8000' 
+
+###########################
+
+sound_player:
+  mode_king_started:
+    cthulhu_music_calme:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    cthulhu_music_calme:
+      action: stop
+    cthulhu_music:
+      action: stop
+
+  relaunch_cthulhu_music:
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  launchcurtainup:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+    cthulhu_music_calme:
+      action: stop    
+    cthulhu_music:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+  launchchorrorstage:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchkingend:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+  launchkingkill:
+    nyarla_sfx_new_step:
+      action: play
+      volume: 2
+
+  timer_king_voice_time_complete:
+    king_voice_pool:
+      action: play
+      volume: 2
+      mode_end_action: stop
+      fade_out: 1s
+
+  king_bumper_one_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_bumper_two_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_bumper_three_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+
+  king_sling_left_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_sling_right_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_scoop_bas_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_scoop_haut_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+
+  king_target_square_1_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_target_square_2_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_target_square_3_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_target_square_4_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_target_square_5_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+
+  king_green_target_1_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_green_target_2_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+  king_green_target_3_shot_hit:
+    king_sfx_pool:
+      action: play
+    king_hit_sfx_pool:
+      action: play
+
+  king_team_1_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_team_2_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_team_3_shot_hit:
+    king_sfx_pool:
+      action: play
+
+  king_spinner_shot_hit:
+    king_hit_sfx_pool:
+      action: play
+
+  king_roll_left_outlane_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_left_inlane_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_right_inlane_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_right_outlane_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_library_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_fordt_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_space_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_roll_asylum_shot_hit:
+    king_sfx_pool:
+      action: play
+
+  king_cthulhu_ramp_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_main_ramp_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_green_ramp_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_gate_library_shot_hit:
+    king_sfx_pool:
+      action: play
+  king_gate_exit_library_shot_hit:
+    king_sfx_pool:
+      action: play
+
+###########################
+
+sound_pools:
+  king_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - king_voice_1
+      - king_voice_2
+      - king_voice_3
+      - king_voice_4
+      - king_voice_5
+      - king_voice_6
+      - king_voice_7
+      - king_voice_8
+      - king_voice_9
+
+  king_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - king_sfx_1
+      - king_sfx_2
+      - king_sfx_3
+      - king_sfx_4
+      - king_sfx_5
+      - king_sfx_6
+      - king_sfx_7
+      - king_sfx_8
+      - king_sfx_9
+      - king_sfx_10
+      - king_sfx_11
+      - king_sfx_12
+      - king_sfx_13
+      - king_sfx_14
+      - king_sfx_15
+      - king_sfx_16
+
+  king_hit_sfx_pool:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - king_hit_sfx_1
+      - king_hit_sfx_2
+      - king_hit_sfx_3
+      - king_hit_sfx_4
+      - king_hit_sfx_5
+      - king_hit_sfx_6
+      - king_hit_sfx_7
+      - king_hit_sfx_8
+      - king_hit_sfx_9

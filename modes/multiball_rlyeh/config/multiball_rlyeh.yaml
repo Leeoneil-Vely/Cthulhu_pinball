@@ -1,0 +1,1037 @@
+#config_version=6
+mode:
+  start_events:  mode_base_started, multiball_rlyeh_start, mode_carousel_stopped, multiball_multiball_twenties_multiball_ended, mode_lurking_stopped{current_player.multiball_twenties_running=='off'}, mode_bywandine_stopped{current_player.multiball_twenties_running=='off'}, mode_pursuit_twenties_stopped{current_player.multiball_twenties_running=='off'}, mode_sanity_stopped{current_player.multiball_twenties_running=='off'}, mode_chthonian_attack_stopped{current_player.multiball_twenties_running=='off'}
+  stop_events: multiball_rlyeh_stop, mode_carousel_started, multiball_multiball_twenties_multiball_started, mode_lurking_started, mode_bywandine_started, mode_pursuit_twenties_started, mode_sanity_started, mode_chthonian_attack_started, mode_videofordt_started, mode_videomonster_started
+  priority: 1500
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  "{device.shots.multiball_rlyeh_target_square_4_shot.state_name=='litmultiball' and device.shots.multiball_rlyeh_target_square_5_shot.state_name=='litmultiball'}": display_rlyeh_lock_lit
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit: block_rlyeh_lock, shaker_shake
+  # mode_twenties_started{current_player.lock_rlyeh_twenties_available=='no'}: block_rlyeh_lock
+  mode_aza_started{current_player.lock_rlyeh_aza_available=='no'}: block_rlyeh_lock
+  mode_charleston_started{current_player.lock_rlyeh_charleston_available=='no'}: block_rlyeh_lock
+  mode_city_started{current_player.lock_rlyeh_city_available=='no'}: block_rlyeh_lock
+  mode_cthulhu_started{current_player.lock_rlyeh_cthulhu_available=='no'}: block_rlyeh_lock
+  mode_cult_started{current_player.lock_rlyeh_cult_available=='no'}: block_rlyeh_lock
+  mode_graveyard_started{current_player.lock_rlyeh_graveyard_available=='no'}: block_rlyeh_lock
+  mode_king_started{current_player.lock_rlyeh_king_available=='no'}: block_rlyeh_lock
+  mode_nyarla_started{current_player.lock_rlyeh_nyarla_available=='no'}: block_rlyeh_lock
+  mode_radio_started{current_player.lock_rlyeh_radio_available=='no'}: block_rlyeh_lock
+  mode_shub_started{current_player.lock_rlyeh_shub_available=='no'}: block_rlyeh_lock
+  mode_speakeasy_started{current_player.lock_rlyeh_speakeasy_available=='no'}: block_rlyeh_lock
+
+  s_action_active{current_player.rlyeh_multi_available=='yes' and current_player.random_event_available=='yes'}: launch_rlyeh_multiball #utilisation du blocage des pré grand anciens pour ne pas avoir de random event pendant ce moment de jeu
+  s_action_active{current_player.rlyeh_multi_level_2_available=='yes' and current_player.random_event_available=='yes'}: launch_rlyeh_multiball_level_2
+  s_action_active{current_player.rlyeh_multi_level_3_available=='yes' and current_player.random_event_available=='yes'}: launch_rlyeh_multiball_level_3
+
+  multiball_multiball_rlyeh_multiball_started: multiball_rlyeh_has_started
+  multiball_multiball_rlyeh_multiball_level_2_started: multiball_rlyeh_has_started
+  multiball_multiball_rlyeh_multiball_level_3_started: multiball_rlyeh_has_started
+
+  multiball_multiball_rlyeh_multiball_ended: multiball_rlyeh_has_stopped
+  multiball_multiball_rlyeh_multiball_level_2_ended: multiball_rlyeh_has_stopped
+  multiball_multiball_rlyeh_multiball_level_3_ended: multiball_rlyeh_has_stopped
+
+###########################
+
+slide_player:
+  display_rlyeh_lock_lit: multiball_rlyeh_lock_ready_slide
+  rlyeh_multiball_ready: multiball_rlyeh_launch_ready_slide
+  rlyeh_multiball_level_2_ready: multiball_rlyeh_launch_ready_slide
+  rlyeh_multiball_level_3_ready: multiball_rlyeh_launch_ready_slide
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit: multiball_rlyeh_ball_locked_slide
+
+###########################
+
+multiballs:
+  multiball_rlyeh_multiball:
+    ball_count: 2
+    ball_count_type: add
+    shoot_again: 20s
+    grace_period: 3s
+    start_events: launch_rlyeh_multiball
+
+  multiball_rlyeh_multiball_level_2:
+    ball_count: 2
+    ball_count_type: add
+    shoot_again: 30s
+    grace_period: 3s
+    start_events: launch_rlyeh_multiball_level_2
+
+  multiball_rlyeh_multiball_level_3:
+    ball_count: 2
+    ball_count_type: add
+    shoot_again: 20s
+    grace_period: 3s
+    start_events: launch_rlyeh_multiball_level_3
+
+
+###########################
+
+shot_profiles:
+  multiball_rlyeh_profile:
+    block: false
+    advance_on_hit: true
+    states:
+      - name: blinkrlyeh
+        show: multiball_blink_show
+        speed: 7
+        loops: -1
+        priority: 1000
+      - name: litmultiball
+        priority: 10
+        show: led_color
+        show_tokens:
+          color: green
+
+
+  multiball_rlyeh_lock_ready_profile:
+    advance_on_hit: false
+    loop: false
+    states:
+      - name: off
+      - name: litlock
+        priority: 1600
+        show: multiball_rlyeh_lock_ready_show
+        speed: 5
+        loops: -1 
+
+  multiball_rlyeh_sanity_target_flash:
+    loop: true
+    block: true
+    states:
+      - name: multiballthitflashing
+        show: rlyeh_multiball_target_blink_show
+        speed: 20
+        loops: 0
+        priority: 600
+
+  multiball_rlyeh_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: multiballthitflashing
+        show: rlyeh_multiball_target_blink_show
+        speed: 20
+        loops: 0
+        priority: 600
+
+  multiball_rlyeh_aza_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_azatoth_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_rlyeh_king_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_king_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_rlyeh_nyarla_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_nyarla_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_rlyeh_cthulhu_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_cthulhu_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_rlyeh_shub_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_shub_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+  multiball_rlyeh_library_ramp_profile:
+    loop: true
+    block: false
+    states:
+      - name: active
+        show: base_library_insert_flash_show
+        speed: 65
+        loops: -1
+        priority: 1000
+
+
+###########################
+
+shots:
+  multiball_rlyeh_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: multiball_rlyeh_profile
+    restart_events: open_rlyeh_lock
+    enable_events: relaunch_rlyeh_lock
+    disable_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit, block_rlyeh_lock
+    show_tokens:
+      led: insert_20
+  multiball_rlyeh_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: multiball_rlyeh_profile
+    restart_events: open_rlyeh_lock
+    enable_events: relaunch_rlyeh_lock
+    disable_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit, block_rlyeh_lock
+    show_tokens:
+      led: insert_10
+
+  multiball_rlyeh_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: multiball_rlyeh_lock_ready_profile
+    advance_events: display_rlyeh_lock_lit
+    restart_events: open_rlyeh_lock
+    enable_events: relaunch_rlyeh_lock
+    disable_events: multiball_rlyeh_cthulhu_ramp_shot_litlock_hit, block_rlyeh_lock
+    show_tokens:
+      led: led_44
+
+####
+
+
+  multiball_rlyeh_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_86
+  multiball_rlyeh_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_85
+  multiball_rlyeh_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_84
+  multiball_rlyeh_sling_left_shot:
+    switch: s_sling_left
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_30, led_31
+  multiball_rlyeh_sling_right_shot:
+    switch: s_sling_right
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_36, led_37
+  multiball_rlyeh_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_44, insert_45, insert_46, insert_47
+  multiball_rlyeh_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_11, led_19
+
+  multiball_rlyeh_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_41
+  multiball_rlyeh_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_32
+  multiball_rlyeh_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_30
+  multiball_rlyeh_target_square_normal_4_shot:
+    switch: s_target_square_white_4
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_20
+  multiball_rlyeh_target_square_normal_5_shot:
+    switch: s_target_square_white_5
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_10
+
+  multiball_rlyeh_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_50
+  multiball_rlyeh_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_49
+  multiball_rlyeh_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_48
+  multiball_rlyeh_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_11
+  multiball_rlyeh_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_12
+  multiball_rlyeh_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: multiball_rlyeh_sanity_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_13
+
+
+  multiball_rlyeh_gate_library_shot:
+    switch: s_gate_library
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_1
+  multiball_rlyeh_roll_library_shot:
+    switch: s_roll_library
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38
+  multiball_rlyeh_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_34
+
+  multiball_rlyeh_roll_space_shot:
+    switch: s_roll_space
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43
+  multiball_rlyeh_cthulhu_bonus_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: multiball_rlyeh_cthulhu_ramp_profile
+    enable_events: multiball_rlyeh_space_orbit_shot_hit, multiball_rlyeh_asylum_orbit_shot_hit
+    disable_events: multiball_rlyeh_has_stopped, multiball_rlyeh_cthulhu_bonus_ramp_shot_hit, multiball_rlyeh_main_ramp_shot_hit
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19
+  multiball_rlyeh_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: multiball_rlyeh_nyarla_ramp_profile
+    enable_events: multiball_rlyeh_cthulhu_bonus_ramp_shot_hit, multiball_rlyeh_main_ramp_shot_hit
+    disable_events: multiball_rlyeh_has_stopped, multiball_rlyeh_green_ramp_shot_hit
+    show_tokens:
+      led: insert_74, insert_25, insert_26, insert_29
+  multiball_rlyeh_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: multiball_rlyeh_king_ramp_profile
+    enable_events: multiball_rlyeh_space_orbit_shot_hit, multiball_rlyeh_asylum_orbit_shot_hit
+    disable_events: multiball_rlyeh_has_stopped, multiball_rlyeh_cthulhu_bonus_ramp_shot_hit, multiball_rlyeh_main_ramp_shot_hit
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33
+  multiball_rlyeh_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_6, insert_7, insert_8, insert_9
+
+  multiball_rlyeh_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_2
+  multiball_rlyeh_gate_exit_library_shot:
+    switch: s_gate_exit_library
+  multiball_rlyeh_spinner_shot:
+    switch: s_spinner
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  multiball_rlyeh_space_orbit_shot:
+    hit_events: multiball_rlyeh_space_orbit_sequence_hit
+    profile: multiball_rlyeh_aza_ramp_profile
+    enable_events: multiball_rlyeh_has_started, multiball_rlyeh_green_ramp_shot_hit
+    disable_events: multiball_rlyeh_has_stopped, multiball_rlyeh_space_orbit_shot_hit, multiball_rlyeh_asylum_orbit_shot_hit
+  multiball_rlyeh_asylum_orbit_shot:
+    hit_events: multiball_rlyeh_asylum_orbit_sequence_hit
+    profile: multiball_rlyeh_shub_ramp_profile
+    enable_events: multiball_rlyeh_has_started, multiball_rlyeh_green_ramp_shot_hit
+    disable_events: multiball_rlyeh_has_stopped, multiball_rlyeh_space_orbit_shot_hit, multiball_rlyeh_asylum_orbit_shot_hit
+  multiball_rlyeh_library_roll_shot:
+    hit_events: multiball_rlyeh_library_roll_sequence_hit
+
+
+  multiball_rlyeh_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+  multiball_rlyeh_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+  multiball_rlyeh_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+  multiball_rlyeh_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+  multiball_rlyeh_team_1_shot:
+    switch: s_roll_skill_shot_1
+  multiball_rlyeh_team_2_shot:
+    switch: s_roll_skill_shot_2
+  multiball_rlyeh_team_3_shot:
+    switch: s_roll_skill_shot_3
+
+  multiball_rlyeh_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_24
+  multiball_rlyehn_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_23
+  multiball_rlyeh_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_22
+  multiball_rlyeh_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: insert_21
+
+  multiball_rlyeh_green_target_1_shot:
+    switch: s_target_green_1
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_47
+  multiball_rlyeh_green_target_2_shot:
+    switch: s_target_green_2
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_46
+  multiball_rlyeh_green_target_3_shot:
+    switch: s_target_green_3
+    profile: multiball_rlyeh_target_flash
+    enable_events: multiball_rlyeh_has_started
+    disable_events: multiball_rlyeh_has_stopped
+    show_tokens:
+      led: led_45
+
+
+
+###########################
+
+sequence_shots:
+  multiball_rlyeh_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  multiball_rlyeh_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  multiball_rlyeh_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+show_player:
+  display_rlyeh_lock_lit:
+    rlyeh_multi_insert_flash_show:
+      speed: 65
+      loops: -1
+      priority: 1000
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    rlyeh_multi_insert_flash_show:
+      action: stop
+
+  multiball_rlyeh_target_square_4_shot_blinkrlyeh_hit:
+    multiball_rlyeh_left_ready_show:
+      speed: 35
+      loops: 0
+      priority: 1000
+  multiball_rlyeh_target_square_5_shot_blinkrlyeh_hit:
+    multiball_rlyeh_right_ready_show:
+      speed: 35
+      loops: 0
+      priority: 1000      
+
+  rlyeh_multiball_ready:
+    rlyeh_multiball_ready_show:
+      speed: 35
+      loops: 2
+      priority: 1000
+    rlyeh_multiball_led_ready_blink_show:
+      speed: 10
+      loops: -1
+      priority: 2000
+
+  rlyeh_multiball_level_2_ready:
+    rlyeh_multiball_ready_show:
+      speed: 35
+      loops: 2
+      priority: 1000
+    rlyeh_multiball_led_ready_blink_show:
+      speed: 10
+      loops: -1
+      priority: 2000
+
+  rlyeh_multiball_level_3_ready:
+    rlyeh_multiball_ready_show:
+      speed: 35
+      loops: 2
+      priority: 1000
+    rlyeh_multiball_led_ready_blink_show:
+      speed: 10
+      loops: -1
+      priority: 2000
+
+  multiball_rlyeh_has_started:
+    multiball_ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 500
+    multiball_rlyeh_side_blink_show:
+      speed: 15
+      loops: -1
+      priority: 500
+    rlyeh_multiball_playfield_show:
+      speed: 5
+      loops: -1
+      priority: 150
+    multiball_rlyeh_lauch_show:
+      speed: 35
+      loops: 0
+      priority: 1000
+    rlyeh_multiball_led_ready_blink_show:
+      action: stop
+
+
+  multiball_rlyeh_has_stopped:
+    rlyeh_multiball_playfield_show:
+      action: stop
+    multiball_rlyeh_side_blink_show:
+      action: stop
+
+  multiball_multiball_rlyeh_multiball_grace_period:
+    multiball_ball_save_blink_show:
+      action: stop
+  multiball_multiball_rlyeh_multiball_level_2_grace_period:
+    multiball_ball_save_blink_show:
+      action: stop
+  multiball_multiball_rlyeh_multiball_level_3_grace_period:
+    multiball_ball_save_blink_show:
+      action: stop
+
+###########################
+
+variable_player:
+  rlyeh_multiball_ready:
+    rlyeh_multi_available:
+      action: set
+      string: 'yes'
+
+  rlyeh_multiball_level_2_ready:
+    rlyeh_multi_level_2_available:
+      action: set
+      string: 'yes'
+
+  rlyeh_multiball_level_3_ready:
+    rlyeh_multi_level_3_available:
+      action: set
+      string: 'yes'
+
+  multiball_multiball_rlyeh_multiball_started:
+    rlyeh_multi_available:
+      action: set
+      string: 'no'
+  multiball_multiball_rlyeh_multiball_level_2_started:
+    rlyeh_multi_level_2_available:
+      action: set
+      string: 'no'
+  multiball_multiball_rlyeh_multiball_level_3_started:
+    rlyeh_multi_level_3_available:
+      action: set
+      string: 'no'
+
+
+  multiball_rlyeh_sling_left_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_sling_right_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_bumper_one_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_bumper_two_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_bumper_three_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  multiball_rlyeh_target_square_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_square_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_square_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_square_4_normal_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_square_5_normal_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  multiball_rlyeh_target_sanity_shot_1_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_sanity_shot_2_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_sanity_shot_3_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_sanity_shot_4_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_sanity_shot_5_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_target_sanity_shot_6_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  multiball_rlyeh_drop_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_drop_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_drop_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_drop_target_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  multiball_rlyeh_green_target_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_green_target_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  multiball_rlyeh_green_target_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+
+  multiball_rlyeh_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  multiball_rlyeh_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  multiball_rlyeh_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_library_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_fordt_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_space_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_roll_asylum_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+
+
+  multiball_rlyeh_gate_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  multiball_rlyeh_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_gate_secret_library_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  multiball_rlyeh_asylum_orbit_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_space_orbit_shot_hit:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  multiball_rlyeh_cthulhu_bonus_ramp_shot_hit:
+    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  multiball_rlyeh_main_ramp_shot_hit:
+    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  multiball_rlyeh_green_ramp_shot_hit:
+    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+
+###########################
+
+sound_player:
+  display_rlyeh_lock_lit:
+    multiball_lock_lit_sound_pool:
+      action: play
+      volume: 2
+
+  rlyeh_multiball_ready:
+    multiball_rlyeh_ready_sound_1:
+      action: play
+      volume: 2
+    rlyeh_multiball_ready_voice_pool:
+      action: play
+      volume: 2
+
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    rlyeh_multiball_lock_voice_pool:
+      action: play
+      volume: 2
+
+
+  multiball_rlyeh_has_started:
+    multiball_rlyeh_launch_sound:
+      action: play
+      volume: 2
+
+  multiball_rlyeh_asylum_orbit_shot_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_rlyeh_space_orbit_shot_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_rlyeh_cthulhu_bonus_ramp_shot_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_rlyeh_main_ramp_shot_hit:
+    jackpot_voice_pool:
+      action: play
+      volume: 1
+  multiball_rlyeh_green_ramp_shot_hit:
+    super_jackpot_voice_pool:
+      action: play
+      volume: 1
+
+
+
+###########################
+
+sound_pools:
+  rlyeh_multiball_lock_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - rlyeh_multiball_lock_voice_1
+      - rlyeh_multiball_lock_voice_2
+      - rlyeh_multiball_lock_voice_3
+      - rlyeh_multiball_lock_voice_4
+
+  rlyeh_multiball_ready_voice_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - rlyeh_multiball_ready_voice_1
+      - rlyeh_multiball_ready_voice_2
+      - rlyeh_multiball_ready_voice_3
+
+
+###########################
+
+slides:
+  multiball_rlyeh_lock_ready_slide:
+    widgets:
+      - type: text
+        text: Rlyeh lock is lit !
+        y: 50%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 800
+    expire: 3s
+
+  multiball_rlyeh_launch_ready_slide:
+    widgets:
+      - type: text
+        text: "Rlyeh multiball is available\nAction to launch !"
+        y: 55%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 800
+    expire: 3s
+
+  multiball_rlyeh_ball_locked_slide:
+    widgets:
+      - type: text
+        text: Ball locked !
+        y: 55%
+        x: 50%
+        z: 1000
+      - type: text
+        text: PLAYER (number)
+        y: 30
+        x: 10
+        font_size: 50
+        anchor_x: left
+        anchor_y: bottom
+        z: 1000
+      - type: text
+        text: BALL (ball)
+        y: 30
+        x: left+500
+        anchor_x: left
+        anchor_y: bottom
+        font_size: 50
+        z: 1000
+      - type: text
+        text: (spell_boost_multiplier)
+        y: top-132
+        x: right-243
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_bullet_value)
+        number_grouping: true
+        y: 54%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_object_value)
+        number_grouping: true
+        y: 45%
+        x: left+85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_clue_value)
+        number_grouping: true
+        y: 45%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: text
+        text: (player|variable_number_of_book_value)
+        number_grouping: true
+        y: 54%
+        x: right-85
+        font_size: 45
+        z: 1000
+      - type: Image
+        image: frame_twenties
+        z: 900
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 800
+    expire: 3s
+
+###########################

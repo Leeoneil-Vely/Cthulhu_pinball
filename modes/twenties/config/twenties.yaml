@@ -1,0 +1,1486 @@
+#config_version=6
+mode:
+  start_events: twenties_start, mode_base_started
+  stop_events: twenties_stop
+  priority: 150
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  twenties_gate_library_shot_hit: library_start
+  twenties_scoop_bas_shot_hit{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}: start_carousel_mode
+  twenties_scoop_haut_shot_hit: start_mystery_twenties_mode
+  twenties_roll_fordt_shot_hit: launch_random_fordt_video
+  drop_target_group_complete: portal_start
+  twenties_gate_secret_library_shot_hit: secret_library_start
+
+  twenties_space_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_azathoth=='off'}: aza_step_one
+  twenties_space_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_azathoth=='one'}: aza_step_two
+  twenties_space_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_azathoth=='two'}: aza_step_three
+  twenties_space_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_azathoth=='three'}: aza_step_four
+  aza_step_four: pre_azathoth_start
+
+  twenties_main_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_king=='off'}: king_step_one
+  twenties_main_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_king=='one'}: king_step_two
+  twenties_main_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_king=='two'}: king_step_three
+  twenties_main_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_king=='three'}: king_step_four
+  king_step_four: pre_king_start
+
+  twenties_green_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_nyarla=='off'}: nyarla_step_one
+  twenties_green_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_nyarla=='one'}: nyarla_step_two
+  twenties_green_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_nyarla=='two'}: nyarla_step_three
+  twenties_green_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_nyarla=='three'}: nyarla_step_four
+  nyarla_step_four: pre_nyarla_start
+
+  twenties_cthulhu_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_cthulhu=='off'}: cthulhu_step_one
+  twenties_cthulhu_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_cthulhu=='one'}: cthulhu_step_two
+  twenties_cthulhu_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_cthulhu=='two'}: cthulhu_step_three
+  twenties_cthulhu_ramp_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_cthulhu=='three'}: cthulhu_step_four
+  cthulhu_step_four: pre_cthulhu_start
+
+  twenties_asylum_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_shub=='off'}: shub_step_one
+  twenties_asylum_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_shub=='one'}: shub_step_two
+  twenties_asylum_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_shub=='two'}: shub_step_three
+  twenties_asylum_orbit_shot_hit{current_player.multiball_twenties_running=='off' and current_player.insert_shub=='three'}: shub_step_four
+  shub_step_four: pre_shub_start
+
+  twenties_library_roll_shot_hit{current_player.insert_library=='off'}: library_step_one
+  twenties_library_roll_shot_hit{current_player.insert_library=='one'}: library_step_two
+  twenties_library_roll_shot_hit{current_player.insert_library=='two'}: library_step_three
+  twenties_library_roll_shot_hit{current_player.insert_library=='three'}: library_step_four
+
+  twenties_scoop_bas_shot_hit{current_player.insert_clue=='off'}: clue_step_one
+  twenties_scoop_bas_shot_hit{current_player.insert_clue=='one'}: clue_step_two
+  twenties_scoop_bas_shot_hit{current_player.insert_clue=='two'}: clue_step_three
+  twenties_scoop_bas_shot_hit{current_player.insert_clue=='three'}: clue_step_four
+
+  mode_twenties_started{current_player.lock_rlyeh_aza_available=='yes'}: open_rlyeh_lock
+
+###########################
+
+widgets:
+  twenties_name_banner:
+    type: text
+    text: Roaring twenties
+    y: top-15
+    x: 10
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+    z: 100
+
+  bumper_one_text:
+    type: text
+    text: POW
+    font_size: 75
+    y: 65%
+    x: 20%
+    expire: 1s
+    z: 100
+  bumper_two_text:
+    type: text
+    text: SMASH
+    font_size: 75
+    y: 60%
+    x: 30%
+    expire: 1s
+    z: 100
+  bumper_three_text:
+    type: text
+    text: WHAK 
+    font_size: 75
+    y: 55%
+    x: 25%
+    expire: 1s
+    z: 100
+
+  video_fordt_1_scratch_widget:
+    type: video
+    video: fordt_scratch_movie_1
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_fordt_2_scratch_widget:
+    type: video
+    video: fordt_scratch_movie_2
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_fordt_3_scratch_widget:
+    type: video
+    video: fordt_scratch_movie_3
+    auto_play: true
+    end_behavior: stop
+    z: 5
+  video_fordt_4_scratch_widget:
+    type: video
+    video: fordt_scratch_movie_4
+    auto_play: true
+    end_behavior: stop
+    z: 5
+
+###########################
+
+widget_player:
+  mode_twenties_started:
+    twenties_name_banner:
+      slide : base_slide
+    video_scratch_widget:
+      slide: base_slide
+
+  mode_twenties_started{current_player.variable_extraball_twenties=='undone'}:
+    extraball_widget:
+      action: add
+      slide: base_slide
+  extraball_ready:
+    extraball_widget:
+      action: remove 
+
+  twenties_bumper_one_shot_hit: bumper_one_text
+  twenties_bumper_two_shot_hit: bumper_two_text
+  twenties_bumper_three_shot_hit: bumper_three_text
+
+  launch_fordt_video_1:
+    video_fordt_1_scratch_widget:
+      slide: base_slide
+  launch_fordt_video_2:
+    video_fordt_2_scratch_widget:
+      slide: base_slide
+  launch_fordt_video_3:
+    video_fordt_3_scratch_widget:
+      slide: base_slide
+  launch_fordt_video_4:
+    video_fordt_4_scratch_widget:
+      slide: base_slide
+
+  remove_random_fordt_video_1:
+    video_fordt_1_scratch_widget:
+      action: remove
+  remove_random_fordt_video_2:
+    video_fordt_2_scratch_widget:
+      action: remove
+  remove_random_fordt_video_3:
+    video_fordt_3_scratch_widget:
+      action: remove
+  remove_random_fordt_video_4:
+    video_fordt_4_scratch_widget:
+      action: remove
+
+
+###########################
+
+# random_event_player:
+#   launch_random_mission:
+#     events:
+#       - fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}
+
+random_event_player:
+  launch_random_mission:
+    events:
+      - stormy_night_start
+      - random_bonus_start
+      - buddy_twenties_start{current_player.buddy_mode_running=='off'}
+      - pursuit_twenties_start
+      - lurking_start
+      - chthonian_attack_start
+      - bywandine_start
+      - random_available_mission_start
+      - fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}
+
+  launch_random_fordt_video:
+    events:
+      - launch_fordt_video_1
+      - launch_fordt_video_2
+      - launch_fordt_video_3
+      - launch_fordt_video_4
+
+  mode_twenties_started{current_player.variable_block_videomode=='off'}:
+    events:
+      - choose_videomonster
+      - choose_videofordt
+
+###########################
+
+shot_profiles:
+  twenties_target_on:
+    loop: false
+    block: true
+    states:
+      - name: off
+        show: off        
+      - name: hit
+        show: on
+        priority: 150
+
+  twenties_target_flash:
+    loop: true
+    block: false
+    states:
+      - name: twentiesthitflashing
+        show: twenties_target_blink_show
+        speed: 12
+        loops: 1
+        priority: 600
+
+###########################
+
+shots:
+  twenties_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_86
+  twenties_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_85
+  twenties_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_84
+  twenties_sling_left_shot:
+    switch: s_sling_left
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_30, led_31
+  twenties_sling_right_shot:
+    switch: s_sling_right
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_36, led_37
+  twenties_sling_up_shot:
+    switch: s_sling_up
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_5, led_6
+  twenties_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  twenties_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_19, led_20, led_11
+
+  twenties_drop_target_1_shot:
+    switch: s_drop_target_1
+    show_tokens:
+      light: insert_24
+  twenties_drop_target_2_shot:
+    switch: s_drop_target_2
+    show_tokens:
+      light: insert_23
+  twenties_drop_target_3_shot:
+    switch: s_drop_target_3
+    show_tokens:
+      light: insert_22
+  twenties_drop_target_4_shot:
+    switch: s_drop_target_4
+    show_tokens:
+      light: insert_21
+
+
+  twenties_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_41
+  twenties_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_32
+  twenties_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_30
+  twenties_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_20
+  twenties_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_10
+    
+  twenties_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  twenties_gate_library_shot:
+    switch: s_gate_library
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_12, led_1
+  twenties_roll_library_shot:
+    switch: s_roll_library
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  twenties_roll_space_shot:
+    switch: s_roll_space
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  twenties_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  twenties_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  twenties_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_54, led_32, led_33
+  twenties_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_14, led_35, led_34
+  twenties_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_15, led_38, led_39
+  twenties_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_0, led_10, led_9
+  twenties_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_1, led_9, led_8
+  twenties_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  twenties_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  twenties_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  twenties_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+
+  twenties_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_1, led_2
+  twenties_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: twenties_target_flash
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  twenties_spinner_shot:
+    switch: s_spinner
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+  twenties_green_target_1_shot:
+    switch: s_target_green_1
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_47
+  twenties_green_target_2_shot:
+    switch: s_target_green_2
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_45
+  twenties_green_target_3_shot:
+    switch: s_target_green_3
+    profile: twenties_target_flash
+    show_tokens:
+      led: insert_46
+
+  twenties_space_orbit_shot:
+    hit_events: space_orbit_sequence_hit
+  twenties_asylum_orbit_shot:
+    hit_events: asylum_orbit_sequence_hit
+  twenties_library_roll_shot:
+    hit_events: library_roll_sequence_hit
+
+###########################
+
+shot_groups:
+  drop_target_group:
+    shots: twenties_drop_target_1_shot, twenties_drop_target_2_shot, twenties_drop_target_3_shot, twenties_drop_target_4_shot
+    reset_events: drop_target_group_complete
+
+###########################
+
+sequence_shots:
+  space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+timers:
+  DT_reset_time:
+    start_value: 0
+    end_value: 30
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: drop_target_group_complete
+      - action: stop
+        event: timer_DT_reset_time_complete
+
+###########################
+
+show_player:  
+  skillshot_lit_hit:
+    skillshot_hit_show:
+      action: play
+      speed: 50
+      priority: 200
+      loops: 1
+
+  twenties_bumper_one_shot_hit:
+    bumper1_light_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 0
+  twenties_bumper_two_shot_hit:
+    bumper2_light_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 0
+  twenties_bumper_three_shot_hit:
+    bumper3_light_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 0
+
+  twenties_sling_left_shot_hit:
+    sling_left_light_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 0
+    side_left_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+  twenties_sling_right_shot_hit:
+    sling_right_light_show:
+      action: play
+      speed: 100
+      priority: 200
+      loops: 0
+    side_right_blink_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 0
+
+
+  library_step_four:
+    library_complete_blink_show:
+      speed: 3
+      loops: -1
+      priority: 10
+  mode_twenties_started{current_player.insert_library=='four'}:
+    library_complete_blink_show:
+      speed: 3
+      loops: -1
+      priority: 10
+
+  drop_target_group_complete:
+    drop_target_group_complete_show:
+      speed: 5
+      loops: 63
+      priority: 10
+      events_when_completed: hurry_up_drop_target
+  hurry_up_drop_target:
+    drop_target_group_complete_show:
+      speed: 15
+      loops: 23
+      priority: 5
+
+  c_scoop_bas_fired:
+    eject_scoop_bas_show:
+      action: play
+      speed: 10
+      priority: 200
+      loops: 1
+
+  twenties_cthulhu_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  twenties_green_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  twenties_main_ramp_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+  twenties_asylum_orbit_shot_hit:
+    twenties_asylum_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  twenties_space_orbit_shot_hit:
+    twenties_space_roll_show:
+      action: play
+      speed: 35
+      priority: 200
+      loops: 0
+  twenties_library_roll_shot_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 15
+      priority: 200
+      loops: 2
+
+  mystery_award_11_event:
+    win_extraball_twenties_show:
+      speed: 35
+      loops: 1
+      priority: 2000
+
+###########################
+
+variable_player:
+
+  multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
+    lock_rlyeh_twenties_available:
+      action: set
+      string: 'no'
+
+  twenties_sling_left_shot_hit:
+    score: 105 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_sling_right_shot_hit:
+    score: 105 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_bumper_one_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_bumper_two_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_bumper_three_shot_hit:
+    score: 501 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_sling_up_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_scoop_bas_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_scoop_haut_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  twenties_target_square_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_square_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_square_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_square_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_target_square_5_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  twenties_drop_target_1_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_drop_target_2_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_drop_target_3_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+  twenties_drop_target_4_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 1
+
+  twenties_green_target_1_shot_hit:
+    bonus_targets: 1
+  twenties_green_target_2_shot_hit:
+    bonus_targets: 1
+  twenties_green_target_3_shot_hit:
+    bonus_targets: 1
+
+  twenties_team_1_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_team_2_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_team_3_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  twenties_spinner_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  twenties_roll_left_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_roll_left_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_roll_right_inlane_shot_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_roll_right_outlane_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_library_roll_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_library_roll_shot_hit{current_player.insert_library=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_roll_fordt_shot_hit:
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_space_orbit_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_space_orbit_shot_hit{current_player.insert_azathoth=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_asylum_orbit_shot_hit:
+    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_asylum_orbit_shot_hit{current_player.insert_shub=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  twenties_cthulhu_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_cthulhu_ramp_shot_hit{current_player.insert_cthulhu=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_main_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_main_ramp_shot_hit{current_player.insert_king=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_green_ramp_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+  twenties_green_ramp_shot_hit{current_player.insert_nyarla=='four'}:
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 1
+
+  twenties_gate_exit_library_shot_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+  twenties_gate_secret_library_shot_hit:
+    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  sanity_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+  drop_target_group_complete:
+    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  portal_start:
+    multiball_portal_available:
+      action: set
+      string: 'true'
+
+  aza_step_one:
+    insert_azathoth:
+      action: set
+      string: 'one'
+  aza_step_two:
+    insert_azathoth:
+      action: set
+      string: 'two'
+  aza_step_three:
+    insert_azathoth:
+      action: set
+      string: 'three'
+  aza_step_four:
+    insert_azathoth:
+      action: set
+      string: 'four'
+
+  king_step_one:
+    insert_king:
+      action: set
+      string: 'one'
+  king_step_two:
+    insert_king:
+      action: set
+      string: 'two'
+  king_step_three:
+    insert_king:
+      action: set
+      string: 'three'
+  king_step_four:
+    insert_king:
+      action: set
+      string: 'four'
+
+  nyarla_step_one:
+    insert_nyarla:
+      action: set
+      string: 'one'
+  nyarla_step_two:
+    insert_nyarla:
+      action: set
+      string: 'two'
+  nyarla_step_three:
+    insert_nyarla:
+      action: set
+      string: 'three'
+  nyarla_step_four:
+    insert_nyarla:
+      action: set
+      string: 'four'
+
+  cthulhu_step_one:
+    insert_cthulhu:
+      action: set
+      string: 'one'
+  cthulhu_step_two:
+    insert_cthulhu:
+      action: set
+      string: 'two'
+  cthulhu_step_three:
+    insert_cthulhu:
+      action: set
+      string: 'three'
+  cthulhu_step_four:
+    insert_cthulhu:
+      action: set
+      string: 'four'
+
+  shub_step_one:
+    insert_shub:
+      action: set
+      string: 'one'
+  shub_step_two:
+    insert_shub:
+      action: set
+      string: 'two'
+  shub_step_three:
+    insert_shub:
+      action: set
+      string: 'three'
+  shub_step_four:
+    insert_shub:
+      action: set
+      string: 'four'
+
+  library_step_one:
+    insert_library:
+      action: set
+      string: 'one'
+  library_step_two:
+    insert_library:
+      action: set
+      string: 'two'
+  library_step_three:
+    insert_library:
+      action: set
+      string: 'three'
+  library_step_four:
+    insert_library:
+      action: set
+      string: 'four'
+
+  clue_step_one:
+    insert_clue:
+      action: set
+      string: 'one'
+  clue_step_two:
+    insert_clue:
+      action: set
+      string: 'two'
+  clue_step_three:
+    insert_clue:
+      action: set
+      string: 'three'
+  clue_step_four:
+    insert_clue:
+      action: set
+      string: 'four'
+
+  choose_videomonster:
+    variable_choose_videomode:
+      action: set
+      string: 'monster' 
+  choose_videofordt:
+    variable_choose_videomode:
+      action: set
+      string: 'fordt'
+
+###########################
+
+counters:
+  random_mission_counter:
+    count_events: s_roll_skill_shot_1_active{current_player.random_event_available=='yes'}, s_roll_skill_shot_2_active{current_player.random_event_available=='yes'}, s_roll_skill_shot_3_active{current_player.random_event_available=='yes'}, s_sling_left_active{current_player.random_event_available=='yes'}, s_sling_right_active{current_player.random_event_available=='yes'}, s_sling_up_active{current_player.random_event_available=='yes'}, s_popbumper_one_active{current_player.random_event_available=='yes'}, s_popbumper_two_active{current_player.random_event_available=='yes'}, s_popbumper_three_active{current_player.random_event_available=='yes'}, s_target_square_white_1_active{current_player.random_event_available=='yes'}, s_target_square_white_2_active{current_player.random_event_available=='yes'}, s_target_square_white_3_active{current_player.random_event_available=='yes'}, s_target_square_white_4_active{current_player.random_event_available=='yes'}, s_target_square_white_5_active{current_player.random_event_available=='yes'}, s_target_library_1_active{current_player.random_event_available=='yes'}, s_target_library_2_active{current_player.random_event_available=='yes'}, s_target_library_3_active{current_player.random_event_available=='yes'}, s_target_library_4_active{current_player.random_event_available=='yes'}, s_target_library_5_active{current_player.random_event_available=='yes'}, s_target_library_6_active{current_player.random_event_available=='yes'}, s_target_green_1_active{current_player.random_event_available=='yes'}, s_target_green_2_active{current_player.random_event_available=='yes'}, s_target_green_3_active{current_player.random_event_available=='yes'}, s_drop_target_1_active{current_player.random_event_available=='yes'}, s_drop_target_2_active{current_player.random_event_available=='yes'}, s_drop_target_3_active{current_player.random_event_available=='yes'}, s_drop_target_4_active{current_player.random_event_available=='yes'}, s_roll_fordt_active{current_player.random_event_available=='yes'}, s_roll_asylum_active{current_player.random_event_available=='yes'}, s_gate_library_active{current_player.random_event_available=='yes'}, s_gate_secret_library_active{current_player.random_event_available=='yes'}, s_gate_main_ramp_active{current_player.random_event_available=='yes'}, s_gate_green_ramp_active{current_player.random_event_available=='yes'}, s_gate_cthulhu_ramp_active{current_player.random_event_available=='yes'}, s_roll_library_active{current_player.random_event_available=='yes'}, s_roll_space_active{current_player.random_event_available=='yes'}, s_roll_right_inlane_active{current_player.random_event_available=='yes'}, s_roll_left_inlane_active{current_player.random_event_available=='yes'}
+    starting_count: 0
+    count_complete_value: (current_player.random_value_mission)
+    events_when_complete: launch_random_mission
+    reset_on_complete: true
+    disable_on_complete: false
+    persist_state: false
+
+###########################
+
+light_player:
+  mode_twenties_started:
+    gi:
+      color: white
+    side_led_right:
+      color: white
+    side_led_left:
+      color: white
+
+  aza_step_one:
+    insert_43:
+      color: red
+  aza_step_two:
+    insert_42:
+      color: red
+  aza_step_three:
+    insert_40:
+      color: red
+  aza_step_four:
+    insert_39:
+      color: red
+  mode_twenties_started{current_player.insert_azathoth=='one'}:  
+    insert_43:
+      color: red
+  mode_twenties_started{current_player.insert_azathoth=='two'}:  
+    insert_43:
+      color: red
+    insert_42:
+      color: red
+  mode_twenties_started{current_player.insert_azathoth=='three'}:  
+    insert_43:
+      color: red
+    insert_42:
+      color: red
+    insert_40:
+      color: red
+  mode_twenties_started{current_player.insert_azathoth=='four'}:  
+    insert_43:
+      color: red
+    insert_42:
+      color: red
+    insert_40:
+      color: red
+    insert_39:
+      color: red
+
+  king_step_one:
+    insert_27:
+      color: 'FFFF00'
+  king_step_two:
+    insert_28:
+      color: 'FFFF00'
+  king_step_three:
+    insert_31:
+      color: 'FFFF00'
+  king_step_four:
+    insert_33:
+      color: 'FFFF00'
+  mode_twenties_started{current_player.insert_king=='one'}:  
+    insert_27:
+      color: 'FFFF00'
+  mode_twenties_started{current_player.insert_king=='two'}:  
+    insert_27:
+      color: 'FFFF00'
+    insert_28:
+      color: 'FFFF00'
+  mode_twenties_started{current_player.insert_king=='three'}:  
+    insert_27:
+      color: 'FFFF00'
+    insert_28:
+      color: 'FFFF00'
+    insert_31:
+      color: 'FFFF00'
+  mode_twenties_started{current_player.insert_king=='four'}:  
+    insert_27:
+      color: 'FFFF00'
+    insert_28:
+      color: 'FFFF00'
+    insert_31:
+      color: 'FFFF00'
+    insert_33:
+      color: 'FFFF00'
+
+  nyarla_step_one:
+    insert_74:
+      color: blue
+  nyarla_step_two:
+    insert_25:
+      color: blue
+  nyarla_step_three:
+    insert_26:
+      color: blue
+  nyarla_step_four:
+    insert_29:
+      color: blue
+  mode_twenties_started{current_player.insert_nyarla=='one'}:
+    insert_74:
+      color: blue
+  mode_twenties_started{current_player.insert_nyarla=='two'}:
+    insert_74:
+      color: blue
+    insert_25:
+      color: blue
+  mode_twenties_started{current_player.insert_nyarla=='three'}:
+    insert_74:
+      color: blue
+    insert_25:
+      color: blue
+    insert_26:
+      color: blue
+  mode_twenties_started{current_player.insert_nyarla=='four'}:
+    insert_74:
+      color: blue
+    insert_25:
+      color: blue
+    insert_26:
+      color: blue
+    insert_29:
+      color: blue
+
+  cthulhu_step_one:
+    insert_16:
+      color: '00994C'
+  cthulhu_step_two:
+    insert_17:
+      color: '00994C'
+  cthulhu_step_three:
+    insert_18:
+      color: '00994C'
+  cthulhu_step_four:
+    insert_19:
+      color: '00994C'
+  mode_twenties_started{current_player.insert_cthulhu=='one'}:  
+    insert_16:
+      color: '00994C'
+  mode_twenties_started{current_player.insert_cthulhu=='two'}:  
+    insert_16:
+      color: '00994C'
+    insert_17:
+      color: '00994C'
+  mode_twenties_started{current_player.insert_cthulhu=='three'}:  
+    insert_16:
+      color: '00994C'
+    insert_17:
+      color: '00994C'
+    insert_18:
+      color: '00994C'
+  mode_twenties_started{current_player.insert_cthulhu=='four'}:  
+    insert_16:
+      color: '00994C'
+    insert_17:
+      color: '00994C'
+    insert_18:
+      color: '00994C'
+    insert_19:
+      color: '00994C'
+
+  shub_step_one:
+    insert_9:
+      color: 'CC0066'
+  shub_step_two:
+    insert_8:
+      color: 'CC0066'
+  shub_step_three:
+    insert_7:
+      color: 'CC0066'
+  shub_step_four:
+    insert_6:
+      color: 'CC0066'
+  mode_twenties_started{current_player.insert_shub=='one'}:  
+    insert_9:
+      color: 'CC0066'
+  mode_twenties_started{current_player.insert_shub=='two'}:  
+    insert_9:
+      color: 'CC0066'
+    insert_8:
+      color: 'CC0066'
+  mode_twenties_started{current_player.insert_shub=='three'}:  
+    insert_9:
+      color: 'CC0066'
+    insert_8:
+      color: 'CC0066'
+    insert_7:
+      color: 'CC0066'
+  mode_twenties_started{current_player.insert_shub=='four'}:  
+    insert_9:
+      color: 'CC0066'
+    insert_8:
+      color: 'CC0066'
+    insert_7:
+      color: 'CC0066'
+    insert_6:
+      color: 'CC0066'
+
+  library_step_one:
+    insert_38:
+      color: white
+  library_step_two:
+    insert_37:
+      color: white
+  library_step_three:
+    insert_36:
+      color: white
+  library_step_four:
+    insert_35:
+      color: white
+  mode_twenties_started{current_player.insert_library=='one'}:  
+    insert_38:
+      color: white
+  mode_twenties_started{current_player.insert_library=='two'}:  
+    insert_38:
+      color: white
+    insert_37:
+      color: white
+  mode_twenties_started{current_player.insert_library=='three'}:  
+    insert_38:
+      color: white
+    insert_37:
+      color: white
+    insert_36:
+      color: white
+  mode_twenties_started{current_player.insert_library=='four'}:  
+    insert_38:
+      color: white
+    insert_37:
+      color: white
+    insert_36:
+      color: white
+    insert_35:
+      color: white
+
+  clue_step_one:
+    insert_47:
+      color: white
+  clue_step_two:
+    insert_46:
+      color: white
+  clue_step_three:
+    insert_45:
+      color: white
+  clue_step_four:
+    insert_44:
+      color: white
+  mode_twenties_started{current_player.insert_clue=='one'}:
+    insert_47:
+      color: white
+  mode_twenties_started{current_player.insert_clue=='two'}:
+    insert_47:
+      color: white
+    insert_46:
+      color: white
+  mode_twenties_started{current_player.insert_clue=='three'}:
+    insert_47:
+      color: white
+    insert_46:
+      color: white
+    insert_45:
+      color: white
+  mode_twenties_started{current_player.insert_clue=='four'}:
+    insert_47:
+      color: white
+    insert_46:
+      color: white
+    insert_45:
+      color: white
+    insert_44:
+      color: white
+
+###########################
+
+sound_player:
+  mode_twenties_started:
+    roaring_20:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+  multiball_rlyeh_has_started:
+    roaring_20:
+      action: stop
+  multiball_rlyeh_has_stopped:
+    roaring_20:
+      action: play
+      loops: -1
+      volume: 1
+      mode_end_action: stop
+      fade_out: 1s
+
+
+  twenties_green_ramp_shot_hit:
+    wind_sound_pool:
+      action: play
+      volume: 1    
+  twenties_cthulhu_ramp_shot_hit:
+    cthulhu_ramp_sound_pool:
+      action: play
+      volume: 1
+
+  twenties_bumper_one_shot_hit:
+    punch:
+      action: play
+      volume: 1
+  twenties_bumper_two_shot_hit:
+    punch:
+      action: play
+      volume: 1
+  twenties_bumper_three_shot_hit:
+    punch:
+      action: play
+      volume: 1
+  twenties_sling_up_shot_hit:
+    punch:
+      action: play
+      volume: 1
+  twenties_target_square_1_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_target_square_2_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_target_square_3_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_target_square_4_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_target_square_5_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_sling_left_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_sling_right_shot_hit:
+    target_sound:
+      action: play
+      volume: 1
+  twenties_gate_library_shot_hit:
+    door_open:
+      action: play
+      volume: 2
+
+  twenties_roll_left_inlane_shot_hit:
+    roll_down_sound:
+      action: play
+      volume: 1
+  twenties_roll_right_inlane_shot_hit:
+    roll_down_sound:
+      action: play
+      volume: 1
+  twenties_gate_exit_library_shot_hit:
+    exit_library_switch:
+      action: play
+      volume: 1
+  twenties_gate_secret_library_shot_hit:
+    exit_secret_door:
+      action: play
+      volume: 1
+  twenties_spinner_shot_hit:
+    spinner_sounds:
+      action: play
+      volume: 1
+  twenties_main_ramp_shot_hit:
+    entree_cave:
+      action: play
+      volume: 1
+    private_entrance_sound_pool:
+      action: play
+      volume: 2   
+  twenties_roll_space_shot_hit:
+    space_switch:
+      action: play
+      volume: 2
+  twenties_roll_asylum_shot_hit:
+    asylum_switch:
+      action: play
+      volume: 1
+  twenties_roll_fordt_shot_hit:
+    fordt_switch:
+      action: play
+      volume: 2
+  twenties_roll_left_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 2
+  twenties_roll_right_outlane_shot_hit:
+    drowning_switch:
+      action: play
+      volume: 2
+  drop_target_group_lit_complete:
+    dt_complete_sound_pool:
+      action: play
+      volume: 1
+      events_when_stopped: play_drop_target_voice
+  play_drop_target_voice:
+    drop_target_sound_pool:
+      action: play
+      volume: 2
+
+  twenties_drop_target_1_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  twenties_drop_target_2_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  twenties_drop_target_3_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+  twenties_drop_target_4_shot_hit:
+    drop_target_sounds:
+      action: play
+      volume: 1
+ 
+###########################
+
+sound_pools:
+  punch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - punch1
+      - punch2
+      - punch3
+      - punch4
+      - punch5
+      - punch6
+      - punch7
+      - punch8
+      - punch9
+      - punch10
+  target_sound:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - target_1
+      - target_2  
+      - target_3
+      - target_4
+      - target_5
+      - target_6
+      - target_7
+      - target_8
+      - target_9
+  roll_down_sound:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - roll_down_1
+      - roll_down_2
+      - roll_down_3
+  spinner_sounds:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - spinner_1
+      - spinner_2
+      - spinner_3
+  space_switch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - space_switch_1
+      - space_switch_2
+      - space_switch_3    
+  entree_cave:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - cave_1
+      - cave_2
+      - cave_3
+  asylum_switch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - asylum_sound_1
+      - asylum_sound_2
+      - asylum_sound_3
+      - asylum_sound_4
+      - asylum_sound_5
+      - asylum_sound_6
+  fordt_switch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - fordt_1
+      - fordt_2
+      - fordt_3
+      - fordt_4
+      - fordt_5
+      - fordt_6
+  drowning_switch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - drowning_1
+      - drowning_2
+      - drowning_3
+      - drowning_4  
+  exit_library_switch:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - run_1
+      - run_2
+      - run_3
+      - exit_library_door
+
+  private_entrance_sound_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - private_entrance_1
+      - private_entrance_2
+      - private_entrance_3 
+      - private_entrance_4
+      - private_entrance_5
+      - private_entrance_6
+      - private_entrance_7
+      - private_entrance_8 
+      - private_entrance_9
+      - private_entrance_10
+      - private_entrance_11
+      - private_entrance_12
+      - private_entrance_13
+      - private_entrance_14
+      - private_entrance_15
+      - private_entrance_16
+      - private_entrance_17
+      - private_entrance_18
+      - private_entrance_19
+      - private_entrance_20
+      - private_entrance_21
+      - private_entrance_22
+      - private_entrance_23
+      - private_entrance_24
+      - private_entrance_25
+
+  drop_target_sound_pool:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - dimensional_portal_1
+      - dimensional_portal_2
+      - dimensional_portal_3
+      - dimensional_portal_4
+      - dimensional_portal_5
+      - dimensional_portal_6
+      - dimensional_portal_7
+      - dimensional_portal_8
+      - dimensional_portal_9
+
+  wind_sound_pool:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - wind_1
+      - wind_2
+      - wind_3
+      - wind_4
+      - wind_5
+      - wind_6
+
+  cthulhu_ramp_sound_pool:
+    load: preload
+    type: random
+    track: sfx
+    sounds:
+      - cthulhu_ramp_sound_1
+      - cthulhu_ramp_sound_2
+      - cthulhu_ramp_sound_3
+      - cthulhu_ramp_sound_4
+      - cthulhu_ramp_sound_5
+      - cthulhu_ramp_sound_6
+      - cthulhu_ramp_sound_7
+      - cthulhu_ramp_sound_8
+
+###########################
+
+videos:
+  fordt_scratch_movie_1:
+    width: 1440
+    height: 900
+    file: fordt_video_1.mp4
+    events_when_stopped: remove_random_fordt_video_1
+  fordt_scratch_movie_2:
+    width: 1440
+    height: 900
+    file: fordt_video_2.mp4
+    events_when_stopped: remove_random_fordt_video_2
+  fordt_scratch_movie_3:
+    width: 1440
+    height: 900
+    file: fordt_video_3.mp4
+    events_when_stopped: remove_random_fordt_video_3
+  fordt_scratch_movie_4:
+    width: 1440
+    height: 900
+    file: fordt_video_4.mp4
+    events_when_stopped: remove_random_fordt_video_4
