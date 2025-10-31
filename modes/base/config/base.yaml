@@ -2,7 +2,7 @@
 mode:
   start_events: ball_started, base_start
   priority: 100
-  stop_events: base_stop
+  stop_events: game_ended, ball_ended, game_ending
 
 ###########################
 
@@ -228,7 +228,7 @@ slide_player:
     killed_by_gods_slide:
       action: play
       priority: 5000
-      expire: 5s
+      expire: 6s
 
 ###########################
 
@@ -762,7 +762,7 @@ show_player:
   killplayer:
     kill_player_show:
       speed: 5
-      loops: 10
+      loops: 15
       priority: 2000
 
   "{current_player.mission_cult=='completed'}":
@@ -1251,40 +1251,6 @@ sound_player:
       action: play
       volume: 5
 
-  multiball_rlyeh_has_started:
-    multiball_rlyeh_music_pool:
-      action: play
-      volume: 2
-      loops: -1
-      fade_out: 1s
-  multiball_rlyeh_has_stopped:
-    multiball_rlyeh_music_pool:
-      action: stop
-
-  mode_sanity_started:
-    sanity_music:
-      action: play
-      loops: -1
-      volume: 1
-      mode_end_action: stop
-      fade_out: 1s
-
-  mode_bywandine_started:
-    bywandine_music_pool:
-      action: play
-      loops: -1
-      volume: 2
-      mode_end_action: stop
-      fade_out: 1s
-
-  mode_fordt_ride_started:
-    fordt_ride_music_pool:
-      action: play
-      loops: -1
-      volume: 1
-      mode_end_action: stop
-      fade_out: 1s
-
   killplayer:
     screaming_to_death_pool:
       action: play
@@ -1293,6 +1259,7 @@ sound_player:
 ###########################
 
 sound_pools:
+# MUSICS
   roaring_20:
     load: preload
     type: random_force_all
