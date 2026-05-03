@@ -54,7 +54,7 @@ shots:
     switch: s_target_sanity_3
     profile: buddy_twenties_target_flash
     enable_events: mode_buddy_twenties_started
-    disable_events: mmultiball_buddy_twenties_multiball_ended
+    disable_events: multiball_buddy_twenties_multiball_ended
     show_tokens:
       led: insert_48
   buddy_twenties_target_sanity_shot_4:
@@ -122,6 +122,8 @@ timers:
     control_events:
       - action: start
         event: launch_buddy_multiball
+      - action: stop
+        event: buddy_twenties_stop
 
 ###########################
 

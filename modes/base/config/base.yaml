@@ -19,12 +19,12 @@ event_player:
   postup_down: shaker_shake
   mode_carousel_started: twenties_stop
   "{current_player.variable_superpops_value==0}": superpops_ready
-  "{current_player.score>=500000}": bigscore1
-  "{current_player.score>=1000000}": bigscore2
-  "{current_player.score>=1500000}": bigscore3
-  "{current_player.score>=2000000}": bigscore4
-  "{current_player.score>=2500000}": bigscore5
-  "{current_player.score>=3000000}": bigscore6
+  "{current_player.score>=500000 and current_player.bigscore1_done==0}": bigscore1
+  "{current_player.score>=1000000 and current_player.bigscore2_done==0}": bigscore2
+  "{current_player.score>=1500000 and current_player.bigscore3_done==0}": bigscore3
+  "{current_player.score>=2000000 and current_player.bigscore4_done==0}": bigscore4
+  "{current_player.score>=2500000 and current_player.bigscore5_done==0}": bigscore5
+  "{current_player.score>=3000000 and current_player.bigscore6_done==0}": bigscore6
   bigscore1: knocker_pulse
   bigscore2: knocker_pulse
   bigscore3: knocker_pulse
@@ -44,6 +44,18 @@ event_player:
   mode_library_radio_stopped: library_video_stop
   mode_library_shub_stopped: library_video_stop
   mode_library_speakeasy_stopped: library_video_stop
+
+  mode_base_started{current_player.mission_speakeasy=='completed'}: recall_led_speakeasy
+  mode_base_started{current_player.mission_charleston=='completed'}: recall_led_charleston
+  mode_base_started{current_player.mission_radio=='completed'}: recall_led_radio
+  mode_base_started{current_player.mission_graveyard=='completed'}: recall_led_graveyard
+  mode_base_started{current_player.mission_cult=='completed'}: recall_led_cult
+  mode_base_started{current_player.mission_city=='completed'}: recall_led_city
+  mode_base_started{current_player.azathoth_mission_available=='completed'}: recall_led_aza
+  mode_base_started{current_player.king_mission_available=='completed'}: recall_led_king
+  mode_base_started{current_player.nyarla_mission_available=='completed'}: recall_led_nyarla
+  mode_base_started{current_player.shub_mission_available=='completed'}: recall_led_shub
+  mode_base_started{current_player.cthulhu_mission_available=='completed'}: recall_led_cthulhu
 
 ###########################
 
@@ -193,10 +205,16 @@ widgets:
       font_size: 50
       z: 1000
     - type: text
+      text: (player|multiplier)
+      y: top-132
+      x: right-413
+      font_size: 40
+      z: 1000
+    - type: text
       text: (player|spell_boost_multiplier)
       y: top-132
-      x: right-243
-      font_size: 45
+      x: right-203
+      font_size: 40
       z: 1000
     - type: text
       text: (player|variable_number_of_bullet_value)
@@ -226,6 +244,14 @@ widgets:
       x: right-85
       font_size: 45
       z: 1000
+    - type: text
+      text: (player|library_boost_multiplier)
+      number_grouping: true
+      y: top-274
+      x: right-110
+      font_size: 40
+      z: 1000
+
 
 
   base_without_score_widget:
@@ -246,10 +272,16 @@ widgets:
       font_size: 50
       z: 1000
     - type: text
+      text: (player|multiplier)
+      y: top-132
+      x: right-413
+      font_size: 40
+      z: 1000
+    - type: text
       text: (player|spell_boost_multiplier)
       y: top-132
-      x: right-243
-      font_size: 45
+      x: right-203
+      font_size: 40
       z: 1000
     - type: text
       text: (player|variable_number_of_bullet_value)
@@ -279,7 +311,13 @@ widgets:
       x: right-85
       font_size: 45
       z: 1000
-
+    - type: text
+      text: (player|library_boost_multiplier)
+      number_grouping: true
+      y: top-274
+      x: right-110
+      font_size: 40
+      z: 1000
 
   superpops_widget:
     - type: text
@@ -644,49 +682,93 @@ show_player:
       loops: 15
       priority: 2000
 
-  "{current_player.mission_cult=='completed'}":
+  mode_cult_win_stopped:
     portal_led_blink_show:
       speed: 40
       loops: -1
       priority: 1000
 
+  recall_led_cult:
+    portal_led_blink_show:
+      speed: 40
+      loops: -1
+      priority: 1000
+
+  ball_ended:
+    portal_led_blink_show:
+      action: stop
+
+
 ###########################
 
 light_player:
-  "{current_player.mission_speakeasy=='completed'}":
+  mode_speakeasy_win_stopped:
     insert_73: 'FF9933'
     speakeasy_box_led: 'FF9933'
-  "{current_player.mission_charleston=='completed'}":
+  mode_charleston_win_stopped:
     insert_72: 'FF8000'
     charleston_box_led: 'FF8000'
-  "{current_player.mission_radio=='completed'}":
+  mode_radio_win_stopped:
     insert_71: '994C00'
     radio_box_led: '994C00'
-  "{current_player.mission_graveyard=='completed'}":
+  mode_graveyard_win_stopped:
     insert_63: '004C99'
     graveyard_box_led: '004C99'
-  "{current_player.mission_cult=='completed'}":
+  mode_cult_win_stopped:
     insert_64: green
     cult_box_led: green
-  "{current_player.mission_city=='completed'}":
+  mode_city_win_stopped:
     insert_65: '006666'
     city_box_led: '006666'
-  "{current_player.azathoth_mission_available=='completed'}":
+  mode_aza_win_stopped:
     insert_68: red
-  "{current_player.king_mission_available=='completed'}":
+  mode_king_win_stopped:
     insert_67: yellow
-  "{current_player.nyarla_mission_available=='completed'}":
+  mode_nyarla_win_stopped:
     insert_69: blue
-  "{current_player.shub_mission_available=='completed'}":
+  mode_cthulhu_win_stopped:
+    insert_70: '00994C'
+  recall_led_cthulhu:
+    insert_70: '00994C'
+
+  mode_shub_win_stopped:
     insert_66: 'CC0066'
   extraball_ready:
     insert_57: green
   mystery_award_11_event:
     insert_57: green
 
+  recall_led_speakeasy:
+    insert_73: 'FF9933'
+    speakeasy_box_led: 'FF9933'
+  recall_led_charleston:
+    insert_72: 'FF8000'
+    charleston_box_led: 'FF8000'
+  recall_led_radio:
+    insert_71: '994C00'
+    radio_box_led: '994C00'
+  recall_led_graveyard:
+    insert_63: '004C99'
+    graveyard_box_led: '004C99'
+  recall_led_cult:
+    insert_64: green
+    cult_box_led: green
+  recall_led_city:
+    insert_65: '006666'
+    city_box_led: '006666'
+  recall_led_aza:
+    insert_68: red
+  recall_led_king:
+    insert_67: yellow
+  recall_led_nyarla:
+    insert_69: blue
+  recall_led_shub:
+    insert_66: 'CC0066'
+
 ###########################
 
 variable_player:
+
   mode_base_started:
     bonus_ramps:
       action: set
@@ -694,6 +776,33 @@ variable_player:
     bonus_targets:
       action: set
       int: 0
+
+
+  bigscore1:
+    bigscore1_done:
+      action: set
+      int: 1
+  bigscore2:
+    bigscore2_done:
+      action: set
+      int: 1
+  bigscore3:
+    bigscore3_done:
+      action: set
+      int: 1
+  bigscore4:
+    bigscore4_done:
+      action: set
+      int: 1
+  bigscore5:
+    bigscore5_done:
+      action: set
+      int: 1
+  bigscore6:
+    bigscore6_done:
+      action: set
+      int: 1
+
 
   # game_ended:
   #   start_sequence_variable:

@@ -2,7 +2,7 @@
 mode:
   start_events: cellar_start
   stop_events: cellar_stop, game_ended, ball_ended, game_ending, ball_ending
-  priority: 900
+  priority: 1900
   restart_on_next_ball: false
 
 ###########################
@@ -194,7 +194,7 @@ shot_profiles:
         show: stormy_night_blink_show
         speed: 10
         loops: 0
-        priority: 600
+        priority: 1900
 
 ###########################
 

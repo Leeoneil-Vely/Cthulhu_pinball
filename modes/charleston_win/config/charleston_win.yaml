@@ -22,6 +22,11 @@ show_player:
       speed: 10
       loops: -1
       priority: 100
+  mode_charleston_win_stopped:
+    charleston_win_show:
+      action: stop
+    charleston_win_show_2:
+      action: stop
 
 ###########################
 
