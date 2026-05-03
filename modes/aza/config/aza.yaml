@@ -731,6 +731,10 @@ show_player:
       speed: 35
       loops: -1
 
+  aza_stop:
+    nyarla_new_step_show:
+      action: stop
+
   aza_target_square_flute_1_shot_fluteflashing_hit:
     aza_hit_show:
       action: play
@@ -1175,6 +1179,7 @@ counters:
     reset_on_complete: true
     disable_on_complete: true
     persist_state: true
+    restart_events: mode_aza_started
 
 ###########################
 
@@ -1188,6 +1193,8 @@ timers:
     control_events:
       - action: start
         event: mode_aza_started
+      - action: stop
+        event: mode_aza_stopped
 
 ###########################
 
