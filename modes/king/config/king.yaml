@@ -18,9 +18,9 @@ event_player:
   launchkingend{current_player.insert_eldersign!='five'}: killplayer
   s_action_book_active{current_player.variable_number_of_book_value >= 5}: action_valid_spell_shot, shaker_shake
   "{device.shots.king_scoop_bas_tatterdemalion_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_one_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_two_shot.state_name=='tatterdemalionroff' and device.shots.king_bumper_tatterdemalion_three_shot.state_name=='tatterdemalionroff'}": launchcurtainup
-  "{current_player.king_curtain_gauge<=0}": launchchorrorstage
-  "{current_player.king_horror_gauge<=0}": launchkingend
-  "{current_player.king_end_gauge<=0}": launchkingkill
+  player_king_curtain_gauge{value==0}: launchchorrorstage
+  player_king_horror_gauge{value==0}: launchkingend
+  player_king_end_gauge{value==0}: launchkingkill
   king_scoop_bas_tatterdemalion_shot_tatterdemalionflashing_hit: shaker_shake
   king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit: shaker_shake
   king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit: shaker_shake
@@ -850,6 +850,8 @@ timers:
     control_events:
       - action: start
         event: launchcurtainup
+      - action: stop
+        event: launchchorrorstage
 
   curtain_knocker_time:
     start_value: 0
@@ -869,6 +871,8 @@ timers:
     control_events:
       - action: start
         event: mode_king_started
+      - action: stop
+        event: mode_king_stopped
 
 ###########################
 
@@ -878,6 +882,14 @@ show_player:
       speed: 5
     king_backglass_blink_show:
       speed: 15
+
+  king_stop:
+    mission_king_blink_show:
+      action: stop
+    king_backglass_blink_show:
+      action: stop
+    king_new_step_show:
+      action: stop
 
   launchcurtainup:
     king_new_step_show:
@@ -1071,78 +1083,78 @@ variable_player:
       string: 'completed'
 
   king_curtain_cthulhu_ramp_shot_curtainflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     king_curtain_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_curtain_green_ramp_shot_curtainflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     king_curtain_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_curtain_main_ramp_shot_curtainflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     king_curtain_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
 
   king_horror_target_square_1_shot_horrorthitflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     king_horror_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_horror_target_square_2_shot_horrorthitflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     king_horror_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_horror_target_square_3_shot_horrorthitflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     king_horror_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_horror_target_square_4_shot_horrorthitflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     king_horror_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_horror_target_square_5_shot_horrorthitflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     king_horror_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
 
   king_horror_cthulhu_ramp_shot_hit:
     king_horror_gauge:
       action: add
       int: 1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_horror_green_ramp_shot_hit:
     king_horror_gauge:
       action: add
       int: 1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_horror_main_ramp_shot_hit:
     king_horror_gauge:
       action: add
       int: 1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_horror_space_orbit_shot_hit:
     king_horror_gauge:
       action: add
@@ -1155,238 +1167,238 @@ variable_player:
     king_horror_gauge:
       action: add
       int: 1
-    bonus_ramps: 1
+    bonus_ramps: 100
 
   king_end_main_ramp_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_end_green_ramp_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_end_cthulhu_ramp_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   king_end_target_square_1_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_end_target_square_2_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_end_target_square_3_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_end_target_square_4_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   king_end_target_square_5_shot_kingendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     king_end_gauge:
       action: add
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
 
   king_sling_left_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   king_sling_right_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_one_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_two_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_three_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_scoop_bas_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   king_scoop_haut_shot_hit:
-    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 250 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 250 * current_player.multiplier * current_player.spell_boost_multiplier
 
   king_target_square_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_square_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_square_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_square_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_square_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   king_drop_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_drop_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_drop_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_drop_target_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   king_green_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_green_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_green_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   king_target_library_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_library_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_library_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_library_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_library_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   king_target_library_6_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   king_team_1_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   king_team_2_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   king_team_3_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
   king_spinner_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier
 
   king_roll_left_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_left_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_right_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_right_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_fordt_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_space_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_roll_asylum_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
   king_cthulhu_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   king_main_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   king_green_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   king_gate_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   king_gate_exit_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   king_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    king_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    king_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
 
   king_scoop_bas_tatterdemalion_shot_tatterdemalionflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_tatterdemalion_one_shot_tatterdemalionflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_tatterdemalion_two_shot_tatterdemalionflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   king_bumper_tatterdemalion_three_shot_tatterdemalionflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    king_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    king_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
 
 ###########################
 

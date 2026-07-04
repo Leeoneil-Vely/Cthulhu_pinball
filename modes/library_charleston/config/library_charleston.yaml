@@ -3,7 +3,7 @@
 mode:
   start_events: library_charleston_start
   stop_events: library_charleston_stop, timer_exit_library_charleston_time_complete, game_ended, ball_ended, game_ending, ball_ending
-  priority: 700
+  priority: 2601
   restart_on_next_ball: false
 
 ###########################
@@ -17,7 +17,7 @@ event_player:
 ###########################
 
 slides:
-  library_charleston_slide: []      
+  library_charleston_slide: []
 
 ###########################
 
@@ -25,9 +25,15 @@ slide_player:
   mode_library_charleston_started: library_charleston_slide
 
 ###########################
-      
 
 widgets:
+  library_charleston_background:
+    type: rectangle
+    width: 1440
+    height: 900
+    color: 000000
+    z: 0
+
   library_charleston_start_banner:
     type: text
     text: You'll ruin the parquet !
@@ -43,14 +49,228 @@ widgets:
     x: 50%
     z: 100
 
+  video_library_1_scratch_widget:
+    type: video
+    video: library_scratch_movie_1
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_2_scratch_widget:
+    type: video
+    video: library_scratch_movie_2
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_3_scratch_widget:
+    type: video
+    video: library_scratch_movie_3
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_4_scratch_widget:
+    type: video
+    video: library_scratch_movie_4
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_5_scratch_widget:
+    type: video
+    video: library_scratch_movie_5
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_6_scratch_widget:
+    type: video
+    video: library_scratch_movie_6
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_7_scratch_widget:
+    type: video
+    video: library_scratch_movie_7
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_8_scratch_widget:
+    type: video
+    video: library_scratch_movie_8
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_9_scratch_widget:
+    type: video
+    video: library_scratch_movie_9
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_10_scratch_widget:
+    type: video
+    video: library_scratch_movie_10
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_11_scratch_widget:
+    type: video
+    video: library_scratch_movie_11
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_12_scratch_widget:
+    type: video
+    video: library_scratch_movie_12
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_13_scratch_widget:
+    type: video
+    video: library_scratch_movie_13
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_14_scratch_widget:
+    type: video
+    video: library_scratch_movie_14
+    auto_play: true
+    end_behavior: pause
+    z: 6
+
 ###########################
 
 widget_player:
   mode_library_charleston_started:
-    library_charleston_start_banner, show_exit_library_charleston_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
+    library_charleston_background, library_charleston_start_banner, show_exit_library_charleston_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
       action: add
       slide: library_charleston_slide
+  launch_library_video_1:
+    video_library_1_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_2:
+    video_library_2_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_3:
+    video_library_3_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_4:
+    video_library_4_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_5:
+    video_library_5_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_6:
+    video_library_6_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_7:
+    video_library_7_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_8:
+    video_library_8_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_9:
+    video_library_9_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_10:
+    video_library_10_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_11:
+    video_library_11_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_12:
+    video_library_12_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_13:
+    video_library_13_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  launch_library_video_14:
+    video_library_14_scratch_widget:
+      action: add
+      slide: library_charleston_slide
+  remove_random_library_video_1:
+    video_library_1_scratch_widget:
+      action: remove
+  remove_random_library_video_2:
+    video_library_2_scratch_widget:
+      action: remove
+  remove_random_library_video_3:
+    video_library_3_scratch_widget:
+      action: remove
+  remove_random_library_video_4:
+    video_library_4_scratch_widget:
+      action: remove
+  remove_random_library_video_5:
+    video_library_5_scratch_widget:
+      action: remove
+  remove_random_library_video_6:
+    video_library_6_scratch_widget:
+      action: remove
+  remove_random_library_video_7:
+    video_library_7_scratch_widget:
+      action: remove
+  remove_random_library_video_8:
+    video_library_8_scratch_widget:
+      action: remove
+  remove_random_library_video_9:
+    video_library_9_scratch_widget:
+      action: remove
+  remove_random_library_video_10:
+    video_library_10_scratch_widget:
+      action: remove
+  remove_random_library_video_11:
+    video_library_11_scratch_widget:
+      action: remove
+  remove_random_library_video_12:
+    video_library_12_scratch_widget:
+      action: remove
+  remove_random_library_video_13:
+    video_library_13_scratch_widget:
+      action: remove
+  remove_random_library_video_14:
+    video_library_14_scratch_widget:
+      action: remove
 
+###########################
+
+variable_player:
+  timer_exit_library_charleston_time_tick:
+    exit_library_charleston_time_variable_times:
+      int: device.timers.exit_library_charleston_time.ticks
+      action: set
+
+  library_charleston_target_library_1_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_2_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_3_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_4_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_5_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_6_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+
+  library_charleston_target_group_lit_complete:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+    library_boost_multiplier: 1
 
 ###########################
 
@@ -60,80 +280,15 @@ show_player:
       speed: 100
       loops: -1
 
+  library_charleston_stop:
+    library_side_flash_show:
+      action: stop
+
   library_charleston_target_group_complete:
     library_target_group_complete_show:
       speed: 5
       loops: 10
       priority: 1000
-
-
-###########################
-
-shots:
-  library_charleston_target_library_1_shot:
-    switch: s_target_library_1
-    show_tokens:
-      light: insert_80
-  library_charleston_target_library_2_shot:
-    switch: s_target_library_2
-    show_tokens:
-      light: insert_79
-  library_charleston_target_library_3_shot:
-    switch: s_target_library_3
-    show_tokens:
-      light: insert_78
-  library_charleston_target_library_4_shot:
-    switch: s_target_library_4
-    show_tokens:
-      light: insert_77
-  library_charleston_target_library_5_shot:
-    switch: s_target_library_5
-    show_tokens:
-      light: insert_76
-  library_charleston_target_library_6_shot:
-    switch: s_target_library_6
-    show_tokens:
-      light: insert_75
-
-###########################
-
-shot_groups:
-  library_charleston_target_group:
-    shots: library_charleston_target_library_1_shot, library_charleston_target_library_2_shot, library_charleston_target_library_3_shot, library_charleston_target_library_4_shot, library_charleston_target_library_5_shot, library_charleston_target_library_6_shot
-    reset_events: library_charleston_target_group_complete
-
-###########################
-
-
-variable_player:
-  timer_exit_library_charleston_time_tick:
-    exit_library_charleston_time_variable_times:
-      int: device.timers.exit_library_charleston_time.ticks
-      action: set
-
-  library_charleston_target_library_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  library_charleston_target_library_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  library_charleston_target_library_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  library_charleston_target_library_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  library_charleston_target_library_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  library_charleston_target_library_6_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-
-  library_charleston_target_group_complete:
-    score: 10000  * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-    library_boost_multiplier: 1
 
 ###########################
 
@@ -146,7 +301,7 @@ timers:
     control_events:
       - action: start
         event: mode_library_charleston_started
-  
+
   voice_library_charleston_time:
     start_value: 0
     end_value: 3
@@ -156,6 +311,40 @@ timers:
       - action: start
         event: mode_library_charleston_started
 
+###########################
+
+shots:
+  library_charleston_target_library_1_shot:
+    switch: s_target_library_1
+    show_tokens:
+      led: insert_80
+  library_charleston_target_library_2_shot:
+    switch: s_target_library_2
+    show_tokens:
+      led: insert_79
+  library_charleston_target_library_3_shot:
+    switch: s_target_library_3
+    show_tokens:
+      led: insert_78
+  library_charleston_target_library_4_shot:
+    switch: s_target_library_4
+    show_tokens:
+      led: insert_77
+  library_charleston_target_library_5_shot:
+    switch: s_target_library_5
+    show_tokens:
+      led: insert_76
+  library_charleston_target_library_6_shot:
+    switch: s_target_library_6
+    show_tokens:
+      led: insert_75
+
+###########################
+
+shot_groups:
+  library_charleston_target_group:
+    shots: library_charleston_target_library_1_shot, library_charleston_target_library_2_shot, library_charleston_target_library_3_shot, library_charleston_target_library_4_shot, library_charleston_target_library_5_shot, library_charleston_target_library_6_shot
+    reset_events: library_charleston_target_group_complete
 
 ###########################
 
@@ -180,18 +369,43 @@ sound_player:
     clock_gong:
       action: play
       volume: 5
-      delay: 10  
+      delay: 10
 
   library_charleston_stop:
     clock_tick_10s:
       action: stop
     clock_gong:
       action: stop
-  
+
   timer_voice_library_charleston_time_complete:
     library_charleston_voice_sounds:
       action: play
       volume: 2
+
+  library_charleston_target_library_1_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  library_charleston_target_library_2_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  library_charleston_target_library_3_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  library_charleston_target_library_4_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  library_charleston_target_library_5_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  library_charleston_target_library_6_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
 
   library_charleston_target_group_complete:
     complete_library_sound:

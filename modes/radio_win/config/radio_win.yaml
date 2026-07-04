@@ -26,9 +26,9 @@ slides:
 widgets:
   radio_win_banner:
     type: text
-    text: YOU HEARD TOO MANY SHOWS !
+    text: "YOU HEARD\nTOO MANY SHOWS !"
     color: 994C00
-    y: 28%
+    y: 35%
     x: 50%
     z: 100
     expire: 10s
@@ -44,7 +44,7 @@ widgets:
 
   radio_win_banner_2:
     type: text
-    text: 150,000 points !
+    text: 15,000 points !
     color: 994C00
     y: 65%
     x: 50%
@@ -87,6 +87,11 @@ show_player:
       speed: 10
       loops: -1
       priority: 100
+  mode_radio_win_stopped:
+    radio_win_show:
+      action: stop
+    radio_win_show_2:
+      action: stop
 
 ###########################
 
@@ -96,12 +101,16 @@ variable_player:
       action: set
       string: 'completed'
 
-    score: 150000
-    radio_champion: 150000
+    score: 15000
+    radio_champion: 15000
 
     mission_boost_multiplier:
       action: add
       float: 0.1
+
+    mission_wizard_twenties_multiplier:
+      action: add
+      float: 0.3
 
 ###########################
 

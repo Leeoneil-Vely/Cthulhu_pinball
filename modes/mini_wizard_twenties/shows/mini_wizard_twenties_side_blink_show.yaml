@@ -1,0 +1,18 @@
+#show_version=6
+- duration: 0.55
+  lights:
+    side_led_right: off-f200ms
+    side_led_left: off-f200ms
+    speakeasy_box_led: off-f200ms
+    charleston_box_led: off-f200ms
+    radio_box_led: off-f200ms
+    gi: white-f200ms
+    
+- duration: 0.55
+  lights:
+    side_led_right: white-f200ms
+    side_led_left: white-f200ms
+    speakeasy_box_led: white-f200ms
+    charleston_box_led: white-f200ms
+    radio_box_led: white-f200ms
+    gi: off-f200ms

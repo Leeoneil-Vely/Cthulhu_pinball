@@ -19,6 +19,7 @@ multiballs:
     ball_count_type: add
     shoot_again: 30s
     start_events: launch_buddy_multiball
+    stop_events: stop_all_multiball
 
 ###########################
 

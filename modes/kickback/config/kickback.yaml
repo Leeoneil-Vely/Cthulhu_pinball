@@ -2,7 +2,7 @@
 
 mode:
   start_events: kickback_activated
-  stop_events: kickback_stop, game_ended, ball_ended, game_ending, ball_ending
+  stop_events: kickback_stop, game_ended, ball_ended, game_ending, ball_ending, ball_save_kickback_emergency_save_saving_ball
   priority: 1100
   restart_on_next_ball: false
 
@@ -60,6 +60,16 @@ show_player:
 event_player:
   kickback_ac_left_kickback_fired: kickback_stop|3s
 
+ball_saves:
+  kickback_emergency_save:
+    active_time: 4s
+    hurry_up_time: 1s
+    grace_period: 0s
+    enable_events: kickback_ac_left_kickback_fired, s_roll_left_outlane_active
+    disable_events: kickback_stop
+    auto_launch: true
+    balls_to_save: 1
+
 ###########################
 
 sound_pools:
@@ -68,14 +78,14 @@ sound_pools:
     type: random
     track: voice
     sounds:
-      - kicback_activated_1
-      - kicback_activated_2
-      - kicback_activated_3
-      - kicback_activated_4
-      - kicback_activated_5
-      - kicback_activated_6
-      - kicback_activated_7
-      - kicback_activated_8
+      - kickback_activated_1
+      - kickback_activated_2
+      - kickback_activated_3
+      - kickback_activated_4
+      - kickback_activated_5
+      - kickback_activated_6
+      - kickback_activated_7
+      - kickback_activated_8
 
 sound_player:
   kickback_ac_left_kickback_fired:

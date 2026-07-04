@@ -18,6 +18,9 @@ show_player:
       speed: 15
       loops: -1
       priority: 100
+  mode_king_win_stopped:
+    king_win_show:
+      action: stop
 
 ###########################
 
@@ -71,7 +74,7 @@ widgets:
 
   king_win_banner_3:
     type: text
-    text: 250,000 points !
+    text: 25,000 points !
     color: yellow
     style: mission_text
     y: 65%
@@ -111,8 +114,8 @@ variable_player:
       action: set
       string: 'completed'
 
-    score: 250000
-    king_champion: 250000
+    score: 25000
+    king_champion: 25000
 
 ###########################
 

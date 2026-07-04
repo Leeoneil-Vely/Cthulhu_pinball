@@ -14,10 +14,10 @@ ball_holds:
 ###########################
 
 event_player:
-  mode_charleston_started: mode_twenties_stop, hold_stop, launch_random_charleston_video
+  mode_charleston_started: twenties_stop, hold_stop, launch_random_charleston_video
   charleston_gate_library_shot_hit: library_charleston_start
   # charleston_mission_target_group_off_complete: charleston_stop, charleston_win_start
-  "{current_player.charleston_target_count<=0 and current_player.charleston_win_done==0}": charleston_stop, charleston_win_start
+  player_charleston_target_count{value<=0 and current_player.charleston_win_done==0}: charleston_stop, charleston_win_start
   launch_charleston_multiball: release_charleston
   charleston_scoop_haut_shot_hit{current_player.count_multiball_charleston=='zero'}: launch_sounds_multiball
   relaunch_charleston_video: launch_random_charleston_video|5s
@@ -92,6 +92,7 @@ multiballs:
     ball_count_type: add
     shoot_again: 15s
     start_events: launch_charleston_multiball{current_player.count_multiball_charleston=='one'}
+    stop_events: stop_all_multiball
 
 ###########################
 
@@ -852,7 +853,128 @@ show_player:
       priority: 200
       loops: 0
 
-  s_action_active{current_player.variable_number_of_object_value > 0}:
+  # Show declenche uniquement si un shot lit est effectivement touche
+  action_valid_charleston_shot_1:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_2:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_3:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_4:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_5:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_6:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_7:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_8:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_9:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_10:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_11:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_12:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_13:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_14:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_15:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_16:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_17:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_18:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_19:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_20:
+    charleston_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_charleston_shot_21:
     charleston_hit_show:
       action: play
       speed: 50
@@ -868,43 +990,106 @@ variable_player:
       string: 'no'
 
   action_valid_charleston_shot:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  # Decompte objet uniquement si un shot lit est effectivement touche
+  action_valid_charleston_shot_1:
     variable_number_of_object_value:
       int: -1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  action_valid_charleston_shot_2:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_3:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_4:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_5:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_6:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_7:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_8:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_9:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_10:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_11:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_12:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_13:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_14:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_15:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_16:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_17:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_18:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_19:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_20:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_charleston_shot_21:
+    variable_number_of_object_value:
+      int: -1
 
   charleston_sling_left_shot_hit:
-    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_sling_right_shot_hit:
-    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_sling_up_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     count_multiball_charleston:
       action: set
       string: 'one' 
 
   charleston_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   mode_charleston_started:
     charleston_win_done:
       action: set
@@ -916,300 +1101,300 @@ variable_player:
       int: 1
 
   charleston_target_square_1_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_square_2_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_square_3_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_square_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_square_4_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_square_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_target_square_5_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
 
   charleston_target_sanity_shot_1_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_1_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_sanity_shot_2_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_2_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_sanity_shot_3_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_3_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_sanity_shot_4_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_4_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_sanity_shot_5_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_5_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_sanity_shot_6_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_sanity_shot_6_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
 
   charleston_drop_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_drop_target_1_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_drop_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_drop_target_2_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_drop_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_drop_target_3_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_drop_target_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_drop_target_4_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
 
 
   charleston_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   charleston_target_library_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_1_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_library_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_2_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_library_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_3_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_library_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_4_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_library_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_5_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
   charleston_target_library_6_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1000
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   charleston_target_library_6_shot_lit_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     charleston_target_count{current_player.charleston_win_done==0}:
       int: -1
-    bonus_targets: 1000
+    bonus_targets: 100
 
   charleston_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   charleston_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   charleston_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   charleston_cthulhu_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   charleston_main_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   charleston_green_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   charleston_gate_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
 
   charleston_gate_exit_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   charleston_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
-    charleston_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    charleston_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
 
   sanity_charleston_group_complete:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   drop_target_charleston_group_complete:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   library_target_group_complete:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    charleston_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    charleston_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
 
 ###########################

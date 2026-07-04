@@ -726,6 +726,7 @@ counters:
     reset_on_complete: true
     disable_on_complete: true
     persist_state: true
+    restart_events: mode_nyarla_started
 
   nyarla_DT_counter:
     count_events: nyarladroptargetrowcomplete
@@ -736,6 +737,7 @@ counters:
     reset_on_complete: true
     disable_on_complete: true
     persist_state: true
+    restart_events: mode_nyarla_started
 
 ###########################
 
@@ -805,6 +807,15 @@ show_player:
     nyarla_new_step_show:
       speed: 35
       loops: -1
+  nyarla_stop:
+    nyarla_new_step_show:
+      action: stop
+    mission_nyarla_blink_show:
+      action: stop
+    mission_nyarlaencounter_blink_show:
+      action: stop
+    nyarla_backglass_blink_show:
+      action: stop
 
   launchnyarlaend:
     library_side_flash_show:
@@ -977,288 +988,288 @@ variable_player:
       int: 1
 
   nyarla_sling_left_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_sling_right_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_bumper_one_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_bumper_two_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_bumper_three_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_scoop_bas_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_scoop_bas_shot_encounterflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     nyarla_encounterclue_gauge:
       action: add
       int: -1
   nyarla_scoop_haut_shot_hit:
-    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 250 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 250 * current_player.multiplier * current_player.spell_boost_multiplier
 
   nyarla_target_square_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   nyarla_target_square_1_shot_encounterflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_encounter_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_square_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_square_2_shot_encounterflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_encounter_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_square_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_square_3_shot_witchhouseflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_witchtarget_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_square_3_shot_witchhouseflashingfast_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_witchtarget_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_square_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_square_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-
-  nyarla_drop_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_drop_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_drop_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_drop_target_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-
-  nyarla_drop_target_1_shot_nyarlaflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_end_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_drop_target_2_shot_nyarlaflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_end_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_drop_target_3_shot_nyarlaflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_end_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_drop_target_4_shot_nyarlaflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_end_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_green_ramp_end_shot_nyarlaflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
-
-  nyarla_green_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_green_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_green_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-
-  nyarla_target_library_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_library_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_library_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_library_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_library_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-  nyarla_target_library_6_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
-
-  nyarla_target_library_1_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_library_2_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_library_3_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_library_4_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_library_5_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-  nyarla_target_library_6_shot_formsflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_forms_gauge:
-      action: add
-      int: -1
-    bonus_targets: 1
-
-  nyarla_team_1_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_team_2_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_team_3_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-
-  nyarla_spinner_shot_hit:
     score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     nyarla_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_encounter_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_square_2_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_square_2_shot_encounterflashing_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_encounter_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_square_3_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_square_3_shot_witchhouseflashing_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_witchtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_square_3_shot_witchhouseflashingfast_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_witchtarget_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_square_4_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_square_5_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
-  nyarla_roll_left_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_roll_left_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_roll_right_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_roll_right_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-  nyarla_roll_library_shot_hit:
+  nyarla_drop_target_1_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_drop_target_2_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_drop_target_3_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_drop_target_4_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+
+  nyarla_drop_target_1_shot_nyarlaflashing_hit:
     score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     nyarla_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_drop_target_2_shot_nyarlaflashing_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_drop_target_3_shot_nyarlaflashing_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_drop_target_4_shot_nyarlaflashing_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_end_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_green_ramp_end_shot_nyarlaflashing_hit:
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
+
+  nyarla_green_target_1_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_green_target_2_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_green_target_3_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+
+  nyarla_target_library_1_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_library_2_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_library_3_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_library_4_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_library_5_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+  nyarla_target_library_6_shot_hit:
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
+
+  nyarla_target_library_1_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_library_2_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_library_3_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_library_4_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_library_5_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+  nyarla_target_library_6_shot_formsflashing_hit:
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_forms_gauge:
+      action: add
+      int: -1
+    bonus_targets: 100
+
+  nyarla_team_1_shot_hit:
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_team_2_shot_hit:
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_team_3_shot_hit:
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  nyarla_spinner_shot_hit:
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+
+  nyarla_roll_left_outlane_shot_hit:
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_roll_left_inlane_shot_hit:
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_roll_right_inlane_shot_hit:
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_roll_right_outlane_shot_hit:
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+  nyarla_roll_library_shot_hit:
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_roll_fordt_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_roll_space_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_roll_asylum_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
   nyarla_main_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   nyarla_green_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   nyarla_cthulhu_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   nyarla_green_ramp_shot_witchhouseflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     nyarla_witchramp_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   nyarla_green_ramp_shot_witchhouseflashingfast_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     nyarla_witchramp_gauge:
       action: add
       int: -1
-    bonus_ramps: 1
+    bonus_ramps: 100
   nyarla_gate_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
   nyarla_gate_exit_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    nyarla_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    nyarla_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   nyarla_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    nyarla_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    nyarla_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 
@@ -1296,6 +1307,8 @@ timers:
     control_events:
       - action: start
         event: mode_nyarla_started
+      - action: stop
+        event: mode_nyarla_stopped
 
 ###########################
 

@@ -40,12 +40,24 @@ show_player:
       speed: 5
       loops: -1
       priority: 100
+    team_lane_2_show:
+      action: stop
 
   playfield_x4:
     team_lane_4_show:
       speed: 5
       loops: -1
       priority: 100
+    team_lane_3_show:
+      action: stop
+
+  ball_ended:
+    team_lane_2_show:
+      action: stop
+    team_lane_3_show:
+      action: stop
+    team_lane_4_show:
+      action: stop
 
 ###########################
 
@@ -144,7 +156,7 @@ variable_player:
     multiplier: 1
 
   team_lane_complete:
-    score: 5000
+    score: 500
 
   playfield_x2:
     bonus_multiplier:

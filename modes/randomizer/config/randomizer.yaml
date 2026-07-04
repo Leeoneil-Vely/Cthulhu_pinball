@@ -15,20 +15,35 @@ event_player:
 # random_event_player:
 #   select_mission_randomly:
 #     events:
+#       - fordt_ride_start
+
+
+# random_event_player:
+#   select_mission_randomly:
+#     events:
+#       - buddy_twenties_start{current_player.buddy_mode_running=='off'}
+#       - bywandine_start
+#       - chthonian_attack_start
+#       - fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}
+#       - lurking_start
 #       - pursuit_twenties_start
+#       - random_available_mission_start
+#       - random_bonus_start
+#       - stormy_night_start
 
 random_event_player:
   select_mission_randomly:
     events:
-      - buddy_twenties_start{current_player.buddy_mode_running=='off'}
-      - bywandine_start
-      - chthonian_attack_start
-      - fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}
-      - lurking_start
-      - pursuit_twenties_start
-      - random_available_mission_start
-      - random_bonus_start
-      - stormy_night_start
+      buddy_twenties_start{current_player.buddy_mode_running=='off'}: 1
+      bywandine_start: 1
+      chthonian_attack_start: 1
+      fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}: 1
+      lurking_start: 1
+      pursuit_twenties_start: 1
+      random_available_mission_start: 2
+      random_bonus_start: 1
+      stormy_night_start: 1
+
 
   mode_buddy_twenties_started:
     events:
@@ -170,9 +185,8 @@ counters:
     starting_count: 0
     count_complete_value: (current_player.random_value_mission)
     events_when_complete: launch_random_mission
-    reset_on_complete: false
-    # reset_events: launch_random_mission
-    disable_on_complete: false
+    reset_on_complete: true
+    disable_on_complete: true
     persist_state: false
     restart_events: mode_twenties_started, mode_buddy_twenties_started, mode_random_bonus_started
     disable_events: mode_twenties_stopped

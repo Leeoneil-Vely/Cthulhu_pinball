@@ -102,10 +102,31 @@ modes:
   - videomonster
   - videofordt
 
+  - mission_counter
+  - mini_wizard_twenties
+  - mini_wizard_twenties_hold
+  - mini_wizard_twenties_ending
+
 ###########################
 
 
 player_vars:
+  missions_completed_count:
+    value_type: int
+    initial_value: 0
+  mini_wizard_twenties_done:
+    initial_value: "no"
+    value_type: str
+  mission_wizard_twenties_multiplier:
+    value_type: float
+    initial_value: 1
+  mission_wizard_twenties_multiplier_gauge:
+    value_type: int
+    initial_value: 0
+  mission_wizard_twenties_points:
+    value_type: int
+    initial_value: 250
+
 
   spell_boost_multiplier:
     value_type: int
@@ -693,18 +714,22 @@ switches:
   s_drop_target_1:
     number: 1-0-67
     tags: drop_target_1
+    ignore_window_ms: 100
 
   s_drop_target_2:
     number: 1-0-75
     tags: drop_target_2
+    ignore_window_ms: 100
 
   s_drop_target_3:
     number: 1-0-83
     tags: drop_target_3
+    ignore_window_ms: 100
 
   s_drop_target_4:
     number: 1-0-91
     tags: drop_target_4
+    ignore_window_ms: 100
 
   s_roll_fordt:
     number: 1-0-35 
@@ -789,6 +814,11 @@ timed_switches:
     switch_tags: action
     time: 2s
 
+  game_cancel:
+    switch_tags: start
+    time: 5s
+    events_when_active: end_game
+
 ###########################
 
 # combo_switches:
@@ -796,7 +826,6 @@ timed_switches:
 #     tag_1: left_flipper
 #     tag_2: right_flipper
 #     events_when_both: use_books
-
 
 ###########################
 
@@ -929,7 +958,7 @@ drop_target_banks:
   open:
     drop_targets: o, p, e, n
     reset_coils: c_reset_drop_targets
-    reset_events: timer_DT_reset_time_complete, timer_DT_city_reset_time_complete, ball_started, mode_charleston_started, mode_radio_started, mode_speakeasy_started, mode_graveyard_started, mode_city_started, mode_cult_started, mode_king_started, mode_nyarla_started, mode_aza_started, mode_shub_started, mode_cthulhu_started, mode_twenties_started, mode_bywandine_started, reset_bywandine_dt, nyarla_green_ramp_end_shot_nyarlaflashing_hit, launchnyarlaend, block_multiball_portal, mode_fordt_ride_started
+    reset_events: reset_drop_targets, timer_DT_reset_time_complete, timer_DT_city_reset_time_complete, ball_started, mode_charleston_started, mode_radio_started, mode_speakeasy_started, mode_graveyard_started, mode_city_started, mode_cult_started, mode_king_started, mode_nyarla_started, mode_aza_started, mode_shub_started, mode_cthulhu_started, mode_twenties_started, mode_bywandine_started, reset_bywandine_dt, nyarla_green_ramp_end_shot_nyarlaflashing_hit, launchnyarlaend, block_multiball_portal, mode_fordt_ride_started
 
 ###########################
 
@@ -937,14 +966,14 @@ autofire_coils:
   ac_slingshot_left:
     coil: c_sling_left
     switch: s_sling_left
-    enable_events: mode_base_started, mode_carousel_stopped, mode_fordt_ride_stopped
-    disable_events: mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attrack_started, mode_fordt_ride_started
+    enable_events: slingshot_on, mode_base_started, mode_carousel_stopped, mode_fordt_ride_stopped
+    disable_events: slingshot_off, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attrack_started, mode_fordt_ride_started
 
   ac_slingshot_right:
     coil: c_sling_right
     switch: s_sling_right
-    enable_events: mode_base_started, mode_carousel_stopped, mode_fordt_ride_stopped
-    disable_events: mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attrack_started, mode_fordt_ride_started
+    enable_events: slingshot_on, mode_base_started, mode_carousel_stopped, mode_fordt_ride_stopped
+    disable_events: slingshot_off, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attrack_started, mode_fordt_ride_started
 
   ac_slingshot_up:
     coil: c_sling_up
@@ -985,36 +1014,36 @@ flippers:
     main_coil: c_flipper_upleft_main
     hold_coil: c_flipper_upleft_hold
     activation_switch: s_left_flipper
-    enable_events: mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
-    disable_events: launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, show_fordt_ride_bonus
+    enable_events: flipper_on, mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
+    disable_events: flipper_off, launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, show_fordt_ride_bonus
 
   left_flipper:
     main_coil: c_flipper_left_main
     hold_coil: c_flipper_left_hold
     activation_switch: s_left_flipper
-    enable_events: mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
-    disable_events: launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, mode_fordt_ride_started
+    enable_events: flipper_on, mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
+    disable_events: flipper_off, launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, mode_fordt_ride_started
 
   right_flipper:
     main_coil: c_flipper_right_main
     hold_coil: c_flipper_right_hold
     activation_switch: s_right_flipper
-    enable_events: mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
-    disable_events: launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, mode_fordt_ride_started
+    enable_events: flipper_on, mode_base_started, mode_carousel_stopped, stop_earthquake, mode_chthonian_attack_stopped, mode_bywandine_stopped, mode_fordt_ride_stopped
+    disable_events: flipper_off, launch_earthquake, mode_carousel_started, killplayer, mode_high_score_started, mode_videomonster_started, mode_videofordt_started, mode_bonus_started, mode_attract_started, mode_bywandine_started, mode_fordt_ride_started
 
   petitgauche_flipper:
     main_coil: c_flipper_petitgauche_main
     hold_coil: c_flipper_petitgauche_hold
     activation_switch: s_left_flipper
     enable_events: mode_library_started, mode_library_charleston_started, mode_library_radio_started, mode_library_speakeasy_started, mode_library_cult_started, mode_library_graveyard_started, mode_library_city_started, mode_library_nyarla_started, mode_library_king_started, mode_library_shub_started, mode_library_aza_started, mode_library_cthulhu_started
-    disable_events: mode_library_stopped, mode_library_charleston_stopped, mode_library_radio_stopped, mode_library_speakeasy_stopped, mode_library_cult_stopped, mode_library_graveyard_stopped, mode_library_city_stopped, mode_library_nyarla_stopped, mode_library_king_stopped, mode_library_shub_stopped, mode_library_aza_stopped, mode_library_cthulhu_stopped, mode_fordt_ride_started
+    disable_events: flipper_off, mode_library_stopped, mode_library_charleston_stopped, mode_library_radio_stopped, mode_library_speakeasy_stopped, mode_library_cult_stopped, mode_library_graveyard_stopped, mode_library_city_stopped, mode_library_nyarla_stopped, mode_library_king_stopped, mode_library_shub_stopped, mode_library_aza_stopped, mode_library_cthulhu_stopped, mode_fordt_ride_started
 
   petitdroitflipper:
     main_coil: c_flipper_petitdroit_main
     hold_coil: c_flipper_petitdroit_hold
     activation_switch: s_right_flipper
     enable_events: mode_library_started, mode_library_charleston_started, mode_library_radio_started, mode_library_speakeasy_started, mode_library_cult_started, mode_library_graveyard_started, mode_library_city_started, mode_library_nyarla_started, mode_library_king_started, mode_library_shub_started, mode_library_aza_started, mode_library_cthulhu_started
-    disable_events: mode_library_stopped, mode_library_charleston_stopped, mode_library_radio_stopped, mode_library_speakeasy_stopped, mode_library_cult_stopped, mode_library_graveyard_stopped, mode_library_city_stopped, mode_library_nyarla_stopped, mode_library_king_stopped, mode_library_shub_stopped, mode_library_aza_stopped, mode_library_cthulhu_stopped, mode_fordt_ride_started
+    disable_events: flipper_off, mode_library_stopped, mode_library_charleston_stopped, mode_library_radio_stopped, mode_library_speakeasy_stopped, mode_library_cult_stopped, mode_library_graveyard_stopped, mode_library_city_stopped, mode_library_nyarla_stopped, mode_library_king_stopped, mode_library_shub_stopped, mode_library_aza_stopped, mode_library_cthulhu_stopped, mode_fordt_ride_started
 
 ###########################
 
@@ -1083,7 +1112,7 @@ slides:
   main_init:
     widgets:
       - type: text
-        text: INITIALIZING
+        text: PLEASE WAIT
         font_size: 100
         color: purple
         y: 60%
@@ -1216,6 +1245,32 @@ animations:
     - property: opacity
       value: 1
       duration: 1s
+
+  blink_in:
+    - property: opacity
+      value: 0
+      duration: 0s
+    - property: opacity
+      value: 1
+      duration: 0.08s
+    - property: opacity
+      value: 0
+      duration: 0.08s
+    - property: opacity
+      value: 1
+      duration: 0.08s
+    - property: opacity
+      value: 0
+      duration: 0.08s
+    - property: opacity
+      value: 1
+      duration: 0.08s
+    - property: opacity
+      value: 0
+      duration: 0.08s
+    - property: opacity
+      value: 1
+      duration: 0.2s
 
 
   fade_in_object:

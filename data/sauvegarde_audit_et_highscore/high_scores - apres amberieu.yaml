@@ -1,0 +1,124 @@
+aza_champion:
+- - HPL
+  - 1000
+- - HPL
+  - 500
+- - HPL
+  - 100
+charleston_champion:
+- - TAT
+  - 145480
+- - AAA
+  - 142080
+- - SEB
+  - 131050
+city_champion:
+- - TAT
+  - 284880
+- - LAU
+  - 214060
+- - AAA
+  - 166518
+combos_champion:
+- - HBX
+  - 4
+- - HPL
+  - 3
+- - CMK
+  - 3
+cthulhu_champion:
+- - HPL
+  - 1000
+- - HPL
+  - 500
+- - HPL
+  - 100
+cult_champion:
+- - NIN
+  - 217530
+- - LEE
+  - 211850
+- - SEB
+  - 192110
+graveyard_champion:
+- - MMM
+  - 239680
+- - AAA
+  - 209690
+- - '---'
+  - 163710
+king_champion:
+- - JJJ
+  - 67530
+- - TAZ
+  - 62140
+- - MAX
+  - 38640
+loops_champion:
+- - SEB
+  - 20
+- - HBX
+  - 13
+- - THI
+  - 11
+nyarla_champion:
+- - CMK
+  - 164830
+- - SEB
+  - 53320
+- - ''
+  - 35070
+radio_champion:
+- - SEB
+  - 264660
+- - AAA
+  - 249460
+- - BOB
+  - 206800
+score:
+- - HPL
+  - 100000000
+- - HBX
+  - 3111939
+- - AAA
+  - 2899099
+- - TAT
+  - 1649609
+- - THI
+  - 1427741
+- - SEB
+  - 1292356
+- - MMM
+  - 1239259
+- - LEE
+  - 1182916
+- - NIN
+  - 930613
+shub_champion:
+- - BBB
+  - 7810
+- - HPL
+  - 1000
+- - HPL
+  - 500
+speakeasy_champion:
+- - HBX
+  - 662950
+- - AAA
+  - 174080
+- - ADD
+  - 87230
+videofordt_champion:
+- - HPL
+  - 20
+- - LEE
+  - 12
+- - ARM
+  - 12
+videomonster_champion:
+- - AAA
+  - 38
+- - HPL
+  - 20
+- - AAA
+  - 19

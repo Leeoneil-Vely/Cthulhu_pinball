@@ -1,0 +1,44 @@
+#config_version=6
+
+mode:
+  start_events:
+    - mode_charleston_win_stopped
+    - mode_radio_win_stopped
+    - mode_speakeasy_win_stopped
+    - mode_graveyard_win_stopped
+    - mode_cult_win_stopped
+    - mode_city_win_stopped
+    - mode_aza_win_stopped
+    - mode_cthulhu_win_stopped
+    - mode_king_win_stopped
+    - mode_nyarla_win_stopped
+    - mode_shub_win_stopped
+  stop_events: mission_counter_stop
+  priority: 150
+  game_mode: true
+  restart_on_next_ball: false
+
+###########################
+
+variable_player:
+  mode_mission_counter_started:
+    missions_completed_count:
+      action: add
+      int: 1
+
+###########################
+
+event_player:
+  "{current_player.missions_completed_count==3 and current_player.mini_wizard_twenties_done=='no'}": mini_wizard_twenties_intro_start
+  timer_mission_counter_timer_complete: mission_counter_stop
+
+###########################
+
+timers:
+  mission_counter_timer:
+    start_value: 5
+    end_value: 0
+    direction: down
+    control_events:
+      - action: start
+        event: mode_mission_counter_started

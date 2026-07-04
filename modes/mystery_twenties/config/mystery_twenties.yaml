@@ -40,43 +40,43 @@ random_event_player:
 
 variable_player:
   mystery_award_1_event:
-    score: 5000
+    score: 500
     variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
       int: +1
   mystery_award_2_event:
-    score: 2000
+    score: 200
     variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
       int: +1
   mystery_award_3_event:
-    score: 2000
+    score: 200
     variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
       int: +1
   mystery_award_4_event:
-    score: 2000
+    score: 200
     variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
       int: +1
   mystery_award_5_event:
-    score: 2000
+    score: 200
     variable_number_of_bullet_value{current_player.variable_number_of_bullet_value < 9}:
       int: +1
   mystery_award_6_event:
-    score: 2000
+    score: 200
     variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
       int: +1
   mystery_award_7_event:
-    score: 2000
+    score: 200
     variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
       int: +1
   mystery_award_8_event:
-    score: 2000
+    score: 200
     variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
       int: +1
   mystery_award_9_event:
-    score: 2000
+    score: 200
     variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
       int: +1
   mystery_award_10_event:
-    score: 2000
+    score: 200
     variable_number_of_object_value{current_player.variable_number_of_object_value < 9}:
       int: +1
 

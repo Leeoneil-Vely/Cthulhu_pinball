@@ -8,38 +8,8 @@ mode:
 
 event_player:
   timer_combo_reset_time_complete: reset_combo
-  "{current_player.combo_count==1}": combo_give_random_object
-  "{current_player.combo_count==2}": combo_give_random_object
-  "{current_player.combo_count==3}": combo_give_random_object
-  "{current_player.combo_count==4}": combo_give_random_object
-  "{current_player.combo_count==5}": combo_give_random_object
-  "{current_player.combo_count==6}": combo_give_random_object
-  "{current_player.combo_count==7}": combo_give_random_object
-  "{current_player.combo_count==8}": combo_give_random_object
-  "{current_player.combo_count==9}": combo_give_random_object
-  "{current_player.combo_count==10}": combo_give_random_object
-  "{current_player.combo_count==11}": combo_give_random_object
-  "{current_player.combo_count==12}": combo_give_random_object
-  "{current_player.combo_count==13}": combo_give_random_object
-  "{current_player.combo_count==14}": combo_give_random_object
-  "{current_player.combo_count==15}": combo_give_random_object
-
-  "{current_player.loop_count==1}": loop_give_random_object
-  "{current_player.loop_count==2}": loop_give_random_object
-  "{current_player.loop_count==3}": loop_give_random_object
-  "{current_player.loop_count==4}": loop_give_random_object
-  "{current_player.loop_count==5}": loop_give_random_object
-  "{current_player.loop_count==6}": loop_give_random_object
-  "{current_player.loop_count==7}": loop_give_random_object
-  "{current_player.loop_count==8}": loop_give_random_object
-  "{current_player.loop_count==9}": loop_give_random_object
-  "{current_player.loop_count==10}": loop_give_random_object
-  "{current_player.loop_count==11}": loop_give_random_object
-  "{current_player.loop_count==12}": loop_give_random_object
-  "{current_player.loop_count==13}": loop_give_random_object
-  "{current_player.loop_count==14}": loop_give_random_object
-  "{current_player.loop_count==15}": loop_give_random_object
-
+  player_combo_count{value>=1 and value<=15}: combo_give_random_object
+  player_loop_count{value>=1 and value<=15}: loop_give_random_object
 
 ###########################
 
@@ -533,27 +503,27 @@ variable_player:
       int: 0
 
   base_green_ramp_loop_shot_activated_hit:
-    score: (2500 * current_player.multiplier * current_player.spell_boost_multiplier) + (500 * current_player.loop_count)
-    display_loop_bonus: (2500 * current_player.multiplier * current_player.spell_boost_multiplier) + (500 * current_player.loop_count)
-    bonus_loop: 1
+    score: (25 * current_player.multiplier * current_player.spell_boost_multiplier) + (5 * current_player.loop_count)
+    display_loop_bonus: (25 * current_player.multiplier * current_player.spell_boost_multiplier) + (5 * current_player.loop_count)
+    bonus_loop: 100
     loop_count: 1
     loops_champion: 1
   base_space_orbit_loop_shot_activated_hit:
-    score: (6000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.loop_count)
-    display_loop_bonus: (6000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.loop_count)
-    bonus_loop: 1
+    score: (60 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.loop_count)
+    display_loop_bonus: (60 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.loop_count)
+    bonus_loop: 100
     loop_count: 1
     loops_champion: 1
   base_green_ramp_combo_shot_activated_hit:
-    score: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
-    display_combo_bonus: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
-    bonus_combo: 1
+    score: (50 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.combo_count)
+    display_combo_bonus: (50 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.combo_count)
+    bonus_combo: 100
     combo_count: 1
     combos_champion: 1
   base_cthulhu_ramp_combo_shot_activated_hit:
-    score: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
-    display_combo_bonus: (5000 * current_player.multiplier * current_player.spell_boost_multiplier) + (1000 * current_player.combo_count)
-    bonus_combo: 1
+    score: (50 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.combo_count)
+    display_combo_bonus: (50 * current_player.multiplier * current_player.spell_boost_multiplier) + (10 * current_player.combo_count)
+    bonus_combo: 100
     combo_count: 1
     combos_champion: 1
 

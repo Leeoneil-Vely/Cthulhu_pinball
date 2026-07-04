@@ -1,0 +1,17 @@
+#config_version=6
+
+mode:
+  start_events: mode_mini_wizard_twenties_started
+  stop_events: mini_wizard_twenties_play_start
+  priority: 4550
+  game_mode: true
+  restart_on_next_ball: false
+
+###########################
+
+# Retient la bille dans bd_drain jusqu'à mini_wizard_twenties_play_start
+# Ce mode se stoppe dès que play_start est émis, désactivant le queue_relay_player
+queue_relay_player:
+  balldevice_bd_drain_ball_eject_attempt:
+    post: mini_wizard_twenties_hold_ball
+    wait_for: mini_wizard_twenties_play_start

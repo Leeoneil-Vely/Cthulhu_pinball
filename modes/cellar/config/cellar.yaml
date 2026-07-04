@@ -45,6 +45,7 @@ multiballs:
     ball_count_type: total
     start_events: lock_investigator
     shoot_again: 1s
+    stop_events: stop_all_multiball
 
 ###########################
 

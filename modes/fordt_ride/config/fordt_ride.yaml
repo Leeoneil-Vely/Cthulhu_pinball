@@ -105,15 +105,6 @@ multiballs:
 
 ###########################
 
-# ball_saves:
-#   fake_fordt_ride_ball_save:
-#     enable_events:
-#       - multiball_multiball_fordt_ride_multiball_ended
-#     auto_launch: false
-#     balls_to_save: 1
-
-###########################
-
 timers:
   exit_fordt_ride_time:
     start_value: 35
@@ -420,81 +411,81 @@ variable_player:
       action: set
 
   fordt_ride_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   fordt_ride_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   fordt_ride_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   fordt_ride_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   fordt_ride_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   fordt_ride_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   fordt_ride_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   fordt_ride_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
 
   fordt_ride_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
 
   fordt_ride_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
   fordt_ride_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
   fordt_ride_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
 
 
   fordt_ride_drop_target_1_shot_fordtargetflashing_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
   fordt_ride_drop_target_2_shot_fordtargetflashing_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
   fordt_ride_drop_target_3_shot_fordtargetflashing_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
   fordt_ride_drop_target_4_shot_fordtargetflashing_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier    
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
 
 
   fordt_ride_roll_fordt_shot_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
     fordt_ride_bonus:
       action: add
-      int: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
+      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.fordt_ride_multiplier
     fordt_ride_multiplier:
       action: add
       float: 0.2
   fordt_ride_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   fordt_ride_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
 ###########################
 
@@ -523,9 +514,35 @@ show_player:
   fordt_ride_roll_fordt_shot_hit:
     all_insert_blink_show:
       action: play
-      speed: 15
+      speed: 25
       priority: 200
-      loops: 2
+      loops: 8
+
+  fordt_ride_drop_target_1_shot_fordtargetflashing_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 200
+      loops: 6
+  fordt_ride_drop_target_2_shot_fordtargetflashing_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 200
+      loops: 6
+  fordt_ride_drop_target_3_shot_fordtargetflashing_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 200
+      loops: 6
+  fordt_ride_drop_target_4_shot_fordtargetflashing_hit:
+    all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 200
+      loops: 6
+
 
 ###########################
 
@@ -579,20 +596,20 @@ sound_player:
       action: play
 
   fordt_ride_drop_target_1_shot_fordtargetflashing_hit:
-    fordt_horn_sfx_pool:
+    fordt_ride_correct_hit_sound:
       action: play
   fordt_ride_drop_target_2_shot_fordtargetflashing_hit:
-    fordt_horn_sfx_pool:
+    fordt_ride_correct_hit_sound:
       action: play
   fordt_ride_drop_target_3_shot_fordtargetflashing_hit:
-    fordt_horn_sfx_pool:
+    fordt_ride_correct_hit_sound:
       action: play
   fordt_ride_drop_target_4_shot_fordtargetflashing_hit:
-    fordt_horn_sfx_pool:
+    fordt_ride_correct_hit_sound:
       action: play
 
   fordt_ride_roll_fordt_shot_hit:
-    fordt_ride_motor_sfx_pool:
+    fordt_ride_correct_hit_sound:
       action: play
 
   fordt_ride_roll_space_shot_hit:

@@ -4,6 +4,53 @@ sounds:
   intro:
     file: intro.ogg
 
+#### mini_wizard_twenties
+
+  mini_wizard_twenties_music:
+    file: Sing_Sing_Sing.ogg
+
+  drum_launch_01:
+    file: drum_launch_01.wav
+
+  triangle_01:
+    file: triangle_01.wav
+  triangle_02:
+    file: triangle_02.wav
+  triangle_03:
+    file: triangle_03.wav
+  triangle_04:
+    file: triangle_04.wav
+
+  trumpet_01:
+    file: trumpet_01.wav
+  trumpet_02:
+    file: trumpet_02.wav
+  trumpet_03:
+    file: trumpet_03.wav
+  trumpet_04:
+    file: trumpet_04.wav
+  trumpet_05:
+    file: trumpet_05.wav
+  trumpet_06:
+    file: trumpet_06.wav
+  trumpet_07:
+    file: trumpet_07.wav
+  trumpet_08:
+    file: trumpet_08.wav
+  trumpet_09:
+    file: trumpet_09.wav
+  trumpet_10:
+    file: trumpet_10.wav
+  trumpet_11:
+    file: trumpet_11.wav
+  trumpet_12:
+    file: trumpet_12.wav
+
+  mini_wizard_twenties_multiplier_boosted_01:
+    file: lionel_wizard_multiplier_boosted_01.wav
+  mini_wizard_twenties_multiplier_boosted_02:
+    file: lionel_wizard_multiplier_boosted_02.wav
+
 #### twenties music
 
   roaring_20:
@@ -411,21 +458,21 @@ sounds:
 
 ###########################
 
-  kicback_activated_1:
+  kickback_activated_1:
     file: grab-hand-2.ogg
-  kicback_activated_2:
+  kickback_activated_2:
     file: grab-hand-4.ogg
-  kicback_activated_3:
+  kickback_activated_3:
     file: grab-hand-5.ogg
-  kicback_activated_4:
+  kickback_activated_4:
     file: grab-hand-6.ogg
-  kicback_activated_5:
+  kickback_activated_5:
     file: thanks-me-1.ogg
-  kicback_activated_6:
+  kickback_activated_6:
     file: thanks-me-3.ogg
-  kicback_activated_7:
+  kickback_activated_7:
     file: thanks-me-4.ogg
-  kicback_activated_8:
+  kickback_activated_8:
     file: thanks-me-9.ogg
 
 ###########################
@@ -2633,6 +2680,9 @@ sounds:
     file: fordt_ride_motor_4.wav
   fordt_ride_motor_5:
     file: fordt_ride_motor_5.wav
+
+  fordt_ride_correct_hit_sound:
+    file: 3_klaxons.wav
 
 ###########################
 # Combo and loop

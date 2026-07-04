@@ -13,18 +13,20 @@ event_player:
   ball_save_random_save_saving_ball: play_ball_save_sound
   ball_save_greatoldones_save_saving_ball: play_ball_save_sound
   ball_save_winmission_save_saving_ball: play_ball_save_sound
+  ball_save_kickback_emergency_save_saving_ball: play_ball_save_sound
+  ball_save_mini_wizard_save_saving_ball: play_ball_save_sound
   timer_shaker_stop_time_complete: shaker_stop
   timer_postup_stop_time_complete: postup_down
   timer_postup_long_stop_time_complete: postup_down
   postup_down: shaker_shake
   mode_carousel_started: twenties_stop
-  "{current_player.variable_superpops_value==0}": superpops_ready
-  "{current_player.score>=500000 and current_player.bigscore1_done==0}": bigscore1
-  "{current_player.score>=1000000 and current_player.bigscore2_done==0}": bigscore2
-  "{current_player.score>=1500000 and current_player.bigscore3_done==0}": bigscore3
-  "{current_player.score>=2000000 and current_player.bigscore4_done==0}": bigscore4
-  "{current_player.score>=2500000 and current_player.bigscore5_done==0}": bigscore5
-  "{current_player.score>=3000000 and current_player.bigscore6_done==0}": bigscore6
+  player_variable_superpops_value{value==0 and change!=0}: superpops_ready
+  player_score{value>=50000 and current_player.bigscore1_done==0}: bigscore1
+  player_score{value>=100000 and current_player.bigscore2_done==0}: bigscore2
+  player_score{value>=150000 and current_player.bigscore3_done==0}: bigscore3
+  player_score{value>=200000 and current_player.bigscore4_done==0}: bigscore4
+  player_score{value>=250000 and current_player.bigscore5_done==0}: bigscore5
+  player_score{value>=300000 and current_player.bigscore6_done==0}: bigscore6
   bigscore1: knocker_pulse
   bigscore2: knocker_pulse
   bigscore3: knocker_pulse
@@ -119,7 +121,7 @@ slide_player:
     killed_by_gods_slide:
       action: play
       priority: 5000
-      expire: 6s
+      expire: 12s
 
 ###########################
 
@@ -185,7 +187,8 @@ widgets:
       text: (score)
       number_grouping: true
       min_digits: 2
-      y: 45%
+      y: 50%
+      x: 50%
       font_size: 150
       z: 1000
     - type: text
@@ -519,92 +522,118 @@ show_player:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_ball_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
 
   ball_save_scoop_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_scoop_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
+
+  ball_save_mini_wizard_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 7000
+  ball_save_mini_wizard_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 7000
 
 
   ball_save_random_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_random_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
 
   ball_save_greatoldones_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_greatoldones_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
 
   ball_save_winmission_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_winmission_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
 
   ball_save_earthquake_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 3000
+      priority: 7000
   ball_save_earthquake_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 3000
+      priority: 7000
 
   ball_save_bywandine_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 2000
+      priority: 7000
   ball_save_bywandine_save_hurry_up:
     ball_save_blink_show:
       speed: 15
       loops: -1
-      priority: 2000
+      priority: 7000
 
   mode_fordt_ride_started:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 6000
+      priority: 7000
 
   ball_save_fordt_ride_end_save_enabled:
     ball_save_blink_show:
       speed: 5
       loops: -1
-      priority: 6000
+      priority: 7000
 
+  ball_save_kickback_emergency_save_enabled:
+    ball_save_blink_show:
+      speed: 5
+      loops: -1
+      priority: 7000
+  ball_save_kickback_emergency_save_hurry_up:
+    ball_save_blink_show:
+      speed: 15
+      loops: -1
+      priority: 7000
+
+  ball_save_kickback_emergency_save_grace_period:
+    ball_save_blink_show: stop
+  ball_save_kickback_emergency_save_disabled:
+    ball_save_blink_show: stop
   ball_save_ball_save_grace_period:
     ball_save_blink_show: stop
   ball_save_scoop_save_grace_period:
@@ -638,6 +667,8 @@ show_player:
   ball_save_bywandine_save_disabled:
     ball_save_blink_show: stop
   ball_save_fordt_ride_end_save_disabled:
+    ball_save_blink_show: stop
+  ball_save_mini_wizard_save_disabled:
     ball_save_blink_show: stop
 
   play_ball_save_sound:
@@ -679,7 +710,7 @@ show_player:
   killplayer:
     kill_player_show:
       speed: 5
-      loops: 15
+      loops: 20
       priority: 2000
 
   mode_cult_win_stopped:
@@ -815,7 +846,7 @@ variable_player:
       string: 'ok'  
 
   save_lane_complete:
-    score: 5000
+    score: 500
   
   s_scoop_bas_active:
     variable_number_of_clue_value:
@@ -868,11 +899,11 @@ variable_player:
       int: -1
 
   s_popbumper_one_active{current_player.variable_superpops_active=='on'}:
-    score: 2500 * current_player.multiplier
+    score: 250 * current_player.multiplier
   s_popbumper_two_active{current_player.variable_superpops_active=='on'}:
-    score: 2500 * current_player.multiplier
+    score: 250 * current_player.multiplier
   s_popbumper_three_active{current_player.variable_superpops_active=='on'}:
-    score: 2500 * current_player.multiplier
+    score: 250 * current_player.multiplier
 
   mode_buddy_twenties_started:
     buddy_mode_running:
@@ -1053,6 +1084,7 @@ ball_saves:
     timer_start_events: balldevice_bd_plunger_lane_ball_eject_success #balldevice_bd_plunger_ejecting_ball
     auto_launch: true
     balls_to_save: 1
+    disable_events: ball_ended, mode_mini_wizard_twenties_started
 
   scoop_save:
     active_time: 5s
@@ -1069,6 +1101,7 @@ ball_saves:
     enable_events: ball_save_bonus
     auto_launch: true
     balls_to_save: -1
+    disable_events: mode_mini_wizard_twenties_started
 
   greatoldones_save: 
     active_time: 10s
@@ -1077,6 +1110,7 @@ ball_saves:
     enable_events: mode_aza_started, mode_king_started, mode_nyarla_started, mode_cthulhu_started, mode_shub_started
     auto_launch: true
     balls_to_save: 1
+    disable_events: mode_mini_wizard_twenties_started
 
   winmission_save:
     active_time: 15s
@@ -1085,6 +1119,7 @@ ball_saves:
     enable_events: mode_radio_win_started, mode_charleston_win_started, mode_speakeasy_win_started, mode_cult_win_started, mode_graveyard_win_started, mode_city_win_started, mode_aza_win_started, mode_nyarla_win_started, mode_king_win_started, mode_shub_win_started, mode_cthulhu_win_started, launch_cellar_multiball, end_of_sanity
     auto_launch: true
     balls_to_save: -1
+    disable_events: mode_mini_wizard_twenties_started
 
   earthquake_save:
     active_time: 35s
@@ -1368,6 +1403,14 @@ sound_pools:
     track: music
     sounds:
       - dramatic_music_1
+
+  mini_wizard_twenties_music_pool:
+    load: preload
+    type: random
+    track: music
+    sounds:
+      - mini_wizard_twenties_music
+
 
 # SFX
 

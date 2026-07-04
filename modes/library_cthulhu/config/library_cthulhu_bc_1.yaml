@@ -1,0 +1,239 @@
+#config_version=6
+
+mode:
+  start_events: library_cthulhu_start
+  stop_events: library_cthulhu_stop, timer_exit_library_cthulhu_time_complete, game_ended, ball_ended, game_ending, ball_ending
+  priority: 1700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_cthulhu_started: library_video_start
+  base_gate_secret_library_exit_shot_hit: library_cthulhu_stop
+  base_gate_exit_library_shot_hit: library_cthulhu_stop
+  timer_exit_library_cthulhu_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_cthulhu_slide: []      
+
+###########################
+
+slide_player:
+  mode_library_cthulhu_started: library_cthulhu_slide
+
+###########################
+
+widgets:
+  library_cthulhu_start_banner:
+    type: text
+    text: Lovecraft books !
+    style: mission_text
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+  show_exit_library_cthulhu_time:
+    type: text
+    text: (player|exit_library_cthulhu_time_variable_times) seconds left
+    style: mission_text
+    y: 25%
+    x: 50%
+    z: 100
+
+
+###########################
+
+widget_player:
+  mode_library_cthulhu_started:
+    library_cthulhu_start_banner, show_exit_library_cthulhu_time, base_score_widget, library_necronomicon_widget, superpops_widget, cthulhu_frame_image:
+      action: add
+      slide: library_cthulhu_slide
+
+###########################
+
+variable_player:
+  timer_exit_library_cthulhu_time_tick:
+    exit_library_cthulhu_time_variable_times:
+      int: device.timers.exit_library_cthulhu_time.ticks
+      action: set
+
+  cthulhulibrary_target_library_1_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+  cthulhulibrary_target_library_2_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+  cthulhulibrary_target_library_3_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+  cthulhulibrary_target_library_4_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+  cthulhulibrary_target_library_5_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+  cthulhulibrary_target_library_6_shot_hit:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+
+  library_cthulhu_target_group_lit_complete:
+    score: 10000  * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 1
+    library_boost_multiplier: 1
+
+
+
+###########################
+
+show_player:
+  mode_library_cthulhu_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+  library_cthulhu_stop:
+    library_side_flash_show:
+      action: stop
+
+  library_cthulhu_target_group_complete:
+    library_target_group_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1000
+
+###########################
+
+timers:
+  exit_library_cthulhu_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_cthulhu_started
+  
+  voice_library_cthulhu_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_cthulhu_started
+
+###########################
+
+shots:
+  cthulhulibrary_target_library_1_shot:
+    switch: s_target_library_1
+    show_tokens:
+      light: insert_80
+  cthulhulibrary_target_library_2_shot:
+    switch: s_target_library_2
+    show_tokens:
+      light: insert_79
+  cthulhulibrary_target_library_3_shot:
+    switch: s_target_library_3
+    show_tokens:
+      light: insert_78
+  cthulhulibrary_target_library_4_shot:
+    switch: s_target_library_4
+    show_tokens:
+      light: insert_77
+  cthulhulibrary_target_library_5_shot:
+    switch: s_target_library_5
+    show_tokens:
+      light: insert_76
+  cthulhulibrary_target_library_6_shot:
+    switch: s_target_library_6
+    show_tokens:
+      light: insert_75
+
+
+###########################
+
+shot_groups:
+  library_cthulhu_target_group:
+    shots: cthulhulibrary_target_library_1_shot, cthulhulibrary_target_library_2_shot, cthulhulibrary_target_library_3_shot, cthulhulibrary_target_library_4_shot, cthulhulibrary_target_library_5_shot, cthulhulibrary_target_library_6_shot
+    reset_events: library_cthulhu_target_group_complete
+
+
+###########################
+
+sound_pools:
+  library_cthulhu_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - library_cult_voice_1
+      - library_cult_voice_2
+      - library_cult_voice_3
+      - library_cult_voice_4
+      - library_cult_voice_5
+      - library_cult_voice_6
+      - library_cult_voice_7
+      - library_cult_voice_8
+      - library_cult_voice_9
+      - library_cult_voice_10
+      - library_cult_voice_11
+      - library_cult_voice_12
+      - library_cult_voice_13
+      - library_cult_voice_14
+
+###########################
+
+sound_player:
+  mode_library_cthulhu_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+    clock_gong:
+      action: play
+      volume: 5
+      delay: 10  
+
+  library_cthulhu_stop:
+    clock_tick_10s:
+      action: stop
+    clock_gong:
+      action: stop
+  
+  timer_voice_library_cthulhu_time_complete:
+    library_cthulhu_voice_sounds:
+      action: play
+      volume: 2
+
+  cthulhulibrary_target_library_1_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  cthulhulibrary_target_library_2_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  cthulhulibrary_target_library_3_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  cthulhulibrary_target_library_4_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  cthulhulibrary_target_library_5_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+  cthulhulibrary_target_library_6_shot_hit:
+    book_sounds:
+      action: play
+      volume: 1
+
+  library_cthulhu_target_group_complete:  
+    complete_library_sound:
+      action: play
+    

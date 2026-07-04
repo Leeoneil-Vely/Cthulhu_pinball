@@ -1,7 +1,8 @@
 #config_version=6
 mode:
   start_events: multiball_portal_start
-  stop_events: multiball_portal_stop, game_ended, ball_ended, game_ending, ball_ending
+  stop_events: multiball_portal_stop, game_ended, ball_ended, game_ending, ball_ending, killplayer
+  priority: 1900
   restart_on_next_ball: false
 
 ###########################
@@ -23,6 +24,7 @@ multiballs:
     ball_count_type: add
     start_events: launch_multiball_portal_3
     shoot_again: 30s
+    stop_events: stop_all_multiball
 
 ###########################
 
@@ -114,7 +116,7 @@ shot_profiles:
         show: multiball_portal_blink_show
         speed: 25
         loops: -1
-        priority: 600
+        priority: 1900
       - name: down
         show: off
 
@@ -126,7 +128,7 @@ shot_profiles:
         show: stormy_night_blink_show
         speed: 10
         loops: 0
-        priority: 600
+        priority: 1900
 
   multiball_portal_bumper_profile:
     advance_on_hit: false
@@ -136,7 +138,7 @@ shot_profiles:
         show: multiball_portal_blink_show
         speed: 25
         loops: -1
-        priority: 1600
+        priority: 1900
 
 ###########################
 
@@ -248,7 +250,7 @@ variable_player:
       string: 'false'
 
   multiball_portal_drop_target_group_complete:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
 
 ###########################
 

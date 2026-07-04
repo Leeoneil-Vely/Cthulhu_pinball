@@ -1,0 +1,43 @@
+#config_version=6
+
+mode:
+  start_events: stop_mini_wizard_twenties
+  stop_events: twenties_start
+  priority: 4600
+  game_mode: true
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_mini_wizard_twenties_ending_started: flipper_off, slingshot_off
+  ball_save_mini_wizard_twenties_ending_save_saving_ball: mini_wizard_twenties_ending_ball_held
+  timer_mini_wizard_twenties_ending_timer_complete: mini_wizard_twenties_ending_done
+  mini_wizard_twenties_ending_done: twenties_start, flipper_on, slingshot_on
+
+###########################
+
+# Ball save qui avale tous les drains sans relancer
+ball_saves:
+  mini_wizard_twenties_ending_save:
+    active_time: 0
+    hurry_up_time: 0
+    grace_period: 0
+    enable_events: mode_mini_wizard_twenties_ending_started
+    disable_events: mini_wizard_twenties_ending_done
+    auto_launch: false
+    balls_to_save: 1
+
+###########################
+
+timers:
+  mini_wizard_twenties_ending_timer:
+    start_value: 10
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_ending_ball_held
+
+###########################

@@ -889,255 +889,255 @@ variable_player:
 
 
   aza_sling_left_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_sling_right_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_bumper_one_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_bumper_two_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_bumper_three_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_scoop_bas_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_scoop_haut_shot_hit:
-    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 250 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 250 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_target_square_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_square_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_square_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_square_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_square_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_drop_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_drop_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_drop_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_drop_target_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_green_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_green_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_green_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_target_library_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_library_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_library_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_library_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_library_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_target_library_6_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
 
 
   aza_team_1_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_team_2_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_team_3_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_spinner_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_roll_left_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_left_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_right_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_right_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_fordt_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_space_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_roll_asylum_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_main_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_green_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_cthulhu_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_gate_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
   aza_gate_exit_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   aza_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    aza_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 
   aza_target_square_flute_1_shot_fluteflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_flute_gauge:
       action: add
       int: -1
   aza_target_square_flute_2_shot_fluteflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_flute_gauge:
       action: add
       int: -1
   aza_space_orbit_flute_shot_fluteflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_flute_gauge:
       action: add
       int: -1
 
   azalibrary_target_library_deepspace_1_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
   azalibrary_target_library_deepspace_2_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
   azalibrary_target_library_deepspace_3_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
   azalibrary_target_library_deepspace_4_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
   azalibrary_target_library_deepspace_5_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
   azalibrary_target_library_deepspace_6_shot_deepspaceflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_deepspace_gauge:
       action: add
       int: -1
 
   aza_main_ramp_court_shot_courtflashing1_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_court_gauge:
       action: add
       int: -1
   aza_main_ramp_court_shot_courtflashing2_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_court_gauge:
       action: add
       int: -1
   aza_main_ramp_court_shot_courtflashing3_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_court_gauge:
       action: add
       int: -1
 
   aza_space_orbit_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1
   aza_library_roll_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1
   aza_main_ramp_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1
   aza_green_ramp_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1
   aza_cthulhu_ramp_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1
   aza_asylum_orbit_azaend_shot_azaendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    aza_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    aza_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     aza_end_gauge:
       action: add
       int: -1

@@ -974,6 +974,14 @@ show_player:
     library_side_flash_show, cthulhu_library_insert_flash_show:
       action: stop
 
+  cthulhu_stop:
+    nyarla_new_step_show:
+      action: stop
+    mission_cthulhu_blink_show:
+      action: stop
+    cthulhu_backglass_blink_show:
+      action: stop
+
   cthulhu_target_library_locate_1_shot_locateflashing_hit:
     cthulhu_hit_show:
       action: play
@@ -1200,363 +1208,363 @@ variable_player:
 
 
   cthulhu_sling_left_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_sling_right_shot_hit:
-    score: 610 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 610 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 61 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 61 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_bumper_one_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_bumper_two_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_bumper_three_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_scoop_bas_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_scoop_haut_shot_hit:
-    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 250 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 250 * current_player.multiplier * current_player.spell_boost_multiplier
 
   cthulhu_target_square_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_square_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_square_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_square_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_square_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   cthulhu_drop_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_drop_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_drop_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_drop_target_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   cthulhu_green_target_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_green_target_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_green_target_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   cthulhu_target_library_1_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_library_2_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_library_3_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_library_4_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_library_5_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   cthulhu_target_library_6_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   cthulhu_team_1_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_team_2_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_team_3_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
   cthulhu_spinner_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier
 
   cthulhu_roll_left_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_left_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_right_inlane_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_right_outlane_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_fordt_shot_hit:
-    score: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 1200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 120 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 120 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_space_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_roll_asylum_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
 
 
   cthulhu_main_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   cthulhu_green_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   cthulhu_cthulhu_ramp_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   cthulhu_gate_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
 
   cthulhu_gate_exit_library_shot_hit:
-    score: 600 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 600 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 60 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 60 * current_player.multiplier * current_player.spell_boost_multiplier
   cthulhu_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    cthulhu_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 
   cthulhu_target_library_locate_1_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_target_library_locate_2_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_target_library_locate_3_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_target_library_locate_4_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_target_library_locate_5_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_target_library_locate_6_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_book_gauge:
       action: add
       int: -1
   cthulhu_scoop_bas_locate_shot_locateflashing_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_clue_gauge:
       action: add
       int: -1
 
   cthulhu_bumper_one_ship_shot_shipflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_punch_gauge:
       action: add
       int: -1
   cthulhu_bumper_two_ship_shot_shipflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_punch_gauge:
       action: add
       int: -1
   cthulhu_bumper_three_ship_shot_shipflashing_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_punch_gauge:
       action: add
       int: -1
 
   cthulhu_target_square_rlyeh_1_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_target_square_rlyeh_2_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_target_square_rlyeh_3_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_target_square_rlyeh_4_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_target_square_rlyeh_5_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_space_orbit_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_library_roll_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_main_ramp_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_green_ramp_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_cthulhu_ramp_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
   cthulhu_asylum_orbit_rlyeh_shot_rlyehflashing_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_wave_gauge:
       action: add
       int: -1
 
   cthulhu_target_square_cthulhuend_1_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_target_square_cthulhuend_2_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_target_square_cthulhuend_3_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_target_square_cthulhuendh_4_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_target_square_cthulhuend_5_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_space_orbit_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_library_roll_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_main_ramp_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_green_ramp_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_cthulhu_ramp_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
   cthulhu_asylum_orbit_cthulhuend_shot_cthulhuendflashing_hit:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
-    cthulhu_champion: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    cthulhu_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     cthulhu_escape_gauge:
       action: add
       int: -1
@@ -1619,6 +1627,8 @@ timers:
     control_events:
       - action: start
         event: mode_cthulhu_started
+      - action: stop
+        event: mode_cthulhu_stopped
 
 ###########################
 

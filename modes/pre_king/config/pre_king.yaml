@@ -58,6 +58,69 @@ slides:
       auto_play: True
       end_behavior: loop
       z: 3
+    - type: text
+      text: PLAYER (number)
+      y: 30
+      x: 10
+      font_size: 50
+      anchor_x: left
+      anchor_y: bottom
+      z: 1000
+    - type: text
+      text: BALL (ball)
+      y: 30
+      x: left+500
+      anchor_x: left
+      anchor_y: bottom
+      font_size: 50
+      z: 1000
+    - type: text
+      text: (player|multiplier)
+      y: top-132
+      x: right-413
+      font_size: 40
+      z: 1000
+    - type: text
+      text: (player|spell_boost_multiplier)
+      y: top-132
+      x: right-203
+      font_size: 40
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_bullet_value)
+      number_grouping: true
+      y: 54%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_object_value)
+      number_grouping: true
+      y: 45%
+      x: left+85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_clue_value)
+      number_grouping: true
+      y: 45%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|variable_number_of_book_value)
+      number_grouping: true
+      y: 54%
+      x: right-85
+      font_size: 45
+      z: 1000
+    - type: text
+      text: (player|library_boost_multiplier)
+      number_grouping: true
+      y: top-274
+      x: right-110
+      font_size: 40
+      z: 1000
 
 ###########################
 

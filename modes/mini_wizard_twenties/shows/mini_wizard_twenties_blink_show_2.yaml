@@ -1,0 +1,8 @@
+#show_version=6
+- duration: 0.55
+  lights:
+    (led): white-f200ms
+    
+- duration: 0.55
+  lights:
+    (led): off-f200ms

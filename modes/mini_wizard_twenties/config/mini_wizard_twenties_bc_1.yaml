@@ -1,0 +1,1702 @@
+#config_version=6
+
+mode:
+  start_events: mini_wizard_twenties_intro_start
+  stop_events: mini_wizard_twenties_complete, twenties_start
+  priority: 4500
+  game_mode: true
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_mini_wizard_twenties_started: twenties_stop, hold_stop, flipper_off, slingshot_off, stop_all_multiball, multiball_twenties_stop
+  mode_mini_wizard_twenties_started{current_player.multiball_twenties_running=='true'}: stop_multiball_twenties
+  ball_save_mini_wizard_twenties_intro_save_saving_ball: launch_mini_wizard_twenties
+  timer_launch_mini_wizard_intro_time_complete: flipper_on, slingshot_on, mini_wizard_twenties_play_start
+  drop_target_mini_wizard_twenties_group_lit_complete: add_buddy_wizard, reset_drop_targets, shaker_shake
+  green_target_mini_wizard_twenties_group_lit_complete: add_wizard_time, shaker_shake
+  square_target_mini_wizard_twenties_group_lit_complete: add_point_on_wizard_twenties, shaker_shake
+
+  timer_stop_mini_wizard_twenties_time_complete: stop_mini_wizard_twenties
+  timer_reset_mini_wizard_droptarget_time_complete: reset_drop_targets
+
+  # "{current_player.mission_wizard_twenties_multiplier_gauge==0}": show_multiplier_boost_0
+  "{current_player.mission_wizard_twenties_multiplier_gauge==1}": show_multiplier_boost_2
+  "{current_player.mission_wizard_twenties_multiplier_gauge==2}": show_multiplier_boost_4
+  "{current_player.mission_wizard_twenties_multiplier_gauge==3}": show_multiplier_boost_6
+  "{current_player.mission_wizard_twenties_multiplier_gauge==4}": show_multiplier_boost_8
+  "{current_player.mission_wizard_twenties_multiplier_gauge>=5}": boost_wizard_twenties_multiplier, show_multiplier_boost_10
+  show_multiplier_boost_10: show_multiplier_boost_0|3s
+
+
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=1 and current_player.mission_wizard_twenties_multiplier<1.49}: show_big_multiplier_10_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=1.49 and current_player.mission_wizard_twenties_multiplier<1.99}: show_big_multiplier_15_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=1.99 and current_player.mission_wizard_twenties_multiplier<2.49}: show_big_multiplier_20_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=2.49 and current_player.mission_wizard_twenties_multiplier<2.99}: show_big_multiplier_25_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=2.99 and current_player.mission_wizard_twenties_multiplier<3.49}: show_big_multiplier_30_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=3.49 and current_player.mission_wizard_twenties_multiplier<3.99}: show_big_multiplier_35_frame_widget
+  launch_mini_wizard_twenties_indication_banner_8{current_player.mission_wizard_twenties_multiplier>=3.99}: show_big_multiplier_40_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=1 and value<1.49 and source=="mini_wizard_twenties"}: show_big_multiplier_10_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=1.49 and value<1.99 and source=="mini_wizard_twenties"}: show_big_multiplier_15_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=1.99 and value<2.49 and source=="mini_wizard_twenties"}: show_big_multiplier_20_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=2.49 and value<2.99 and source=="mini_wizard_twenties"}: show_big_multiplier_25_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=2.99 and value<3.49 and source=="mini_wizard_twenties"}: show_big_multiplier_30_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=3.49 and value<3.99 and source=="mini_wizard_twenties"}: show_big_multiplier_35_frame_widget
+  player_mission_wizard_twenties_multiplier{value>=3.99 and source=="mini_wizard_twenties"}: show_big_multiplier_40_frame_widget
+
+
+###########################
+
+# Ball save qui avale tous les drains sans relancer
+ball_saves:
+  mini_wizard_twenties_intro_save:
+    active_time: 0
+    hurry_up_time: 0
+    grace_period: 0
+    enable_events: mode_mini_wizard_twenties_started
+    disable_events: mini_wizard_twenties_play_start
+    auto_launch: false
+    balls_to_save: 1
+
+  mini_wizard_save:
+    active_time: 30s
+    hurry_up_time: 2s
+    grace_period: 3s
+    enable_events: mini_wizard_twenties_play_start, add_wizard_time
+    disable_events: stop_mini_wizard_twenties
+    auto_launch: true
+    balls_to_save: -1
+
+###########################
+
+# Autolance la bille dès qu'elle entre dans le plunger lane pendant tout le mode
+# Ajoute une bille supplémentaire sur add_buddy_wizard via c_drain_eject
+coil_player:
+  balldevice_bd_plunger_lane_ball_entered:
+    c_plunger:
+      action: pulse
+
+  "add_buddy_wizard{device.ball_devices.bd_drain.balls > 0}":
+    c_drain_eject:
+      action: pulse
+
+###########################
+
+# multiballs:
+  # multiball_mini_wizard_twenties_multiball:
+  #   ball_count: 2
+  #   ball_count_type: total
+  #   start_events: mini_wizard_twenties_play_start, add_buddy_wizard
+  #   add_a_ball_events: add_buddy_wizard
+  #   stop_events: stop_mini_wizard_twenties
+
+  # multiball_mini_wizard_twenties_multiball:
+  #   ball_count: 1
+  #   ball_count_type: add
+  #   start_events: mini_wizard_twenties_play_start
+  #   start_or_add_a_ball_events: add_buddy_wizard
+  #   stop_events: stop_mini_wizard_twenties
+
+###########################
+
+slides:
+  mini_wizard_twenties_slide: []
+
+###########################
+
+slide_player:
+  mode_mini_wizard_twenties_started: mini_wizard_twenties_slide
+
+###########################
+
+widgets:
+  mini_wizard_twenties_name_banner:
+    type: text
+    text: Mini Wizard - Twenties
+    y: top-15
+    x: 10
+    z: 100
+    font_size: 50
+    anchor_x: left
+    anchor_y: top
+
+  mini_wizard_twenties_indication_banner_2:
+    type: text
+    text: "Mini Wizard\n \nTwenties !!!"
+    y: center
+    x: center
+    z: 100
+    expire: 5s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_3
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_3:
+    type: text
+    text: Try to dance 5 minutes
+    y: center
+    x: center
+    z: 100
+    expire: 3s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_4
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_4:
+    type: text
+    text: "4 Drop targets\nAdd a ball"
+    y: center
+    x: center
+    z: 100
+    expire: 3s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_5
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_5:
+    type: text
+    text: "3 Elder targets\nAdd ball save time"
+    y: center
+    x: center
+    z: 100
+    expire: 3s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_6
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_6:
+    type: text
+    text: "Each hit give you\n \n(player|mission_wizard_twenties_points) points\n \nBoost with 5 white targets"
+    y: center
+    x: center
+    z: 100
+    expire: 3s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_7
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_7:
+    type: text
+    text: "Playfield multiplier is actually\n \n(player|mission_wizard_twenties_multiplier)\n \nBoost with combo and loop"
+    y: center
+    x: center
+    z: 100
+    expire: 3s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_8
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_8:
+    type: text
+    text: Ready to shake everywhere ?
+    y: 65%
+    x: center
+    z: 100
+    expire: 5s
+    events_when_removed: launch_mini_wizard_twenties_shows
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_9:
+    type: text
+    text: (player|mission_wizard_twenties_points) #X (player|mission_wizard_twenties_multiplier)
+    y: 27%
+    x: 15%
+    z: 100
+    animations:
+      add_to_slide: fade_in
+
+  mini_wizard_twenties_indication_banner_10:
+    type: text
+    text: "Well done !\n \nYou finished\n \nthe mini Wizard twenties mode !"
+    number_grouping: true
+    y: center
+    x: center
+    z: 100
+    expire: 6s
+    events_when_removed: launch_mini_wizard_twenties_indication_banner_11
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+  mini_wizard_twenties_indication_banner_11:
+    type: text
+    text: "Wizard Score\n \n(player|miniwizardtwenties_champion)"
+    number_grouping: true
+    y: center
+    x: center
+    z: 100
+    expire: 8s
+    animations:
+      add_to_slide: fade_in
+      remove_from_slide: fade_out
+
+
+  video_mini_wizard_twenties_widget:
+    type: video
+    video: mini_wizard_twenties_video
+    auto_play: true
+    end_behavior: stop
+    z: 5
+
+#####
+
+  mini_wizard_intro_indication_banner:
+    type: text
+    text: PLEASE WAIT !
+    y: center
+    x: center
+    z: 100
+    animations:
+        add_to_slide:                   
+        - property: opacity         
+          value: 1                  
+          duration: .5s             
+        - property: opacity         
+          value: 0
+          duration: .5s
+          repeat: true
+
+  video_mini_wizard_intro_scratch_widget:
+    type: video
+    video: scratch_movie
+    auto_play: True
+    end_behavior: loop
+    z: 2
+
+
+######### widgets pour multiplier et points
+
+  wizard_points_frame_widget:
+    type: image
+    image: frame_hit_points
+    z: 10
+
+
+  multiplier_0_frame_widget:
+    type: image
+    image: multiplier_boost_0
+    z: 10
+
+  multiplier_2_frame_widget:
+    type: image
+    image: multiplier_boost_2
+    z: 10
+
+  multiplier_4_frame_widget:
+    type: image
+    image: multiplier_boost_4
+    z: 10
+
+  multiplier_6_frame_widget:
+    type: image
+    image: multiplier_boost_6
+    z: 10
+
+  multiplier_8_frame_widget:
+    type: image
+    image: multiplier_boost_8
+    z: 10
+
+  multiplier_10_frame_widget:
+    type: image
+    image: multiplier_boost_10
+    z: 10
+    animations:
+      add_to_slide:
+        - property: opacity
+          value: 1
+          duration: 0.2s
+        - property: opacity
+          value: 0
+          duration: 0.2s
+          repeat: true
+
+
+  big_multiplier_10_frame_widget:
+    type: image
+    image: multiplier_boost_X10
+    z: 9
+  big_multiplier_15_frame_widget:
+    type: image
+    image: multiplier_boost_X15
+    z: 9
+  big_multiplier_20_frame_widget:
+    type: image
+    image: multiplier_boost_X20
+    z: 9
+  big_multiplier_25_frame_widget:
+    type: image
+    image: multiplier_boost_X25
+    z: 9
+  big_multiplier_30_frame_widget:
+    type: image
+    image: multiplier_boost_X30
+    z: 9
+  big_multiplier_35_frame_widget:
+    type: image
+    image: multiplier_boost_X35
+    z: 9
+  big_multiplier_40_frame_widget:
+    type: image
+    image: multiplier_boost_X40
+    z: 9
+
+
+###########################
+
+widget_player:
+  mode_mini_wizard_twenties_started:
+     mini_wizard_intro_indication_banner, video_mini_wizard_intro_scratch_widget, base_without_score_widget, base_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties:
+    mini_wizard_intro_indication_banner, video_mini_wizard_intro_scratch_widget:
+      action: remove
+    mini_wizard_twenties_name_banner, mini_wizard_twenties_indication_banner_2, video_mini_wizard_twenties_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_3:
+    mini_wizard_twenties_indication_banner_3:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_4:
+    mini_wizard_twenties_indication_banner_4:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_5:
+    mini_wizard_twenties_indication_banner_5:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_6:
+    mini_wizard_twenties_indication_banner_6:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_7:
+    mini_wizard_twenties_indication_banner_7:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_8:
+    mini_wizard_twenties_indication_banner_8:
+      action: add
+      slide: mini_wizard_twenties_slide
+    multiplier_0_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    wizard_points_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+  launch_mini_wizard_twenties_indication_banner_11:
+    mini_wizard_twenties_indication_banner_11:
+      action: add
+      slide: mini_wizard_twenties_slide
+
+
+  mini_wizard_twenties_play_start:
+    base_score_widget, superpops_widget, mini_wizard_twenties_indication_banner_9:
+      action: add
+
+  stop_mini_wizard_twenties:
+    base_score_widget, wizard_points_frame_widget, mini_wizard_twenties_indication_banner_9, multiplier_0_frame_widget, multiplier_2_frame_widget, multiplier_4_frame_widget, multiplier_6_frame_widget, multiplier_8_frame_widget, multiplier_10_frame_widget, big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+    mini_wizard_twenties_indication_banner_10:
+      action: add
+
+
+  show_multiplier_boost_0:
+    multiplier_0_frame_widget:
+      action: add
+    multiplier_2_frame_widget, multiplier_4_frame_widget, multiplier_6_frame_widget, multiplier_8_frame_widget, multiplier_10_frame_widget:
+      action: remove
+
+  show_multiplier_boost_2:
+    multiplier_2_frame_widget:
+      action: add
+    multiplier_0_frame_widget, multiplier_4_frame_widget, multiplier_6_frame_widget, multiplier_8_frame_widget, multiplier_10_frame_widget:
+      action: remove
+
+  show_multiplier_boost_4:
+    multiplier_4_frame_widget:
+      action: add
+    multiplier_0_frame_widget, multiplier_2_frame_widget, multiplier_6_frame_widget, multiplier_8_frame_widget, multiplier_10_frame_widget:
+      action: remove
+
+  show_multiplier_boost_6:
+    multiplier_6_frame_widget:
+      action: add
+    multiplier_0_frame_widget, multiplier_2_frame_widget, multiplier_4_frame_widget, multiplier_8_frame_widget, multiplier_10_frame_widget:
+      action: remove
+
+  show_multiplier_boost_8:
+    multiplier_8_frame_widget:
+      action: add
+    multiplier_0_frame_widget, multiplier_2_frame_widget, multiplier_4_frame_widget, multiplier_6_frame_widget, multiplier_10_frame_widget:
+      action: remove
+
+  show_multiplier_boost_10:
+    multiplier_10_frame_widget:
+      action: add
+    multiplier_0_frame_widget, multiplier_2_frame_widget, multiplier_4_frame_widget, multiplier_6_frame_widget, multiplier_8_frame_widget:
+      action: remove
+
+
+  show_big_multiplier_10_frame_widget:
+    big_multiplier_10_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_15_frame_widget:
+    big_multiplier_15_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_20_frame_widget:
+    big_multiplier_20_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_25_frame_widget:
+    big_multiplier_25_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_30_frame_widget:
+    big_multiplier_30_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_35_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_35_frame_widget:
+    big_multiplier_35_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_40_frame_widget:
+      action: remove
+  show_big_multiplier_40_frame_widget:
+    big_multiplier_40_frame_widget:
+      action: add
+      slide: mini_wizard_twenties_slide
+    big_multiplier_10_frame_widget, big_multiplier_15_frame_widget, big_multiplier_20_frame_widget, big_multiplier_25_frame_widget, big_multiplier_30_frame_widget, big_multiplier_35_frame_widget:
+      action: remove
+
+
+###########################
+
+timers:
+  launch_mini_wizard_intro_time:
+    start_value: 25
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_mini_wizard_twenties
+
+  reset_mini_wizard_droptarget_time:
+    start_value: 30
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_play_start
+      - action: restart
+        event: timer_reset_mini_wizard_droptarget_time_complete
+
+  stop_mini_wizard_twenties_time:
+    start_value: 284
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: launch_mini_wizard_twenties
+
+######## timers pour combo et loop
+
+  loop_mini_wizard_twenties_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_green_ramp_shot_hit
+      - action: restart
+        event: mini_wizard_twenties_green_ramp_loop_shot_activated_hit
+      - action: stop
+        event: timer_loop_mini_wizard_twenties_reset_time_complete
+
+  space_loop_mini_wizard_twenties_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_space_orbit_shot_hit
+      - action: restart
+        event: mini_wizard_twenties_space_orbit_loop_shot_activated_hit
+      - action: stop
+        event: timer_space_loop_mini_wizard_twenties_reset_time_complete
+
+  cthulhu_combo_mini_wizard_twenties_reset_time:
+    start_value: 0
+    end_value: 5
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_green_ramp_shot_hit
+      - action: restart
+        event: mini_wizard_twenties_green_ramp_shot_hit
+      - action: restart
+        event: mini_wizard_twenties_green_ramp_combo_shot_activated_hit
+      - action: stop
+        event: timer_cthulhu_combo_mini_wizard_twenties_reset_time_complete
+
+  green_combo_mini_wizard_twenties_reset_time:
+    start_value: 0
+    end_value: 4
+    direction: up
+    tick_interval: 1s
+    restart_on_complete: true
+    control_events:
+      - action: start
+        event: mini_wizard_twenties_cthulhu_ramp_shot_hit
+      - action: restart
+        event: mini_wizard_twenties_cthulhu_ramp_combo_shot_activated_hit
+      - action: stop
+        event: timer_green_combo_mini_wizard_twenties_reset_time_complete
+
+###########################
+
+shot_profiles:
+  mini_wizard_twenties_profile:
+    advance_on_hit: true
+    block: true
+    loop: true
+    states:
+      - name: hit
+        show: mini_wizard_twenties_target_blink_show
+        speed: 4
+        loops: 3
+        priority: 4500
+
+  mini_wizard_twenties_profile_2:
+    advance_on_hit: true
+    block: true
+    loop: true
+    states:
+      - name: hit
+        show: mini_wizard_twenties_target_blink_show
+        speed: 4
+        loops: 3
+        priority: 4500
+
+  mini_wizard_twenties_group_profile:
+    advance_on_hit: true
+    block: true
+    loop: false
+    states:
+      - name: flashing
+        show: mini_wizard_twenties_blink_show
+        speed: 1
+        loops: -1
+        priority: 4500
+      - name: lit
+        show: mini_wizard_twenties_target_blink_show
+        speed: 1
+        loops: -1
+        priority: 4500
+
+
+######## profils pour loop et combos
+
+
+  loop_wizard_twenties_profile:
+    loop: false
+    block: false
+    states:      
+      - name: activated
+        show: base_nyarla_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 4600
+
+  loop_orbit_wizard_twenties_profile:
+    loop: false
+    block: false
+    states:      
+      - name: activated
+        show: base_azatoth_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 4600
+
+  green_combo_wizard_twenties_profile:
+    loop: false
+    block: false
+    states:
+      - name: activated
+        show: base_nyarla_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 4600
+
+  cthulhu_combo_wizard_twenties_profile:
+    loop: false
+    block: false
+    states:
+      - name: activated
+        show: base_cthulhu_insert_flash_show
+        speed: 100
+        loops: -1
+        priority: 4600
+
+###########################
+
+shots:
+  mini_wizard_twenties_bumper_one_shot:
+    switch: s_popbumper_one
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_86
+  mini_wizard_twenties_bumper_two_shot:
+    switch: s_popbumper_two
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_85
+  mini_wizard_twenties_bumper_three_shot:
+    switch: s_popbumper_three
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_84
+  mini_wizard_twenties_sling_left_shot:
+    switch: s_sling_left
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_30, led_31
+  mini_wizard_twenties_sling_right_shot:
+    switch: s_sling_right
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_36, led_37
+  mini_wizard_twenties_sling_up_shot:
+    switch: s_sling_up
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_5, led_6
+  mini_wizard_twenties_scoop_bas_shot:
+    switch: s_scoop_bas
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_25, led_26, led_27, led_28, insert_44, insert_45, insert_46, insert_47
+  mini_wizard_twenties_scoop_haut_shot:
+    switch: s_scoop_haut
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_19, led_20, led_11
+
+
+  mini_wizard_twenties_target_square_1_shot:
+    switch: s_target_square_white_1
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_41
+  mini_wizard_twenties_target_square_2_shot:
+    switch: s_target_square_white_2
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_32
+  mini_wizard_twenties_target_square_3_shot:
+    switch: s_target_square_white_3
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_30
+  mini_wizard_twenties_target_square_4_shot:
+    switch: s_target_square_white_4
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_20
+  mini_wizard_twenties_target_square_5_shot:
+    switch: s_target_square_white_5
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_10
+
+
+  mini_wizard_twenties_target_sanity_shot_1:
+    switch: s_target_sanity_1
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_50
+  mini_wizard_twenties_target_sanity_shot_2:
+    switch: s_target_sanity_2
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_49
+  mini_wizard_twenties_target_sanity_shot_3:
+    switch: s_target_sanity_3
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_48
+  mini_wizard_twenties_target_sanity_shot_4:
+    switch: s_target_sanity_4
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_11
+  mini_wizard_twenties_target_sanity_shot_5:
+    switch: s_target_sanity_5
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_12
+  mini_wizard_twenties_target_sanity_shot_6:
+    switch: s_target_sanity_6
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_13
+
+
+  mini_wizard_twenties_target_library_1_shot:
+    switch: s_target_library_1
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_80
+  mini_wizard_twenties_target_library_2_shot:
+    switch: s_target_library_2
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_79
+  mini_wizard_twenties_target_library_3_shot:
+    switch: s_target_library_3
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_78
+  mini_wizard_twenties_target_library_4_shot:
+    switch: s_target_library_4
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_77
+  mini_wizard_twenties_target_library_5_shot:
+    switch: s_target_library_5
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_76
+  mini_wizard_twenties_target_library_6_shot:
+    switch: s_target_library_6
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_75
+
+  mini_wizard_twenties_roll_asylum_shot:
+    switch: s_roll_asylum
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_3, insert_4, insert_5, led_3, led_4
+  mini_wizard_twenties_gate_library_shot:
+    switch: s_gate_library
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_12, led_1
+  mini_wizard_twenties_roll_library_shot:
+    switch: s_roll_library
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_35, insert_36, insert_37, insert_38, led_16, led_17
+  mini_wizard_twenties_roll_space_shot:
+    switch: s_roll_space
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_39, insert_40, insert_42, insert_43, led_13, led_14, led_15
+  mini_wizard_twenties_roll_fordt_shot:
+    switch: s_roll_fordt
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_34, led_48, led_21
+
+  mini_wizard_twenties_roll_left_outlane_shot:
+    switch: s_roll_left_outlane
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_55, insert_56, led_28, led_29
+  mini_wizard_twenties_roll_left_inlane_shot:
+    switch: s_roll_left_inlane
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_54, led_32, led_33
+  mini_wizard_twenties_roll_right_inlane_shot:
+    switch: s_roll_right_inlane
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_14, led_35, led_34
+  mini_wizard_twenties_roll_right_outlane_shot:
+    switch: s_roll_right_outlane
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_15, led_38, led_39
+  mini_wizard_twenties_team_1_shot:
+    switch: s_roll_skill_shot_1
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_0, led_10, led_9
+  mini_wizard_twenties_team_2_shot:
+    switch: s_roll_skill_shot_2
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_1, led_9, led_8
+  mini_wizard_twenties_team_3_shot:
+    switch: s_roll_skill_shot_3
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_2, led_8, led_7
+
+  mini_wizard_twenties_cthulhu_ramp_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_16, insert_17, insert_18, insert_19, led_44
+  mini_wizard_twenties_cthulhu_ramp_combo_shot:
+    switch: s_gate_cthulhu_ramp
+    profile: cthulhu_combo_wizard_twenties_profile
+    enable_events:  mini_wizard_twenties_green_ramp_shot_hit
+    disable_events: timer_cthulhu_combo_mini_wizard_twenties_reset_time_complete, mini_wizard_twenties_cthulhu_ramp_combo_shot_activated_hit
+
+
+
+
+  mini_wizard_twenties_green_ramp_shot:
+    switch: s_gate_green_ramp
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_29, insert_26, insert_25, insert_74, led_22
+  mini_wizard_twenties_green_ramp_loop_shot:
+    switch: s_gate_green_ramp
+    profile: loop_wizard_twenties_profile
+    enable_events: mini_wizard_twenties_green_ramp_shot_hit, mini_wizard_twenties_green_ramp_loop_shot_activated_hit
+    disable_events: timer_loop_mini_wizard_twenties_reset_time_complete
+  mini_wizard_twenties_green_ramp_combo_shot:
+    switch: s_gate_green_ramp
+    profile: green_combo_wizard_twenties_profile
+    enable_events: mini_wizard_twenties_cthulhu_ramp_shot_hit
+    disable_events: timer_green_combo_mini_wizard_twenties_reset_time_complete, mini_wizard_twenties_green_ramp_combo_shot_activated_hit
+
+
+
+  mini_wizard_twenties_main_ramp_shot:
+    switch: s_gate_main_ramp
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_27, insert_28, insert_31, insert_33, led_23, led_18, led_0
+  mini_wizard_twenties_gate_secret_library_shot:
+    switch: s_gate_secret_library
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_1, led_2
+  mini_wizard_twenties_gate_exit_library_shot:
+    switch: s_gate_exit_library
+    profile: mini_wizard_twenties_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_39, led_40, led_41, led_42
+  mini_wizard_twenties_spinner_shot:
+    switch: s_spinner
+    profile: mini_wizard_twenties_profile_2
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_3, insert_4, insert_5
+
+
+  mini_wizard_twenties_drop_target_1_shot:
+    switch: s_drop_target_1
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_24
+  mini_wizard_twenties_drop_target_2_shot:
+    switch: s_drop_target_2
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_23
+  mini_wizard_twenties_drop_target_3_shot:
+    switch: s_drop_target_3
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_22
+  mini_wizard_twenties_drop_target_4_shot:
+    switch: s_drop_target_4
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: insert_21
+
+  mini_wizard_twenties_green_target_1_shot:
+    switch: s_target_green_1
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_47
+  mini_wizard_twenties_green_target_2_shot:
+    switch: s_target_green_2
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_45
+  mini_wizard_twenties_green_target_3_shot:
+    switch: s_target_green_3
+    profile: mini_wizard_twenties_group_profile
+    enable_events: launch_mini_wizard_twenties_shows
+    show_tokens:
+      led: led_46
+
+
+  mini_wizard_twenties_asylum_orbit_shot:
+    hit_events: mini_wizard_twenties_asylum_orbit_sequence_hit
+  mini_wizard_twenties_library_roll_shot:
+    hit_events: mini_wizard_twenties_library_roll_sequence_hit
+
+  mini_wizard_twenties_space_orbit_shot:
+    hit_events: mini_wizard_twenties_space_orbit_sequence_hit
+  mini_wizard_twenties_space_orbit_loop_shot:
+    hit_events: mini_wizard_twenties_space_orbit_sequence_hit
+    profile: loop_orbit_wizard_twenties_profile
+    enable_events: mini_wizard_twenties_space_orbit_shot_hit, mini_wizard_twenties_space_orbit_loop_shot_activated_hit
+    disable_events: timer_space_loop_mini_wizard_twenties_reset_time_complete
+
+###########################
+
+shot_groups:
+  drop_target_mini_wizard_twenties_group:
+    shots: mini_wizard_twenties_drop_target_1_shot, mini_wizard_twenties_drop_target_2_shot, mini_wizard_twenties_drop_target_3_shot, mini_wizard_twenties_drop_target_4_shot
+    reset_events: drop_target_mini_wizard_twenties_group_complete
+
+  green_target_mini_wizard_twenties_group:
+    shots: mini_wizard_twenties_green_target_1_shot, mini_wizard_twenties_green_target_2_shot, mini_wizard_twenties_green_target_3_shot
+    reset_events: green_target_mini_wizard_twenties_group_complete
+
+  square_target_mini_wizard_twenties_group:
+    shots: mini_wizard_twenties_target_square_1_shot, mini_wizard_twenties_target_square_2_shot, mini_wizard_twenties_target_square_3_shot, mini_wizard_twenties_target_square_4_shot, mini_wizard_twenties_target_square_5_shot
+    reset_events: square_target_mini_wizard_twenties_group_complete
+
+###########################
+
+sequence_shots:
+  mini_wizard_twenties_space_orbit_sequence:
+    switch_sequence: s_roll_space, s_roll_asylum
+    sequence_timeout: 3s
+  mini_wizard_twenties_asylum_orbit_sequence:
+    switch_sequence: s_roll_asylum, s_roll_space
+    sequence_timeout: 3s
+  mini_wizard_twenties_library_roll_sequence:
+    switch_sequence: s_roll_library, s_gate_library
+    sequence_timeout: 3s
+
+###########################
+
+variable_player:
+  mode_mini_wizard_twenties_started:
+    mini_wizard_twenties_done:
+      action: set
+      string: 'yes'
+
+  stop_multiball_twenties:
+    insert_multiball_twenties:
+      action: set
+      string: 'complete'
+
+  add_point_on_wizard_twenties:
+    mission_wizard_twenties_points: 3
+
+  mini_wizard_twenties_green_ramp_loop_shot_activated_hit:
+    mission_wizard_twenties_multiplier_gauge: 1
+  mini_wizard_twenties_space_orbit_loop_shot_activated_hit:
+    mission_wizard_twenties_multiplier_gauge: 1
+  mini_wizard_twenties_green_ramp_combo_shot_activated_hit:
+    mission_wizard_twenties_multiplier_gauge: 1
+  mini_wizard_twenties_cthulhu_ramp_combo_shot_activated_hit:
+    mission_wizard_twenties_multiplier_gauge: 1
+
+  boost_wizard_twenties_multiplier:
+    mission_wizard_twenties_multiplier:
+      float: 0.1
+      action: add
+    mission_wizard_twenties_multiplier_gauge:
+      int: 0
+      action: set
+
+  mini_wizard_twenties_bumper_one_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_bumper_two_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_bumper_three_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_sling_left_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_sling_right_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_sling_up_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_scoop_bas_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_scoop_haut_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+
+  mini_wizard_twenties_target_square_1_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_square_2_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_square_3_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_square_4_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_square_5_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+
+  mini_wizard_twenties_target_sanity_shot_1_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_sanity_shot_2_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_sanity_shot_3_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_sanity_shot_4_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_sanity_shot_5_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_sanity_shot_6_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+
+  mini_wizard_twenties_target_library_1_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_library_2_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_library_3_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_library_4_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_library_5_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_target_library_6_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+  mini_wizard_twenties_roll_asylum_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_gate_library_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_library_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_space_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_fordt_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+  mini_wizard_twenties_roll_left_outlane_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_left_inlane_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_right_inlane_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_roll_right_outlane_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_team_1_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_team_2_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_team_3_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+  mini_wizard_twenties_cthulhu_ramp_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_green_ramp_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_main_ramp_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_gate_secret_library_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_gate_exit_library_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_spinner_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+
+  mini_wizard_twenties_drop_target_1_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_drop_target_2_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_drop_target_3_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_drop_target_4_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+  mini_wizard_twenties_green_target_1_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_green_target_2_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_green_target_3_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+
+  mini_wizard_twenties_space_orbit_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_asylum_orbit_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+  mini_wizard_twenties_library_roll_shot_hit:
+    score: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+    miniwizardtwenties_champion: current_player.mission_wizard_twenties_points * current_player.mission_wizard_twenties_multiplier
+
+###########################
+
+show_player:
+  mode_mini_wizard_twenties_started:
+    look_screen_show:
+      speed: 40
+      loops: 2
+      priority: 1000
+
+  launch_mini_wizard_twenties_shows:
+    mini_wizard_twenties_side_blink_show:
+      speed: 1
+      loops: -1
+      priority: 1000
+  stop_mini_wizard_twenties:
+    mini_wizard_twenties_side_blink_show: stop
+
+  drop_target_mini_wizard_twenties_group_lit_complete:
+    mini_wizard_twenties_all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 5000
+      loops: 6
+  green_target_mini_wizard_twenties_group_lit_complete:
+    mini_wizard_twenties_all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 5000
+      loops: 6
+  square_target_mini_wizard_twenties_group_lit_complete:
+    mini_wizard_twenties_all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 5000
+      loops: 6
+
+  boost_wizard_twenties_multiplier:
+    mini_wizard_twenties_all_insert_blink_show:
+      action: play
+      speed: 25
+      priority: 5000
+      loops: 6  
+
+###########################
+
+sound_player:
+  launch_mini_wizard_twenties:
+    mini_wizard_twenties_music_pool:
+      action: play
+      loops: -1
+      track: music
+      mode_end_action: stop
+      fade_out: 1s
+      volume: 1
+
+  mini_wizard_twenties_bumper_one_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_bumper_two_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_bumper_three_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_sling_left_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_sling_right_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_sling_up_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_scoop_bas_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_scoop_haut_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+
+  mini_wizard_twenties_target_square_1_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_square_2_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_square_3_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_square_4_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_square_5_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+
+  mini_wizard_twenties_target_sanity_shot_1_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_sanity_shot_2_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_sanity_shot_3_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_sanity_shot_4_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_sanity_shot_5_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_sanity_shot_6_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+
+  mini_wizard_twenties_target_library_1_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_library_2_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_library_3_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_library_4_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_library_5_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_target_library_6_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_asylum_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_gate_library_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_library_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_space_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_fordt_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_left_outlane_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_left_inlane_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_right_inlane_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_roll_right_outlane_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_team_1_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_team_2_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_team_3_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_cthulhu_ramp_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_green_ramp_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_main_ramp_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_gate_secret_library_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_gate_exit_library_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_spinner_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_drop_target_1_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_drop_target_2_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_drop_target_3_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_drop_target_4_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_green_target_1_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_green_target_2_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_green_target_3_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_space_orbit_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_asylum_orbit_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_library_roll_shot_hit:
+    miniwizardtwenties_sfx:
+      action: play
+      volume: 1
+
+  boost_wizard_twenties_multiplier:
+    mini_wizard_twenties_multiplier_boosted_voice:
+      action: play
+      volume: 1
+
+  mini_wizard_twenties_green_ramp_loop_shot_activated_hit:
+    green_ramp_voice_pool:
+      action: play
+      volume: 2
+
+  mini_wizard_twenties_space_orbit_loop_shot_activated_hit:
+    orbit_loop_pool:
+      action: play
+      volume: 2
+
+  mini_wizard_twenties_green_ramp_combo_shot_activated_hit:
+    combo_loop_pool:
+      action: play
+      volume: 2
+
+  mini_wizard_twenties_cthulhu_ramp_combo_shot_activated_hit:
+    combo_greenramp_pool:
+      action: play
+      volume: 2
+
+  launch_mini_wizard_twenties_indication_banner_11:
+    applause_win_sound_pool:
+      action: play
+      volume: 1
+
+
+###########################
+
+sound_pools:
+  miniwizardtwenties_sfx:
+    load: on_demand
+    type: random
+    track: sfx
+    sounds:
+      - triangle_01
+      - triangle_02
+      - triangle_03
+      - triangle_04
+
+  mini_wizard_twenties_multiplier_boosted_voice:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - mini_wizard_twenties_multiplier_boosted_01
+      - mini_wizard_twenties_multiplier_boosted_02
+
+
+
+###########################
+
+videos:
+  mini_wizard_twenties_video:
+    width: 1440
+    height: 900
+    file: mini_wizard_twenties.mp4
+    events_when_stopped: mini_wizard_twenties_video

@@ -1,0 +1,310 @@
+#show_version=6
+- time: 0
+#No change this frame - take another step
+#  lights:
+- time: '+1'
+    
+- time: '+1'
+  lights:
+    insert_88: 'FFFFFF'
+    insert_89: 'FFFFFF'
+    insert_90: 'FFFFFF'
+    insert_91: 'FFFFFF'
+    insert_92: 'FFFFFF'
+    insert_93: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_87: 'FFFFFF'
+    insert_88: '000000'
+    insert_89: '000000'
+    insert_90: '000000'
+    insert_91: '000000'
+    insert_92: '000000'
+    insert_93: '000000'
+    insert_94: 'FFFFFF'
+    led_33: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_87: '000000'
+    insert_94: '000000'
+    led_32: 'FFFFFF'
+    led_33: '000000'
+    led_35: '3D3D3D'
+    
+- time: '+1'
+  lights:
+    led_32: '000000'
+    led_35: '000000'
+    
+- time: '+1'
+  lights:
+    insert_59: 'FFFFFF'
+    led_31: 'FFFFFF'
+    led_36: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_59: '000000'
+    insert_61: '666666'
+    insert_62: 'FFFFFF'
+    led_29: 'FFFFFF'
+    led_31: '000000'
+    led_36: '000000'
+    led_37: '3D3D3D'
+    
+- time: '+1'
+  lights:
+    insert_14: 'FFFFFF'
+    insert_15: 'FFFFFF'
+    insert_53: 'FFFFFF'
+    insert_54: 'FFFFFF'
+    insert_55: 'FFFFFF'
+    insert_61: '000000'
+    insert_62: '000000'
+    led_29: '000000'
+    led_37: '000000'
+    
+- time: '+1'
+  lights:
+    insert_14: '000000'
+    insert_15: '000000'
+    insert_52: 'FFFFFF'
+    insert_53: '000000'
+    insert_54: '000000'
+    insert_55: '000000'
+    led_39: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_13: 'FFFFFF'
+    insert_50: 'FFFFFF'
+    insert_52: '000000'
+    insert_64: 'FFFFFF'
+    insert_65: 'FFFFFF'
+    led_39: '000000'
+    led_40: 'F8F8F8'
+    
+- time: '+1'
+  lights:
+    insert_12: 'FFFFFF'
+    insert_13: '000000'
+    insert_49: 'FFFFFF'
+    insert_50: '000000'
+    insert_64: '000000'
+    insert_65: '000000'
+    insert_66: 'FFFFFF'
+    insert_67: 'F8F8F8'
+    led_27: 'FFFFFF'
+    led_40: '000000'
+    led_41: 'E1E1E1'
+    
+- time: '+1'
+  lights:
+    insert_12: '000000'
+    insert_17: '3D3D3D'
+    insert_44: 'FFFFFF'
+    insert_48: '666666'
+    insert_49: '000000'
+    insert_66: '000000'
+    insert_67: '000000'
+    insert_69: 'FFFFFF'
+    led_26: 'FFFFFF'
+    led_27: '000000'
+    led_41: '000000'
+    
+- time: '+1'
+  lights:
+    insert_10: 'FFFFFF'
+    insert_17: '000000'
+    insert_44: '000000'
+    insert_45: 'FFFFFF'
+    insert_47: 'F8F8F8'
+    insert_48: '000000'
+    insert_69: '000000'
+    insert_71: 'FFFFFF'
+    insert_72: 'FFFFFF'
+    led_26: '000000'
+    led_42: '666666'
+    
+- time: '+1'
+  lights:
+    insert_10: '000000'
+    insert_20: 'FFFFFF'
+    insert_45: '000000'
+    insert_47: '000000'
+    insert_71: '000000'
+    insert_72: '000000'
+    led_42: '000000'
+    
+- time: '+1'
+  lights:
+    insert_20: '000000'
+    insert_21: 'FFFFFF'
+    insert_22: 'E1E1E1'
+    insert_74: 'FFFFFF'
+    led_25: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_21: '000000'
+    insert_22: '000000'
+    insert_23: 'FFFFFF'
+    insert_25: 'FFFFFF'
+    insert_74: '000000'
+    led_25: '000000'
+    led_43: '666666'
+    
+- time: '+1'
+  lights:
+    insert_23: '000000'
+    insert_25: '000000'
+    insert_26: 'FFFFFF'
+    insert_27: '666666'
+    led_43: '000000'
+    led_44: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_26: '000000'
+    insert_27: '000000'
+    insert_29: 'FFFFFF'
+    insert_43: 'FFFFFF'
+    led_24: 'FFFFFF'
+    led_44: '000000'
+    led_45: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_29: '000000'
+    insert_30: 'E1E1E1'
+    insert_31: '666666'
+    insert_32: '3D3D3D'
+    insert_41: 'FFFFFF'
+    insert_43: '000000'
+    led_24: '000000'
+    led_45: '000000'
+    led_46: 'FFFFFF'
+    led_47: 'F8F8F8'
+    
+- time: '+1'
+  lights:
+    insert_30: '000000'
+    insert_31: '000000'
+    insert_32: '000000'
+    insert_33: 'FFFFFF'
+    insert_34: 'FFFFFF'
+    insert_40: 'FFFFFF'
+    insert_41: '000000'
+    led_46: '000000'
+    led_47: '000000'
+    
+- time: '+1'
+  lights:
+    insert_33: '000000'
+    insert_34: '000000'
+    insert_38: '666666'
+    insert_39: 'FFFFFF'
+    insert_40: '000000'
+    led_48: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_37: '666666'
+    insert_38: '000000'
+    insert_39: '000000'
+    insert_84: 'FFFFFF'
+    led_48: '000000'
+    
+- time: '+1'
+  lights:
+    insert_37: '000000'
+    insert_84: '000000'
+    led_21: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_85: 'FFFFFF'
+    led_21: '000000'
+    
+- time: '+1'
+  lights:
+    insert_85: '000000'
+    insert_86: 'E1E1E1'
+    led_6: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_86: '000000'
+    led_16: 'FFFFFF'
+    led_18: '666666'
+    led_6: '000000'
+    
+- time: '+1'
+  lights:
+    insert_4: 'FFFFFF'
+    led_16: '000000'
+    led_18: '000000'
+    led_7: 'FFFFFF'
+    
+- time: '+1'
+  lights:
+    insert_3: 'FFFFFF'
+    insert_4: '000000'
+    led_10: 'FFFFFF'
+    led_11: 'FFFFFF'
+    led_14: 'FFFFFF'
+    led_17: 'FFFFFF'
+    led_4: '666666'
+    led_7: '000000'
+    led_8: 'FFFFFF'
+    led_9: '3D3D3D'
+    
+- time: '+1'
+  lights:
+    insert_0: 'FFFFFF'
+    insert_1: 'FFFFFF'
+    insert_3: '000000'
+    led_10: '000000'
+    led_11: '000000'
+    led_12: 'FFFFFF'
+    led_13: 'E1E1E1'
+    led_14: '000000'
+    led_17: '000000'
+    led_4: '000000'
+    led_8: '000000'
+    led_9: '000000'
+    
+- time: '+1'
+  lights:
+    insert_0: '000000'
+    insert_1: '000000'
+    insert_75: 'FFFFFF'
+    insert_76: 'FFFFFF'
+    insert_77: 'FFFFFF'
+    insert_78: 'FFFFFF'
+    insert_79: 'FFFFFF'
+    insert_81: 'F8F8F8'
+    insert_82: 'E1E1E1'
+    insert_83: 'E1E1E1'
+    led_0: 'FFFFFF'
+    led_1: 'FFFFFF'
+    led_12: '000000'
+    led_13: '000000'
+    led_2: 'F8F8F8'
+    
+- time: '+1'
+  lights:
+    insert_75: '000000'
+    insert_76: '000000'
+    insert_77: '000000'
+    insert_78: '000000'
+    insert_79: '000000'
+    insert_81: '000000'
+    insert_82: '000000'
+    insert_83: '000000'
+    led_0: '000000'
+    led_1: '000000'
+    led_2: '000000'
+    

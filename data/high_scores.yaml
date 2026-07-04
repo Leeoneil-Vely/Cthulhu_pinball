@@ -1,113 +1,120 @@
 aza_champion:
 - - LEE
-  - 463160
-- - LEE
-  - 224260
+  - 270776
 - - HPL
   - 1000
+- - HPL
+  - 500
 charleston_champion:
+- - EMI
+  - 107339
 - - LEE
-  - 762950
-- - LEE
-  - 72140
-- - AAA
-  - 58000
+  - 23560
+- - EMI
+  - 8360
 city_champion:
+- - EMI
+  - 17782
 - - LEE
-  - 758490
-- - LEE
-  - 381700
-- - LEE
-  - 171340
+  - 14284
+- - EMI
+  - 6063
 combos_champion:
 - - LEE
   - 8
-- - HPL
-  - 5
+- - EMI
+  - 6
 - - LEE
-  - 5
+  - 6
 cthulhu_champion:
 - - LEE
-  - 407640
-- - AAA
-  - 36800
+  - 151788
 - - LEE
-  - 18000
-cult_champion:
+  - 2523
 - - HPL
-  - 473584
+  - 1000
+cult_champion:
 - - LEE
-  - 334819
+  - 35226
 - - LEE
-  - 279544
+  - 24917
+- - EMI
+  - 24102
 graveyard_champion:
 - - LEE
-  - 216612
-- - LEE
-  - 124700
-- - LEE
-  - 90036
+  - 27819
+- - EMI
+  - 21600
+- - HPL
+  - 18300
 king_champion:
+- - EMI
+  - 152300
 - - LEE
-  - 2187070
-- - AAA
-  - 1351600
+  - 152028
 - - LEE
-  - 614590
+  - 39195
 loops_champion:
 - - LEE
-  - 12
+  - 31
+- - HPL
+  - 16
+- - EMI
+  - 15
+miniwizardtwenties_champion:
+- - EMI
+  - 350015
+- - HPL
+  - 335574
 - - LEE
-  - 8
-- - LEE
-  - 8
+  - 283431
 nyarla_champion:
-- - AAA
-  - 3535840
 - - LEE
-  - 1403220
+  - 58499
 - - LEE
-  - 1290400
+  - 50800
+- - EMI
+  - 23565
 radio_champion:
 - - LEE
-  - 259153
+  - 64775
 - - LEE
-  - 189061
-- - AAA
-  - 174400
+  - 29242
+- - EMI
+  - 24480
 score:
 - - HPL
   - 100000000
 - - LEE
-  - 8422602
-- - AAA
-  - 6660639
+  - 1220249
 - - LEE
-  - 5412242
+  - 775387
+- - EMI
+  - 499151
+- - EMI
+  - 491090
 - - LEE
-  - 4593278
+  - 488111
 - - LEE
-  - 4492896
-- - LEE
-  - 4352656
-- - LEE
-  - 4057766
+  - 460500
 - - HPL
-  - 3851231
+  - 436590
+- - HPL
+  - 400000
 shub_champion:
 - - LEE
-  - 737840
+  - 384228
 - - LEE
-  - 164280
-- - LEE
-  - 132310
+  - 70304
+- - EMI
+  - 32666
 speakeasy_champion:
 - - LEE
-  - 805240
-- - LEE
-  - 419830
-- - LEE
-  - 389900
+  - 71345
+- - EMI
+  - 51116
+- - EMI
+  - 34007
 videofordt_champion:
 - - HPL
   - 20
@@ -116,9 +123,9 @@ videofordt_champion:
 - - HPL
   - 10
 videomonster_champion:
-- - LEE
-  - 55
-- - LEE
-  - 37
-- - LEE
-  - 36
+- - HPL
+  - 20
+- - HPL
+  - 10
+- - HPL
+  - 5

@@ -70,14 +70,14 @@ widgets:
 
   random_bonus1_banner:
     type: text
-    text: 15,000 points !
+    text: 1,500 points !
     y: 30%
     x: 50%
     z: 100
 
   random_bonus2_banner:
     type: text
-    text: 20,000 points !
+    text: 2,000 points !
     y: 30%
     x: 50%
     z: 100
@@ -139,9 +139,9 @@ show_player:
 
 variable_player:
   15000_points_bonus:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
   20000_points_bonus:
-    score: 20000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
 
 ###########################
 

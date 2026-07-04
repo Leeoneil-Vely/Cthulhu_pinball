@@ -1,0 +1,212 @@
+#config_version=6
+
+mode:
+  start_events: library_charleston_start
+  stop_events: library_charleston_stop, timer_exit_library_charleston_time_complete, game_ended, ball_ended, game_ending, ball_ending
+  priority: 1700
+  restart_on_next_ball: false
+
+###########################
+
+event_player:
+  mode_library_charleston_started: library_video_start
+  base_gate_secret_library_exit_shot_hit: library_charleston_stop
+  base_gate_exit_library_shot_hit: library_charleston_stop
+  timer_exit_library_charleston_time_complete: launch_one_gong_sound
+
+###########################
+
+slides:
+  library_charleston_slide: []      
+
+###########################
+
+slide_player:
+  mode_library_charleston_started: library_charleston_slide
+
+###########################
+
+widgets:
+  library_charleston_background:
+    type: rectangle           # FIX 2 : fond noir permanent, évite neige/écran noir entre les vidéos
+    width: 1440
+    height: 900
+    color: 000000
+    z: 0                      # derrière tous les autres widgets
+
+  library_charleston_start_banner:
+    type: text
+    text: You'll ruin the parquet !
+    y: 72%
+    x: 50%
+    z: 100
+    expire: 10s
+
+  show_exit_library_charleston_time:
+    type: text
+    text: (player|exit_library_charleston_time_variable_times) seconds left
+    y: 25%
+    x: 50%
+    z: 100
+
+###########################
+
+widget_player:
+  mode_library_charleston_started:
+    library_charleston_background, library_charleston_start_banner, show_exit_library_charleston_time, base_score_widget, library_necronomicon_widget, superpops_widget, base_frame_widget:
+      action: add
+      slide: library_charleston_slide
+
+###########################
+
+show_player:
+  mode_library_charleston_started:
+    library_side_flash_show:
+      speed: 100
+      loops: -1
+
+  library_charleston_stop:
+    library_side_flash_show:
+      action: stop
+
+  library_charleston_target_group_complete:
+    library_target_group_complete_show:
+      speed: 5
+      loops: 10
+      priority: 1000
+
+###########################
+
+shots:
+  library_charleston_target_library_1_shot:
+    switch: s_target_library_1
+    show_tokens:
+      light: insert_80
+  library_charleston_target_library_2_shot:
+    switch: s_target_library_2
+    show_tokens:
+      light: insert_79
+  library_charleston_target_library_3_shot:
+    switch: s_target_library_3
+    show_tokens:
+      light: insert_78
+  library_charleston_target_library_4_shot:
+    switch: s_target_library_4
+    show_tokens:
+      light: insert_77
+  library_charleston_target_library_5_shot:
+    switch: s_target_library_5
+    show_tokens:
+      light: insert_76
+  library_charleston_target_library_6_shot:
+    switch: s_target_library_6
+    show_tokens:
+      light: insert_75
+
+###########################
+
+shot_groups:
+  library_charleston_target_group:
+    shots: library_charleston_target_library_1_shot, library_charleston_target_library_2_shot, library_charleston_target_library_3_shot, library_charleston_target_library_4_shot, library_charleston_target_library_5_shot, library_charleston_target_library_6_shot
+    reset_events: library_charleston_target_group_complete
+
+###########################
+
+variable_player:
+  # FIX 1 : initialisation de la variable au démarrage du mode
+  # afin qu'elle existe avant le premier tick du timer
+  mode_library_charleston_started:
+    exit_library_charleston_time_variable_times:
+      int: 15
+      action: set
+
+  timer_exit_library_charleston_time_tick:
+    exit_library_charleston_time_variable_times:
+      int: device.timers.exit_library_charleston_time.ticks
+      action: set
+
+  library_charleston_target_library_1_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_2_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_3_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_4_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_5_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  library_charleston_target_library_6_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+
+  library_charleston_target_group_lit_complete:
+    score: 1000  * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+    library_boost_multiplier: 1
+
+###########################
+
+timers:
+  exit_library_charleston_time:
+    start_value: 15
+    end_value: 0
+    direction: down
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_charleston_started
+  
+  voice_library_charleston_time:
+    start_value: 0
+    end_value: 3
+    direction: up
+    tick_interval: 1s
+    control_events:
+      - action: start
+        event: mode_library_charleston_started
+
+###########################
+
+sound_pools:
+  library_charleston_voice_sounds:
+    load: on_demand
+    type: random
+    track: voice
+    sounds:
+      - private_entrance_10
+      - private_entrance_11
+      - private_entrance_12
+      - private_entrance_13
+
+###########################
+
+sound_player:
+  mode_library_charleston_started:
+    clock_tick_10s:
+      action: play
+      volume: 3
+    clock_gong:
+      action: play
+      volume: 5
+      delay: 10  
+
+  library_charleston_stop:
+    clock_tick_10s:
+      action: stop
+    clock_gong:
+      action: stop
+  
+  timer_voice_library_charleston_time_complete:
+    library_charleston_voice_sounds:
+      action: play
+      volume: 2
+
+  library_charleston_target_group_complete:
+    complete_library_sound:
+      action: play
+      volume: 0.5

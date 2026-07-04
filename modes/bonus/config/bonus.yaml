@@ -7,9 +7,9 @@ mode_settings:
   hurry_up_delay_ms: 1500
   bonus_entries:
     - event: bonus_ramps_loops_targets
-      score: current_player.bonus_ramps + current_player.bonus_loop + current_player.bonus_combo + current_player.bonus_targets
+      score: (current_player.bonus_ramps + current_player.bonus_loop + current_player.bonus_combo + current_player.bonus_targets)
     - event: bonus_objects
-      score: 1000 * (current_player.variable_number_of_bullet_value + current_player.variable_number_of_object_value + current_player.variable_number_of_book_value + current_player.variable_number_of_clue_value)
+      score: 100 * (current_player.variable_number_of_bullet_value + current_player.variable_number_of_object_value + current_player.variable_number_of_book_value + current_player.variable_number_of_clue_value)
 
 ###########################
 
@@ -575,3 +575,19 @@ sound_pools:
       - dead_voice_26
       - dead_voice_27
       - dead_voice_28
+###########################
+
+variable_player:
+  mode_bonus_stopped:
+    bonus_ramps:
+      int: 0
+      action: set
+    bonus_targets:
+      int: 0
+      action: set
+    bonus_loop:
+      int: 0
+      action: set
+    bonus_combo:
+      int: 0
+      action: set

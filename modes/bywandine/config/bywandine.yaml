@@ -437,277 +437,277 @@ variable_player:
 
 
   win_bywandine_bonus:
-    score: 25000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 2500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
       int: 25000 * current_player.multiplier * current_player.spell_boost_multiplier
 
   bywandine_sling_left_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_sling_right_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
 
   bywandine_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_square_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_square_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   bywandine_target_sanity_shot_1_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_sanity_shot_2_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_sanity_shot_3_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_sanity_shot_4_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_sanity_shot_5_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_sanity_shot_6_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   bywandine_drop_target_1_shot_hit:
-    score: 5001 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 5001 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_drop_target_2_shot_hit:
-    score: 5002 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 5002 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_drop_target_3_shot_hit:
-    score: 5003 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 5003 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_drop_target_4_shot_hit:
-    score: 5004 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 5004 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   bywandine_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   bywandine_target_library_1_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_library_2_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_library_3_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_library_4_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_library_5_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   bywandine_target_library_6_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1000
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   bywandine_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   bywandine_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   bywandine_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   bywandine_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
   bywandine_cthulhu_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1000
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   bywandine_main_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1000
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   bywandine_green_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1000
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   bywandine_gate_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
-      int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1000
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
 
   bywandine_gate_exit_library_shot_hit:
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bywandine_bonus:
+      action: add
+      int: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+  bywandine_gate_secret_library_shot_hit:
     score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     bywandine_bonus:
       action: add
       int: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-  bywandine_gate_secret_library_shot_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bywandine_bonus:
-      action: add
-      int: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
 
 ###########################
 

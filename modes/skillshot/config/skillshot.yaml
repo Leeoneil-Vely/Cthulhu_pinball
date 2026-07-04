@@ -3,7 +3,7 @@
 mode:
   start_events: ball_started
   stop_events: stop_mode_skillshot, game_ended, ball_ended, game_ending, ball_ending
-  priority: 1000
+  priority: 1050
 
 ###########################
 
@@ -18,7 +18,7 @@ shot_profiles:
         show: skillshot_blink_show
         speed: 10
         loops: -1
-        priority: 100
+        priority: 1100
 
 ###########################
 
@@ -49,6 +49,7 @@ shot_groups:
     shots: skillshot_left, skillshot_middle, skillshot_right
     rotate_left_events: s_left_flipper_active
     rotate_right_events: s_right_flipper_active
+    reset_events: ball_started
 
 ###########################
 
@@ -65,9 +66,11 @@ event_player:
   skillshot_hit: stop_mode_skillshot
   #playfield_active: stop_mode_skillshot|5s
   balldevice_bd_plunger_lane_ball_eject_success: stop_mode_skillshot|5s
+  mode_skillshot_started: disable_rlyeh_team_shots
+  mode_skillshot_stopped: enable_rlyeh_team_shots
 
 ###########################
 
 variable_player:
   skillshot_lit_hit:
-    score: 5000
+    score: 500

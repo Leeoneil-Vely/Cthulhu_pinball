@@ -1,7 +1,7 @@
 #config_version=6
 mode:
   start_events:  mode_base_started, multiball_rlyeh_start, mode_carousel_stopped, multiball_multiball_twenties_multiball_ended
-  stop_events: multiball_rlyeh_stop, mode_carousel_started, multiball_multiball_twenties_multiball_started, game_ended, ball_ended, game_ending, ball_ending
+  stop_events: multiball_rlyeh_stop, mode_carousel_started, multiball_multiball_twenties_multiball_started, game_ended, ball_ended, game_ending, ball_ending, killplayer
   priority: 2500
   restart_on_next_ball: true
 
@@ -31,6 +31,20 @@ event_player:
   mode_sanity_started: block_rlyeh_lock
   mode_videofordt_started: block_rlyeh_lock
   mode_videomonster_started: block_rlyeh_lock
+
+  graveyard_win_start: block_rlyeh_lock
+  charleston_win_start: block_rlyeh_lock
+  radio_win_start: block_rlyeh_lock
+  speakeasy_win_start: block_rlyeh_lock
+  city_win_start: block_rlyeh_lock
+  cult_win_start: block_rlyeh_lock
+  aza_win_start: block_rlyeh_lock
+  king_win_start: block_rlyeh_lock
+  nyarla_win_start: block_rlyeh_lock
+  shub_win_start: block_rlyeh_lock
+  cthulhu_win_start: block_rlyeh_lock
+
+
 
   mode_lurking_stopped{current_player.multiball_twenties_running=='off'}: open_rlyeh_lock
   mode_bywandine_stopped{current_player.multiball_twenties_running=='off'}: open_rlyeh_lock
@@ -70,6 +84,7 @@ multiballs:
     shoot_again: 30s
     grace_period: 3s
     start_events: launch_rlyeh_multiball
+    stop_events: stop_all_multiball
 
 ###########################
 
@@ -439,10 +454,16 @@ shots:
     switch: s_roll_right_outlane
   multiball_rlyeh_team_1_shot:
     switch: s_roll_skill_shot_1
+    disable_events: disable_rlyeh_team_shots
+    enable_events: enable_rlyeh_team_shots
   multiball_rlyeh_team_2_shot:
     switch: s_roll_skill_shot_2
+    disable_events: disable_rlyeh_team_shots
+    enable_events: enable_rlyeh_team_shots
   multiball_rlyeh_team_3_shot:
     switch: s_roll_skill_shot_3
+    disable_events: disable_rlyeh_team_shots
+    enable_events: enable_rlyeh_team_shots
 
   multiball_rlyeh_drop_target_1_shot:
     switch: s_drop_target_1
@@ -521,6 +542,9 @@ show_player:
   multiball_rlyeh_cthulhu_ramp_shot_litlock_hit:
     rlyeh_multi_insert_flash_show:
       action: stop
+  block_rlyeh_lock:
+    rlyeh_multi_insert_flash_show:
+      action: stop
     rlyeh_multiball_ready_show:
       speed: 35
       loops: 0
@@ -594,130 +618,130 @@ variable_player:
       string: 'no'
 
   multiball_rlyeh_sling_left_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_sling_right_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
 
   multiball_rlyeh_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_square_4_normal_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_square_5_normal_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   multiball_rlyeh_target_sanity_shot_1_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_sanity_shot_2_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_sanity_shot_3_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_sanity_shot_4_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_sanity_shot_5_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_target_sanity_shot_6_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   multiball_rlyeh_drop_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_drop_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_drop_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_drop_target_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   multiball_rlyeh_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   multiball_rlyeh_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
 
   multiball_rlyeh_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   multiball_rlyeh_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
 
   multiball_rlyeh_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier
 
 
   multiball_rlyeh_gate_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
 
   multiball_rlyeh_gate_exit_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_gate_secret_library_shot_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
 
   multiball_rlyeh_asylum_orbit_shot_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_space_orbit_shot_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_rlyeh_cthulhu_bonus_ramp_shot_hit:
-    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 700 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   multiball_rlyeh_main_ramp_shot_hit:
-    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 700 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
   multiball_rlyeh_green_ramp_shot_hit:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_ramps: 1
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_ramps: 100
 
 
 ###########################

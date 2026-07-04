@@ -14,14 +14,14 @@ event_player:
   city_drop_target_2_shot_lit_hit: shaker_shake
   city_drop_target_3_shot_lit_hit: shaker_shake
   city_drop_target_4_shot_lit_hit: shaker_shake
-  "{current_player.city_DT_row_count_value==4}": reset_city_DT, city_DT_row_complete
-  "{current_player.city_DT_count==0}": city_stop, city_win_start
-  "{current_player.city_DT_count==3}": launch_indication_voice_level_1
-  "{current_player.city_DT_count==2}": launch_indication_voice_level_2
-  "{current_player.city_DT_count==1}": launch_indication_voice_level_3
+  player_city_DT_row_count_value{value==4}: reset_city_DT, city_DT_row_complete
+  player_city_DT_count{value==0}: city_stop, city_win_start
+  player_city_DT_count{value==3}: launch_indication_voice_level_1
+  player_city_DT_count{value==2}: launch_indication_voice_level_2
+  player_city_DT_count{value==1}: launch_indication_voice_level_3
   s_action_active{current_player.variable_number_of_bullet_value > 0}: action_valid_city_shot, shaker_shake
-  "{current_player.city_sanity_gauge>=2}": launch_sanity_target_voice
-  "{current_player.city_sanity_gauge>=4}": launch_sanity_target_voice
+  player_city_sanity_gauge{value==2}: launch_sanity_target_voice
+  player_city_sanity_gauge{value==4}: launch_sanity_target_voice
   city_scoop_haut_shot_hit{current_player.cellar_investigator_state=='free'}: cellar_start
   multiball_multiball_cellar_multiball_ended: relaunch_city_music
   multiball_multiball_twenties_multiball_ended: relaunch_city_music
@@ -540,7 +540,7 @@ shots:
     profile: city_target_flash
     show_tokens:
       led: led_36, led_37
-  scity_sling_up_shot:
+  city_sling_up_shot:
     switch: s_sling_up
     profile: city_target_flash
     show_tokens:
@@ -856,6 +856,8 @@ timers:
     control_events:
       - action: start
         event: mode_city_started
+      - action: stop
+        event: mode_city_stopped
 
 ###########################
 
@@ -866,187 +868,199 @@ variable_player:
       string: 'no'
 
   action_valid_city_shot:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  # Decompte bullet uniquement si un drop target lit est effectivement touche
+  action_valid_city_shot_1:
     variable_number_of_bullet_value:
       int: -1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  action_valid_city_shot_2:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_city_shot_3:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_city_shot_4:
+    variable_number_of_bullet_value:
+      int: -1
 
   city_drop_target_1_shot_lit_hit:
     city_DT_row_count_value:
       int: +1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_drop_target_2_shot_lit_hit:
     city_DT_row_count_value:
       int: +1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_drop_target_3_shot_lit_hit:
     city_DT_row_count_value:
       int: +1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_drop_target_4_shot_lit_hit:
     city_DT_row_count_value:
       int: +1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   reset_city_DT:
     city_DT_row_count_value:
       action: set
       int: 0
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_DT_row_complete:
     city_DT_count:
       int: -1
 
   city_sling_left_shot_hit:
-    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_sling_right_shot_hit:
-    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   city_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_target_square_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_target_square_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   city_drop_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_drop_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_drop_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_drop_target_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   city_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   city_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   city_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   city_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   city_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   city_cthulhu_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   city_green_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   city_main_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   city_gate_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
 
   city_gate_exit_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   city_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 150 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   sanity_group_complete:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   green_target_group_complete:
-    score: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    city_champion: 7000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 700 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    city_champion: 700 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   library_target_group_complete:
-    score: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
-    city_champion: 10000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    city_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 
@@ -1325,7 +1339,7 @@ videos:
   city_scratch_movie_8:
     width: 1440
     height: 900
-    file: city_video_7.mp4
+    file: city_video_8.mp4
     events_when_stopped: remove_random_city_video_8
   city_scratch_movie_9:
     width: 1440

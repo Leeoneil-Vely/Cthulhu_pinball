@@ -14,9 +14,9 @@ event_player:
   s_left_flipper_active{current_player.videofordt_running!='off'}: move_car_left
   s_right_flipper_active{current_player.videofordt_running!='off'}: move_car_right
 
-  "{current_player.fordt_place_screen=='center'}": display_fordt_center
-  "{current_player.fordt_place_screen=='left'}": display_fordt_left
-  "{current_player.fordt_place_screen=='right'}": display_fordt_right
+  player_fordt_place_screen{value=='center'}: display_fordt_center
+  player_fordt_place_screen{value=='left'}: display_fordt_left
+  player_fordt_place_screen{value=='right'}: display_fordt_right
 
   new_obstacle_left: change_obstacle_to_left|1.2s
   new_obstacle_center: change_obstacle_to_center|1.2s
@@ -25,9 +25,15 @@ event_player:
   change_obstacle_to_center: reset_obstacle|0.3s
   change_obstacle_to_right: reset_obstacle|0.3s
 
-  "{current_player.obstacle_place_screen=='left' and current_player.fordt_place_screen=='left'}": crash_fordt
-  "{current_player.obstacle_place_screen=='center' and current_player.fordt_place_screen=='center'}": crash_fordt
-  "{current_player.obstacle_place_screen=='right' and current_player.fordt_place_screen=='right'}": crash_fordt
+  player_fordt_place_screen{value=='left' and current_player.obstacle_place_screen=='left'}: crash_fordt
+  player_fordt_place_screen{value=='center' and current_player.obstacle_place_screen=='center'}: crash_fordt
+  player_fordt_place_screen{value=='right' and current_player.obstacle_place_screen=='right'}: crash_fordt
+  player_obstacle_place_screen{value=='left' and current_player.fordt_place_screen=='left'}: crash_fordt
+  player_obstacle_place_screen{value=='center' and current_player.fordt_place_screen=='center'}: crash_fordt
+  player_obstacle_place_screen{value=='right' and current_player.fordt_place_screen=='right'}: crash_fordt
+
+# accélération du jeu après 30 évitements
+  player_videofordt_avoid_count{value==30}: videofordt_speedup
 
 ###########################
 
@@ -1153,17 +1159,25 @@ variable_player:
     variable_block_videomode:
       action: set
       string: 'on'
+    videofordt_avoid_count:
+      action: set
+      int: 0
 
 
   reset_obstacle:
-    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     obstacle_place_screen:
       action: set
       string: 'off'
     variable_videofordt_score_value:
       action: add
-      int: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     videofordt_champion:
+      action: add
+      int: 1
+
+  reset_obstacle{current_player.videofordt_running!='off'}:
+    videofordt_avoid_count:
       action: add
       int: 1
 
@@ -1238,6 +1252,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.7
 
   second_speed_timer:
     start_value: 0
@@ -1249,6 +1266,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 1.2
 
   third_speed_timer:
     start_value: 0
@@ -1260,6 +1280,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.9
 
 
 ##### timer for trees and bushes
@@ -1274,6 +1297,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.7
   decor_slow_speed_timer:
     start_value: 3
     end_value: 0
@@ -1285,6 +1311,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.7
   decor_fast_speed_timer:
     start_value: 1
     end_value: 0
@@ -1296,6 +1325,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.7
   decor_superfast_speed_timer:
     start_value: 1
     end_value: 0
@@ -1307,6 +1339,9 @@ timers:
         event: mode_videofordt_started
       - action: stop
         event: crash_fordt
+      - action: set_tick_interval
+        event: videofordt_speedup
+        value: 0.35
 
 ###########################
 

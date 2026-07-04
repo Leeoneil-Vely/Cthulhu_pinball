@@ -33,12 +33,12 @@ event_player:
   timer_videomonster_hyperfast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
   timer_videomonster_megafast_rotate_complete{current_player.variable_videomonster_bite_gauge_value<10 and current_player.monster_life=='alive'}: hit_by_monster
 
-  "{current_player.variable_speed_videomonster_gauge_value==1}": normal_videomonster
-  "{current_player.variable_speed_videomonster_gauge_value==2}": fast_videomonster
-  "{current_player.variable_speed_videomonster_gauge_value==3}": superfast_videomonster
-  "{current_player.variable_speed_videomonster_gauge_value==4}": hyperfast_videomonster
-  "{current_player.variable_speed_videomonster_gauge_value==5}": megafast_videomonster
-  "{current_player.variable_videomonster_bite_gauge_value==10}": end_videomonster_mode
+  player_variable_speed_videomonster_gauge_value{value==1}: normal_videomonster
+  player_variable_speed_videomonster_gauge_value{value==2}: fast_videomonster
+  player_variable_speed_videomonster_gauge_value{value==3}: superfast_videomonster
+  player_variable_speed_videomonster_gauge_value{value==4}: hyperfast_videomonster
+  player_variable_speed_videomonster_gauge_value{value==5}: megafast_videomonster
+  player_variable_videomonster_bite_gauge_value{value==10}: end_videomonster_mode
   
   ###########################
 
@@ -138,6 +138,9 @@ timers:
     start_running: true
     tick_interval: 1s
     restart_on_complete: true
+    control_events:
+      - action: stop
+        event: mode_videomonster_stopped
 
 
 ###########################
@@ -755,13 +758,13 @@ variable_player:
       string: '12'
 
   good_shot:
-    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     variable_videomonster_goodshot_gauge_value:
       action: add
       int: 1
     variable_videomonster_score_value:
       action: add
-      int: 1500 * current_player.multiplier * current_player.spell_boost_multiplier
+      int: 150 * current_player.multiplier * current_player.spell_boost_multiplier
     monster_place_screen:
       action: set
       string: 'hidden'

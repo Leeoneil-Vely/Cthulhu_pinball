@@ -2,7 +2,7 @@
 mode:
   start_events: radio_start
   stop_events: radio_stop, game_ended, ball_ended, game_ending, ball_ending
-  priority: 600
+  priority: 2600
   restart_on_next_ball: false
 
 
@@ -114,12 +114,12 @@ shot_profiles:
     block: false
     states:
       - name: off
-        show: off
+        #show: off
       - name: litblink
         show: radio_blink_show
-        speed: 10
+        speed: 18
         loops: -1
-        priority: 1600
+        priority: 2600
 
   radio_target_flash:
     loop: true
@@ -432,6 +432,8 @@ timers:
     control_events:
       - action: start
         event: mode_radio_started
+      - action: stop
+        event: mode_radio_stopped
 
   radio_voice_time:
     start_value: 0
@@ -441,7 +443,9 @@ timers:
     restart_on_complete: true
     control_events:
       - action: start
-        event: mode_radio_started   
+        event: mode_radio_started
+      - action: stop
+        event: mode_radio_stopped
 
 ###########################
 
@@ -449,6 +453,10 @@ show_player:
   mode_radio_started:
     mission_radio_blink_show:
       speed: 5
+
+  radio_stop:
+    mission_radio_blink_show:
+      action: stop
 
   radio_sling_left_shot_hit:
     radio_side_left_blink_show:
@@ -530,7 +538,32 @@ show_player:
       speed: 50
       priority: 200
       loops: 0
-  s_action_active{current_player.variable_number_of_object_value > 0}:
+  # Show declenche uniquement quand un shot litblink est reellement valide
+  action_valid_radio_shot_1:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_radio_shot_2:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_radio_shot_3:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_radio_shot_4:
+    radio_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_radio_shot_5:
     radio_hit_show:
       action: play
       speed: 50
@@ -545,230 +578,245 @@ variable_player:
       string: 'no'
 
   action_valid_radio_shot:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  # Decompte objet uniquement si un shot litblink est effectivement touche
+  action_valid_radio_shot_1:
     variable_number_of_object_value:
       int: -1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  action_valid_radio_shot_2:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_radio_shot_3:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_radio_shot_4:
+    variable_number_of_object_value:
+      int: -1
+  action_valid_radio_shot_5:
+    variable_number_of_object_value:
+      int: -1
 
   radio_sling_left_shot_hit:
-    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_sling_right_shot_hit:
-    score: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 510 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 51 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
 
 
 
   radio_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_square_1_shot_litblink_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     radio_listen_count:
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   radio_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_square_2_shot_litblink_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     radio_listen_count:
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   radio_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_square_3_shot_litblink_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     radio_listen_count:
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   radio_target_square_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_square_4_shot_litblink_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     radio_listen_count:
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
   radio_target_square_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_square_5_shot_litblink_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     radio_listen_count:
       int: -1
-    bonus_targets: 1
+    bonus_targets: 100
 
   radio_target_sanity_shot_1_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_sanity_shot_2_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_sanity_shot_3_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_sanity_shot_4_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_sanity_shot_5_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_sanity_shot_6_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   radio_drop_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_drop_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_drop_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_drop_target_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
 
   radio_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   radio_target_library_1_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_library_2_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_library_3_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_library_4_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_library_5_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   radio_target_library_6_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   radio_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   radio_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   radio_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_right_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_space_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_roll_asylum_shot_hit:
-    score: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 300 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 30 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   radio_cthulhu_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   radio_main_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   radio_green_ramp_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
   radio_gate_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
 
   radio_gate_exit_library_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    radio_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    radio_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   radio_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
-    radio_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    radio_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 

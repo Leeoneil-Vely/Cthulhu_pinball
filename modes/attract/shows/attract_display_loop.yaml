@@ -2143,9 +2143,117 @@
         type: wipe
         duration: 0.5s
 
+###########################
 
+- duration: 5
+  slides:
+    miniwizardtwenties_champ_slide:
+      widgets:
+      - type: text
+        text: WIZARD TWENTIES CHAMP'S
+        y: 80%
+        z: 250
+        color: purple
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion1_label)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|miniwizardtwenties_champion1_name)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion1_value)
+        number_grouping: true
+        min_digits: 2
+        y: 60%
+        x: 80%
+        z: 250
+        style: mission_text
 
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion2_label)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|miniwizardtwenties_champion2_name)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion2_value)
+        number_grouping: true
+        min_digits: 2
+        y: 50%
+        x: 80%
+        z: 250
+        style: mission_text
 
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion3_label)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 7%
+        anchor_x: left
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        color: purple
+        text: (machine|miniwizardtwenties_champion3_name)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 60%
+        z: 250
+        style: mission_text
+      - type: text
+        font_size: 60
+        text: (machine|miniwizardtwenties_champion3_value)
+        number_grouping: true
+        min_digits: 2
+        y: 40%
+        x: 80%
+        z: 250
+        style: mission_text
 
+      - type: Image
+        image: half_frame_twenties_speakeasy
+        z: 50
 
-##! mode: attract
+      - type: video
+        video: mystery_scratch_movie
+        auto_play: True
+        end_behavior: loop
+        z: 1
+      transition:
+        type: wipe
+        duration: 0.5s

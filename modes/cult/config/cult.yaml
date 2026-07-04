@@ -597,6 +597,13 @@ show_player:
       loops: -1
       priority: 1000
 
+  mode_cult_stopped:
+    portal_led_blink_show:
+      action: stop
+    cult_backglass_blink_show:
+      action: stop
+    mission_cult_blink_show:
+      action: stop
 
   cult_sling_left_shot_hit:
     cult_side_left_blink_show:
@@ -684,7 +691,38 @@ show_player:
       speed: 50
       priority: 650
       loops: 0
-  s_action_active{current_player.variable_number_of_bullet_value > 0}:
+  # Show declenche uniquement quand un shot cultactive est reellement valide
+  action_valid_cult_shot_1:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_cult_shot_2:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_cult_shot_3:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_cult_shot_4:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_cult_shot_5:
+    cult_hit_show:
+      action: play
+      speed: 50
+      priority: 650
+      loops: 0
+  action_valid_cult_shot_6:
     cult_hit_show:
       action: play
       speed: 50
@@ -700,189 +738,207 @@ variable_player:
       string: 'no'
 
   action_valid_cult_shot:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+
+  # Decompte bullet uniquement si un shot cultactive est effectivement touche
+  action_valid_cult_shot_1:
     variable_number_of_bullet_value:
       int: -1
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  action_valid_cult_shot_2:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_cult_shot_3:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_cult_shot_4:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_cult_shot_5:
+    variable_number_of_bullet_value:
+      int: -1
+  action_valid_cult_shot_6:
+    variable_number_of_bullet_value:
+      int: -1
 
   cult_sling_left_shot_hit:
-    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_sling_right_shot_hit:
-    score: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 210 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 21 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_bumper_one_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_bumper_two_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_bumper_three_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_scoop_bas_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_scoop_haut_shot_hit:
-    score: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 2000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   cult_target_square_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_target_square_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_target_square_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_target_square_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_target_square_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
 
   cult_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   cult_drop_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_drop_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_drop_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
   cult_drop_target_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_targets: 1
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_targets: 100
 
   cult_team_1_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_team_2_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_team_3_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   cult_spinner_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
   cult_roll_left_outlane_shot_hit:
-    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_roll_left_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_roll_right_inlane_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_roll_right_outlane_shot_hit:
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_library_shot_hit:
+    score: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 20 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_roll_fordt_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+  cult_space_orbit_shot_cultactive_hit:
     score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-  cult_roll_library_shot_hit:
-    score: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 200 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-  cult_roll_fordt_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-  cult_space_orbit_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     cult_escape_gauge:
       action: add
       int: -1
   cult_asylum_orbit_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     cult_escape_gauge:
       action: add
       int: -1
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_space_orbit_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_asylum_orbit_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
 
 
   cult_cthulhu_ramp_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_escape_gauge:
-      action: add
-      int: -1
-    bonus_ramps: 1
-  cult_green_ramp_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_escape_gauge:
-      action: add
-      int: -1
-    bonus_ramps: 1
-  cult_main_ramp_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_escape_gauge:
-      action: add
-      int: -1
-    bonus_ramps: 1
-  cult_cthulhu_ramp_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
-  cult_green_ramp_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
-  cult_main_ramp_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
-
-  cult_library_roll_shot_cultactive_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_escape_gauge:
-      action: add
-      int: -1
-    bonus_ramps: 1
-  cult_library_roll_shot_off_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    cult_champion: 5000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
-    bonus_ramps: 1
-
-  cult_gate_exit_library_shot_hit:
     score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
     cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 100
+  cult_green_ramp_shot_cultactive_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 100
+  cult_main_ramp_shot_cultactive_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 100
+  cult_cthulhu_ramp_shot_off_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
+  cult_green_ramp_shot_off_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
+  cult_main_ramp_shot_off_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
+
+  cult_library_roll_shot_cultactive_hit:
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_escape_gauge:
+      action: add
+      int: -1
+    bonus_ramps: 100
+  cult_library_roll_shot_off_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    bonus_ramps: 100
+
+  cult_gate_exit_library_shot_hit:
+    score: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
+    cult_champion: 50 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier
   cult_gate_secret_library_shot_hit:
-    score: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
-    cult_champion: 15000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    score: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
+    cult_champion: 1500 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.mission_boost_multiplier * current_player.library_boost_multiplier
 
 ###########################
 
@@ -908,6 +964,8 @@ timers:
     control_events:
       - action: start
         event: mode_cult_started
+      - action: stop
+        event: mode_cult_stopped
 
 ###########################
 

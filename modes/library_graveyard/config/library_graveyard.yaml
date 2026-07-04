@@ -3,7 +3,7 @@
 mode:
   start_events: library_graveyard_start
   stop_events: library_graveyard_stop, timer_exit_library_graveyard_time_complete, game_ended, ball_ended, game_ending, ball_ending
-  priority: 700
+  priority: 2601
   restart_on_next_ball: false
 
 ###########################
@@ -17,7 +17,7 @@ event_player:
 ###########################
 
 slides:
-  library_graveyard_slide: []      
+  library_graveyard_slide: []
 
 ###########################
 
@@ -27,6 +27,13 @@ slide_player:
 ###########################
 
 widgets:
+  library_graveyard_background:
+    type: rectangle
+    width: 1440
+    height: 900
+    color: 000000
+    z: 0
+
   library_graveyard_start_banner:
     type: text
     text: Try to be stealthy !
@@ -34,6 +41,7 @@ widgets:
     x: 50%
     z: 100
     expire: 10s
+
   show_exit_library_graveyard_time:
     type: text
     text: (player|exit_library_graveyard_time_variable_times) seconds left
@@ -41,13 +49,196 @@ widgets:
     x: 50%
     z: 100
 
+  video_library_1_scratch_widget:
+    type: video
+    video: library_scratch_movie_1
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_2_scratch_widget:
+    type: video
+    video: library_scratch_movie_2
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_3_scratch_widget:
+    type: video
+    video: library_scratch_movie_3
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_4_scratch_widget:
+    type: video
+    video: library_scratch_movie_4
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_5_scratch_widget:
+    type: video
+    video: library_scratch_movie_5
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_6_scratch_widget:
+    type: video
+    video: library_scratch_movie_6
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_7_scratch_widget:
+    type: video
+    video: library_scratch_movie_7
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_8_scratch_widget:
+    type: video
+    video: library_scratch_movie_8
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_9_scratch_widget:
+    type: video
+    video: library_scratch_movie_9
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_10_scratch_widget:
+    type: video
+    video: library_scratch_movie_10
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_11_scratch_widget:
+    type: video
+    video: library_scratch_movie_11
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_12_scratch_widget:
+    type: video
+    video: library_scratch_movie_12
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_13_scratch_widget:
+    type: video
+    video: library_scratch_movie_13
+    auto_play: true
+    end_behavior: pause
+    z: 6
+  video_library_14_scratch_widget:
+    type: video
+    video: library_scratch_movie_14
+    auto_play: true
+    end_behavior: pause
+    z: 6
+
 ###########################
 
 widget_player:
   mode_library_graveyard_started:
-    library_graveyard_start_banner, show_exit_library_graveyard_time, base_score_widget, library_necronomicon_widget, superpops_widget, cthulhu_frame_image:
+    library_graveyard_background, library_graveyard_start_banner, show_exit_library_graveyard_time, base_score_widget, library_necronomicon_widget, superpops_widget, cthulhu_frame_image:
       action: add
       slide: library_graveyard_slide
+  launch_library_video_1:
+    video_library_1_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_2:
+    video_library_2_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_3:
+    video_library_3_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_4:
+    video_library_4_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_5:
+    video_library_5_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_6:
+    video_library_6_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_7:
+    video_library_7_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_8:
+    video_library_8_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_9:
+    video_library_9_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_10:
+    video_library_10_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_11:
+    video_library_11_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_12:
+    video_library_12_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_13:
+    video_library_13_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  launch_library_video_14:
+    video_library_14_scratch_widget:
+      action: add
+      slide: library_graveyard_slide
+  remove_random_library_video_1:
+    video_library_1_scratch_widget:
+      action: remove
+  remove_random_library_video_2:
+    video_library_2_scratch_widget:
+      action: remove
+  remove_random_library_video_3:
+    video_library_3_scratch_widget:
+      action: remove
+  remove_random_library_video_4:
+    video_library_4_scratch_widget:
+      action: remove
+  remove_random_library_video_5:
+    video_library_5_scratch_widget:
+      action: remove
+  remove_random_library_video_6:
+    video_library_6_scratch_widget:
+      action: remove
+  remove_random_library_video_7:
+    video_library_7_scratch_widget:
+      action: remove
+  remove_random_library_video_8:
+    video_library_8_scratch_widget:
+      action: remove
+  remove_random_library_video_9:
+    video_library_9_scratch_widget:
+      action: remove
+  remove_random_library_video_10:
+    video_library_10_scratch_widget:
+      action: remove
+  remove_random_library_video_11:
+    video_library_11_scratch_widget:
+      action: remove
+  remove_random_library_video_12:
+    video_library_12_scratch_widget:
+      action: remove
+  remove_random_library_video_13:
+    video_library_13_scratch_widget:
+      action: remove
+  remove_random_library_video_14:
+    video_library_14_scratch_widget:
+      action: remove
 
 ###########################
 
@@ -56,29 +247,29 @@ variable_player:
     exit_library_graveyard_time_variable_times:
       int: device.timers.exit_library_graveyard_time.ticks
       action: set
- 
-  graveyard_target_library_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  graveyard_target_library_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  graveyard_target_library_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  graveyard_target_library_4_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  graveyard_target_library_5_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
-  graveyard_target_library_6_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
 
-  library_graveyard_target_group_complete:
-    score: 10000  * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
-    bonus_targets: 1
+  graveyard_target_library_1_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  graveyard_target_library_2_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  graveyard_target_library_3_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  graveyard_target_library_4_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  graveyard_target_library_5_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+  graveyard_target_library_6_shot_hit:
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
+
+  library_graveyard_target_group_lit_complete:
+    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier * current_player.library_boost_multiplier
+    bonus_targets: 100
     library_boost_multiplier: 1
 
 ###########################
@@ -89,11 +280,15 @@ show_player:
       speed: 100
       loops: -1
 
+  library_graveyard_stop:
+    library_side_flash_show:
+      action: stop
+
   library_graveyard_target_group_complete:
     library_target_group_complete_show:
       speed: 5
       loops: 10
-      priority: 1000  
+      priority: 1000
 
 ###########################
 
@@ -106,7 +301,7 @@ timers:
     control_events:
       - action: start
         event: mode_library_graveyard_started
-  
+
   voice_library_graveyard_time:
     start_value: 0
     end_value: 3
@@ -151,7 +346,6 @@ shot_groups:
     shots: graveyard_target_library_1_shot, graveyard_target_library_2_shot, graveyard_target_library_3_shot, graveyard_target_library_4_shot, graveyard_target_library_5_shot, graveyard_target_library_6_shot
     reset_events: library_graveyard_target_group_complete
 
-
 ###########################
 
 sound_pools:
@@ -185,14 +379,14 @@ sound_player:
     clock_gong:
       action: play
       volume: 5
-      delay: 10  
+      delay: 10
 
   library_graveyard_stop:
     clock_tick_10s:
       action: stop
     clock_gong:
       action: stop
-  
+
   timer_voice_library_graveyard_time_complete:
     library_graveyard_voice_sounds:
       action: play

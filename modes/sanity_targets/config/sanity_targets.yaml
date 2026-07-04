@@ -8,9 +8,12 @@ mode:
 ###########################
 
 event_player:
-  "{current_player.sanity_gauge>=2}": launch_sanity_target_voice
-  "{current_player.sanity_gauge>=4}": launch_sanity_target_voice
+  "{current_player.sanity_gauge==2}": launch_sanity_target_voice
+  "{current_player.sanity_gauge==4}": launch_sanity_target_voice
   sanity_group_hit_complete: hold_stop
+
+#### test pour wizard mode
+  # wizard_group_hit_complete: mini_wizard_twenties_intro_start
 
 ###########################
 
@@ -102,6 +105,12 @@ shot_groups:
     shots: target_sanity_shot_1, target_sanity_shot_2, target_sanity_shot_3, target_sanity_shot_4, target_sanity_shot_5, target_sanity_shot_6
     reset_events: sanity_start #sanity_group_complete
 
+#### test pour wizard mode
+  # wizard_group:
+  #   shots: target_sanity_shot_1, target_sanity_shot_2, target_sanity_shot_3
+  #   reset_events: wizard_group_complete #sanity_group_complete
+
+
 ###########################
 
 show_player:
@@ -171,23 +180,23 @@ show_player:
 
 variable_player:
   target_sanity_shot_1_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   target_sanity_shot_2_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   target_sanity_shot_3_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   target_sanity_shot_4_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   target_sanity_shot_5_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
   target_sanity_shot_6_hit:
-    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
-    bonus_targets: 1
+    score: 10 * current_player.multiplier * current_player.spell_boost_multiplier
+    bonus_targets: 100
 
   target_sanity_shot_1_off_hit:
     sanity_gauge: 1
@@ -239,7 +248,7 @@ counters:
 light_player:
   "{current_player.sanity_gauge>=2}":
     insert_5: red
-  "{current_player.sanity_gauge>=4}":  
+  "{current_player.sanity_gauge>=4}":
     insert_4: red
   "{current_player.sanity_gauge>=6}":
     insert_3: red

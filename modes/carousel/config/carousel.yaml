@@ -3,7 +3,7 @@
 mode:
   start_events: start_carousel_mode
   stop_events: carousel_item_selected, stop_carousel, game_ended, ball_ended, game_ending, ball_ending
-  code: mpf.modes.carousel.code.carousel.Carousel
+  code: carousel.Carousel #mpf.modes.carousel.code.carousel.Carousel
   events_when_stopped: carousel_mission_selected
   use_wait_queue: true
   priority: 2000
@@ -43,6 +43,63 @@ mode_settings:
 ###########################
  
 variable_player:
+  carousel_mission1_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission1'
+  carousel_mission2_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission2'
+  carousel_mission3_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission3'
+  carousel_mission4_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission4'
+  carousel_mission5_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission5'
+  carousel_mission6_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'mission6'
+  carousel_missionAZATHOTH_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionAZATHOTH'
+  carousel_missionKING_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionKING'
+  carousel_missionNYARLA_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionNYARLA'
+  carousel_missionCTHULHU_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionCTHULHU'
+  carousel_missionSHUB_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionSHUB'
+  carousel_missionVIDEOMONSTER_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionVIDEOMONSTER'
+  carousel_missionVIDEOFORDT_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'missionVIDEOFORDT'
+  carousel_exit_highlighted:
+    highlighted_mission:
+      action: set
+      string: 'exit'
+
   carousel_missionVIDEOMONSTER_selected:
     selected_mission:
       action: set
@@ -98,9 +155,17 @@ variable_player:
   carousel_exit_selected:
     selected_mission:
       action: set
-      string: 'exit' 
+      string: 'exit'
+
+  carousel_has_navigated:
+    carousel_navigated:
+      action: set
+      int: 1 
 
   mode_carousel_started:
+    carousel_navigated:
+      action: set
+      int: 0
     variable_videomonster_bite_gauge_value:
       action: set
       int: 0
@@ -668,6 +733,8 @@ event_player:
   carousel_exit_selected: twenties_start, hold_stop #stop_carousel
 
   mode_carousel_started: pre_azathoth_stop, pre_cthulhu_stop, pre_king_stop, pre_nyarla_stop, pre_shub_stop
+  s_right_flipper_inactive: carousel_has_navigated
+  s_left_flipper_inactive: carousel_has_navigated
 
 ###########################
 
@@ -686,11 +753,10 @@ show_player:
       loops: 1
   
   mode_carousel_started:
-    carousel_enter_show:
-      action: play
-      speed: 50
-      priority: 200
-      loops: 0
+    look_screen_show:
+      speed: 40
+      loops: 2
+      priority: 1000
       events_when_completed: stop_gi_carousel
     carousel_side_left_flash_show:
       action: play
@@ -842,48 +908,47 @@ sound_player:
       action: play
       volume: 2
 
-  carousel_mission1_highlighted:
+  carousel_mission1_highlighted{current_player.carousel_navigated==1}:
     carousel_radio_voice_pool:
       action: play
       volume: 2
-  carousel_mission2_highlighted:
+  carousel_mission2_highlighted{current_player.carousel_navigated==1}:
     carousel_voice_charleston:
       action: play
       volume: 2
-  carousel_mission3_highlighted:
+  carousel_mission3_highlighted{current_player.carousel_navigated==1}:
     carousel_voice_speakeasy:
       action: play
       volume: 2
-  carousel_mission4_highlighted:
+  carousel_mission4_highlighted{current_player.carousel_navigated==1}:
     carousel_graveyard_voice_pool:
       action: play
       volume: 2
-  carousel_mission5_highlighted:
+  carousel_mission5_highlighted{current_player.carousel_navigated==1}:
     carousel_cult_voice_pool:
       action: play
       volume: 2
-  carousel_mission6_highlighted:
+  carousel_mission6_highlighted{current_player.carousel_navigated==1}:
     carousel_city_voice_pool:
       action: play
       volume: 2
-
-  carousel_missionAZATHOTH_highlighted:
+  carousel_missionAZATHOTH_highlighted{current_player.carousel_navigated==1}:
     carousel_aza_voice_pool:
       action: play
       volume: 2
-  carousel_missionKING_highlighted:
+  carousel_missionKING_highlighted{current_player.carousel_navigated==1}:
     carousel_king_voice_pool:
       action: play
       volume: 2
-  carousel_missionNYARLA_highlighted:
+  carousel_missionNYARLA_highlighted{current_player.carousel_navigated==1}:
     carousel_nyarla_voice_pool:
       action: play
       volume: 2
-  carousel_missionCTHULHU_highlighted:
+  carousel_missionCTHULHU_highlighted{current_player.carousel_navigated==1}:
     carousel_cthulhu_voice_pool:
       action: play
       volume: 2
-  carousel_missionSHUB_highlighted:
+  carousel_missionSHUB_highlighted{current_player.carousel_navigated==1}:
     carousel_shub_voice_pool:
       action: play
       volume: 2

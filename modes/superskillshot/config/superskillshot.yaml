@@ -31,7 +31,7 @@ event_player:
 
 variable_player:
   superskillshot_hit:
-    score: 50000
+    score: 5000
 
 ###########################
 

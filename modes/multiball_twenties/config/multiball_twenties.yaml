@@ -1,7 +1,7 @@
 #config_version=6
 mode:
   start_events:  mode_base_started{current_player.insert_multiball_twenties!='complete'}, multiball_twenties_start{current_player.insert_multiball_twenties!='complete'}, mode_sanity_stopped{current_player.insert_multiball_twenties!='complete'}, multiball_rlyeh_has_stopped{current_player.insert_multiball_twenties!='complete'}
-  stop_events: multiball_twenties_stop, multiball_rlyeh_has_started, game_ended, ball_ended, game_ending, ball_ending
+  stop_events: multiball_twenties_stop, multiball_rlyeh_has_started, game_ended, ball_ended, game_ending, ball_ending, killplayer
   priority: 1500
   # restart_on_next_ball: true
 
@@ -1905,6 +1905,7 @@ multiballs:
     start_events: timer_timer_multiball_twenties_delay_time_complete
     add_a_ball_events: ball_four_locked
     add_a_ball_shoot_again: 10s
+    stop_events: stop_multiball_twenties
 
 ###########################
 
@@ -1961,7 +1962,7 @@ shot_profiles:
         show: multiball_blink_show
         speed: 7
         loops: -1
-        priority: 600
+        priority: 2650
       - name: litmultiball
         priority: 10
         show: led_color
@@ -2181,34 +2182,34 @@ variable_player:
       string: 'off'
 
   ball_one_locked:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     insert_multiball_twenties:
       action: set
       string: 'one'
   ball_two_locked:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     insert_multiball_twenties:
       action: set
       string: 'two'
   ball_three_locked:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
     insert_multiball_twenties:
       action: set
       string: 'three'
 
 
   multiball_twenties_cthulhu_ramp_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_twenties_green_ramp_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier  
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_twenties_king_ramp_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_twenties_space_orbit_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_twenties_asylum_orbit_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
   multiball_twenties_library_roll_shot_active_hit:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
 
 
 ###########################

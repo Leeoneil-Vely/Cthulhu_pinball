@@ -45,7 +45,7 @@ widgets:
     type: text
     text: YOU DANCE ALL NIGHT !
     color: FF8000
-    y: 28%
+    y: 35%
     x: 50%
     z: 100
     expire: 10s
@@ -61,7 +61,7 @@ widgets:
 
   charleston_win_banner_2:
     type: text
-    text: 175,000 points !
+    text: 17,500 points !
     color: FF8000
     y: 65%
     x: 50%
@@ -100,12 +100,16 @@ variable_player:
       action: set
       string: 'completed'
 
-    score: 175000
-    charleston_champion: 175000
+    score: 17500
+    charleston_champion: 17500
 
     mission_boost_multiplier:
       action: add
       float: 0.1
+
+    mission_wizard_twenties_multiplier:
+      action: add
+      float: 0.3
 
 ###########################
 

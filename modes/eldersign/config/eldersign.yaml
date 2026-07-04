@@ -9,7 +9,7 @@ mode:
 
 event_player:
   green_target_group_complete: shaker_shake, launch_random_eldersign_video
-  "{current_player.insert_eldersign=='five'}": block_eldersign
+  eldersign_5_counter_complete: block_eldersign
 
 ###########################
 
@@ -156,14 +156,14 @@ shot_profiles:
 
 variable_player:
   green_target_group_lit_complete:
-    score: 5000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 500 * current_player.multiplier * current_player.spell_boost_multiplier
 
   eldersign_green_target_1_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   eldersign_green_target_2_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
   eldersign_green_target_3_shot_hit:
-    score: 1000 * current_player.multiplier * current_player.spell_boost_multiplier
+    score: 100 * current_player.multiplier * current_player.spell_boost_multiplier
 
   eldersign_1_counter_complete:
     insert_eldersign:
@@ -305,6 +305,12 @@ show_player:
       speed: 5
       loops: -1
       priority: 1
+  stop_eldersign:
+    eldersign_blink_show:
+      action: stop
+  mode_eldersign_stopped:
+    eldersign_blink_show:
+      action: stop
 
 ###########################
 

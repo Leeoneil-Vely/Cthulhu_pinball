@@ -1,0 +1,238 @@
+#config_version=6
+mode:
+  start_events: ball_started, base_start
+  stop_events: game_ended, ball_ended, game_ending, ball_ending
+  priority: 10000
+  restart_on_next_ball: true
+
+###########################
+
+event_player:
+  launch_random_mission: select_mission_randomly|1s, reset_random_value
+
+###########################
+
+# random_event_player:
+#   select_mission_randomly:
+#     events:
+#       - fordt_ride_start
+
+random_event_player:
+  select_mission_randomly:
+    events:
+      - buddy_twenties_start{current_player.buddy_mode_running=='off'}
+      - bywandine_start
+      - chthonian_attack_start
+      - fordt_ride_start{current_player.multiball_twenties_running=='off' and current_player.multiball_rlyeh_running=='off' and current_player.buddy_mode_running=='off' and current_player.portal_multiball_running=='off' and current_player.cellar_multiball_running=='off'}
+      - lurking_start
+      - pursuit_twenties_start
+      - random_available_mission_start
+      - random_bonus_start
+      - stormy_night_start
+
+  mode_buddy_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_bywandine_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_chthonian_attack_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_fordt_ride_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_lurking_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_pursuit_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_random_available_mission_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_random_bonus_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+  mode_stormy_night_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  mode_twenties_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_twenties_multiball_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_rlyeh_multiball_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_rlyeh_multiball_level_2_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+  multiball_multiball_rlyeh_multiball_level_3_started:
+    events:
+      - add_30
+      - add_35
+      - add_40
+      - add_45
+      - add_50
+      - add_55
+      - add_60
+
+###########################
+
+counters:
+  random_mission_counter:
+    count_events: s_roll_skill_shot_1_active{current_player.random_event_available=='yes'}, s_roll_skill_shot_2_active{current_player.random_event_available=='yes'}, s_roll_skill_shot_3_active{current_player.random_event_available=='yes'}, s_sling_left_active{current_player.random_event_available=='yes'}, s_sling_right_active{current_player.random_event_available=='yes'}, s_sling_up_active{current_player.random_event_available=='yes'}, s_popbumper_one_active{current_player.random_event_available=='yes'}, s_popbumper_two_active{current_player.random_event_available=='yes'}, s_popbumper_three_active{current_player.random_event_available=='yes'}, s_target_square_white_1_active{current_player.random_event_available=='yes'}, s_target_square_white_2_active{current_player.random_event_available=='yes'}, s_target_square_white_3_active{current_player.random_event_available=='yes'}, s_target_square_white_4_active{current_player.random_event_available=='yes'}, s_target_square_white_5_active{current_player.random_event_available=='yes'}, s_target_library_1_active{current_player.random_event_available=='yes'}, s_target_library_2_active{current_player.random_event_available=='yes'}, s_target_library_3_active{current_player.random_event_available=='yes'}, s_target_library_4_active{current_player.random_event_available=='yes'}, s_target_library_5_active{current_player.random_event_available=='yes'}, s_target_library_6_active{current_player.random_event_available=='yes'}, s_target_green_1_active{current_player.random_event_available=='yes'}, s_target_green_2_active{current_player.random_event_available=='yes'}, s_target_green_3_active{current_player.random_event_available=='yes'}, s_drop_target_1_active{current_player.random_event_available=='yes'}, s_drop_target_2_active{current_player.random_event_available=='yes'}, s_drop_target_3_active{current_player.random_event_available=='yes'}, s_drop_target_4_active{current_player.random_event_available=='yes'}, s_roll_fordt_active{current_player.random_event_available=='yes'}, s_roll_asylum_active{current_player.random_event_available=='yes'}, s_gate_library_active{current_player.random_event_available=='yes'}, s_gate_secret_library_active{current_player.random_event_available=='yes'}, s_gate_main_ramp_active{current_player.random_event_available=='yes'}, s_gate_green_ramp_active{current_player.random_event_available=='yes'}, s_gate_cthulhu_ramp_active{current_player.random_event_available=='yes'}, s_roll_library_active{current_player.random_event_available=='yes'}, s_roll_space_active{current_player.random_event_available=='yes'}, s_roll_right_inlane_active{current_player.random_event_available=='yes'}, s_roll_left_inlane_active{current_player.random_event_available=='yes'}
+    starting_count: 0
+    count_complete_value: (current_player.random_value_mission)
+    events_when_complete: launch_random_mission
+    reset_on_complete: true
+    disable_on_complete: true
+    persist_state: false
+    restart_events: mode_twenties_started, mode_buddy_twenties_started, mode_random_bonus_started
+    disable_events: mode_twenties_stopped
+
+###########################
+
+
+variable_player:
+  reset_random_value:
+    random_value_mission:
+      int: 0
+      action: set
+
+  mode_pre_azathoth_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_king_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_nyarla_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_cthulhu_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+  mode_pre_shub_stopped:
+    random_event_available:
+      action: set
+      string: 'yes'
+
+  add_30:
+    random_value_mission:
+      int: 30
+      action: set
+  add_35:
+    random_value_mission:
+      int: 35
+      action: set
+  add_40:
+    random_value_mission:
+      int: 40
+      action: set
+  add_45:
+    random_value_mission:
+      int: 45
+      action: set
+  add_50:
+    random_value_mission:
+      int: 50
+      action: set
+  add_55:
+    random_value_mission:
+      int: 55
+      action: set
+  add_60:
+    random_value_mission:
+      int: 60
+      action: set
+
+###########################
